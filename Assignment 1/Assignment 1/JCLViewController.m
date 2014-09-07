@@ -16,6 +16,7 @@ static NSInteger const MAX_NUMBER = 15;
 @interface JCLViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *multiplierLabel;
 @property (weak, nonatomic) IBOutlet UILabel *multiplicandLabel;
+@property (weak, nonatomic) IBOutlet UILabel *barLabel;
 @property (weak, nonatomic) IBOutlet UILabel *resultLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numCorrectLabel;
 @property (weak, nonatomic) IBOutlet UILabel *correctLabel;
@@ -47,6 +48,7 @@ static NSInteger const MAX_NUMBER = 15;
 - (void)clearAll{
     self.multiplierLabel.text = @"";
     self.multiplicandLabel.text = @"";
+    self.barLabel.hidden = true;
     self.resultLabel.text = @"";
     self.numCorrectLabel.text = @"";
     self.correctLabel.text = @"";
@@ -65,6 +67,7 @@ static NSInteger const MAX_NUMBER = 15;
     self.resultLabel.text = @"";
     self.numCorrectLabel.text = @"";
     self.correctLabel.text = @"";
+    self.barLabel.hidden = false;
     
     //Generating numbers and answer.
     int multiplier = arc4random_uniform(MAX_NUMBER) + MIN_NUMBER;
@@ -73,7 +76,7 @@ static NSInteger const MAX_NUMBER = 15;
     self.multiplierLabel.text = [NSString stringWithFormat:@"%d", multiplier];
     self.multiplicandLabel.text = [NSString stringWithFormat:@"%d", multiplicand];
     
-    //Generate list of possible (but wrong) answers within the proper range.
+    //Generate list of all wrong answers within the proper range.
     NSMutableArray *answers = [NSMutableArray array];
     for (int i = 0; i < ANSWER_DEVIATION * 2 + 1; ++i){
         if (i != ANSWER_DEVIATION){
@@ -81,7 +84,7 @@ static NSInteger const MAX_NUMBER = 15;
             [answers addObject:[NSString stringWithFormat:@"%d", ans]];
         }
     }
-    //Of that list, add random ones to another list until we have added NUM_SEGMENTS - 1 answers.
+    //Of that list, add random ones to a new list until we have added NUM_SEGMENTS - 1 answers.
     NSMutableArray *toSegments = [NSMutableArray array];
     for (int i = 0; i < NUM_SEGMENTS - 1; ++i){
         int index = arc4random_uniform(answers.count);
