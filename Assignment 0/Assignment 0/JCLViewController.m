@@ -26,4 +26,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)answerSelected:(id)sender {
+}
+
+- (IBAction)nextPressed:(id)sender {
+}
 @end
