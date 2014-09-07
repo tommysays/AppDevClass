@@ -47,37 +47,36 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CDV-Tv-akV">
                                 <rect key="frame" x="40" y="291" width="241" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.63266239504734822" green="0.75246592608854357" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.63266239499999999" green="0.75246592609999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
                                     <segment title=""/>
                                     <segment title=""/>
                                     <segment title=""/>
                                     <segment title=""/>
                                 </segments>
-                                <color key="tintColor" red="0.42650110959999998" green="0.4368356317" blue="0.70216966709999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.17320079776190131" green="0.2141726709005487" blue="0.70216966709999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="answerSelected:" destination="vXZ-lx-hvc" eventType="valueChanged" id="ak0-6T-ihj"/>
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nw7-9v-mJn">
-                                <rect key="frame" x="40" y="361" width="241" height="21"/>
+                                <rect key="frame" x="40" y="357" width="241" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Erk-H3-o4b">
-                                <rect key="frame" x="40" y="413" width="241" height="29"/>
+                                <rect key="frame" x="40" y="396" width="241" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLp-h2-t9m">
-                                <rect key="frame" x="112" y="467" width="96" height="32"/>
+                                <rect key="frame" x="93" y="433" width="134" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.42650110963762816" green="0.43683563174126738" blue="0.70216966711956519" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="tintColor" red="1" green="0.93148149061567276" blue="0.46287409820825509" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Next">
+                                <state key="normal" title="Next" backgroundImage="simple_line.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -93,7 +92,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.74024687927787824" green="0.80736694371070561" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="answersControl" destination="CDV-Tv-akV" id="N08-bL-oRf"/>
@@ -110,6 +109,9 @@
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="simple_line.png" width="200" height="100"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
