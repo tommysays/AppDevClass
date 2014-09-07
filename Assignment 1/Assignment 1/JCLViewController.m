@@ -35,7 +35,7 @@ static NSInteger const MAX_NUMBER = 15;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
     [self.answersControl removeAllSegments];
     for (int i = 0; i < NUM_SEGMENTS; ++i){
         [self.answersControl insertSegmentWithTitle:@"" atIndex:0 animated:false];
@@ -53,18 +53,53 @@ static NSInteger const MAX_NUMBER = 15;
     for (int i = 0; i < NUM_SEGMENTS; i++) {
         [self.answersControl setTitle:@"" forSegmentAtIndex:i];
     }
+    self.answersControl.selectedSegmentIndex = -1;
+    self.answersControl.enabled = false;
     self.numCorrect = 0;
     self.numQuestion = 0;
     self.answer = 0;
 }
 
 - (void)generateProblem{
+    //Resetting some labels.
+    self.resultLabel.text = @"";
+    self.numCorrectLabel.text = @"";
+    self.correctLabel.text = @"";
+    
+    //Generating numbers and answer.
     int multiplier = arc4random_uniform(MAX_NUMBER) + MIN_NUMBER;
     int multiplicand = arc4random_uniform(MAX_NUMBER) + MIN_NUMBER;
     self.answer = multiplier * multiplicand;
     self.multiplierLabel.text = [NSString stringWithFormat:@"%d", multiplier];
     self.multiplicandLabel.text = [NSString stringWithFormat:@"%d", multiplicand];
     
+    //Generate list of possible (but wrong) answers within the proper range.
+    NSMutableArray *answers = [NSMutableArray array];
+    for (int i = 0; i < ANSWER_DEVIATION * 2 + 1; ++i){
+        if (i != ANSWER_DEVIATION){
+            NSInteger ans = self.answer - i + ANSWER_DEVIATION;
+            [answers addObject:[NSString stringWithFormat:@"%d", ans]];
+        }
+    }
+    //Of that list, add random ones to another list until we have added NUM_SEGMENTS - 1 answers.
+    NSMutableArray *toSegments = [NSMutableArray array];
+    for (int i = 0; i < NUM_SEGMENTS - 1; ++i){
+        int index = arc4random_uniform(answers.count);
+        [toSegments addObject:answers[index]];
+        [answers removeObjectAtIndex:index];
+    }
+    
+    //Add the real answer to the new list.
+    [toSegments addObject:[NSString stringWithFormat:@"%d", self.answer]];
+    
+    //Finally, add all the (randomly selected) answers in a random order to our segmented control.
+    for (int i = 0; i < NUM_SEGMENTS; ++i){
+        int index = arc4random_uniform(toSegments.count);
+        [self.answersControl setTitle:toSegments[index] forSegmentAtIndex:i];
+        [toSegments removeObjectAtIndex:index];
+    }
+    self.answersControl.selectedSegmentIndex = -1;
+    self.answersControl.enabled = true;
 }
 
 - (BOOL)isCorrect{
@@ -85,6 +120,7 @@ static NSInteger const MAX_NUMBER = 15;
     self.answersControl.enabled = false;
     self.resultLabel.text = [NSString stringWithFormat:@"%d", self.answer];
     self.numCorrectLabel.text = [NSString stringWithFormat:@"%d/%d Questions Correct", self.numCorrect, self.numQuestion];
+    self.nextButton.enabled = true;
 }
 
 - (IBAction)nextPressed:(id)sender {
@@ -92,11 +128,16 @@ static NSInteger const MAX_NUMBER = 15;
         [self generateProblem];
         [self.nextButton setTitle:@"Next" forState:UIControlStateNormal];
         self.numQuestion++;
+        self.nextButton.enabled = false;
     } else if (self.numQuestion < NUM_QUESTIONS - 1){
         [self generateProblem];
         self.numQuestion++;
+        self.nextButton.enabled = false;
     } else if (self.numQuestion < NUM_QUESTIONS){
         [self.nextButton setTitle:@"Reset" forState:UIControlStateNormal];
+        [self generateProblem];
+        self.numQuestion++;
+        self.nextButton.enabled = false;
     } else{
         [self clearAll];
         [self.nextButton setTitle:@"Start" forState:UIControlStateNormal];
