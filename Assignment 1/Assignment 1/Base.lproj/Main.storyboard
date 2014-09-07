@@ -90,6 +90,7 @@
                         <outlet property="correctLabel" destination="Erk-H3-o4b" id="fDQ-BF-Ja1"/>
                         <outlet property="multiplicandLabel" destination="Kio-8k-EB0" id="vIZ-Ig-qBM"/>
                         <outlet property="multiplierLabel" destination="ZBw-zE-Cke" id="cJV-oE-5rC"/>
+                        <outlet property="nextButton" destination="lLp-h2-t9m" id="LQJ-ov-Fv8"/>
                         <outlet property="numCorrectLabel" destination="Nw7-9v-mJn" id="aoJ-0W-c9l"/>
                         <outlet property="resultLabel" destination="n9d-zH-nCk" id="0Xv-EH-ljF"/>
                     </connections>
