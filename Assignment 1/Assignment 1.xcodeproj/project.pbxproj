@@ -35,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D803D96D19BC077D00D3BD3C /* simple_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = simple_line.png; path = ../../../../../../../Users/CLMbackup/230419/psuguest/Desktop/simple_line.png; sourceTree = "<group>"; };
+		D803D96D19BC077D00D3BD3C /* simple_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = simple_line.png; path = /Users/CLMbackup/230419/psuguest/Desktop/simple_line.png; sourceTree = "<absolute>"; };
 		D889E31119BBD719008C05E8 /* Assignment 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Assignment 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D889E31419BBD719008C05E8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D889E31619BBD719008C05E8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -81,14 +81,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D803D96C19BC076900D3BD3C /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				D803D96D19BC077D00D3BD3C /* simple_line.png */,
-			);
-			name = Images;
-			sourceTree = "<group>";
-		};
 		D889E30819BBD719008C05E8 = {
 			isa = PBXGroup;
 			children = (
@@ -122,12 +114,12 @@
 		D889E31A19BBD719008C05E8 /* Assignment 1 */ = {
 			isa = PBXGroup;
 			children = (
-				D803D96C19BC076900D3BD3C /* Images */,
 				D889E32319BBD71A008C05E8 /* JCLAppDelegate.h */,
 				D889E32419BBD71A008C05E8 /* JCLAppDelegate.m */,
 				D889E32619BBD71A008C05E8 /* Main.storyboard */,
 				D889E32919BBD71A008C05E8 /* JCLViewController.h */,
 				D889E32A19BBD71A008C05E8 /* JCLViewController.m */,
+				D803D96D19BC077D00D3BD3C /* simple_line.png */,
 				D889E32C19BBD71A008C05E8 /* Images.xcassets */,
 				D889E31B19BBD71A008C05E8 /* Supporting Files */,
 			);
