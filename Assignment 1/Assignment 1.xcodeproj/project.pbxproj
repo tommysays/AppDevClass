@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D803D96E19BC077D00D3BD3C /* simple_line.png in Resources */ = {isa = PBXBuildFile; fileRef = D803D96D19BC077D00D3BD3C /* simple_line.png */; };
 		D889E31519BBD719008C05E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D889E31419BBD719008C05E8 /* Foundation.framework */; };
 		D889E31719BBD719008C05E8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D889E31619BBD719008C05E8 /* CoreGraphics.framework */; };
 		D889E31919BBD719008C05E8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D889E31819BBD719008C05E8 /* UIKit.framework */; };
@@ -35,7 +34,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D803D96D19BC077D00D3BD3C /* simple_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = simple_line.png; path = /Users/CLMbackup/230419/psuguest/Desktop/simple_line.png; sourceTree = "<absolute>"; };
 		D889E31119BBD719008C05E8 /* Assignment 1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Assignment 1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D889E31419BBD719008C05E8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D889E31619BBD719008C05E8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -119,7 +117,6 @@
 				D889E32619BBD71A008C05E8 /* Main.storyboard */,
 				D889E32919BBD71A008C05E8 /* JCLViewController.h */,
 				D889E32A19BBD71A008C05E8 /* JCLViewController.m */,
-				D803D96D19BC077D00D3BD3C /* simple_line.png */,
 				D889E32C19BBD71A008C05E8 /* Images.xcassets */,
 				D889E31B19BBD71A008C05E8 /* Supporting Files */,
 			);
@@ -235,7 +232,6 @@
 				D889E32D19BBD71A008C05E8 /* Images.xcassets in Resources */,
 				D889E31F19BBD71A008C05E8 /* InfoPlist.strings in Resources */,
 				D889E32819BBD71A008C05E8 /* Main.storyboard in Resources */,
-				D803D96E19BC077D00D3BD3C /* simple_line.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

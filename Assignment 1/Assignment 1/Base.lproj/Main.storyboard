@@ -76,7 +76,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="tintColor" red="1" green="0.93148149061567276" blue="0.46287409820825509" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Next" backgroundImage="simple_line.png">
+                                <state key="normal" title="Next" backgroundImage="simple_line">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -110,7 +110,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="simple_line.png" width="200" height="100"/>
+        <image name="simple_line" width="200" height="100"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
