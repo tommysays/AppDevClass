@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Pentominoes/Pentominoes.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Assignment 1/Assignment 1.xcodeproj">
    </FileRef>
    <FileRef
