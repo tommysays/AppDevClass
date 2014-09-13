@@ -1,0 +1,474 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D81C0DBC19C507A50080219A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D81C0DBB19C507A50080219A /* Foundation.framework */; };
+		D81C0DBE19C507A50080219A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D81C0DBD19C507A50080219A /* CoreGraphics.framework */; };
+		D81C0DC019C507A50080219A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D81C0DBF19C507A50080219A /* UIKit.framework */; };
+		D81C0DC619C507A50080219A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D81C0DC419C507A50080219A /* InfoPlist.strings */; };
+		D81C0DC819C507A50080219A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D81C0DC719C507A50080219A /* main.m */; };
+		D81C0DCC19C507A50080219A /* JCLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D81C0DCB19C507A50080219A /* JCLAppDelegate.m */; };
+		D81C0DCF19C507A50080219A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D81C0DCD19C507A50080219A /* Main.storyboard */; };
+		D81C0DD219C507A50080219A /* JCLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D81C0DD119C507A50080219A /* JCLViewController.m */; };
+		D81C0DD419C507A60080219A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D81C0DD319C507A60080219A /* Images.xcassets */; };
+		D81C0DDB19C507A60080219A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D81C0DDA19C507A60080219A /* XCTest.framework */; };
+		D81C0DDC19C507A60080219A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D81C0DBB19C507A50080219A /* Foundation.framework */; };
+		D81C0DDD19C507A60080219A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D81C0DBF19C507A50080219A /* UIKit.framework */; };
+		D81C0DE519C507A60080219A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D81C0DE319C507A60080219A /* InfoPlist.strings */; };
+		D81C0DE719C507A60080219A /* PentominoesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D81C0DE619C507A60080219A /* PentominoesTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D81C0DDE19C507A60080219A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D81C0DB019C507A50080219A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D81C0DB719C507A50080219A;
+			remoteInfo = Pentominoes;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D81C0DB819C507A50080219A /* Pentominoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pentominoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D81C0DBB19C507A50080219A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D81C0DBD19C507A50080219A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D81C0DBF19C507A50080219A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D81C0DC319C507A50080219A /* Pentominoes-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pentominoes-Info.plist"; sourceTree = "<group>"; };
+		D81C0DC519C507A50080219A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D81C0DC719C507A50080219A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D81C0DC919C507A50080219A /* Pentominoes-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pentominoes-Prefix.pch"; sourceTree = "<group>"; };
+		D81C0DCA19C507A50080219A /* JCLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCLAppDelegate.h; sourceTree = "<group>"; };
+		D81C0DCB19C507A50080219A /* JCLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCLAppDelegate.m; sourceTree = "<group>"; };
+		D81C0DCE19C507A50080219A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D81C0DD019C507A50080219A /* JCLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCLViewController.h; sourceTree = "<group>"; };
+		D81C0DD119C507A50080219A /* JCLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCLViewController.m; sourceTree = "<group>"; };
+		D81C0DD319C507A60080219A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D81C0DD919C507A60080219A /* PentominoesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PentominoesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D81C0DDA19C507A60080219A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D81C0DE219C507A60080219A /* PentominoesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PentominoesTests-Info.plist"; sourceTree = "<group>"; };
+		D81C0DE419C507A60080219A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D81C0DE619C507A60080219A /* PentominoesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PentominoesTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D81C0DB519C507A50080219A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D81C0DBE19C507A50080219A /* CoreGraphics.framework in Frameworks */,
+				D81C0DC019C507A50080219A /* UIKit.framework in Frameworks */,
+				D81C0DBC19C507A50080219A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D81C0DD619C507A60080219A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D81C0DDB19C507A60080219A /* XCTest.framework in Frameworks */,
+				D81C0DDD19C507A60080219A /* UIKit.framework in Frameworks */,
+				D81C0DDC19C507A60080219A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D81C0DAF19C507A50080219A = {
+			isa = PBXGroup;
+			children = (
+				D81C0DC119C507A50080219A /* Pentominoes */,
+				D81C0DE019C507A60080219A /* PentominoesTests */,
+				D81C0DBA19C507A50080219A /* Frameworks */,
+				D81C0DB919C507A50080219A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D81C0DB919C507A50080219A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D81C0DB819C507A50080219A /* Pentominoes.app */,
+				D81C0DD919C507A60080219A /* PentominoesTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D81C0DBA19C507A50080219A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D81C0DBB19C507A50080219A /* Foundation.framework */,
+				D81C0DBD19C507A50080219A /* CoreGraphics.framework */,
+				D81C0DBF19C507A50080219A /* UIKit.framework */,
+				D81C0DDA19C507A60080219A /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D81C0DC119C507A50080219A /* Pentominoes */ = {
+			isa = PBXGroup;
+			children = (
+				D81C0DCA19C507A50080219A /* JCLAppDelegate.h */,
+				D81C0DCB19C507A50080219A /* JCLAppDelegate.m */,
+				D81C0DCD19C507A50080219A /* Main.storyboard */,
+				D81C0DD019C507A50080219A /* JCLViewController.h */,
+				D81C0DD119C507A50080219A /* JCLViewController.m */,
+				D81C0DD319C507A60080219A /* Images.xcassets */,
+				D81C0DC219C507A50080219A /* Supporting Files */,
+			);
+			path = Pentominoes;
+			sourceTree = "<group>";
+		};
+		D81C0DC219C507A50080219A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D81C0DC319C507A50080219A /* Pentominoes-Info.plist */,
+				D81C0DC419C507A50080219A /* InfoPlist.strings */,
+				D81C0DC719C507A50080219A /* main.m */,
+				D81C0DC919C507A50080219A /* Pentominoes-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D81C0DE019C507A60080219A /* PentominoesTests */ = {
+			isa = PBXGroup;
+			children = (
+				D81C0DE619C507A60080219A /* PentominoesTests.m */,
+				D81C0DE119C507A60080219A /* Supporting Files */,
+			);
+			path = PentominoesTests;
+			sourceTree = "<group>";
+		};
+		D81C0DE119C507A60080219A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D81C0DE219C507A60080219A /* PentominoesTests-Info.plist */,
+				D81C0DE319C507A60080219A /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D81C0DB719C507A50080219A /* Pentominoes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D81C0DEA19C507A60080219A /* Build configuration list for PBXNativeTarget "Pentominoes" */;
+			buildPhases = (
+				D81C0DB419C507A50080219A /* Sources */,
+				D81C0DB519C507A50080219A /* Frameworks */,
+				D81C0DB619C507A50080219A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pentominoes;
+			productName = Pentominoes;
+			productReference = D81C0DB819C507A50080219A /* Pentominoes.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D81C0DD819C507A60080219A /* PentominoesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D81C0DED19C507A60080219A /* Build configuration list for PBXNativeTarget "PentominoesTests" */;
+			buildPhases = (
+				D81C0DD519C507A60080219A /* Sources */,
+				D81C0DD619C507A60080219A /* Frameworks */,
+				D81C0DD719C507A60080219A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D81C0DDF19C507A60080219A /* PBXTargetDependency */,
+			);
+			name = PentominoesTests;
+			productName = PentominoesTests;
+			productReference = D81C0DD919C507A60080219A /* PentominoesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D81C0DB019C507A50080219A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = JCL;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Joshua Lee";
+				TargetAttributes = {
+					D81C0DD819C507A60080219A = {
+						TestTargetID = D81C0DB719C507A50080219A;
+					};
+				};
+			};
+			buildConfigurationList = D81C0DB319C507A50080219A /* Build configuration list for PBXProject "Pentominoes" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D81C0DAF19C507A50080219A;
+			productRefGroup = D81C0DB919C507A50080219A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D81C0DB719C507A50080219A /* Pentominoes */,
+				D81C0DD819C507A60080219A /* PentominoesTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D81C0DB619C507A50080219A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D81C0DD419C507A60080219A /* Images.xcassets in Resources */,
+				D81C0DC619C507A50080219A /* InfoPlist.strings in Resources */,
+				D81C0DCF19C507A50080219A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D81C0DD719C507A60080219A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D81C0DE519C507A60080219A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D81C0DB419C507A50080219A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D81C0DCC19C507A50080219A /* JCLAppDelegate.m in Sources */,
+				D81C0DD219C507A50080219A /* JCLViewController.m in Sources */,
+				D81C0DC819C507A50080219A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D81C0DD519C507A60080219A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D81C0DE719C507A60080219A /* PentominoesTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D81C0DDF19C507A60080219A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D81C0DB719C507A50080219A /* Pentominoes */;
+			targetProxy = D81C0DDE19C507A60080219A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D81C0DC419C507A50080219A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D81C0DC519C507A50080219A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D81C0DCD19C507A50080219A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D81C0DCE19C507A50080219A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D81C0DE319C507A60080219A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D81C0DE419C507A60080219A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D81C0DE819C507A60080219A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		D81C0DE919C507A60080219A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D81C0DEB19C507A60080219A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pentominoes/Pentominoes-Prefix.pch";
+				INFOPLIST_FILE = "Pentominoes/Pentominoes-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D81C0DEC19C507A60080219A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pentominoes/Pentominoes-Prefix.pch";
+				INFOPLIST_FILE = "Pentominoes/Pentominoes-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D81C0DEE19C507A60080219A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Pentominoes.app/Pentominoes";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pentominoes/Pentominoes-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "PentominoesTests/PentominoesTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D81C0DEF19C507A60080219A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Pentominoes.app/Pentominoes";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pentominoes/Pentominoes-Prefix.pch";
+				INFOPLIST_FILE = "PentominoesTests/PentominoesTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D81C0DB319C507A50080219A /* Build configuration list for PBXProject "Pentominoes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D81C0DE819C507A60080219A /* Debug */,
+				D81C0DE919C507A60080219A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D81C0DEA19C507A60080219A /* Build configuration list for PBXNativeTarget "Pentominoes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D81C0DEB19C507A60080219A /* Debug */,
+				D81C0DEC19C507A60080219A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D81C0DED19C507A60080219A /* Build configuration list for PBXNativeTarget "PentominoesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D81C0DEE19C507A60080219A /* Debug */,
+				D81C0DEF19C507A60080219A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D81C0DB019C507A50080219A /* Project object */;
+}
