@@ -21,6 +21,7 @@
 		D81C0DDD19C507A60080219A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D81C0DBF19C507A50080219A /* UIKit.framework */; };
 		D81C0DE519C507A60080219A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D81C0DE319C507A60080219A /* InfoPlist.strings */; };
 		D81C0DE719C507A60080219A /* PentominoesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D81C0DE619C507A60080219A /* PentominoesTests.m */; };
+		D8BDCED719C65D6C00BF8988 /* Solutions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8BDCED619C65D6C00BF8988 /* Solutions.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		D81C0DE219C507A60080219A /* PentominoesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PentominoesTests-Info.plist"; sourceTree = "<group>"; };
 		D81C0DE419C507A60080219A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D81C0DE619C507A60080219A /* PentominoesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PentominoesTests.m; sourceTree = "<group>"; };
+		D8BDCED619C65D6C00BF8988 /* Solutions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Solutions.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				D81C0DE019C507A60080219A /* PentominoesTests */,
 				D81C0DBA19C507A50080219A /* Frameworks */,
 				D81C0DB919C507A50080219A /* Products */,
+				D8BDCED619C65D6C00BF8988 /* Solutions.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -230,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D81C0DD419C507A60080219A /* Images.xcassets in Resources */,
+				D8BDCED719C65D6C00BF8988 /* Solutions.plist in Resources */,
 				D81C0DC619C507A50080219A /* InfoPlist.strings in Resources */,
 				D81C0DCF19C507A50080219A /* Main.storyboard in Resources */,
 			);
@@ -459,6 +463,7 @@
 				D81C0DEC19C507A60080219A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D81C0DED19C507A60080219A /* Build configuration list for PBXNativeTarget "PentominoesTests" */ = {
 			isa = XCConfigurationList;
@@ -467,6 +472,7 @@
 				D81C0DEF19C507A60080219A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
