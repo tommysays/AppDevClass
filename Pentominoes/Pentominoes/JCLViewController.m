@@ -30,7 +30,7 @@ const NSInteger MAX_PIECE_WIDTH = 150;
 const NSInteger MAX_PIECE_HEIGHT = 150;
 const NSInteger STARTING_Y = 550;
 
-NSDictionary *pieces;
+NSMutableDictionary *pieces;
 NSMutableArray *solutions;
 NSArray *boardImages;
 NSArray *pieceKeys;
@@ -66,8 +66,8 @@ NSArray *pieceKeys;
         UIImage *img = [UIImage imageNamed:[@"tile" stringByAppendingString:key]];
         UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
         inner[@"view"] = imgView;
-        inner[@"rotations"] = @0;
-        inner[@"flips"] = @0;
+        inner[@"rotations"] = [NSNumber numberWithInteger:0];
+        inner[@"flips"] = [NSNumber numberWithInteger:0];
         temp[key] = inner;
     }
     pieces = temp;
@@ -113,35 +113,50 @@ NSArray *pieceKeys;
     if (self.curBoard == 0){
         return;
     }
-    CGPoint boardOrigin = [self boardView].frame.origin;
     NSDictionary *tileMoves = [solutions objectAtIndex:(self.curBoard - 1)];
     for (NSString *key in pieceKeys){
         NSDictionary *move = tileMoves[key];
-        NSDictionary *piece = pieces[key];
+        NSMutableDictionary *piece = pieces[key];
         UIImageView *imgView = piece[@"view"];
+        
         [UIImageView animateWithDuration:1.5 animations:^{
+            // Changing parent view, if needed
+            if (imgView.superview == self.view){
+                imgView.center = [self.view convertPoint:imgView.center toView:self.boardView];
+            }
+            [self.boardView addSubview:imgView];
+            
             // Transform for rotating piece
-            NSInteger numRotations = (NSInteger)move[@"rotations"] - (NSInteger)piece[@"rotations"];
-            CGAffineTransform transform = CGAffineTransformMakeRotation((CGFloat)(M_PI * 0.5 * numRotations));
+            NSInteger moveRotations = [move[@"rotations"] integerValue];
+            NSInteger pieceRotations = [piece[@"rotations"] integerValue];
+            NSInteger numRotations = moveRotations - pieceRotations;
+            NSLog(@"Rotating %@ %d times.", key, numRotations);
+            imgView.transform = CGAffineTransformRotate(imgView.transform, (CGFloat)(M_PI * 0.5 * numRotations));
+            piece[@"rotations"] = [NSNumber numberWithInteger:moveRotations];
             
             // Transform for flipping piece
-            NSInteger flip = (NSInteger)move[@"flip"] - (NSInteger)piece[@"flip"];
-            if (flip != 0){
+            NSInteger moveFlip = [move[@"flips"] integerValue];
+            NSInteger pieceFlip = [piece[@"flips"] integerValue];
+            NSInteger flip = 0;
+            if (moveFlip != pieceFlip){
                 flip = 1;
             }
+            CGFloat x, y;
             if (flip != 0){
-                if (numRotations % 2 == 0){
-                    transform = CGAffineTransformScale(transform, -1.0, 1.0);
+                if (moveRotations % 2 == 0){
+                    x = -1.0f;
+                    y = 1.0f;
                 } else{
-                    transform = CGAffineTransformScale(transform, 1.0, -1.0);
+                    x = 1.0f;
+                    y = -1.0f;
                 }
+                imgView.transform = CGAffineTransformScale(imgView.transform, x, y);
             }
-            
-            imgView.transform = transform;
+            piece[@"flips"] = [NSNumber numberWithInteger:moveFlip];
             
             // Translate piece
-            CGPoint newOrigin = CGPointMake(boardOrigin.x + BLOCK_WIDTH * (NSInteger)move[@"x"],
-                                            boardOrigin.y + BLOCK_HEIGHT * (NSInteger)move[@"y"]);
+            CGPoint newOrigin = CGPointMake(BLOCK_WIDTH * [move[@"x"] integerValue],
+                                            BLOCK_HEIGHT * [move[@"y"] integerValue]);
             CGSize size = imgView.frame.size;
             CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
             imgView.frame = newFrame;
