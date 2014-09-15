@@ -10,24 +10,30 @@
 
 @interface JCLViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *boardView;
+@property (weak, nonatomic) IBOutlet UIButton *solveButton;
 - (IBAction)boardButtonPressed:(UIButton *)sender;
 - (IBAction)solvePresssed:(id)sender;
 - (IBAction)resetPressed:(id)sender;
 
-@property NSInteger height, width;
+@property NSInteger width, height;
+@property NSInteger curBoard;
 
 @end
 
 @implementation JCLViewController
 
 const NSInteger NUM_BOARDS = 6;
-const NSInteger NUM_TILES = 12;
-const NSInteger MAX_TILE_WIDTH = 150;
-const NSInteger MAX_TILE_HEIGHT = 150;
+const NSInteger NUM_PIECES = 12;
+const NSInteger BLOCK_WIDTH = 30;
+const NSInteger BLOCK_HEIGHT = 30;
+const NSInteger MAX_PIECE_WIDTH = 150;
+const NSInteger MAX_PIECE_HEIGHT = 150;
 const NSInteger STARTING_Y = 550;
-NSMutableArray *boardImages;
-NSMutableDictionary *tiles;
-NSArray *tileKeys;
+
+NSDictionary *pieces;
+NSMutableArray *solutions;
+NSArray *boardImages;
+NSArray *pieceKeys;
 
 - (void)viewDidLoad
 {
@@ -35,85 +41,60 @@ NSArray *tileKeys;
     
     self.height = self.view.bounds.size.height;
     self.width = self.view.bounds.size.width;
+    self.curBoard = 0;
+    self.solveButton.enabled = false;
     [self loadBoardImages];
-    [self loadTiles];
-    [self initTilePositions];
+    [self loadPieces];
+    [self loadSolutions];
+    [self initPiecePositions];
 }
 
 - (void) loadBoardImages{
-    boardImages = [[NSMutableArray alloc] init];
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
     for (int i = 0; i < NUM_BOARDS; ++i){
         NSString *imageName = [NSString stringWithFormat:@"Board%d", i];
-        [boardImages addObject:[UIImage imageNamed:imageName]];
+        [temp addObject:[UIImage imageNamed:imageName]];
     }
+    boardImages = temp;
 }
 
-- (void) loadTiles{
-    tiles = [[NSMutableDictionary alloc] init];
-    tileKeys = @[@"F", @"I", @"L", @"N", @"P", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"];
-    for (NSString *key in tileKeys){
+- (void) loadPieces{
+    NSMutableDictionary *temp = [[NSMutableDictionary alloc] init];
+    pieceKeys = @[@"F", @"I", @"L", @"N", @"P", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"];
+    for (NSString *key in pieceKeys){
+        NSMutableDictionary *inner = [[NSMutableDictionary alloc] init];
         UIImage *img = [UIImage imageNamed:[@"tile" stringByAppendingString:key]];
         UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
-        tiles[key] = imgView;
+        inner[@"view"] = imgView;
+        inner[@"rotations"] = @0;
+        inner[@"flips"] = @0;
+        temp[key] = inner;
     }
-    /*
-    tiles = [[NSMutableArray alloc] init];
-    UIImage *img = [UIImage imageNamed:@"tileF"];
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
-    [tiles addObject:imgView];
-    img = [UIImage imageNamed:@"tileI"];
-    imgView = [[UIImageView alloc] initWithImage:img];
-    [tiles addObject:imgView];
-    img = [UIImage imageNamed:@"tileL"];
-    imgView = [[UIImageView alloc] initWithImage:img];
-    [tiles addObject:imgView];
-    img = [UIImage imageNamed:@"tileN"];
-    imgView = [[UIImageView alloc] initWithImage:img];
-    [tiles addObject:imgView];
-    img = [UIImage imageNamed:@"tileP"];
-    imgView = [[UIImageView alloc] initWithImage:img];
-    [tiles addObject:imgView];
-    img = [UIImage imageNamed:@"tileT"];
-    imgView = [[UIImageView alloc] initWithImage:img];
-    [tiles addObject:imgView];
-    img = [UIImage imageNamed:@"tileU"];
-    imgView = [[UIImageView alloc] initWithImage:img];
-    [tiles addObject:imgView];
-    img = [UIImage imageNamed:@"tileV"];
-    imgView = [[UIImageView alloc] initWithImage:img];
-    [tiles addObject:imgView];
-    img = [UIImage imageNamed:@"tileW"];
-    imgView = [[UIImageView alloc] initWithImage:img];
-    [tiles addObject:imgView];
-    img = [UIImage imageNamed:@"tileX"];
-    imgView = [[UIImageView alloc] initWithImage:img];
-    [tiles addObject:imgView];
-    img = [UIImage imageNamed:@"tileY"];
-    imgView = [[UIImageView alloc] initWithImage:img];
-    [tiles addObject:imgView];
-    img = [UIImage imageNamed:@"tileZ"];
-    imgView = [[UIImageView alloc] initWithImage:img];
-    [tiles addObject:imgView];
-      */
+    pieces = temp;
 }
 
-// Placing tiles in their initial position.
-- (void) initTilePositions{
-    NSInteger tilesAcross = self.width / MAX_TILE_WIDTH;
-    NSInteger tilesDown = NUM_TILES / tilesAcross;
-    if (NUM_TILES % tilesAcross != 0){
+- (void) loadSolutions{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Solutions" ofType:@"plist"];
+    solutions = [[NSMutableArray alloc] initWithContentsOfFile:path];
+}
+
+// Placing pieces in their initial position.
+- (void) initPiecePositions{
+    NSInteger tilesAcross = self.width / MAX_PIECE_WIDTH;
+    NSInteger tilesDown = NUM_PIECES / tilesAcross;
+    if (NUM_PIECES % tilesAcross != 0){
         tilesDown++;
     }
-    NSInteger remainder = self.width % MAX_TILE_WIDTH;
+    NSInteger remainder = self.width % MAX_PIECE_WIDTH;
     NSInteger padding = remainder / tilesAcross;
     NSInteger x = padding;
     NSInteger y = STARTING_Y;
     NSInteger xCounter = 0;
     
-    for (NSString *key in tileKeys){
-        UIImageView *tile = tiles[key];
+    for (NSString *key in pieceKeys){
+        UIImageView *tile = pieces[key][@"view"];
         CGSize imgSize = [[tile image] size];
-        x = xCounter * (padding + MAX_TILE_WIDTH) + padding;
+        x = xCounter * (padding + MAX_PIECE_WIDTH) + padding;
         CGRect dim = CGRectMake(x, y, imgSize.width, imgSize.height);
         tile.frame = dim;
         tile.contentMode = UIViewContentModeTopLeft;
@@ -122,16 +103,64 @@ NSArray *tileKeys;
         xCounter++;
         if (xCounter >= tilesAcross){
             xCounter = 0;
-            y += MAX_TILE_HEIGHT + padding;
+            y += MAX_PIECE_HEIGHT + padding;
         }
     }
 }
 
+// Animates the pieces toward their position in the solution.
+- (void) solve{
+    if (self.curBoard == 0){
+        return;
+    }
+    CGPoint boardOrigin = [self boardView].frame.origin;
+    NSDictionary *tileMoves = [solutions objectAtIndex:(self.curBoard - 1)];
+    for (NSString *key in pieceKeys){
+        NSDictionary *move = tileMoves[key];
+        NSDictionary *piece = pieces[key];
+        UIImageView *imgView = piece[@"view"];
+        [UIImageView animateWithDuration:1.5 animations:^{
+            // Transform for rotating piece
+            NSInteger numRotations = (NSInteger)move[@"rotations"] - (NSInteger)piece[@"rotations"];
+            CGAffineTransform transform = CGAffineTransformMakeRotation((CGFloat)(M_PI * 0.5 * numRotations));
+            
+            // Transform for flipping piece
+            NSInteger flip = (NSInteger)move[@"flip"] - (NSInteger)piece[@"flip"];
+            if (flip != 0){
+                flip = 1;
+            }
+            if (flip != 0){
+                if (numRotations % 2 == 0){
+                    transform = CGAffineTransformScale(transform, -1.0, 1.0);
+                } else{
+                    transform = CGAffineTransformScale(transform, 1.0, -1.0);
+                }
+            }
+            
+            imgView.transform = transform;
+            
+            // Translate piece
+            CGPoint newOrigin = CGPointMake(boardOrigin.x + BLOCK_WIDTH * (NSInteger)move[@"x"],
+                                            boardOrigin.y + BLOCK_HEIGHT * (NSInteger)move[@"y"]);
+            CGSize size = imgView.frame.size;
+            CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
+            imgView.frame = newFrame;
+        }];
+    }
+}
+
 - (IBAction)boardButtonPressed:(UIButton *)sender {
-    [self.boardView setImage:[boardImages objectAtIndex:sender.tag]];
+    self.curBoard = sender.tag;
+    [self.boardView setImage:[boardImages objectAtIndex:self.curBoard]];
+    if (self.curBoard != 0){
+        self.solveButton.enabled = true;
+    } else{
+        self.solveButton.enabled = false;
+    }
 }
 
 - (IBAction)solvePresssed:(id)sender {
+    [self solve];
 }
 
 - (IBAction)resetPressed:(id)sender {

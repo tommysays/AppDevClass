@@ -103,6 +103,7 @@
                     </view>
                     <connections>
                         <outlet property="boardView" destination="OAL-XR-Ypu" id="4N4-QB-sSY"/>
+                        <outlet property="solveButton" destination="uy8-RE-JAL" id="yxn-pu-lWU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
