@@ -114,9 +114,7 @@ NSArray *pieceKeys;
 }
 
 - (void) reset{
-    NSDictionary *tileMoves = [solutions objectAtIndex:(self.curBoard - 1)];
     for (NSString *key in pieceKeys){
-        NSDictionary *move = tileMoves[key];
         NSMutableDictionary *piece = pieces[key];
         UIImageView *imgView = piece[@"view"];
         
@@ -158,13 +156,10 @@ NSArray *pieceKeys;
             }
             [self.boardView addSubview:imgView];
             
-            
             // Transform for rotating piece
             NSInteger moveRotations = [move[@"rotations"] integerValue];
             CGAffineTransform transform;
             transform = CGAffineTransformMakeRotation((CGFloat)(M_PI * 0.5 * moveRotations));
-
-            
             
             // Transform for flipping piece
             NSInteger moveFlip = [move[@"flips"] integerValue];
@@ -173,14 +168,13 @@ NSArray *pieceKeys;
                 // Apparently we don't have to differentiate different axis flips based on rotations.
                 // Prof Hannan is the master of red herrings. -_-
                 
-//                if (moveRotations % 2 == 0){
+//              if (moveRotations % 2 == 0){
                     x = -1.0f;
                     y = 1.0f;
-//                } else{
-//                    x = 1.0f;
-//                    y = -1.0f;
-//                }
-                NSLog(@"Flipping %@, with %d rotations.", key, moveRotations);
+//              } else{
+//                  x = 1.0f;
+//                  y = -1.0f;
+//              }
                 imgView.transform = CGAffineTransformScale(transform, x, y);
             } else {
                 imgView.transform = transform;
