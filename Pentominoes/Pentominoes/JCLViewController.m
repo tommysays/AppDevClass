@@ -17,6 +17,7 @@
 
 @property NSInteger width, height;
 @property NSInteger curBoard;
+@property NSInteger solved;
 
 @end
 
@@ -43,6 +44,7 @@ NSArray *pieceKeys;
     self.width = self.view.bounds.size.width;
     self.curBoard = 0;
     self.solveButton.enabled = false;
+    self.solved = 0;
     [self loadBoardImages];
     [self loadPieces];
     [self loadSolutions];
@@ -110,7 +112,7 @@ NSArray *pieceKeys;
 
 // Animates the pieces toward their position in the solution.
 - (void) solve{
-    if (self.curBoard == 0){
+    if (self.curBoard == 0 || (self.solved == self.curBoard)){
         return;
     }
     NSDictionary *tileMoves = [solutions objectAtIndex:(self.curBoard - 1)];
@@ -126,33 +128,34 @@ NSArray *pieceKeys;
             }
             [self.boardView addSubview:imgView];
             
+            
             // Transform for rotating piece
             NSInteger moveRotations = [move[@"rotations"] integerValue];
-            NSInteger pieceRotations = [piece[@"rotations"] integerValue];
-            NSInteger numRotations = moveRotations - pieceRotations;
-            NSLog(@"Rotating %@ %d times.", key, numRotations);
-            imgView.transform = CGAffineTransformRotate(imgView.transform, (CGFloat)(M_PI * 0.5 * numRotations));
-            piece[@"rotations"] = [NSNumber numberWithInteger:moveRotations];
+            CGAffineTransform transform;
+//            transform = CGAffineTransformRotateMake((CGFloat)(M_PI * 0.5 * moveRotations));
+            transform = CGAffineTransformMakeRotation((CGFloat)(M_PI * 0.5 * moveRotations));
+
+            
             
             // Transform for flipping piece
             NSInteger moveFlip = [move[@"flips"] integerValue];
-            NSInteger pieceFlip = [piece[@"flips"] integerValue];
-            NSInteger flip = 0;
-            if (moveFlip != pieceFlip){
-                flip = 1;
-            }
             CGFloat x, y;
-            if (flip != 0){
-                if (moveRotations % 2 == 0){
+            if (moveFlip != 0){
+                // Apparently we don't have to differentiate different axis flips based on rotations.
+                // Prof Hannan is the master of red herrings. -_-
+                
+//                if (moveRotations % 2 == 0){
                     x = -1.0f;
                     y = 1.0f;
-                } else{
-                    x = 1.0f;
-                    y = -1.0f;
-                }
-                imgView.transform = CGAffineTransformScale(imgView.transform, x, y);
+//                } else{
+//                    x = 1.0f;
+//                    y = -1.0f;
+//                }
+                NSLog(@"Flipping %@, with %d rotations.", key, moveRotations);
+                imgView.transform = CGAffineTransformScale(transform, x, y);
+            } else {
+                imgView.transform = transform;
             }
-            piece[@"flips"] = [NSNumber numberWithInteger:moveFlip];
             
             // Translate piece
             CGPoint newOrigin = CGPointMake(BLOCK_WIDTH * [move[@"x"] integerValue],
@@ -161,11 +164,16 @@ NSArray *pieceKeys;
             CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
             imgView.frame = newFrame;
         }];
+        self.solved = self.curBoard;
     }
 }
 
 - (IBAction)boardButtonPressed:(UIButton *)sender {
-    self.curBoard = sender.tag;
+    NSInteger tag = sender.tag;
+    if (self.curBoard != tag){
+        self.curBoard = tag;
+        self.solved = -1;
+    }
     [self.boardView setImage:[boardImages objectAtIndex:self.curBoard]];
     if (self.curBoard != 0){
         self.solveButton.enabled = true;
