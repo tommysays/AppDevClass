@@ -68,8 +68,8 @@ NSArray *pieceKeys;
         UIImage *img = [UIImage imageNamed:[@"tile" stringByAppendingString:key]];
         UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
         inner[@"view"] = imgView;
-        inner[@"rotations"] = [NSNumber numberWithInteger:0];
-        inner[@"flips"] = [NSNumber numberWithInteger:0];
+        inner[@"x"] = [NSNumber numberWithInteger:0];
+        inner[@"y"] = [NSNumber numberWithInteger:0];
         temp[key] = inner;
     }
     pieces = temp;
@@ -94,9 +94,12 @@ NSArray *pieceKeys;
     NSInteger xCounter = 0;
     
     for (NSString *key in pieceKeys){
-        UIImageView *tile = pieces[key][@"view"];
+        NSMutableDictionary *piece = pieces[key];
+        UIImageView *tile = piece[@"view"];
         CGSize imgSize = [[tile image] size];
         x = xCounter * (padding + MAX_PIECE_WIDTH) + padding;
+        piece[@"x"] = [NSNumber numberWithInteger:x];
+        piece[@"y"] = [NSNumber numberWithInteger:y];
         CGRect dim = CGRectMake(x, y, imgSize.width, imgSize.height);
         tile.frame = dim;
         tile.contentMode = UIViewContentModeTopLeft;
@@ -110,7 +113,34 @@ NSArray *pieceKeys;
     }
 }
 
-// Animates the pieces toward their position in the solution.
+- (void) reset{
+    NSDictionary *tileMoves = [solutions objectAtIndex:(self.curBoard - 1)];
+    for (NSString *key in pieceKeys){
+        NSDictionary *move = tileMoves[key];
+        NSMutableDictionary *piece = pieces[key];
+        UIImageView *imgView = piece[@"view"];
+        
+        [UIImageView animateWithDuration:1.5 animations:^{
+            // Changing parent view, if needed
+            if (imgView.superview == self.boardView){
+                imgView.center = [self.boardView convertPoint:imgView.center toView:self.view];
+            }
+            [self.view addSubview:imgView];
+            
+            // Reset all transformations.
+            imgView.transform = CGAffineTransformIdentity;
+            
+            // Translate piece
+            CGPoint newOrigin = CGPointMake([piece[@"x"] integerValue], [piece[@"y"] integerValue]);
+            CGSize size = imgView.frame.size;
+            CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
+            imgView.frame = newFrame;
+        }];
+        self.solved = 0;
+    }
+}
+
+// Animates the pieces toward their correct position in the solution.
 - (void) solve{
     if (self.curBoard == 0 || (self.solved == self.curBoard)){
         return;
@@ -132,7 +162,6 @@ NSArray *pieceKeys;
             // Transform for rotating piece
             NSInteger moveRotations = [move[@"rotations"] integerValue];
             CGAffineTransform transform;
-//            transform = CGAffineTransformRotateMake((CGFloat)(M_PI * 0.5 * moveRotations));
             transform = CGAffineTransformMakeRotation((CGFloat)(M_PI * 0.5 * moveRotations));
 
             
@@ -187,5 +216,6 @@ NSArray *pieceKeys;
 }
 
 - (IBAction)resetPressed:(id)sender {
+    [self reset];
 }
 @end
