@@ -6,6 +6,11 @@
 //  Copyright (c) 2014 Joshua Lee. All rights reserved.
 //
 
+// Grade: 3
+// Tapping Reset during Solve animation causes undesirable behavior.  Disable buttons when appropriate
+// No magic numbers!
+
+
 #import "JCLViewController.h"
 
 @interface JCLViewController ()
@@ -23,6 +28,8 @@
 
 @implementation JCLViewController
 
+// Put these outside of implementation
+// begin constant names with k and use camelback notation.  Typical Objective C style
 const NSInteger NUM_BOARDS = 6;
 const NSInteger NUM_PIECES = 12;
 const NSInteger BLOCK_WIDTH = 30;
@@ -31,6 +38,7 @@ const NSInteger MAX_PIECE_WIDTH = 150;
 const NSInteger MAX_PIECE_HEIGHT = 150;
 const NSInteger STARTING_Y = 550;
 
+// ALWAYS use properties declared in the class extension! No exceptions!
 NSMutableDictionary *pieces;
 NSMutableArray *solutions;
 NSArray *boardImages;
@@ -118,7 +126,7 @@ NSArray *pieceKeys;
         NSMutableDictionary *piece = pieces[key];
         UIImageView *imgView = piece[@"view"];
         
-        [UIImageView animateWithDuration:1.5 animations:^{
+        [UIImageView animateWithDuration:1.5 animations:^{  // magic number!
             // Changing parent view, if needed
             if (imgView.superview == self.boardView){
                 imgView.center = [self.boardView convertPoint:imgView.center toView:self.view];
@@ -149,7 +157,7 @@ NSArray *pieceKeys;
         NSMutableDictionary *piece = pieces[key];
         UIImageView *imgView = piece[@"view"];
         
-        [UIImageView animateWithDuration:1.5 animations:^{
+        [UIImageView animateWithDuration:1.5 animations:^{  // magic number!
             // Changing parent view, if needed
             if (imgView.superview == self.view){
                 imgView.center = [self.view convertPoint:imgView.center toView:self.boardView];
