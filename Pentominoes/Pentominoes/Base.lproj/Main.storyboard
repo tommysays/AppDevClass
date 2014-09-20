@@ -105,6 +105,7 @@
                     </view>
                     <connections>
                         <outlet property="boardView" destination="OAL-XR-Ypu" id="4N4-QB-sSY"/>
+                        <outlet property="resetButton" destination="X2B-Ke-uRe" id="X4m-cN-UY3"/>
                         <outlet property="solveButton" destination="uy8-RE-JAL" id="yxn-pu-lWU"/>
                     </connections>
                 </viewController>

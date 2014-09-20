@@ -6,16 +6,13 @@
 //  Copyright (c) 2014 Joshua Lee. All rights reserved.
 //
 
-// Grade: 3
-// Tapping Reset during Solve animation causes undesirable behavior.  Disable buttons when appropriate
-// No magic numbers!
-
 
 #import "JCLViewController.h"
 
 @interface JCLViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *boardView;
 @property (weak, nonatomic) IBOutlet UIButton *solveButton;
+@property (weak, nonatomic) IBOutlet UIButton *resetButton;
 - (IBAction)boardButtonPressed:(UIButton *)sender;
 - (IBAction)solvePresssed:(id)sender;
 - (IBAction)resetPressed:(id)sender;
@@ -23,26 +20,23 @@
 @property NSInteger width, height;
 @property NSInteger curBoard;
 @property NSInteger solved;
+@property NSMutableDictionary *pieces;
+@property NSMutableArray *solutions;
+@property NSArray *boardImages;
+@property NSArray *pieceKeys;
 
 @end
 
+const NSInteger kNumBoards = 6;
+const NSInteger kNumPieces = 12;
+const NSInteger kBlockWidth = 30;
+const NSInteger kBlockHeight = 30;
+const NSInteger kMaxPieceWidth = 150;
+const NSInteger kMaxPieceHeight = 150;
+const NSInteger kStartingY = 550;
+const NSTimeInterval kAnimationDuration = 1.5;
+
 @implementation JCLViewController
-
-// Put these outside of implementation
-// begin constant names with k and use camelback notation.  Typical Objective C style
-const NSInteger NUM_BOARDS = 6;
-const NSInteger NUM_PIECES = 12;
-const NSInteger BLOCK_WIDTH = 30;
-const NSInteger BLOCK_HEIGHT = 30;
-const NSInteger MAX_PIECE_WIDTH = 150;
-const NSInteger MAX_PIECE_HEIGHT = 150;
-const NSInteger STARTING_Y = 550;
-
-// ALWAYS use properties declared in the class extension! No exceptions!
-NSMutableDictionary *pieces;
-NSMutableArray *solutions;
-NSArray *boardImages;
-NSArray *pieceKeys;
 
 - (void)viewDidLoad
 {
@@ -61,17 +55,17 @@ NSArray *pieceKeys;
 
 - (void) loadBoardImages{
     NSMutableArray *temp = [[NSMutableArray alloc] init];
-    for (int i = 0; i < NUM_BOARDS; ++i){
+    for (int i = 0; i < kNumBoards; ++i){
         NSString *imageName = [NSString stringWithFormat:@"Board%d", i];
         [temp addObject:[UIImage imageNamed:imageName]];
     }
-    boardImages = temp;
+    self.boardImages = temp;
 }
 
 - (void) loadPieces{
     NSMutableDictionary *temp = [[NSMutableDictionary alloc] init];
-    pieceKeys = @[@"F", @"I", @"L", @"N", @"P", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"];
-    for (NSString *key in pieceKeys){
+    self.pieceKeys = @[@"F", @"I", @"L", @"N", @"P", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"];
+    for (NSString *key in self.pieceKeys){
         NSMutableDictionary *inner = [[NSMutableDictionary alloc] init];
         UIImage *img = [UIImage imageNamed:[@"tile" stringByAppendingString:key]];
         UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
@@ -80,32 +74,32 @@ NSArray *pieceKeys;
         inner[@"y"] = [NSNumber numberWithInteger:0];
         temp[key] = inner;
     }
-    pieces = temp;
+    self.pieces = temp;
 }
 
 - (void) loadSolutions{
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Solutions" ofType:@"plist"];
-    solutions = [[NSMutableArray alloc] initWithContentsOfFile:path];
+    self.solutions = [[NSMutableArray alloc] initWithContentsOfFile:path];
 }
 
 // Placing pieces in their initial position.
 - (void) initPiecePositions{
-    NSInteger tilesAcross = self.width / MAX_PIECE_WIDTH;
-    NSInteger tilesDown = NUM_PIECES / tilesAcross;
-    if (NUM_PIECES % tilesAcross != 0){
+    NSInteger tilesAcross = self.width / kMaxPieceWidth;
+    NSInteger tilesDown = kNumPieces / tilesAcross;
+    if (kNumPieces % tilesAcross != 0){
         tilesDown++;
     }
-    NSInteger remainder = self.width % MAX_PIECE_WIDTH;
+    NSInteger remainder = self.width % kMaxPieceWidth;
     NSInteger padding = remainder / tilesAcross;
     NSInteger x = padding;
-    NSInteger y = STARTING_Y;
+    NSInteger y = kStartingY;
     NSInteger xCounter = 0;
     
-    for (NSString *key in pieceKeys){
-        NSMutableDictionary *piece = pieces[key];
+    for (NSString *key in self.pieceKeys){
+        NSMutableDictionary *piece = self.pieces[key];
         UIImageView *tile = piece[@"view"];
         CGSize imgSize = [[tile image] size];
-        x = xCounter * (padding + MAX_PIECE_WIDTH) + padding;
+        x = xCounter * (padding + kMaxPieceWidth) + padding;
         piece[@"x"] = [NSNumber numberWithInteger:x];
         piece[@"y"] = [NSNumber numberWithInteger:y];
         CGRect dim = CGRectMake(x, y, imgSize.width, imgSize.height);
@@ -116,17 +110,18 @@ NSArray *pieceKeys;
         xCounter++;
         if (xCounter >= tilesAcross){
             xCounter = 0;
-            y += MAX_PIECE_HEIGHT + padding;
+            y += kMaxPieceHeight + padding;
         }
     }
 }
 
 - (void) reset{
-    for (NSString *key in pieceKeys){
-        NSMutableDictionary *piece = pieces[key];
+    [self.view setUserInteractionEnabled:false];
+    for (NSString *key in self.pieceKeys){
+        NSMutableDictionary *piece = self.pieces[key];
         UIImageView *imgView = piece[@"view"];
         
-        [UIImageView animateWithDuration:1.5 animations:^{  // magic number!
+        [UIImageView animateWithDuration:kAnimationDuration animations:^{
             // Changing parent view, if needed
             if (imgView.superview == self.boardView){
                 imgView.center = [self.boardView convertPoint:imgView.center toView:self.view];
@@ -141,6 +136,8 @@ NSArray *pieceKeys;
             CGSize size = imgView.frame.size;
             CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
             imgView.frame = newFrame;
+        } completion:^(BOOL finished){
+            [self.view setUserInteractionEnabled:true];
         }];
         self.solved = 0;
     }
@@ -151,13 +148,14 @@ NSArray *pieceKeys;
     if (self.curBoard == 0 || (self.solved == self.curBoard)){
         return;
     }
-    NSDictionary *tileMoves = [solutions objectAtIndex:(self.curBoard - 1)];
-    for (NSString *key in pieceKeys){
+    [self.view setUserInteractionEnabled:false];
+    NSDictionary *tileMoves = [self.solutions objectAtIndex:(self.curBoard - 1)];
+    for (NSString *key in self.pieceKeys){
         NSDictionary *move = tileMoves[key];
-        NSMutableDictionary *piece = pieces[key];
+        NSMutableDictionary *piece = self.pieces[key];
         UIImageView *imgView = piece[@"view"];
         
-        [UIImageView animateWithDuration:1.5 animations:^{  // magic number!
+        [UIImageView animateWithDuration:kAnimationDuration animations:^{
             // Changing parent view, if needed
             if (imgView.superview == self.view){
                 imgView.center = [self.view convertPoint:imgView.center toView:self.boardView];
@@ -173,27 +171,21 @@ NSArray *pieceKeys;
             NSInteger moveFlip = [move[@"flips"] integerValue];
             CGFloat x, y;
             if (moveFlip != 0){
-                // Apparently we don't have to differentiate different axis flips based on rotations.
-                // Prof Hannan is the master of red herrings. -_-
-                
-//              if (moveRotations % 2 == 0){
-                    x = -1.0f;
-                    y = 1.0f;
-//              } else{
-//                  x = 1.0f;
-//                  y = -1.0f;
-//              }
+                x = -1.0f;
+                y = 1.0f;
                 imgView.transform = CGAffineTransformScale(transform, x, y);
             } else {
                 imgView.transform = transform;
             }
             
             // Translate piece
-            CGPoint newOrigin = CGPointMake(BLOCK_WIDTH * [move[@"x"] integerValue],
-                                            BLOCK_HEIGHT * [move[@"y"] integerValue]);
+            CGPoint newOrigin = CGPointMake(kBlockWidth * [move[@"x"] integerValue],
+                                            kBlockHeight * [move[@"y"] integerValue]);
             CGSize size = imgView.frame.size;
             CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
             imgView.frame = newFrame;
+        } completion:^(BOOL finished){
+            [self.view setUserInteractionEnabled:true];
         }];
         self.solved = self.curBoard;
     }
@@ -205,7 +197,7 @@ NSArray *pieceKeys;
         self.curBoard = tag;
         self.solved = -1;
     }
-    [self.boardView setImage:[boardImages objectAtIndex:self.curBoard]];
+    [self.boardView setImage:[self.boardImages objectAtIndex:self.curBoard]];
     if (self.curBoard != 0){
         self.solveButton.enabled = true;
     } else{
