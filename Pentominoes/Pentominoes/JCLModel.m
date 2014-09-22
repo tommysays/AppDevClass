@@ -37,12 +37,6 @@
     for (NSString *key in self.keys){
         UIImage *img = [UIImage imageNamed:[@"tile" stringByAppendingString:key]];
         temp[key] = img;
-        // Initializing start coordinates to 0, 0. (just in case we try to get
-        // data from it before the real coords are set.
-        CGPoint pt = CGPointMake(10, 10);
-        [self.portraitCoords setObject:[NSValue valueWithCGPoint:pt] forKey:key];
-        //self.portraitCoords[key] = [NSValue valueWithCGPoint:pt];
-        NSLog(@"%f", [self.portraitCoords[key] CGPointValue].x);
     }
     self.pieceImages = temp;
 }

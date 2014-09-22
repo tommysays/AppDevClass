@@ -66,12 +66,8 @@
         CGSize imgSize = [[piece image] size];
         x = xCounter * (padding + kMaxPieceWidth) + padding;
         CGPoint pt = CGPointMake(x, y);
-        NSLog(@"-- %f, %f  orig", pt.x, pt.y);
         NSValue *val = [NSValue valueWithCGPoint:pt];
         self.model.portraitCoords[key] = val;
-        NSValue *val2 = self.model.portraitCoords[key];
-        CGPoint pt2 = [val2 CGPointValue];
-        NSLog(@"%f, %f", pt2.x, pt2.y);
         CGRect dim = CGRectMake(x, y, imgSize.width, imgSize.height);
         piece.frame = dim;
         piece.contentMode = UIViewContentModeTopLeft;
