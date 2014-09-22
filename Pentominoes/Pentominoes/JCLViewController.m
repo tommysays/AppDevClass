@@ -9,6 +9,7 @@
 
 #import "JCLViewController.h"
 #import "JCLModel.h"
+#import "JCLImageView.h"
 
 @interface JCLViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *boardView;
@@ -39,13 +40,18 @@
     self.curBoard = 0;
     self.solveButton.enabled = false;
     self.solved = 0;
+    [self.boardView setUserInteractionEnabled:true];
     self.model = [[JCLModel alloc] init];
     [self.model loadData];
     [self initPieceViews];
 }
 
-// Placing pieces in their initial position.
+# pragma mark Initialization Methods
+
+// Placing pieces in their initial position and adds Tap and Pan recognizers to them.
 - (void) initPieceViews{
+    // Initializing dictionary of ImageViews
+    self.pieceViews = [[NSMutableDictionary alloc] init];
     
     // Calculating padding and how many pieces can fit across the screen.
     NSInteger tilesAcross = self.width / kMaxPieceWidth;
@@ -59,15 +65,19 @@
     NSInteger y = kStartingY;
     NSInteger xCounter = 0;
     
-    self.pieceViews = [[NSMutableDictionary alloc] init];
+    
     for (NSString *key in self.model.keys){
         UIImage *img = self.model.pieceImages[key];
-        UIImageView *piece = [[UIImageView alloc] initWithImage:img];
+        
+        // Gesture recognizers and other items are initialized and set in
+        // initWithImage method of JCLImageView.
+        JCLImageView *piece = [[JCLImageView alloc] initWithImage:img];
+        
+        // Setting starting location
         CGSize imgSize = [[piece image] size];
         x = xCounter * (padding + kMaxPieceWidth) + padding;
         CGPoint pt = CGPointMake(x, y);
-        NSValue *val = [NSValue valueWithCGPoint:pt];
-        self.model.portraitCoords[key] = val;
+        piece.portraitCoords = pt;
         CGRect dim = CGRectMake(x, y, imgSize.width, imgSize.height);
         piece.frame = dim;
         piece.contentMode = UIViewContentModeTopLeft;
@@ -83,12 +93,14 @@
     }
 }
 
+# pragma mark Button Actions
+
 - (void) reset{
     [self.view setUserInteractionEnabled:false];
     for (NSString *key in self.model.keys){
-        UIImageView *imgView = self.pieceViews[key];
+        JCLImageView *imgView = self.pieceViews[key];
         
-        [UIImageView animateWithDuration:kAnimationDuration animations:^{
+        [JCLImageView animateWithDuration:kAnimationDuration animations:^{
             // Changing parent view, if needed
             if (imgView.superview == self.boardView){
                 imgView.center = [self.boardView convertPoint:imgView.center toView:self.view];
@@ -99,9 +111,7 @@
             imgView.transform = CGAffineTransformIdentity;
             
             // Translate piece
-            NSValue *val = [self.model.portraitCoords objectForKey:key];
-            CGPoint newOrigin = [val CGPointValue];
-            //CGPoint newOrigin = [self.model.portraitCoords[key] CGPointValue];
+            CGPoint newOrigin = imgView.portraitCoords;
             CGSize size = imgView.frame.size;
             CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
             
@@ -112,22 +122,21 @@
             [self.view setUserInteractionEnabled:true];
         }];
         self.solved = 0;
+        NSArray *ar = imgView.gestureRecognizers;
+        NSLog(@"%d recognizers still in %@", ar.count, key);
     }
 }
 
 // Animates the pieces toward their correct position in the solution.
 - (void) solve{
-    if (self.curBoard == 0 || (self.solved == self.curBoard)){
-        return;
-    }
     [self.view setUserInteractionEnabled:false];
     for (NSString *key in self.model.keys){
         
         // Get solution and imgView for piece
         NSDictionary *move = [self.model getSolution:key forBoard:self.curBoard - 1];
-        UIImageView *imgView = self.pieceViews[key];
+        JCLImageView *imgView = self.pieceViews[key];
         
-        [UIImageView animateWithDuration:kAnimationDuration animations:^{
+        [JCLImageView animateWithDuration:kAnimationDuration animations:^{
             // Changing parent view, if needed
             if (imgView.superview == self.view){
                 imgView.center = [self.view convertPoint:imgView.center toView:self.boardView];

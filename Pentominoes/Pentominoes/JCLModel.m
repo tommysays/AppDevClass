@@ -15,7 +15,7 @@
     self.keys = @[@"F", @"I", @"L", @"N", @"P", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"];
     [self loadSolutions];
     [self loadBoardImages];
-    [self loadPieceImages];
+    [self loadPieces];
 }
 - (void) loadBoardImages{
     NSMutableArray *temp = [[NSMutableArray alloc] init];
@@ -31,14 +31,19 @@
     self.solutions = [[NSMutableArray alloc] initWithContentsOfFile:path];
 }
 
-- (void) loadPieceImages{
-    NSMutableDictionary *temp = [[NSMutableDictionary alloc] init];
+- (void) loadPieces{
+    // Initializing some piece-related structures.
     self.portraitCoords = [[NSMutableDictionary alloc] init];
+    self.userMoves = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *temp = [[NSMutableDictionary alloc] init];
+    
+    // Loading piece images into dictionary.
     for (NSString *key in self.keys){
         UIImage *img = [UIImage imageNamed:[@"tile" stringByAppendingString:key]];
         temp[key] = img;
     }
     self.pieceImages = temp;
+    
 }
 
 - (NSDictionary *) getSolution:(NSString *)key forBoard:(NSInteger)board{
