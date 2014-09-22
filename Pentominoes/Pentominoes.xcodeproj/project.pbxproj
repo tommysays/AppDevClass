@@ -21,6 +21,7 @@
 		D81C0DDD19C507A60080219A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D81C0DBF19C507A50080219A /* UIKit.framework */; };
 		D81C0DE519C507A60080219A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D81C0DE319C507A60080219A /* InfoPlist.strings */; };
 		D81C0DE719C507A60080219A /* PentominoesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D81C0DE619C507A60080219A /* PentominoesTests.m */; };
+		D84A2E0D19CF9FCA00ABFD39 /* JCLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D84A2E0C19CF9FCA00ABFD39 /* JCLModel.m */; };
 		D8BDCED719C65D6C00BF8988 /* Solutions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8BDCED619C65D6C00BF8988 /* Solutions.plist */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,8 @@
 		D81C0DE219C507A60080219A /* PentominoesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PentominoesTests-Info.plist"; sourceTree = "<group>"; };
 		D81C0DE419C507A60080219A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D81C0DE619C507A60080219A /* PentominoesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PentominoesTests.m; sourceTree = "<group>"; };
+		D84A2E0B19CF9FCA00ABFD39 /* JCLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLModel.h; sourceTree = "<group>"; };
+		D84A2E0C19CF9FCA00ABFD39 /* JCLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLModel.m; sourceTree = "<group>"; };
 		D8BDCED619C65D6C00BF8988 /* Solutions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Solutions.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,11 +118,11 @@
 		D81C0DC119C507A50080219A /* Pentominoes */ = {
 			isa = PBXGroup;
 			children = (
+				D84A2E1019CFB85900ABFD39 /* Views */,
+				D84A2E0F19CFB84600ABFD39 /* Models */,
+				D84A2E0E19CFB83500ABFD39 /* Controllers */,
 				D81C0DCA19C507A50080219A /* JCLAppDelegate.h */,
 				D81C0DCB19C507A50080219A /* JCLAppDelegate.m */,
-				D81C0DCD19C507A50080219A /* Main.storyboard */,
-				D81C0DD019C507A50080219A /* JCLViewController.h */,
-				D81C0DD119C507A50080219A /* JCLViewController.m */,
 				D81C0DD319C507A60080219A /* Images.xcassets */,
 				D81C0DC219C507A50080219A /* Supporting Files */,
 			);
@@ -153,6 +156,32 @@
 				D81C0DE319C507A60080219A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D84A2E0E19CFB83500ABFD39 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D81C0DD019C507A50080219A /* JCLViewController.h */,
+				D81C0DD119C507A50080219A /* JCLViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		D84A2E0F19CFB84600ABFD39 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D84A2E0B19CF9FCA00ABFD39 /* JCLModel.h */,
+				D84A2E0C19CF9FCA00ABFD39 /* JCLModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		D84A2E1019CFB85900ABFD39 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D81C0DCD19C507A50080219A /* Main.storyboard */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +286,7 @@
 				D81C0DCC19C507A50080219A /* JCLAppDelegate.m in Sources */,
 				D81C0DD219C507A50080219A /* JCLViewController.m in Sources */,
 				D81C0DC819C507A50080219A /* main.m in Sources */,
+				D84A2E0D19CF9FCA00ABFD39 /* JCLModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

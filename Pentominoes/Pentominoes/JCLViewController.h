@@ -11,3 +11,16 @@
 @interface JCLViewController : UIViewController
 
 @end
+
+#if !defined CONSTANTS
+#define CONSTANTS
+#define kNumBoards  6
+#define kNumPieces  12
+#define kBlockWidth 30
+#define kBlockHeight 30
+#define kMaxPieceWidth 150
+#define kMaxPieceHeight 150
+#define kStartingY 550
+#define kAnimationDuration 1.5
+#define kRotation 0.5
+#endif

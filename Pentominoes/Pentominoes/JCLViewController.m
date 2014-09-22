@@ -8,6 +8,7 @@
 
 
 #import "JCLViewController.h"
+#import "JCLModel.h"
 
 @interface JCLViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *boardView;
@@ -20,21 +21,12 @@
 @property NSInteger width, height;
 @property NSInteger curBoard;
 @property NSInteger solved;
-@property NSMutableDictionary *pieces;
+@property NSMutableDictionary *pieceViews;
 @property NSMutableArray *solutions;
 @property NSArray *boardImages;
-@property NSArray *pieceKeys;
+@property (nonatomic, strong) JCLModel *model;
 
 @end
-
-const NSInteger kNumBoards = 6;
-const NSInteger kNumPieces = 12;
-const NSInteger kBlockWidth = 30;
-const NSInteger kBlockHeight = 30;
-const NSInteger kMaxPieceWidth = 150;
-const NSInteger kMaxPieceHeight = 150;
-const NSInteger kStartingY = 550;
-const NSTimeInterval kAnimationDuration = 1.5;
 
 @implementation JCLViewController
 
@@ -47,43 +39,15 @@ const NSTimeInterval kAnimationDuration = 1.5;
     self.curBoard = 0;
     self.solveButton.enabled = false;
     self.solved = 0;
-    [self loadBoardImages];
-    [self loadPieces];
-    [self loadSolutions];
-    [self initPiecePositions];
-}
-
-- (void) loadBoardImages{
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
-    for (int i = 0; i < kNumBoards; ++i){
-        NSString *imageName = [NSString stringWithFormat:@"Board%d", i];
-        [temp addObject:[UIImage imageNamed:imageName]];
-    }
-    self.boardImages = temp;
-}
-
-- (void) loadPieces{
-    NSMutableDictionary *temp = [[NSMutableDictionary alloc] init];
-    self.pieceKeys = @[@"F", @"I", @"L", @"N", @"P", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"];
-    for (NSString *key in self.pieceKeys){
-        NSMutableDictionary *inner = [[NSMutableDictionary alloc] init];
-        UIImage *img = [UIImage imageNamed:[@"tile" stringByAppendingString:key]];
-        UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
-        inner[@"view"] = imgView;
-        inner[@"x"] = [NSNumber numberWithInteger:0];
-        inner[@"y"] = [NSNumber numberWithInteger:0];
-        temp[key] = inner;
-    }
-    self.pieces = temp;
-}
-
-- (void) loadSolutions{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"Solutions" ofType:@"plist"];
-    self.solutions = [[NSMutableArray alloc] initWithContentsOfFile:path];
+    self.model = [[JCLModel alloc] init];
+    [self.model loadData];
+    [self initPieceViews];
 }
 
 // Placing pieces in their initial position.
-- (void) initPiecePositions{
+- (void) initPieceViews{
+    
+    // Calculating padding and how many pieces can fit across the screen.
     NSInteger tilesAcross = self.width / kMaxPieceWidth;
     NSInteger tilesDown = kNumPieces / tilesAcross;
     if (kNumPieces % tilesAcross != 0){
@@ -95,17 +59,25 @@ const NSTimeInterval kAnimationDuration = 1.5;
     NSInteger y = kStartingY;
     NSInteger xCounter = 0;
     
-    for (NSString *key in self.pieceKeys){
-        NSMutableDictionary *piece = self.pieces[key];
-        UIImageView *tile = piece[@"view"];
-        CGSize imgSize = [[tile image] size];
+    self.pieceViews = [[NSMutableDictionary alloc] init];
+    for (NSString *key in self.model.keys){
+        UIImage *img = self.model.pieceImages[key];
+        UIImageView *piece = [[UIImageView alloc] initWithImage:img];
+        CGSize imgSize = [[piece image] size];
         x = xCounter * (padding + kMaxPieceWidth) + padding;
-        piece[@"x"] = [NSNumber numberWithInteger:x];
-        piece[@"y"] = [NSNumber numberWithInteger:y];
+        CGPoint pt = CGPointMake(x, y);
+        NSLog(@"-- %f, %f  orig", pt.x, pt.y);
+        NSValue *val = [NSValue valueWithCGPoint:pt];
+        self.model.portraitCoords[key] = val;
+        NSValue *val2 = self.model.portraitCoords[key];
+        CGPoint pt2 = [val2 CGPointValue];
+        NSLog(@"%f, %f", pt2.x, pt2.y);
         CGRect dim = CGRectMake(x, y, imgSize.width, imgSize.height);
-        tile.frame = dim;
-        tile.contentMode = UIViewContentModeTopLeft;
-        [[self view] addSubview:tile];
+        piece.frame = dim;
+        piece.contentMode = UIViewContentModeTopLeft;
+        
+        self.pieceViews[key] = piece;
+        [[self view] addSubview:piece];
         
         xCounter++;
         if (xCounter >= tilesAcross){
@@ -117,9 +89,8 @@ const NSTimeInterval kAnimationDuration = 1.5;
 
 - (void) reset{
     [self.view setUserInteractionEnabled:false];
-    for (NSString *key in self.pieceKeys){
-        NSMutableDictionary *piece = self.pieces[key];
-        UIImageView *imgView = piece[@"view"];
+    for (NSString *key in self.model.keys){
+        UIImageView *imgView = self.pieceViews[key];
         
         [UIImageView animateWithDuration:kAnimationDuration animations:^{
             // Changing parent view, if needed
@@ -132,10 +103,15 @@ const NSTimeInterval kAnimationDuration = 1.5;
             imgView.transform = CGAffineTransformIdentity;
             
             // Translate piece
-            CGPoint newOrigin = CGPointMake([piece[@"x"] integerValue], [piece[@"y"] integerValue]);
+            NSValue *val = [self.model.portraitCoords objectForKey:key];
+            CGPoint newOrigin = [val CGPointValue];
+            //CGPoint newOrigin = [self.model.portraitCoords[key] CGPointValue];
             CGSize size = imgView.frame.size;
             CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
+            
+            // Setting frame to final location!
             imgView.frame = newFrame;
+            
         } completion:^(BOOL finished){
             [self.view setUserInteractionEnabled:true];
         }];
@@ -149,11 +125,11 @@ const NSTimeInterval kAnimationDuration = 1.5;
         return;
     }
     [self.view setUserInteractionEnabled:false];
-    NSDictionary *tileMoves = [self.solutions objectAtIndex:(self.curBoard - 1)];
-    for (NSString *key in self.pieceKeys){
-        NSDictionary *move = tileMoves[key];
-        NSMutableDictionary *piece = self.pieces[key];
-        UIImageView *imgView = piece[@"view"];
+    for (NSString *key in self.model.keys){
+        
+        // Get solution and imgView for piece
+        NSDictionary *move = [self.model getSolution:key forBoard:self.curBoard - 1];
+        UIImageView *imgView = self.pieceViews[key];
         
         [UIImageView animateWithDuration:kAnimationDuration animations:^{
             // Changing parent view, if needed
@@ -165,7 +141,7 @@ const NSTimeInterval kAnimationDuration = 1.5;
             // Transform for rotating piece
             NSInteger moveRotations = [move[@"rotations"] integerValue];
             CGAffineTransform transform;
-            transform = CGAffineTransformMakeRotation((CGFloat)(M_PI * 0.5 * moveRotations));
+            transform = CGAffineTransformMakeRotation((CGFloat)(M_PI * kRotation * moveRotations));
             
             // Transform for flipping piece
             NSInteger moveFlip = [move[@"flips"] integerValue];
@@ -183,7 +159,10 @@ const NSTimeInterval kAnimationDuration = 1.5;
                                             kBlockHeight * [move[@"y"] integerValue]);
             CGSize size = imgView.frame.size;
             CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
+            
+            // Setting frame to final location!
             imgView.frame = newFrame;
+            
         } completion:^(BOOL finished){
             [self.view setUserInteractionEnabled:true];
         }];
@@ -197,7 +176,7 @@ const NSTimeInterval kAnimationDuration = 1.5;
         self.curBoard = tag;
         self.solved = -1;
     }
-    [self.boardView setImage:[self.boardImages objectAtIndex:self.curBoard]];
+    [self.boardView setImage:[self.model.boardImages objectAtIndex:self.curBoard]];
     if (self.curBoard != 0){
         self.solveButton.enabled = true;
     } else{
