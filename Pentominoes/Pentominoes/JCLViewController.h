@@ -28,4 +28,5 @@
 #define kSnapAnimationDuration 0.25
 #define kRotation 0.5
 #define kMaxRotations 4
+#define kPanScale 1.1
 #endif

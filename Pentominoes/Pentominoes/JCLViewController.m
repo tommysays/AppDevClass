@@ -8,6 +8,7 @@
 
 
 #import "JCLViewController.h"
+#import "JCLInfoViewController.h"
 #import "JCLModel.h"
 #import "JCLImageView.h"
 
@@ -211,14 +212,22 @@
             if (flips % 2 != 0){
                 transform = CGAffineTransformScale(transform, -1.0f, 1.0f);
             }
+            // Scaling the piece up a little.
+            view.transform = CGAffineTransformScale(transform, kPanScale, kPanScale);
         }
             break;
         case UIGestureRecognizerStateChanged:
         {
+            // Keeping the piece scaled up a little.
+            view.transform = CGAffineTransformScale(transform, kPanScale, kPanScale);
+            
+            // Moving the piece as user moves around.
             CGPoint oldCenter = view.center;
             CGPoint translation = [recognizer translationInView:view.superview];
             CGPoint newCenter = CGPointMake(oldCenter.x + translation.x, oldCenter.y + translation.y);
             view.center = newCenter;
+            
+            // Stopping the translation from accumulating.
             [recognizer setTranslation:CGPointZero inView:view.superview];
         }
             break;
@@ -254,6 +263,12 @@
                     frame.origin.y + frame.size.height - .5 * kBlockHeight < boardFrame.origin.y + boardFrame.size.height){
                     
                     [self snapToBoard:view withTransform:transform];
+                } else{
+                    // Lastly, if none of the other conditions were met, this piece
+                    // has moved such that both source and destination were not the board.
+                    // So we just scale it back down, which doesn't require an animation, as
+                    // it is fairly subtle.
+                    view.transform = transform;
                 }
             }
         }
@@ -298,7 +313,7 @@
 
 - (void) resetPiece:(JCLImageView *)view{
     [self.view setUserInteractionEnabled:false];
-    [JCLImageView animateWithDuration:kAnimationDuration animations:^{
+    [JCLImageView animateWithDuration:kSnapAnimationDuration animations:^{
         if (view.superview == self.boardView){
             view.center = [self.boardView convertPoint:view.center toView:self.view];
         }
@@ -323,44 +338,24 @@
     }];
     
 }
+
 # pragma mark Button Actions
 
-- (void) reset{
-    [self.view setUserInteractionEnabled:false];
-    for (NSString *key in self.model.keys){
-        JCLImageView *imgView = self.pieceViews[key];
-        
-        [JCLImageView animateWithDuration:kAnimationDuration animations:^{
-            // Changing parent view, if needed
-            if (imgView.superview == self.boardView){
-                imgView.center = [self.boardView convertPoint:imgView.center toView:self.view];
-            }
-            [self.view addSubview:imgView];
-            
-            // Reset all transformations.
-            imgView.transform = CGAffineTransformIdentity;
-            
-            // Reset user transformations;
-            imgView.userMoves[@"rotations"] = [NSNumber numberWithInt:0];
-            imgView.userMoves[@"flips"] = [NSNumber numberWithInt:0];
-            
-            // Translate piece
-            CGPoint newOrigin = imgView.portraitCoords;
-            CGSize size = imgView.frame.size;
-            CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
-            
-            // Setting frame to final location!
-            imgView.frame = newFrame;
-            
-        } completion:^(BOOL finished){
-            [self.view setUserInteractionEnabled:true];
-        }];
-        self.solved = 0;
+- (IBAction)boardButtonPressed:(UIButton *)sender {
+    NSInteger tag = sender.tag;
+    if (self.curBoard != tag){
+        self.curBoard = tag;
+        self.solved = -1;
+    }
+    [self.boardView setImage:[self.model.boardImages objectAtIndex:self.curBoard]];
+    if (self.curBoard != 0){
+        self.solveButton.enabled = true;
+    } else{
+        self.solveButton.enabled = false;
     }
 }
 
-// Animates the pieces toward their correct position in the solution.
-- (void) solve{
+- (IBAction)solvePresssed:(id)sender {
     [self.view setUserInteractionEnabled:false];
     for (NSString *key in self.model.keys){
         
@@ -411,25 +406,46 @@
     }
 }
 
-- (IBAction)boardButtonPressed:(UIButton *)sender {
-    NSInteger tag = sender.tag;
-    if (self.curBoard != tag){
-        self.curBoard = tag;
-        self.solved = -1;
-    }
-    [self.boardView setImage:[self.model.boardImages objectAtIndex:self.curBoard]];
-    if (self.curBoard != 0){
-        self.solveButton.enabled = true;
-    } else{
-        self.solveButton.enabled = false;
-    }
-}
-
-- (IBAction)solvePresssed:(id)sender {
-    [self solve];
-}
-
 - (IBAction)resetPressed:(id)sender {
-    [self reset];
+    [self.view setUserInteractionEnabled:false];
+    for (NSString *key in self.model.keys){
+        JCLImageView *imgView = self.pieceViews[key];
+        
+        [JCLImageView animateWithDuration:kAnimationDuration animations:^{
+            // Changing parent view, if needed
+            if (imgView.superview == self.boardView){
+                imgView.center = [self.boardView convertPoint:imgView.center toView:self.view];
+            }
+            [self.view addSubview:imgView];
+            
+            // Reset all transformations.
+            imgView.transform = CGAffineTransformIdentity;
+            
+            // Reset user transformations;
+            imgView.userMoves[@"rotations"] = [NSNumber numberWithInt:0];
+            imgView.userMoves[@"flips"] = [NSNumber numberWithInt:0];
+            
+            // Translate piece
+            CGPoint newOrigin = imgView.portraitCoords;
+            CGSize size = imgView.frame.size;
+            CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
+            
+            // Setting frame to final location!
+            imgView.frame = newFrame;
+            
+        } completion:^(BOOL finished){
+            [self.view setUserInteractionEnabled:true];
+        }];
+        self.solved = 0;
+    }
+}
+
+# pragma mark Segue Preparation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"toInfo"]){
+        JCLInfoViewController *controller = [segue destinationViewController];
+        controller.boardNum = self.curBoard;
+    }
 }
 @end

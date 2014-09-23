@@ -21,6 +21,7 @@
 		D81C0DDD19C507A60080219A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D81C0DBF19C507A50080219A /* UIKit.framework */; };
 		D81C0DE519C507A60080219A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D81C0DE319C507A60080219A /* InfoPlist.strings */; };
 		D81C0DE719C507A60080219A /* PentominoesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D81C0DE619C507A60080219A /* PentominoesTests.m */; };
+		D826F61519D10250001EDBA4 /* JCLInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D826F61419D10250001EDBA4 /* JCLInfoViewController.m */; };
 		D84A2E0D19CF9FCA00ABFD39 /* JCLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D84A2E0C19CF9FCA00ABFD39 /* JCLModel.m */; };
 		D88D5AA319D0CD3300B18628 /* JCLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D88D5AA219D0CD3300B18628 /* JCLImageView.m */; };
 		D8BDCED719C65D6C00BF8988 /* Solutions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8BDCED619C65D6C00BF8988 /* Solutions.plist */; };
@@ -56,6 +57,8 @@
 		D81C0DE219C507A60080219A /* PentominoesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PentominoesTests-Info.plist"; sourceTree = "<group>"; };
 		D81C0DE419C507A60080219A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D81C0DE619C507A60080219A /* PentominoesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PentominoesTests.m; sourceTree = "<group>"; };
+		D826F61319D10250001EDBA4 /* JCLInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLInfoViewController.h; sourceTree = "<group>"; };
+		D826F61419D10250001EDBA4 /* JCLInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLInfoViewController.m; sourceTree = "<group>"; };
 		D84A2E0B19CF9FCA00ABFD39 /* JCLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLModel.h; sourceTree = "<group>"; };
 		D84A2E0C19CF9FCA00ABFD39 /* JCLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLModel.m; sourceTree = "<group>"; };
 		D88D5AA119D0CD3300B18628 /* JCLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLImageView.h; sourceTree = "<group>"; };
@@ -166,6 +169,8 @@
 			children = (
 				D81C0DD019C507A50080219A /* JCLViewController.h */,
 				D81C0DD119C507A50080219A /* JCLViewController.m */,
+				D826F61319D10250001EDBA4 /* JCLInfoViewController.h */,
+				D826F61419D10250001EDBA4 /* JCLInfoViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 				D81C0DD219C507A50080219A /* JCLViewController.m in Sources */,
 				D81C0DC819C507A50080219A /* main.m in Sources */,
 				D88D5AA319D0CD3300B18628 /* JCLImageView.m in Sources */,
+				D826F61519D10250001EDBA4 /* JCLInfoViewController.m in Sources */,
 				D84A2E0D19CF9FCA00ABFD39 /* JCLModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
