@@ -111,7 +111,7 @@
     [view addGestureRecognizer:panRecognizer];
 }
 
-# pragma mark Recognizers
+# pragma mark Recognizer Methods
 
 - (void) respondToSingleTap:(UITapGestureRecognizer *)recognizer{
     JCLImageView *view = (JCLImageView *)recognizer.view;
@@ -134,6 +134,27 @@
             view.transform = CGAffineTransformScale(transform, x, y);
         } else {
             view.transform = transform;
+        }
+        
+        x = view.frame.origin.x;
+        y = view.frame.origin.y;
+        
+        if (view.superview == self.boardView){
+            // Adjusting the piece to fit in board, since a rotation may put it out of bounds.
+            while (x + .5 * kBlockWidth < 0){
+                x += kBlockWidth;
+            }
+            while (y + .5 * kBlockHeight < 0){
+                y += kBlockHeight;
+            }
+            while (x + view.frame.size.width - .5 * kBlockWidth > self.boardView.frame.size.width){
+                x -= kBlockWidth;
+            }
+            while (y + view.frame.size.height - .5 * kBlockHeight > self.boardView.frame.size.height){
+                y -= kBlockWidth;
+            }
+            CGRect newFrame = CGRectMake(x, y, view.frame.size.width, view.frame.size.height);
+            view.frame = newFrame;
         }
         
         // Setting new number of rotations
