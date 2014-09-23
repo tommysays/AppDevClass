@@ -22,5 +22,10 @@
 #define kMaxPieceHeight 150
 #define kStartingY 550
 #define kAnimationDuration 1.5
+// kSnapAnimationDuration is used for user-prompted animations
+// so we make those animations faster, since kAnimationDuration is way
+// too slow.
+#define kSnapAnimationDuration 0.25
 #define kRotation 0.5
+#define kMaxRotations 4
 #endif
