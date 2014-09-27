@@ -43,12 +43,14 @@
     [self.startingCoords setObject:[NSValue valueWithCGPoint:point] forKey:[NSNumber numberWithInteger:orientation]];
 }
 
-//TODO may not be working as intended.
 - (CGPoint) startingCoords:(NSInteger)orientation{
     return [[self.startingCoords objectForKey:[NSNumber numberWithInteger:orientation]] CGPointValue];
 }
 
 - (void) dealloc{
+    for (UIGestureRecognizer *recognizer in self.gestureRecognizers){
+        [recognizer release];
+    }
     [_startingCoords release];
     [_userMoves release];
     [super dealloc];

@@ -19,8 +19,9 @@
 #define kBlockWidth 30
 #define kBlockHeight 30
 #define kMaxPieceWidth 150
-#define kMaxPieceHeight 150
-#define kStartingY 550
+#define kMaxPieceHeight 100
+#define kPortraitY 570
+#define kLandscapeY 540
 #define kAnimationDuration 1.5
 // kSnapAnimationDuration is used for user-prompted animations
 // so we make those animations faster, since kAnimationDuration is way

@@ -26,7 +26,8 @@
 @property NSInteger solved;
 @property (nonatomic, retain) NSMutableDictionary *pieceViews;
 @property (nonatomic, retain) JCLModel *model;
-@property NSInteger orientation;
+@property (nonatomic) UIDeviceOrientation orientation;
+//@property NSInteger orientation;
 
 @end
 
@@ -42,6 +43,7 @@
     self.solveButton.enabled = false;
     self.solved = 0;
     [self.boardView setUserInteractionEnabled:true];
+    self.orientation = (UIDeviceOrientation)[[UIApplication sharedApplication] statusBarOrientation];
     self.model = [[JCLModel alloc] init];
     [self.model loadData];
     [self initPieceViews];
@@ -52,9 +54,9 @@
 // Placing pieces in their initial position and adds Tap and Pan recognizers to them.
 - (void) initPieceViews{
     // Initializing dictionary of ImageViews
-    self.pieceViews = [[[NSMutableDictionary alloc] init] autorelease];
+    self.pieceViews = [[NSMutableDictionary alloc] init];
     
-    // Calculating padding and how many pieces can fit across the screen.
+    // Calculating for portrait modes.
     NSInteger tilesAcross = self.width / kMaxPieceWidth;
     NSInteger tilesDown = kNumPieces / tilesAcross;
     if (kNumPieces % tilesAcross != 0){
@@ -63,9 +65,8 @@
     NSInteger remainder = self.width % kMaxPieceWidth;
     NSInteger padding = remainder / tilesAcross;
     NSInteger x = padding;
-    NSInteger y = kStartingY;
+    NSInteger y = kPortraitY;
     NSInteger xCounter = 0;
-    
     
     for (NSString *key in self.model.keys){
         UIImage *img = self.model.pieceImages[key];
@@ -75,22 +76,58 @@
         [self initRecognizers:piece];
         
         // Setting starting location
-        CGSize imgSize = [[piece image] size];
         x = xCounter * (padding + kMaxPieceWidth) + padding;
         CGPoint pt = CGPointMake(x, y);
-        piece.portraitCoords = pt;
-        CGRect dim = CGRectMake(x, y, imgSize.width, imgSize.height);
-        piece.frame = dim;
+        [piece setStartingCoord:pt forOrientation:UIDeviceOrientationPortrait];
+        [piece setStartingCoord:pt forOrientation:UIDeviceOrientationPortraitUpsideDown];
         piece.contentMode = UIViewContentModeTopLeft;
         
-        self.pieceViews[key] = piece;
-        [[self view] addSubview:piece];
+        [self.pieceViews setObject:piece forKey:key];
         
         xCounter++;
         if (xCounter >= tilesAcross){
             xCounter = 0;
             y += kMaxPieceHeight + padding;
         }
+    }
+    
+    // Recalculating for landscape modes.
+    tilesAcross = self.height / kMaxPieceWidth;
+    tilesDown = kNumPieces / tilesAcross;
+    if (kNumPieces % tilesAcross != 0){
+        tilesDown++;
+    }
+    remainder = self.height % kMaxPieceWidth;
+    padding = remainder / tilesAcross;
+    x = padding;
+    y = kLandscapeY;
+    xCounter = 0;
+    
+    for (NSString *key in self.model.keys){
+        JCLImageView *piece = [self.pieceViews objectForKey:key];
+        x = xCounter * (padding + kMaxPieceWidth) + padding;
+        CGPoint pt = CGPointMake(x, y);
+        [piece setStartingCoord:pt forOrientation:UIDeviceOrientationLandscapeLeft];
+        [piece setStartingCoord:pt forOrientation:UIDeviceOrientationLandscapeRight];
+        
+        xCounter++;
+        if (xCounter >= tilesAcross){
+            xCounter = 0;
+            y += kMaxPieceHeight + padding;
+        }
+    }
+    
+    
+    // Setting pieces to their locations
+    for (NSString *key in self.model.keys){
+        JCLImageView *piece = [self.pieceViews objectForKey:key];
+        CGPoint pt = [piece startingCoords:self.orientation];
+        CGRect newFrame = CGRectMake(pt.x, pt.y, piece.frame.size.width, piece.frame.size.height);
+        piece.frame = newFrame;
+        
+        
+        NSLog(@"For %@, %@", key, [NSValue valueWithCGPoint:pt]);
+        [[self view] addSubview:piece];
     }
 }
 
@@ -102,23 +139,22 @@
     doubleTap.numberOfTapsRequired = 2;
     [singleTap requireGestureRecognizerToFail:doubleTap];
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(respondToPan:)];
-    //[panRecognizer requireGestureRecognizerToFail:singleTap];
-    //[panRecognizer requireGestureRecognizerToFail:doubleTap];
     
     // Adding recognizers
     [view addGestureRecognizer:singleTap];
     [view addGestureRecognizer:doubleTap];
     [view addGestureRecognizer:panRecognizer];
+    
+    //TODO dealloc recognizers!
 }
 
 # pragma mark Recognizer Methods
 
 - (void) respondToSingleTap:(UITapGestureRecognizer *)recognizer{
-    JCLImageView *view = (JCLImageView *)recognizer.view;
+    JCLImageView *imgView = (JCLImageView *)recognizer.view;
     [UIView animateWithDuration:kSnapAnimationDuration animations:^{
-        NSMutableDictionary *moves = view.userMoves;
-        NSInteger rotations = [moves[@"rotations"] integerValue];
-        NSInteger flips = [moves[@"flips"] integerValue];
+        NSInteger rotations = [imgView userRotations];
+        NSInteger flips = [imgView userFlips];
         rotations++;
         if (rotations >= kMaxRotations){
             rotations -= kMaxRotations;
@@ -131,46 +167,47 @@
         if (flips % 2 != 0){
             x = -1.0f;
             y = 1.0f;
-            view.transform = CGAffineTransformScale(transform, x, y);
-        } else {
-            view.transform = transform;
+            transform = CGAffineTransformScale(transform, x, y);
         }
+        imgView.transform = transform;
         
-        x = view.frame.origin.x;
-        y = view.frame.origin.y;
+        x = imgView.frame.origin.x;
+        y = imgView.frame.origin.y;
         
-        if (view.superview == self.boardView){
+        if (imgView.superview == self.boardView){
             // Adjusting the piece to fit in board, since a rotation may put it out of bounds.
-            while (x + .5 * kBlockWidth < 0){
+            while (x < 0){
                 x += kBlockWidth;
             }
-            while (y + .5 * kBlockHeight < 0){
+            while (y < 0){
                 y += kBlockHeight;
             }
-            while (x + view.frame.size.width - .5 * kBlockWidth > self.boardView.frame.size.width){
+            while (x + imgView.frame.size.width > self.boardView.frame.size.width){
                 x -= kBlockWidth;
             }
-            while (y + view.frame.size.height - .5 * kBlockHeight > self.boardView.frame.size.height){
+            while (y + imgView.frame.size.height > self.boardView.frame.size.height){
                 y -= kBlockWidth;
             }
-            CGRect newFrame = CGRectMake(x, y, view.frame.size.width, view.frame.size.height);
-            view.frame = newFrame;
+            CGRect newFrame = CGRectMake(x, y, imgView.frame.size.width, imgView.frame.size.height);
+            imgView.frame = newFrame;
+            
+            [self snapToBoard:imgView withTransform:transform];
         }
         
         // Setting new number of rotations
-        moves[@"rotations"] = [NSNumber numberWithInteger:rotations];
+        [imgView setUserRotations:rotations];
         
     } completion:^(BOOL finished){
+        
         
     }];
 }
 
 - (void) respondToDoubleTap:(UITapGestureRecognizer *)recognizer{
-    JCLImageView *view = (JCLImageView *)recognizer.view;
+    JCLImageView *imgView = (JCLImageView *)recognizer.view;
     [UIView animateWithDuration:kSnapAnimationDuration animations:^{
-        NSMutableDictionary *moves = view.userMoves;
-        NSInteger rotations = [moves[@"rotations"] integerValue];
-        NSInteger flips = [moves[@"flips"] integerValue];
+        NSInteger rotations = [imgView userRotations];
+        NSInteger flips = [imgView userFlips];
         flips++;
         
         CGAffineTransform transform;
@@ -180,15 +217,15 @@
         if (flips % 2 != 0){
             x = -1.0f;
             y = 1.0f;
-            view.transform = CGAffineTransformScale(transform, x, y);
+            imgView.transform = CGAffineTransformScale(transform, x, y);
             flips = 1; // An odd number of flips is the same as exactly 1 flip.
         } else {
             flips = 0; // An even number of flips is the same as no flips at all.
-            view.transform = transform;
+            imgView.transform = transform;
         }
         
         // Setting new number of flips
-        moves[@"flips"] = [NSNumber numberWithInteger:flips];
+        [imgView setUserFlips:flips];
         
     } completion:^(BOOL finished){
         
@@ -196,45 +233,44 @@
 }
 
 - (void) respondToPan:(UIPanGestureRecognizer *)recognizer{
-    static JCLImageView *view;
+    static JCLImageView *imgView;
     static CGAffineTransform transform;
     
     switch (recognizer.state){
         case UIGestureRecognizerStateBegan:
         {
-            view = (JCLImageView *)recognizer.view;
-            NSMutableDictionary *moves = view.userMoves;
+            imgView = (JCLImageView *)recognizer.view;
             // Preserving any rotations or flips applied by user
-            NSInteger rotations = [moves[@"rotations"] integerValue];
-            NSInteger flips = [moves[@"flips"] integerValue];
+            NSInteger rotations = [imgView userRotations];
+            NSInteger flips = [imgView userFlips];
             transform = CGAffineTransformMakeRotation((CGFloat)(M_PI * kRotation * rotations));
             if (flips % 2 != 0){
                 transform = CGAffineTransformScale(transform, -1.0f, 1.0f);
             }
             // Scaling the piece up a little.
-            view.transform = CGAffineTransformScale(transform, kPanScale, kPanScale);
+            imgView.transform = CGAffineTransformScale(transform, kPanScale, kPanScale);
         }
             break;
         case UIGestureRecognizerStateChanged:
         {
             // Keeping the piece scaled up a little.
-            view.transform = CGAffineTransformScale(transform, kPanScale, kPanScale);
+            imgView.transform = CGAffineTransformScale(transform, kPanScale, kPanScale);
             
             // Moving the piece as user moves around.
-            CGPoint oldCenter = view.center;
-            CGPoint translation = [recognizer translationInView:view.superview];
+            CGPoint oldCenter = imgView.center;
+            CGPoint translation = [recognizer translationInView:imgView.superview];
             CGPoint newCenter = CGPointMake(oldCenter.x + translation.x, oldCenter.y + translation.y);
-            view.center = newCenter;
+            imgView.center = newCenter;
             
             // Stopping the translation from accumulating.
-            [recognizer setTranslation:CGPointZero inView:view.superview];
+            [recognizer setTranslation:CGPointZero inView:imgView.superview];
         }
             break;
         case UIGestureRecognizerStateEnded:
         {
             // If it's in the board, check to see if we need to remove it.
-            if (view.superview == self.boardView){
-                CGRect viewFrame = view.frame;
+            if (imgView.superview == self.boardView){
+                CGRect viewFrame = imgView.frame;
                 CGRect boardFrame = self.boardView.frame;
                 // Check bounds of piece to see if we need to remove it from board.
                 
@@ -245,14 +281,14 @@
                     
                     // Piece is out of bounds, so we switch its parent view and reset its
                     // position, rotation, and flip. (As if the reset was pressed).
-                    [self resetPiece:view];
+                    [self resetPiece:imgView];
                     
                 } else{
-                    [self snapToBoard:view withTransform:transform];
+                    [self snapToBoard:imgView withTransform:transform];
                 }
             } else{
                 // Otherwise, check to see if we need to place piece in board.
-                CGRect frame = view.frame;
+                CGRect frame = imgView.frame;
                 CGRect boardFrame = self.boardView.frame;
                 
                 // If the peice is within half a block of the board, we add snap it to the board.
@@ -261,13 +297,11 @@
                     frame.origin.x + frame.size.width - .5 * kBlockWidth < boardFrame.origin.x + boardFrame.size.width &&
                     frame.origin.y + frame.size.height - .5 * kBlockHeight < boardFrame.origin.y + boardFrame.size.height){
                     
-                    [self snapToBoard:view withTransform:transform];
+                    [self snapToBoard:imgView withTransform:transform];
                 } else{
                     // Lastly, if none of the other conditions were met, this piece
                     // has moved such that both source and destination were not the board.
-                    // So we just scale it back down, which doesn't require an animation, as
-                    // it is fairly subtle.
-                    view.transform = transform;
+                    [self resetPiece:imgView];
                 }
             }
         }
@@ -310,32 +344,57 @@
     }];
 }
 
-- (void) resetPiece:(JCLImageView *)view{
+- (void) resetPiece:(JCLImageView *)imgView{
     [self.view setUserInteractionEnabled:false];
+    
     [JCLImageView animateWithDuration:kSnapAnimationDuration animations:^{
-        if (view.superview == self.boardView){
-            view.center = [self.boardView convertPoint:view.center toView:self.view];
+        if (imgView.superview == self.boardView){
+            imgView.center = [self.boardView convertPoint:imgView.center toView:self.view];
         }
-        [self.view addSubview:view];
+        [self.view addSubview:imgView];
         
         // Reset all transformations.
-        view.transform = CGAffineTransformIdentity;
+        imgView.transform = CGAffineTransformIdentity;
         
         // Reset all user moves.
-        view.userMoves[@"rotations"] = [NSNumber numberWithInt:0];
-        view.userMoves[@"flips"] = [NSNumber numberWithInt:0];
+        [imgView setUserRotations:0];
+        [imgView setUserFlips:0];
         
         // Translate piece
-        CGPoint newOrigin = [view startingCoords:self.orientation];
-        CGSize size = view.frame.size;
+        CGPoint newOrigin = [imgView startingCoords:self.orientation];
+        
+        CGSize size = imgView.frame.size;
         CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
         
         // Setting frame to final location!
-        view.frame = newFrame;
+        imgView.frame = newFrame;
     }completion:^(BOOL finished) {
         [self.view setUserInteractionEnabled:true];
     }];
     
+}
+
+# pragma mark Device Rotation Support
+
+- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+    for (NSString * key in self.model.keys){
+        JCLImageView *piece = [self.pieceViews objectForKey:key];
+        // Reset pieces only if they are not already on the board.
+        if (piece.superview != self.boardView){
+            // Place piece in correct starting position.
+            CGPoint pt = [piece startingCoords:toInterfaceOrientation];
+            CGRect newFrame = CGRectMake(pt.x, pt.y, piece.frame.size.width, piece.frame.size.height);
+            piece.frame = newFrame;
+            
+            // Reset user and solution transformations.
+            [piece setUserRotations:0];
+            [piece setUserFlips:0];
+            piece.transform = CGAffineTransformIdentity;
+        }
+        
+        
+    }
+    self.orientation = (UIDeviceOrientation)toInterfaceOrientation;
 }
 
 # pragma mark Button Actions
@@ -367,13 +426,16 @@
             }
             [self.boardView addSubview:imgView];
             
+            // Since solution board numbers are offset by 1, we use this instead of curBoard.
+            NSInteger solutionBoard = self.curBoard - 1;
+            
             // Transform for rotating piece
-            NSInteger moveRotations = [self.model solutionRotation:key forBoard:self.curBoard];
+            NSInteger moveRotations = [self.model solutionRotation:key forBoard:solutionBoard];
             CGAffineTransform transform;
             transform = CGAffineTransformMakeRotation((CGFloat)(M_PI * kRotation * moveRotations));
             
             // Transform for flipping piece
-            NSInteger moveFlip = [self.model solutionFlip:key forBoard:self.curBoard];
+            NSInteger moveFlip = [self.model solutionFlip:key forBoard:solutionBoard];
             CGFloat x, y;
             if (moveFlip != 0){
                 x = -1.0f;
@@ -383,13 +445,13 @@
                 imgView.transform = transform;
             }
             
-            // Reset all user transformations
-            [imgView setUserRotations:0];
-            [imgView setUserFlips:0];
+            // Set all user transformations to solution's transformations.
+            [imgView setUserRotations:moveRotations];
+            [imgView setUserFlips:moveFlip];
             
             // Translate piece
-            NSInteger solutionX = [self.model solutionX:key forBoard:self.curBoard];
-            NSInteger solutionY = [self.model solutionY:key forBoard:self.curBoard];
+            NSInteger solutionX = [self.model solutionX:key forBoard:solutionBoard];
+            NSInteger solutionY = [self.model solutionY:key forBoard:solutionBoard];
             CGPoint newOrigin = CGPointMake(kBlockWidth * solutionX, kBlockHeight * solutionY);
             CGSize size = imgView.frame.size;
             CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
@@ -420,8 +482,8 @@
             imgView.transform = CGAffineTransformIdentity;
             
             // Reset user transformations;
-            imgView.userMoves[@"rotations"] = [NSNumber numberWithInt:0];
-            imgView.userMoves[@"flips"] = [NSNumber numberWithInt:0];
+            [imgView setUserRotations:0];
+            [imgView setUserFlips:0];
             
             // Translate piece
             CGPoint newOrigin = [imgView startingCoords:self.orientation];
@@ -451,6 +513,7 @@
 
 - (void) dealloc{
     [_pieceViews release];
+    [_model release];
     [super dealloc];
 }
 
