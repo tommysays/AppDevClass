@@ -14,40 +14,44 @@
 - (id)initWithImage:(UIImage *)image{
     self = [super initWithImage:image];
     if (self){
-        self.userMoves = [[NSMutableDictionary alloc] init];
-        self.userMoves[@"rotations"] = [NSNumber numberWithInteger:0];
-        self.userMoves[@"flips"] = [NSNumber numberWithInteger:0];
-        self.portraitCoords = CGPointMake(0, 0);
+        _userMoves = [[NSMutableDictionary alloc] init];
+        _startingCoords = [[NSMutableDictionary alloc] init];
+        _userMoves[@"rotations"] = [NSNumber numberWithInteger:0];
+        _userMoves[@"flips"] = [NSNumber numberWithInteger:0];
         self.userInteractionEnabled = true;
     }
     return self;
 }
 
+- (NSInteger) userRotations{
+    return [[self.userMoves objectForKey:@"rotations"] integerValue];
+}
 
+- (NSInteger) userFlips{
+    return [[self.userMoves objectForKey:@"flips"] integerValue];
+}
 
+- (void) setUserRotations:(NSInteger)rotations{
+    [self.userMoves setObject:[NSNumber numberWithInteger:rotations] forKey:@"rotations"];
+}
 
+- (void) setUserFlips:(NSInteger)flips{
+    [self.userMoves setObject:[NSNumber numberWithInteger:flips] forKey:@"flips"];
+}
 
-//- (void) respondToPan:(UIPanGestureRecognizer *)recognizer{
-////    static CGPoint pt;
-//    switch (recognizer.state){
-//        case UIGestureRecognizerStateBegan:
-//            5 < 3;
-//            //Things.
-//            //CGPoint pt2;
-//            NSInteger x = 5;
-//            CGPoint center = self.center;
-////            pt = CGPointMake(mouse.x - center.x, mouse.y - center.y);
-//            break;
-//        case UIGestureRecognizerStateChanged:
-//            //blah
-//            break;
-//        case UIGestureRecognizerStateEnded:
-//            //blah;
-//            break;
-//        default:
-//            break;
-//    }
-//}
+- (void) setStartingCoord:(CGPoint)point forOrientation:(NSInteger)orientation{
+    [self.startingCoords setObject:[NSValue valueWithCGPoint:point] forKey:[NSNumber numberWithInteger:orientation]];
+}
 
+//TODO may not be working as intended.
+- (CGPoint) startingCoords:(NSInteger)orientation{
+    return [[self.startingCoords objectForKey:[NSNumber numberWithInteger:orientation]] CGPointValue];
+}
+
+- (void) dealloc{
+    [_startingCoords release];
+    [_userMoves release];
+    [super dealloc];
+}
 
 @end

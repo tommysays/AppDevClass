@@ -14,7 +14,14 @@
 
 @interface JCLImageView : UIImageView
 
-@property NSMutableDictionary *userMoves;
-@property CGPoint portraitCoords;
+@property (nonatomic, retain) NSMutableDictionary *userMoves;
+@property (nonatomic, retain) NSMutableDictionary *startingCoords;
+
+- (NSInteger) userRotations;
+- (NSInteger) userFlips;
+- (void) setUserRotations:(NSInteger)rotations;
+- (void) setUserFlips:(NSInteger)flips;
+- (CGPoint) startingCoords:(NSInteger)orientation;
+- (void) setStartingCoord:(CGPoint)point forOrientation:(NSInteger)orientation;
 
 @end

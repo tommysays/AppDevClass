@@ -18,12 +18,11 @@
     [self loadPieces];
 }
 - (void) loadBoardImages{
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    self.boardImages = [[NSMutableArray alloc] init];
     for (int i = 0; i < kNumBoards; ++i){
         NSString *imageName = [NSString stringWithFormat:@"Board%d", i];
-        [temp addObject:[UIImage imageNamed:imageName]];
+        [self.boardImages addObject:[UIImage imageNamed:imageName]];
     }
-    self.boardImages = temp;
 }
 
 - (void) loadSolutions{
@@ -32,23 +31,41 @@
 }
 
 - (void) loadPieces{
-    // Initializing some piece-related structures.
-    self.portraitCoords = [[NSMutableDictionary alloc] init];
-    self.userMoves = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *temp = [[NSMutableDictionary alloc] init];
+    self.pieceImages = [[NSMutableDictionary alloc] init];
     
-    // Loading piece images into dictionary.
     for (NSString *key in self.keys){
         UIImage *img = [UIImage imageNamed:[@"tile" stringByAppendingString:key]];
-        temp[key] = img;
+        self.pieceImages[key] = img;
     }
-    self.pieceImages = temp;
     
 }
 
-- (NSDictionary *) getSolution:(NSString *)key forBoard:(NSInteger)board{
-    NSDictionary *temp = [self.solutions objectAtIndex:board];
-    return temp[key];
+- (UIImage *) boardImageFor:(NSInteger)boardNum{
+    return [self.boardImages objectAtIndex:boardNum];
+}
+
+- (NSInteger) solutionRotation:(NSString *)key forBoard:(NSInteger)board{
+    return [[[[self.solutions objectAtIndex:board] objectForKey:key] objectForKey:@"rotations"] integerValue];
+}
+
+- (NSInteger) solutionFlip:(NSString *)key forBoard:(NSInteger)board{
+    return [[[[self.solutions objectAtIndex:board] objectForKey:key] objectForKey:@"flips"] integerValue];
+}
+
+- (NSInteger) solutionX:(NSString *)key forBoard:(NSInteger)board{
+    return [[[[self.solutions objectAtIndex:board] objectForKey:key] objectForKey:@"x"] integerValue];
+}
+
+- (NSInteger) solutionY:(NSString *)key forBoard:(NSInteger)board{
+    return [[[[self.solutions objectAtIndex:board] objectForKey:key] objectForKey:@"y"] integerValue];
+}
+
+- (void) dealloc{
+    [_keys release];
+    [_solutions release];
+    [_boardImages release];
+    [_pieceImages release];
+    [super dealloc];
 }
 
 @end

@@ -9,7 +9,7 @@
 #import "JCLInfoViewController.h"
 
 @interface JCLInfoViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *currentBoardLabel;
+@property (retain, nonatomic) IBOutlet UILabel *currentBoardLabel;
 - (IBAction)backPressed:(id)sender;
 
 @end
@@ -36,5 +36,10 @@
 
 - (IBAction)backPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) dealloc{
+    [_currentBoardLabel release];
+    [super dealloc];
 }
 @end

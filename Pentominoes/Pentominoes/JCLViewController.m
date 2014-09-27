@@ -13,9 +13,9 @@
 #import "JCLImageView.h"
 
 @interface JCLViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *boardView;
-@property (weak, nonatomic) IBOutlet UIButton *solveButton;
-@property (weak, nonatomic) IBOutlet UIButton *resetButton;
+@property (retain, nonatomic) IBOutlet UIImageView *boardView;
+@property (retain, nonatomic) IBOutlet UIButton *solveButton;
+@property (retain, nonatomic) IBOutlet UIButton *resetButton;
 - (IBAction)boardButtonPressed:(UIButton *)sender;
 - (IBAction)solvePresssed:(id)sender;
 - (IBAction)resetPressed:(id)sender;
@@ -25,8 +25,6 @@
 @property NSInteger curBoard;
 @property NSInteger solved;
 @property NSMutableDictionary *pieceViews;
-@property NSMutableArray *solutions;
-@property NSArray *boardImages;
 @property (nonatomic, strong) JCLModel *model;
 
 @end
@@ -53,7 +51,7 @@
 // Placing pieces in their initial position and adds Tap and Pan recognizers to them.
 - (void) initPieceViews{
     // Initializing dictionary of ImageViews
-    self.pieceViews = [[NSMutableDictionary alloc] init];
+    self.pieceViews = [[[NSMutableDictionary alloc] init] autorelease];
     
     // Calculating padding and how many pieces can fit across the screen.
     NSInteger tilesAcross = self.width / kMaxPieceWidth;
@@ -72,7 +70,7 @@
         UIImage *img = self.model.pieceImages[key];
         
         // Initializing piece and recognizers for it.
-        JCLImageView *piece = [[JCLImageView alloc] initWithImage:img];
+        JCLImageView *piece = [[[JCLImageView alloc] initWithImage:img] autorelease];
         [self initRecognizers:piece];
         
         // Setting starting location
@@ -347,7 +345,7 @@
         self.curBoard = tag;
         self.solved = -1;
     }
-    [self.boardView setImage:[self.model.boardImages objectAtIndex:self.curBoard]];
+    [self.boardView setImage:[self.model boardImageFor:self.curBoard]];
     if (self.curBoard != 0){
         self.solveButton.enabled = true;
     } else{
@@ -448,4 +446,12 @@
         controller.boardNum = self.curBoard;
     }
 }
+
+# pragma mark Dealloc
+
+- (void) dealloc{
+    [_pieceViews release];
+    [super dealloc];
+}
+
 @end
