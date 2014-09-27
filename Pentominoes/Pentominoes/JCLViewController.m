@@ -24,8 +24,9 @@
 @property NSInteger width, height;
 @property NSInteger curBoard;
 @property NSInteger solved;
-@property NSMutableDictionary *pieceViews;
-@property (nonatomic, strong) JCLModel *model;
+@property (nonatomic, retain) NSMutableDictionary *pieceViews;
+@property (nonatomic, retain) JCLModel *model;
+@property NSInteger orientation;
 
 @end
 
@@ -325,7 +326,7 @@
         view.userMoves[@"flips"] = [NSNumber numberWithInt:0];
         
         // Translate piece
-        CGPoint newOrigin = view.portraitCoords;
+        CGPoint newOrigin = [view startingCoords:self.orientation];
         CGSize size = view.frame.size;
         CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
         
@@ -357,8 +358,6 @@
     [self.view setUserInteractionEnabled:false];
     for (NSString *key in self.model.keys){
         
-        // Get solution and imgView for piece
-        NSDictionary *move = [self.model getSolution:key forBoard:self.curBoard - 1];
         JCLImageView *imgView = self.pieceViews[key];
         
         [JCLImageView animateWithDuration:kAnimationDuration animations:^{
@@ -369,12 +368,12 @@
             [self.boardView addSubview:imgView];
             
             // Transform for rotating piece
-            NSInteger moveRotations = [move[@"rotations"] integerValue];
+            NSInteger moveRotations = [self.model solutionRotation:key forBoard:self.curBoard];
             CGAffineTransform transform;
             transform = CGAffineTransformMakeRotation((CGFloat)(M_PI * kRotation * moveRotations));
             
             // Transform for flipping piece
-            NSInteger moveFlip = [move[@"flips"] integerValue];
+            NSInteger moveFlip = [self.model solutionFlip:key forBoard:self.curBoard];
             CGFloat x, y;
             if (moveFlip != 0){
                 x = -1.0f;
@@ -385,12 +384,13 @@
             }
             
             // Reset all user transformations
-            imgView.userMoves[@"rotations"] = [NSNumber numberWithInt:0];
-            imgView.userMoves[@"flips"] = [NSNumber numberWithInt:0];
+            [imgView setUserRotations:0];
+            [imgView setUserFlips:0];
             
             // Translate piece
-            CGPoint newOrigin = CGPointMake(kBlockWidth * [move[@"x"] integerValue],
-                                            kBlockHeight * [move[@"y"] integerValue]);
+            NSInteger solutionX = [self.model solutionX:key forBoard:self.curBoard];
+            NSInteger solutionY = [self.model solutionY:key forBoard:self.curBoard];
+            CGPoint newOrigin = CGPointMake(kBlockWidth * solutionX, kBlockHeight * solutionY);
             CGSize size = imgView.frame.size;
             CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
             
@@ -424,7 +424,7 @@
             imgView.userMoves[@"flips"] = [NSNumber numberWithInt:0];
             
             // Translate piece
-            CGPoint newOrigin = imgView.portraitCoords;
+            CGPoint newOrigin = [imgView startingCoords:self.orientation];
             CGSize size = imgView.frame.size;
             CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
             
