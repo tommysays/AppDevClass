@@ -66,7 +66,7 @@
     }
     NSInteger remainder = self.width % kMaxPieceWidth;
     NSInteger padding = remainder / tilesAcross;
-    NSInteger x = padding;
+    NSInteger x;
     NSInteger y = kPortraitY;
     NSInteger xCounter = 0;
     
@@ -101,9 +101,8 @@
     }
     remainder = self.height % kMaxPieceWidth;
     padding = remainder / tilesAcross;
-    x = padding;
-    y = kLandscapeY;
     xCounter = 0;
+    y = kLandscapeY;
     
     for (NSString *key in self.model.keys){
         JCLImageView *piece = [self.pieceViews objectForKey:key];
@@ -126,9 +125,6 @@
         CGPoint pt = [piece startingCoords:self.orientation];
         CGRect newFrame = CGRectMake(pt.x, pt.y, piece.frame.size.width, piece.frame.size.height);
         piece.frame = newFrame;
-        
-        
-        NSLog(@"For %@, %@", key, [NSValue valueWithCGPoint:pt]);
         [[self view] addSubview:piece];
     }
 }
@@ -336,11 +332,9 @@
     NSInteger snapX = roundf(x / kBlockWidth);
     NSInteger snapY = roundf(y / kBlockWidth);
     if (x < 0){
-        x = 0;
         snapX = 0;
     }
     if (y < 0){
-        y = 0;
         snapY = 0;
     }
     CGPoint newOrigin = CGPointMake(snapX * kBlockWidth, snapY * kBlockHeight);
