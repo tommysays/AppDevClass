@@ -19,11 +19,12 @@
 - (IBAction)boardButtonPressed:(UIButton *)sender;
 - (IBAction)solvePresssed:(id)sender;
 - (IBAction)resetPressed:(id)sender;
-- (void) snapToBoard:(JCLImageView *)view withTransform:(CGAffineTransform)transform;
+- (void) snapToBoard:(JCLImageView *)imgView;
 
 @property NSInteger width, height;
 @property NSInteger curBoard;
 @property NSInteger solved;
+@property NSInteger bgColorSelected;
 @property (nonatomic, retain) NSMutableDictionary *pieceViews;
 @property (nonatomic, retain) JCLModel *model;
 @property (nonatomic) UIDeviceOrientation orientation;
@@ -42,6 +43,7 @@
     self.curBoard = 0;
     self.solveButton.enabled = false;
     self.solved = 0;
+    self.bgColorSelected = 0;
     [self.boardView setUserInteractionEnabled:true];
     self.orientation = (UIDeviceOrientation)[[UIApplication sharedApplication] statusBarOrientation];
     self.model = [[JCLModel alloc] init];
@@ -145,12 +147,13 @@
     [view addGestureRecognizer:doubleTap];
     [view addGestureRecognizer:panRecognizer];
     
-    //TODO dealloc recognizers!
+    // Deallocating recognizers is taken care of in JCLImageView's dealloc
 }
 
 # pragma mark Recognizer Methods
 
 - (void) respondToSingleTap:(UITapGestureRecognizer *)recognizer{
+    [self.view setUserInteractionEnabled:false];
     JCLImageView *imgView = (JCLImageView *)recognizer.view;
     [UIView animateWithDuration:kSnapAnimationDuration animations:^{
         NSInteger rotations = [imgView userRotations];
@@ -171,10 +174,10 @@
         }
         imgView.transform = transform;
         
-        x = imgView.frame.origin.x;
-        y = imgView.frame.origin.y;
-        
         if (imgView.superview == self.boardView){
+            [self snapToBoard:imgView];
+            x = imgView.frame.origin.x;
+            y = imgView.frame.origin.y;
             // Adjusting the piece to fit in board, since a rotation may put it out of bounds.
             while (x < 0){
                 x += kBlockWidth;
@@ -190,16 +193,13 @@
             }
             CGRect newFrame = CGRectMake(x, y, imgView.frame.size.width, imgView.frame.size.height);
             imgView.frame = newFrame;
-            
-            [self snapToBoard:imgView withTransform:transform];
         }
         
         // Setting new number of rotations
         [imgView setUserRotations:rotations];
         
     } completion:^(BOOL finished){
-        
-        
+        [self.view setUserInteractionEnabled:true];
     }];
 }
 
@@ -268,42 +268,53 @@
             break;
         case UIGestureRecognizerStateEnded:
         {
-            // If it's in the board, check to see if we need to remove it.
-            if (imgView.superview == self.boardView){
-                CGRect viewFrame = imgView.frame;
-                CGRect boardFrame = self.boardView.frame;
-                // Check bounds of piece to see if we need to remove it from board.
-                
-                if (viewFrame.origin.x + .5 * kBlockWidth < 0 ||
-                    viewFrame.origin.y + .5 * kBlockHeight < 0 ||
-                    viewFrame.origin.x + viewFrame.size.width - .5 * kBlockWidth > boardFrame.size.width ||
-                    viewFrame.origin.y + viewFrame.size.height - .5 * kBlockHeight > boardFrame.size.height){
+            // Begin animation block. Whichever case it is, we will animate.
+            [self.view setUserInteractionEnabled:false];
+            [UIImageView animateWithDuration:kSnapAnimationDuration animations:^{
+                // If it's in the board, check to see if we need to remove it.
+                if (imgView.superview == self.boardView){
+                    CGRect viewFrame = imgView.frame;
+                    CGRect boardFrame = self.boardView.frame;
+                    // Check bounds of piece to see if we need to remove it from board.
                     
-                    // Piece is out of bounds, so we switch its parent view and reset its
-                    // position, rotation, and flip. (As if the reset was pressed).
-                    [self resetPiece:imgView];
-                    
+                    if (viewFrame.origin.x + .5 * kBlockWidth < 0 ||
+                        viewFrame.origin.y + .5 * kBlockHeight < 0 ||
+                        viewFrame.origin.x + viewFrame.size.width - .5 * kBlockWidth > boardFrame.size.width ||
+                        viewFrame.origin.y + viewFrame.size.height - .5 * kBlockHeight > boardFrame.size.height){
+                        
+                        // Piece is out of bounds, so we switch its parent view and reset its
+                        // position, rotation, and flip. (As if the reset was pressed).
+                        [self resetPiece:imgView];
+                        
+                    } else{
+                        // Preserve transformations
+                        imgView.transform = transform;
+                        [self snapToBoard:imgView];
+                    }
                 } else{
-                    [self snapToBoard:imgView withTransform:transform];
-                }
-            } else{
-                // Otherwise, check to see if we need to place piece in board.
-                CGRect frame = imgView.frame;
-                CGRect boardFrame = self.boardView.frame;
-                
-                // If the peice is within half a block of the board, we add snap it to the board.
-                if (frame.origin.x + .5 * kBlockWidth > boardFrame.origin.x &&
-                    frame.origin.y + .5 * kBlockHeight > boardFrame.origin.y &&
-                    frame.origin.x + frame.size.width - .5 * kBlockWidth < boardFrame.origin.x + boardFrame.size.width &&
-                    frame.origin.y + frame.size.height - .5 * kBlockHeight < boardFrame.origin.y + boardFrame.size.height){
+                    // Otherwise, check to see if we need to place piece in board.
+                    CGRect frame = imgView.frame;
+                    CGRect boardFrame = self.boardView.frame;
                     
-                    [self snapToBoard:imgView withTransform:transform];
-                } else{
-                    // Lastly, if none of the other conditions were met, this piece
-                    // has moved such that both source and destination were not the board.
-                    [self resetPiece:imgView];
+                    // If the peice is within half a block of the board, we add snap it to the board.
+                    if (frame.origin.x + .5 * kBlockWidth > boardFrame.origin.x &&
+                        frame.origin.y + .5 * kBlockHeight > boardFrame.origin.y &&
+                        frame.origin.x + frame.size.width - .5 * kBlockWidth < boardFrame.origin.x + boardFrame.size.width &&
+                        frame.origin.y + frame.size.height - .5 * kBlockHeight < boardFrame.origin.y + boardFrame.size.height){
+                        
+                        // Preserve transformations
+                        imgView.transform = transform;
+                        [self snapToBoard:imgView];
+                    } else{
+                        // Lastly, if none of the other conditions were met, this piece
+                        // has moved such that both source and destination were not the board.
+                        [self resetPiece:imgView];
+                    }
                 }
-            }
+                
+            }completion:^(BOOL finished) {
+                [self.view setUserInteractionEnabled:true];
+            }];
         }
             break;
             
@@ -312,89 +323,69 @@
     }
 }
 
-- (void) snapToBoard:(JCLImageView *)view withTransform:(CGAffineTransform)transform{
-    [self.view setUserInteractionEnabled:false];
-    [JCLImageView animateWithDuration:kSnapAnimationDuration animations:^{
-        if (view.superview != self.boardView){
-            view.center = [self.view convertPoint:view.center toView:self.boardView];
-        }
-        [self.boardView addSubview:view];
-        
-        // Preserve user transformations
-        view.transform = transform;
-        
-        // Snapping piece to grid.
-        CGFloat x = view.frame.origin.x;
-        CGFloat y = view.frame.origin.y;
-        NSInteger snapX = roundf(x / kBlockWidth);
-        NSInteger snapY = roundf(y / kBlockWidth);
-        if (x < 0){
-            x = 0;
-            snapX = 0;
-        }
-        if (y < 0){
-            y = 0;
-            snapY = 0;
-        }
-        CGPoint newOrigin = CGPointMake(snapX * kBlockWidth, snapY * kBlockHeight);
-        CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, view.frame.size.width, view.frame.size.height);
-        view.frame = newFrame;
-    }completion:^(BOOL finished) {
-        [self.view setUserInteractionEnabled:true];
-    }];
+// Without animation. You can instead put this in an animation block.
+- (void) snapToBoard:(JCLImageView *)imgView{
+    if (imgView.superview != self.boardView){
+        imgView.center = [self.view convertPoint:imgView.center toView:self.boardView];
+        [self.boardView addSubview:imgView];
+    }
+    
+    // Snapping piece to grid.
+    CGFloat x = imgView.frame.origin.x;
+    CGFloat y = imgView.frame.origin.y;
+    NSInteger snapX = roundf(x / kBlockWidth);
+    NSInteger snapY = roundf(y / kBlockWidth);
+    if (x < 0){
+        x = 0;
+        snapX = 0;
+    }
+    if (y < 0){
+        y = 0;
+        snapY = 0;
+    }
+    CGPoint newOrigin = CGPointMake(snapX * kBlockWidth, snapY * kBlockHeight);
+    CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, imgView.frame.size.width, imgView.frame.size.height);
+    imgView.frame = newFrame;
 }
 
 - (void) resetPiece:(JCLImageView *)imgView{
-    [self.view setUserInteractionEnabled:false];
+    if (imgView.superview == self.boardView){
+        imgView.center = [self.boardView convertPoint:imgView.center toView:self.view];
+    }
+    [self.view addSubview:imgView];
     
-    [JCLImageView animateWithDuration:kSnapAnimationDuration animations:^{
-        if (imgView.superview == self.boardView){
-            imgView.center = [self.boardView convertPoint:imgView.center toView:self.view];
-        }
-        [self.view addSubview:imgView];
-        
-        // Reset all transformations.
-        imgView.transform = CGAffineTransformIdentity;
-        
-        // Reset all user moves.
-        [imgView setUserRotations:0];
-        [imgView setUserFlips:0];
-        
-        // Translate piece
-        CGPoint newOrigin = [imgView startingCoords:self.orientation];
-        
-        CGSize size = imgView.frame.size;
-        CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
-        
-        // Setting frame to final location!
-        imgView.frame = newFrame;
-    }completion:^(BOOL finished) {
-        [self.view setUserInteractionEnabled:true];
-    }];
+    // Reset all transformations.
+    imgView.transform = CGAffineTransformIdentity;
     
+    // Reset all user moves.
+    [imgView setUserRotations:0];
+    [imgView setUserFlips:0];
+    
+    // Translate piece
+    CGPoint newOrigin = [imgView startingCoords:self.orientation];
+    
+    CGSize size = imgView.frame.size;
+    CGRect newFrame = CGRectMake(newOrigin.x, newOrigin.y, size.width, size.height);
+    
+    // Setting frame to final location!
+    imgView.frame = newFrame;
 }
 
 # pragma mark Device Rotation Support
 
 - (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+    
+    self.orientation = (UIDeviceOrientation)toInterfaceOrientation;
+    
     for (NSString * key in self.model.keys){
         JCLImageView *piece = [self.pieceViews objectForKey:key];
         // Reset pieces only if they are not already on the board.
         if (piece.superview != self.boardView){
-            // Place piece in correct starting position.
-            CGPoint pt = [piece startingCoords:toInterfaceOrientation];
-            CGRect newFrame = CGRectMake(pt.x, pt.y, piece.frame.size.width, piece.frame.size.height);
-            piece.frame = newFrame;
-            
-            // Reset user and solution transformations.
-            [piece setUserRotations:0];
-            [piece setUserFlips:0];
-            piece.transform = CGAffineTransformIdentity;
+            [self resetPiece:piece];
         }
-        
-        
+        // Otherwise, we leave the board pieces alone, as the board will carry them
+        // to the right location anyway.
     }
-    self.orientation = (UIDeviceOrientation)toInterfaceOrientation;
 }
 
 # pragma mark Button Actions
@@ -500,13 +491,19 @@
     }
 }
 
-# pragma mark Segue Preparation
+# pragma mark Segue and Delagate Methods
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"toInfo"]){
         JCLInfoViewController *controller = [segue destinationViewController];
-        controller.boardNum = self.curBoard;
+        controller.colorSelected = self.bgColorSelected;
+        controller.delegate = self;
     }
+}
+
+- (void) receiveColor:(UIColor *)color andTag:(NSInteger) tag{
+    self.view.backgroundColor = color;
+    self.bgColorSelected = tag;
 }
 
 # pragma mark Dealloc

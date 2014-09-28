@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface JCLViewController : UIViewController
-
+- (void) receiveColor:(UIColor *)color andTag:(NSInteger)tag;
 @end
 
 #if !defined CONSTANTS
@@ -21,7 +21,7 @@
 #define kMaxPieceWidth 150
 #define kMaxPieceHeight 100
 #define kPortraitY 570
-#define kLandscapeY 540
+#define kLandscapeY 490
 #define kAnimationDuration 1.5
 // kSnapAnimationDuration is used for user-prompted animations
 // so we make those animations faster, since kAnimationDuration is way

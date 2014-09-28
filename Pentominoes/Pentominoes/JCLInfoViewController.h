@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JCLViewController.h"
 
 @interface JCLInfoViewController : UIViewController
 
-@property NSInteger boardNum;
+@property NSInteger colorSelected;
+@property (assign, nonatomic) JCLViewController* delegate;
+
+#define kSelectorOffset 5
 
 @end
