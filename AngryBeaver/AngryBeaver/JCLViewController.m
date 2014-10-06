@@ -10,6 +10,11 @@
 
 #ifndef CONSTANTS
 #define CONSTANTS
+#define kDensityBlade 3
+#define kDensityLog 1
+#define kDensityRock 4
+#define kElasticityLog 0.25
+#define kButtonFadeTime 0.5
 #define kFadeTime 0.75 // Duration of fade for logs, rocks, and blade when struck.
 #define kTagBlade 0
 #define kTagLog 1
@@ -19,16 +24,20 @@
 #define kLaunchMaxTimeInterval 150 // Maximum time between obstacles, in deci-seconds.
 #define kNumObstacles 4
 #define kNumLauncherPositions 4
+#define kMaxObstacleStartingSpeed 4
 #endif
 
 @interface JCLViewController () <UICollisionBehaviorDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
+- (IBAction)playButtonPressed:(id)sender;
 
 @property (strong, nonatomic) UIDynamicAnimator *animator;
 @property (strong, nonatomic) UIGravityBehavior *gravity;
 @property (strong, nonatomic) UICollisionBehavior *collision;
 @property (strong, nonatomic) NSDictionary *images;
-@property (strong, nonatomic) NSArray *bladeImages;
-@property BOOL gameOver;
+@property (copy, nonatomic) NSArray *bladeImages;
+@property (strong, nonatomic) NSMutableArray *obstacles;
+@property BOOL playing;
 
 @end
 
@@ -41,12 +50,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    self.gameOver = false;
+    self.playing = NO;
     self.images = [[NSDictionary alloc] init];
+    self.obstacles = [[NSMutableArray alloc] init];
     [self initBehaviors];
     [self loadImages];
     [self createBlade];
-    [self createObstacle];
 }
 
 - (void) initBehaviors{
@@ -105,34 +114,33 @@
     UIImageView *toRemove;
     if (tag1 == kTagLog && tag2 == kTagBlade){
         toRemove = (UIImageView *)item1;
-        [behavior removeItem:item1];
     } else if (tag1 == kTagBlade && tag2 == kTagLog){
         toRemove = (UIImageView *)item2;
-        [behavior removeItem:item2];
     } else if (tag1 == kTagRock && tag2 == kTagBlade){
         toRemove = (UIImageView *)item2;
-        [behavior removeItem:item2];
-        self.gameOver = YES;
     } else if (tag1 == kTagBlade && tag2 == kTagRock){
         toRemove = (UIImageView *)item1;
-        [behavior removeItem:item1];
-        self.gameOver = YES;
     }
     if (toRemove){
         [self removeItem:toRemove];
+        if ([toRemove tag] == kTagBlade){
+            [self gameOver];
+        }
     }
 }
 
 - (void) collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p{
-    NSLog(@"Tag = %d", [(UIImageView *)item tag]);
     if ([(UIImageView *)item tag] == kTagRock && [(NSString *)identifier isEqualToString:@"bot"]){
-        NSLog(@"Rock bottom.");
-        [behavior removeItem:item];
         [self removeItem:(UIImageView *)item];
     }
 }
 
 - (void) removeItem:(UIImageView *)toRemove{
+    [self.collision removeItem:toRemove];
+    if ([toRemove tag] != kTagBlade){
+        [self.gravity removeItem:toRemove];
+        [self.obstacles removeObject:toRemove];
+    }
     [UIImageView animateWithDuration:kFadeTime animations:^{
         toRemove.alpha = 0.0;
     } completion:^(BOOL finished){
@@ -150,15 +158,18 @@
 - (void) createBlade{
     UIImageView *blade = [[UIImageView alloc] initWithImage:self.bladeImages[0]];
     blade.animationImages = self.bladeImages;
-    [blade setTag:kTagBlade];
-    [self.collision addItem:blade];
     [self.view addSubview:blade];
-    blade.center = CGPointMake(self.view.frame.size.width / 2, kBladeY);
+    [blade startAnimating];
+    blade.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height - kBladeY);
+    [blade setTag:kTagBlade];
+    UIDynamicItemBehavior *bladeBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[blade]];
+    bladeBehavior.density = kDensityBlade;
+    [self.animator addBehavior:bladeBehavior];
+    [self.collision addItem:blade];
 }
 
 - (void) createObstacle{
     NSInteger rand = arc4random_uniform(kNumObstacles);
-    rand = kNumObstacles - 1;
     UIImageView *obstacle = [[UIImageView alloc] initWithImage:[self.images objectForKey:[NSString stringWithFormat:@"obstacle%d", rand]]];
     [self.view addSubview:obstacle];
     
@@ -168,23 +179,56 @@
     NSInteger launchX = launcherSpacing * (randomizeLauncher + 1);
     obstacle.center = CGPointMake(launchX, kLaunchY);
     
+    // Set a random starting velocity.
+    UIDynamicItemBehavior *obstacleBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[obstacle]];
+    NSInteger xRand = arc4random_uniform(kMaxObstacleStartingSpeed) - (kMaxObstacleStartingSpeed / 2);
+    CGPoint velocity = CGPointMake(xRand, 0);
+    [obstacleBehavior addLinearVelocity:velocity forItem:obstacle];
     
     if (rand == kNumObstacles - 1){
-        // Obstacle generated is a rock!
-        NSLog(@"Generating rock!");
         [obstacle setTag:kTagRock];
+        obstacleBehavior.density = kDensityRock;
     } else{
-        // Obstacle generated is a log...
         [obstacle setTag:kTagLog];
+        obstacleBehavior.density = kDensityLog;
+        obstacleBehavior.elasticity = kElasticityLog;
     }
-    NSLog(@"Generated tag: %d", [obstacle tag]);
     
+    [self.animator addBehavior:obstacleBehavior];
     [self.collision addItem:obstacle];
     [self.gravity addItem:obstacle];
+    [self.obstacles addObject:obstacle];
     
-    if (!self.gameOver){
+    if (self.playing){
         [self launchTimer];
     }
 }
 
+# pragma mark Button Method and Game Over.
+
+- (void) clearObstacles{
+    for (UIImageView *obstacle in self.obstacles){
+        [self removeItem:obstacle];
+    }
+}
+
+- (IBAction)playButtonPressed:(id)sender {
+    self.playButton.enabled = false;
+    self.playing = YES;
+    [self clearObstacles];
+    [self launchTimer];
+    [UIButton animateWithDuration:kButtonFadeTime animations:^{
+        self.playButton.alpha = 0.0;
+    }];
+}
+
+- (void) gameOver{
+    self.playing = NO;
+    [UIButton animateWithDuration:kButtonFadeTime animations:^{
+        self.playButton.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        self.playButton.enabled = true;
+        NSLog(@"Play button should be showing.");
+    }];
+}
 @end
