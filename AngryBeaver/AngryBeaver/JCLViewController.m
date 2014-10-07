@@ -7,13 +7,17 @@
 //
 
 #import "JCLViewController.h"
+@import CoreMotion;
+static CMMotionManager *motionManager;
 
 #ifndef CONSTANTS
 #define CONSTANTS
-#define kDensityBlade 3
-#define kDensityLog 1
-#define kDensityRock 4
+#define kBladeMaxSpeed 150
+#define kDensityBlade .7
+#define kDensityLog .5
+#define kDensityRock 1.9
 #define kElasticityLog 0.25
+#define kElasticityRock 0.0
 #define kButtonFadeTime 0.5
 #define kFadeTime 0.75 // Duration of fade for logs, rocks, and blade when struck.
 #define kTagBlade 0
@@ -24,7 +28,7 @@
 #define kLaunchMaxTimeInterval 150 // Maximum time between obstacles, in deci-seconds.
 #define kNumObstacles 4
 #define kNumLauncherPositions 4
-#define kMaxObstacleStartingSpeed 4
+#define kMaxObstacleStartingSpeed 250
 #endif
 
 @interface JCLViewController () <UICollisionBehaviorDelegate>
@@ -53,9 +57,11 @@
     self.playing = NO;
     self.images = [[NSDictionary alloc] init];
     self.obstacles = [[NSMutableArray alloc] init];
+    if (motionManager) {
+        motionManager = [[CMMotionManager alloc] init];
+    }
     [self initBehaviors];
     [self loadImages];
-    [self createBlade];
 }
 
 - (void) initBehaviors{
@@ -162,8 +168,17 @@
     [blade startAnimating];
     blade.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height - kBladeY);
     [blade setTag:kTagBlade];
-    UIDynamicItemBehavior *bladeBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[blade]];
+    
+    // Defining blade behavior.
+    UIDynamicItemBehavior *superBladeBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[blade]];
+    __weak UIDynamicItemBehavior *bladeBehavior = superBladeBehavior; // So that we have a weak reference
     bladeBehavior.density = kDensityBlade;
+    bladeBehavior.action = ^{
+        CMDeviceMotion *deviceMotion = motionManager.deviceMotion;
+        CMAcceleration acceleration = deviceMotion.gravity;
+        CGPoint velocity = CGPointMake(acceleration.x * kBladeMaxSpeed, -acceleration.y * kBladeMaxSpeed);
+        [bladeBehavior addLinearVelocity:velocity forItem:blade];
+    };
     [self.animator addBehavior:bladeBehavior];
     [self.collision addItem:blade];
 }
@@ -184,10 +199,12 @@
     NSInteger xRand = arc4random_uniform(kMaxObstacleStartingSpeed) - (kMaxObstacleStartingSpeed / 2);
     CGPoint velocity = CGPointMake(xRand, 0);
     [obstacleBehavior addLinearVelocity:velocity forItem:obstacle];
+    NSLog(@"Velocity = %@",NSStringFromCGPoint(velocity));
     
     if (rand == kNumObstacles - 1){
         [obstacle setTag:kTagRock];
         obstacleBehavior.density = kDensityRock;
+        obstacleBehavior.elasticity = kElasticityRock;
     } else{
         [obstacle setTag:kTagLog];
         obstacleBehavior.density = kDensityLog;
@@ -207,8 +224,8 @@
 # pragma mark Button Method and Game Over.
 
 - (void) clearObstacles{
-    for (UIImageView *obstacle in self.obstacles){
-        [self removeItem:obstacle];
+    while(self.obstacles.count > 0){
+        [self removeItem:[self.obstacles objectAtIndex:0]];
     }
 }
 
@@ -217,6 +234,7 @@
     self.playing = YES;
     [self clearObstacles];
     [self launchTimer];
+    [self createBlade];
     [UIButton animateWithDuration:kButtonFadeTime animations:^{
         self.playButton.alpha = 0.0;
     }];
@@ -228,7 +246,6 @@
         self.playButton.alpha = 1.0;
     } completion:^(BOOL finished) {
         self.playButton.enabled = true;
-        NSLog(@"Play button should be showing.");
     }];
 }
 @end
