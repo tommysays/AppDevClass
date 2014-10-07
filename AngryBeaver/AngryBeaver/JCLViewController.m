@@ -29,7 +29,7 @@ static CMMotionManager *motionManager;
 #define kLaunchMaxTimeInterval 150 // Maximum time between obstacles, in deci-seconds.
 #define kNumObstacles 4
 #define kNumLauncherPositions 4
-#define kMaxObstacleStartingSpeed 100
+#define kMaxObstacleStartingSpeed 500
 #endif
 
 @interface JCLViewController () <UICollisionBehaviorDelegate>
