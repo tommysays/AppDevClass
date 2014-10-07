@@ -28,7 +28,7 @@ static CMMotionManager *motionManager;
 #define kLaunchMaxTimeInterval 150 // Maximum time between obstacles, in deci-seconds.
 #define kNumObstacles 4
 #define kNumLauncherPositions 4
-#define kMaxObstacleStartingSpeed 250
+#define kMaxObstacleStartingSpeed 80
 #endif
 
 @interface JCLViewController () <UICollisionBehaviorDelegate>
@@ -57,7 +57,7 @@ static CMMotionManager *motionManager;
     self.playing = NO;
     self.images = [[NSDictionary alloc] init];
     self.obstacles = [[NSMutableArray alloc] init];
-    if (motionManager) {
+    if (!motionManager) {
         motionManager = [[CMMotionManager alloc] init];
     }
     [self initBehaviors];
@@ -68,7 +68,8 @@ static CMMotionManager *motionManager;
     self.animator = [[UIDynamicAnimator alloc] init];
     self.gravity = [[UIGravityBehavior alloc] init];
     self.collision = [[UICollisionBehavior alloc] init];
-    
+    [motionManager startDeviceMotionUpdates];
+
     // Defining screen boundaries.
     CGFloat width = self.view.frame.size.width;
     CGFloat height = self.view.frame.size.height;
@@ -177,15 +178,17 @@ static CMMotionManager *motionManager;
         CMDeviceMotion *deviceMotion = motionManager.deviceMotion;
         CMAcceleration acceleration = deviceMotion.gravity;
         CGPoint velocity = CGPointMake(acceleration.x * kBladeMaxSpeed, -acceleration.y * kBladeMaxSpeed);
+        NSLog(@"%@", NSStringFromCGPoint(velocity));
         [bladeBehavior addLinearVelocity:velocity forItem:blade];
     };
-    [self.animator addBehavior:bladeBehavior];
+
     [self.collision addItem:blade];
+    [self.animator addBehavior:bladeBehavior];
 }
 
 - (void) createObstacle{
     NSInteger rand = arc4random_uniform(kNumObstacles);
-    UIImageView *obstacle = [[UIImageView alloc] initWithImage:[self.images objectForKey:[NSString stringWithFormat:@"obstacle%d", rand]]];
+    UIImageView *obstacle = [[UIImageView alloc] initWithImage:[self.images objectForKey:[NSString stringWithFormat:@"obstacle%ld", (long)rand]]];
     [self.view addSubview:obstacle];
     
     // Launching the obstacle from one of several positions.
@@ -199,8 +202,8 @@ static CMMotionManager *motionManager;
     NSInteger xRand = arc4random_uniform(kMaxObstacleStartingSpeed) - (kMaxObstacleStartingSpeed / 2);
     CGPoint velocity = CGPointMake(xRand, 0);
     [obstacleBehavior addLinearVelocity:velocity forItem:obstacle];
-    NSLog(@"Velocity = %@",NSStringFromCGPoint(velocity));
-    
+
+    // Setting rock or log specific behaviors.
     if (rand == kNumObstacles - 1){
         [obstacle setTag:kTagRock];
         obstacleBehavior.density = kDensityRock;

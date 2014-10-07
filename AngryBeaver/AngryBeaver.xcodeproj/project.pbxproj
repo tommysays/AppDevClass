@@ -459,6 +459,7 @@
 				D8603BAC19DF4EBE00F5F43A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D8603BAD19DF4EBE00F5F43A /* Build configuration list for PBXNativeTarget "AngryBeaverTests" */ = {
 			isa = XCConfigurationList;
@@ -467,6 +468,7 @@
 				D8603BAF19DF4EBE00F5F43A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
