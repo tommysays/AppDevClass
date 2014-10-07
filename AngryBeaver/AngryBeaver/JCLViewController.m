@@ -33,6 +33,7 @@ static CMMotionManager *motionManager;
 
 @interface JCLViewController () <UICollisionBehaviorDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 - (IBAction)playButtonPressed:(id)sender;
 
 @property (strong, nonatomic) UIDynamicAnimator *animator;
@@ -41,7 +42,9 @@ static CMMotionManager *motionManager;
 @property (strong, nonatomic) NSDictionary *images;
 @property (copy, nonatomic) NSArray *bladeImages;
 @property (strong, nonatomic) NSMutableArray *obstacles;
+@property (strong, nonatomic) UIImageView *gameOverMessage;
 @property BOOL playing;
+@property NSInteger score;
 
 @end
 
@@ -62,6 +65,14 @@ static CMMotionManager *motionManager;
     }
     [self initBehaviors];
     [self loadImages];
+    [self createGameOverMessage];
+}
+
+- (void) createGameOverMessage{
+    self.gameOverMessage = [[UIImageView alloc] initWithImage:[self.images objectForKey:@"gameover"]];
+    self.gameOverMessage.center = self.view.center;
+    [self.view addSubview:self.gameOverMessage];
+    self.gameOverMessage.hidden = YES;
 }
 
 - (void) initBehaviors{
@@ -81,7 +92,7 @@ static CMMotionManager *motionManager;
     [self.collision addBoundaryWithIdentifier:@"bot" fromPoint:botLeft toPoint:botRight];
     [self.collision addBoundaryWithIdentifier:@"left" fromPoint:topLeft toPoint:botLeft];
     [self.collision addBoundaryWithIdentifier:@"right" fromPoint:topRight toPoint:botRight];
-    
+
     self.collision.collisionDelegate = self;
     
     [self.animator addBehavior:self.gravity];
@@ -121,13 +132,16 @@ static CMMotionManager *motionManager;
     UIImageView *toRemove;
     if (tag1 == kTagLog && tag2 == kTagBlade){
         toRemove = (UIImageView *)item1;
+        self.score++;
     } else if (tag1 == kTagBlade && tag2 == kTagLog){
         toRemove = (UIImageView *)item2;
+        self.score++;
     } else if (tag1 == kTagRock && tag2 == kTagBlade){
         toRemove = (UIImageView *)item2;
     } else if (tag1 == kTagBlade && tag2 == kTagRock){
         toRemove = (UIImageView *)item1;
     }
+    [self updateScoreLabel];
     if (toRemove){
         [self removeItem:toRemove];
         if ([toRemove tag] == kTagBlade){
@@ -155,7 +169,7 @@ static CMMotionManager *motionManager;
     }];
 }
 
-# pragma mark View Creation Methods
+# pragma mark Game Methods
 
 - (void) launchTimer{
     NSTimeInterval randTime = arc4random_uniform(kLaunchMaxTimeInterval) / 100.0;
@@ -224,6 +238,10 @@ static CMMotionManager *motionManager;
     }
 }
 
+- (void) updateScoreLabel{
+    [self.scoreLabel setText:[NSString stringWithFormat:@"Score: %ld", (long)self.score]];
+}
+
 # pragma mark Button Method and Game Over.
 
 - (void) clearObstacles{
@@ -235,6 +253,9 @@ static CMMotionManager *motionManager;
 - (IBAction)playButtonPressed:(id)sender {
     self.playButton.enabled = false;
     self.playing = YES;
+    self.score = 0;
+    self.gameOverMessage.hidden = YES;
+    [self updateScoreLabel];
     [self clearObstacles];
     [self launchTimer];
     [self createBlade];
@@ -245,6 +266,7 @@ static CMMotionManager *motionManager;
 
 - (void) gameOver{
     self.playing = NO;
+    self.gameOverMessage.hidden = NO;
     [UIButton animateWithDuration:kButtonFadeTime animations:^{
         self.playButton.alpha = 1.0;
     } completion:^(BOOL finished) {
