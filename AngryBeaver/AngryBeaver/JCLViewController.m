@@ -20,15 +20,16 @@ static CMMotionManager *motionManager;
 #define kElasticityRock 0.0
 #define kButtonFadeTime 0.5
 #define kFadeTime 0.75 // Duration of fade for logs, rocks, and blade when struck.
-#define kTagBlade 0
-#define kTagLog 1
-#define kTagRock 2
+#define kTagBlade 1
+#define kTagLog 2
+#define kTagRock 3
 #define kBladeY 100 // Height where blade starts from, relative to bottom of screen.
 #define kLaunchY 20 // Height where obstacles are launched from, relative to top of screen.
+#define kGameOverY 400 // Height where game over screen center is, relative to top of screen.
 #define kLaunchMaxTimeInterval 150 // Maximum time between obstacles, in deci-seconds.
 #define kNumObstacles 4
 #define kNumLauncherPositions 4
-#define kMaxObstacleStartingSpeed 80
+#define kMaxObstacleStartingSpeed 100
 #endif
 
 @interface JCLViewController () <UICollisionBehaviorDelegate>
@@ -45,6 +46,7 @@ static CMMotionManager *motionManager;
 @property (strong, nonatomic) UIImageView *gameOverMessage;
 @property BOOL playing;
 @property NSInteger score;
+@property (strong, nonatomic) NSTimer *timer;
 
 @end
 
@@ -70,7 +72,7 @@ static CMMotionManager *motionManager;
 
 - (void) createGameOverMessage{
     self.gameOverMessage = [[UIImageView alloc] initWithImage:[self.images objectForKey:@"gameover"]];
-    self.gameOverMessage.center = self.view.center;
+    self.gameOverMessage.center = CGPointMake(self.view.center.x, kGameOverY);
     [self.view addSubview:self.gameOverMessage];
     self.gameOverMessage.hidden = YES;
 }
@@ -173,7 +175,7 @@ static CMMotionManager *motionManager;
 
 - (void) launchTimer{
     NSTimeInterval randTime = arc4random_uniform(kLaunchMaxTimeInterval) / 100.0;
-    [NSTimer scheduledTimerWithTimeInterval:randTime target:self selector:@selector(createObstacle) userInfo:nil repeats:NO];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:randTime target:self selector:@selector(createObstacle) userInfo:nil repeats:NO];
 }
 
 - (void) createBlade{
@@ -192,7 +194,6 @@ static CMMotionManager *motionManager;
         CMDeviceMotion *deviceMotion = motionManager.deviceMotion;
         CMAcceleration acceleration = deviceMotion.gravity;
         CGPoint velocity = CGPointMake(acceleration.x * kBladeMaxSpeed, -acceleration.y * kBladeMaxSpeed);
-        NSLog(@"%@", NSStringFromCGPoint(velocity));
         [bladeBehavior addLinearVelocity:velocity forItem:blade];
     };
 
@@ -213,7 +214,7 @@ static CMMotionManager *motionManager;
     
     // Set a random starting velocity.
     UIDynamicItemBehavior *obstacleBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[obstacle]];
-    NSInteger xRand = arc4random_uniform(kMaxObstacleStartingSpeed) - (kMaxObstacleStartingSpeed / 2);
+    NSInteger xRand = (NSInteger)arc4random_uniform(kMaxObstacleStartingSpeed) - (kMaxObstacleStartingSpeed / 2);
     CGPoint velocity = CGPointMake(xRand, 0);
     [obstacleBehavior addLinearVelocity:velocity forItem:obstacle];
 
@@ -265,6 +266,8 @@ static CMMotionManager *motionManager;
 }
 
 - (void) gameOver{
+    [self.timer invalidate];
+    [self clearObstacles];
     self.playing = NO;
     self.gameOverMessage.hidden = NO;
     [UIButton animateWithDuration:kButtonFadeTime animations:^{
