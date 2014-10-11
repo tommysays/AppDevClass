@@ -40,11 +40,16 @@
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Beaver" translatesAutoresizingMaskIntoConstraints="NO" id="tiC-S7-Lwg">
+                                <rect key="frame" x="586" y="812" width="162" height="192"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="Hg7-Zc-JvC" id="Vlp-Ru-des"/>
+                        <outlet property="beaverView" destination="tiC-S7-Lwg" id="Zdv-FK-ycn"/>
                         <outlet property="playButton" destination="mTn-Cj-APk" id="NxI-Ee-KpC"/>
                         <outlet property="scoreLabel" destination="zUq-p5-B3V" id="gdj-hr-f9K"/>
                     </connections>
@@ -54,6 +59,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Beaver" width="163" height="193"/>
         <image name="BeaverDam" width="768" height="1024"/>
         <image name="blueLine" width="160" height="75"/>
     </resources>

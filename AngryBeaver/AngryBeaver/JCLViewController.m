@@ -9,9 +9,14 @@
 #import "JCLViewController.h"
 @import CoreMotion;
 static CMMotionManager *motionManager;
-
 #ifndef CONSTANTS
 #define CONSTANTS
+
+#define kBeaverDuration 1.5
+#define kBeaverShakeDuration 0.12
+#define kBeaverShakeAngle M_PI / 6
+#define kBeaverShakeRepeat 6
+
 #define kBladeMaxSpeed 150
 #define kDensityBlade .7
 #define kDensityLog .5
@@ -27,11 +32,13 @@ static CMMotionManager *motionManager;
 #define kBladeY 100 // Height where blade starts from, relative to bottom of screen.
 #define kLaunchY 20 // Height where obstacles are launched from, relative to top of screen.
 #define kGameOverY 400 // Height where game over screen center is, relative to top of screen.
+#define kGameOverDuration 2
 #define kLaunchMaxTimeInterval 150 // Maximum time between obstacles, in deci-seconds.
 #define kNumObstacles 4
 #define kNumLauncherPositions 4
-#define kNumEmitterCells 5
 #define kMaxObstacleStartingSpeed 500
+
+#define kNumEmitterCells 5
 #define kParticleBirthRate 80
 #define kParticleVelocity 200
 #define kParticleVelocityRange 50
@@ -44,12 +51,14 @@ static CMMotionManager *motionManager;
 #define kParticleScaleSpeed 0.05;
 #define kParticleSpin 6*M_PI
 #define kParticleSpinRange 2*M_PI
+
 #endif
 
 @interface JCLViewController () <UICollisionBehaviorDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *beaverView;
 - (IBAction)playButtonPressed:(id)sender;
 
 @property (strong, nonatomic) UIDynamicAnimator *animator;
@@ -64,6 +73,8 @@ static CMMotionManager *motionManager;
 @property (strong, nonatomic) NSTimer *timer;
 
 @end
+
+// 586, 812
 
 @implementation JCLViewController
 
@@ -322,6 +333,7 @@ static CMMotionManager *motionManager;
     self.playing = YES;
     self.score = 0;
     self.gameOverMessage.hidden = YES;
+    [self hideBeaver];
     [self updateScoreLabel];
     [self clearObstacles];
     [self launchTimer];
@@ -332,14 +344,60 @@ static CMMotionManager *motionManager;
 }
 
 - (void) gameOver{
-    [self.timer invalidate];
-    [self clearObstacles];
     self.playing = NO;
     self.gameOverMessage.hidden = NO;
+    [self.timer invalidate];
+    [self clearObstacles];
+    [self animateGameOver];
+    [self showBeaver];
     [UIButton animateWithDuration:kButtonFadeTime animations:^{
         self.playButton.alpha = 1.0;
     } completion:^(BOOL finished) {
         self.playButton.enabled = true;
+    }];
+}
+
+- (void) animateGameOver{
+    [UIImageView animateWithDuration:kBeaverDuration animations:^{
+        self.beaverView.alpha = 1.0;
+    }];
+    CGFloat scale = 1;
+    for (CGFloat radian = 0; radian < 4; radian++){
+        CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+        rotationAnimation.duration = kGameOverDuration;
+        rotationAnimation.toValue = @((radian + 1) * M_PI);
+        
+        CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+        scaleAnimation.duration = kGameOverDuration;
+        scaleAnimation.fromValue = @(scale);
+        if (scale == 1){
+            scale = 0.0;
+        } else{
+            scale = 1.0;
+        }
+        scaleAnimation.toValue = @(scale);
+        
+        CAAnimationGroup *group = [[CAAnimationGroup alloc] init];
+        group.animations = [NSArray arrayWithObjects:rotationAnimation, scaleAnimation, nil];
+        group.duration = kGameOverDuration;
+        [self.gameOverMessage.layer addAnimation:group forKey:@"Scale and Rotate"];
+    }
+}
+
+- (void) showBeaver{
+    CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    
+    rotationAnimation.duration = kBeaverShakeDuration;
+    rotationAnimation.toValue = @(kBeaverShakeAngle);
+    rotationAnimation.autoreverses = YES;
+    rotationAnimation.repeatCount = kBeaverShakeRepeat;
+    [self.beaverView.layer addAnimation:rotationAnimation forKey:@"Rotate"];
+    
+}
+
+- (void) hideBeaver{
+    [UIImageView animateWithDuration:kBeaverDuration animations:^{
+        self.beaverView.alpha = 0.0;
     }];
 }
 @end
