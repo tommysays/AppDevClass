@@ -18,6 +18,7 @@ static CMMotionManager *motionManager;
 #define kDensityRock 1.9
 #define kElasticityLog 0.25
 #define kElasticityRock 0.0
+#define kEmitterSize 10
 #define kButtonFadeTime 0.5
 #define kFadeTime 0.75 // Duration of fade for logs, rocks, and blade when struck.
 #define kTagBlade 1
@@ -31,13 +32,16 @@ static CMMotionManager *motionManager;
 #define kNumLauncherPositions 4
 #define kNumEmitterCells 5
 #define kMaxObstacleStartingSpeed 500
-#define kParticleBirthRate 10
+#define kParticleBirthRate 80
 #define kParticleVelocity 200
 #define kParticleVelocityRange 50
 #define kParticleYAcceleration 250
-#define kParticleLifetime 2.5
-#define kParticleLifeTimeRange 0.5
-#define kParticleEmissionRange M_PI_2
+#define kParticleLifetime 1.0
+#define kParticleLifeTimeRange 0.1
+#define kParticleEmissionRange 2*M_PI
+#define kParticleScale 0.3
+#define kParticleScaleRange 0.1
+#define kParticleScaleSpeed 0.05;
 #define kParticleSpin 6*M_PI
 #define kParticleSpinRange 2*M_PI
 #endif
@@ -76,12 +80,9 @@ static CMMotionManager *motionManager;
     if (!motionManager) {
         motionManager = [[CMMotionManager alloc] init];
     }
-    self.backgroundImageView.hidden = YES;
     [self initBehaviors];
     [self loadImages];
     [self createGameOverMessage];
-    //[self initParticleEmitter];
-    [self asdf];
 }
 
 - (void) createGameOverMessage{
@@ -154,122 +155,28 @@ static CMMotionManager *motionManager;
 
 # pragma mark Particle Emitter
 
-- (void)initParticleEmitter{
+
+- (void)addEmitterTo:(UIView *)view{
     CAEmitterLayer *emitterLayer = [CAEmitterLayer layer];
-    emitterLayer.emitterPosition = CGPointMake(self.view.bounds.size.width/2.0, self.view.bounds.size.height/2.0);
-    emitterLayer.emitterSize = CGSizeMake(80.0,80.0);
+    emitterLayer.emitterPosition = CGPointMake(view.bounds.size.width/2.0, view.bounds.size.height/2.0);
+    emitterLayer.emitterSize = CGSizeMake(kEmitterSize,kEmitterSize);
     emitterLayer.emitterShape = kCAEmitterLayerSphere;
-    emitterLayer.emitterCells = [self createEmitterCells];
-    NSLog(@"count: %d",[emitterLayer.emitterCells count]);
-    [self.view.layer addSublayer:emitterLayer];
-	
-}
-
-- (NSMutableArray *)createEmitterCells{
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
-    for (int i = 1; i <= kNumEmitterCells; ++i){
-        //CAEmitterCell *emitterCell = [CAEmitterCell emitterCell];
-        //emitterCell.contents = (id)[self.images objectForKey:@"woodchip1"];
-
-//        emitterCell.contents = (id)[self.images objectForKey:[NSString stringWithFormat:@"woodchip%d", i]];
-        /*
-        emitterCell.scale = 10.0;
-        emitterCell.scaleRange = 5.0;
-        emitterCell.scaleSpeed = 1;
-        emitterCell.birthRate = kParticleBirthRate;
-        emitterCell.velocity = kParticleVelocity;
-        emitterCell.velocityRange = kParticleVelocityRange;
-        emitterCell.yAcceleration = kParticleYAcceleration;
-        emitterCell.lifetime = kParticleLifetime;
-        emitterCell.lifetimeRange = kParticleLifeTimeRange;
-        emitterCell.emissionRange = kParticleEmissionRange;
-        emitterCell.spin = kParticleSpin;
-        emitterCell.spinRange = kParticleSpinRange;
-         */
-        
-        // sldfkjsldfkjslkfjlksjd ----------
-        
-        CAEmitterCell *emitterCell = [CAEmitterCell emitterCell];
-        emitterCell.contents = (id)[self.images objectForKey:@"woodchip1"];
-        
-        
-        emitterCell.scale = 10;
-        emitterCell.scaleRange = 0.1;
-        emitterCell.scaleSpeed = 0.05;
-        emitterCell.spin = 4*M_PI;
-        emitterCell.spinRange = 2*M_PI;
-        
-        emitterCell.emissionRange = M_PI_2;
-        emitterCell.emissionLongitude = M_PI * (arc4random_uniform(100)/100.0 - 0.5);
-        emitterCell.lifetime = 5.0;
-        emitterCell.lifetimeRange = 2.0;
-        emitterCell.birthRate = 10;
-        emitterCell.velocity = 200;
-        emitterCell.velocityRange = 50;
-        emitterCell.yAcceleration = 250;
-        
-        emitterCell.alphaRange = 1.0;
-        emitterCell.alphaSpeed = 0.5;
-        emitterCell.blueRange = 100;
-        emitterCell.blueSpeed = 10;
-        emitterCell.greenRange = 100;
-        emitterCell.greenSpeed = 10;
-        emitterCell.redRange = 100;
-        emitterCell.redSpeed = 10;
-        
-        [temp addObject:emitterCell];
-        if (emitterCell){
-            NSLog(@"Cell is not nil!");
-        }
-    }
-    return temp;
-}
-
-
-- (void)asdf
-{
-    
-    CAEmitterLayer *emitterLayer = [CAEmitterLayer layer];
-    emitterLayer.emitterPosition = CGPointMake(self.view.bounds.size.width/2.0, self.view.bounds.size.height/3.0);
-    //emitterLayer.emitterZPosition = 10;
-    emitterLayer.emitterSize = CGSizeMake(80.0,80.0);
-    emitterLayer.emitterShape = kCAEmitterLayerSphere;
-    
-    
-    
-    //emitterLayer.emitterCells = [self createEmitterCells];
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     for (int i = 1; i <= kNumEmitterCells; ++i){
         NSString *str = [NSString stringWithFormat:@"woodchip%d", i];
         [temp addObject:[self emitterCellWithName:str]];
     }
     emitterLayer.emitterCells = temp;
-    /*
-    @[ [self emitterCellWithName:@"woodchip1"],
-       [self emitterCellWithName:@"woodchip1"],
-       [self emitterCellWithName:@"woodchip1"]];
-     */
-    [self.view.layer addSublayer:emitterLayer];
+    [view.layer addSublayer:emitterLayer];
 	
 }
 -(CAEmitterCell*)emitterCellWithName:(NSString*)fileName {
     CAEmitterCell *emitterCell = [CAEmitterCell emitterCell];
     emitterCell.contents = (id)[[UIImage imageNamed:fileName] CGImage];
     
-    emitterCell.emissionLongitude = M_PI * (arc4random_uniform(100)/100.0 - 0.5);
-    emitterCell.lifetime = 5.0;
-    emitterCell.lifetimeRange = 2.0;
-    emitterCell.birthRate = 10;
-    emitterCell.velocity = 200;
-    emitterCell.velocityRange = 50;
-    emitterCell.yAcceleration = 250;
-    
-    emitterCell.alphaRange = 1.0;
-    emitterCell.alphaSpeed = 0.5;
-    
-    emitterCell.scale = 10.0;
-    emitterCell.scaleRange = 5.0;
-    emitterCell.scaleSpeed = 1;
+    emitterCell.scale = kParticleScale;
+    emitterCell.scaleRange = kParticleScaleRange;
+    emitterCell.scaleSpeed = kParticleScaleSpeed;
     emitterCell.birthRate = kParticleBirthRate;
     emitterCell.velocity = kParticleVelocity;
     emitterCell.velocityRange = kParticleVelocityRange;
@@ -282,38 +189,6 @@ static CMMotionManager *motionManager;
     
     return emitterCell;
 }
-/*
--(CAEmitterCell*)emitterCellWithName:(NSString*)fileName{
-    CAEmitterCell *emitterCell = [CAEmitterCell emitterCell];
-    emitterCell.contents = (id)[[UIImage imageNamed:fileName] CGImage];
-    
-    emitterCell.scale = 0.1;
-    emitterCell.scaleRange = 0.1;
-    emitterCell.scaleSpeed = 0.05;
-    emitterCell.spin = 4*M_PI;
-    emitterCell.spinRange = 2*M_PI;
-    
-    emitterCell.emissionRange = M_PI_2;
-    emitterCell.emissionLongitude = M_PI * (arc4random_uniform(100)/100.0 - 0.5);
-    emitterCell.lifetime = 5.0;
-    emitterCell.lifetimeRange = 2.0;
-    emitterCell.birthRate = 10;
-    emitterCell.velocity = 200;
-    emitterCell.velocityRange = 50;
-    emitterCell.yAcceleration = 250;
-    
-    emitterCell.alphaRange = 1.0;
-    emitterCell.alphaSpeed = 0.5;
-    emitterCell.blueRange = 100;
-    emitterCell.blueSpeed = 10;
-    emitterCell.greenRange = 100;
-    emitterCell.greenSpeed = 10;
-    emitterCell.redRange = 100;
-    emitterCell.redSpeed = 10;
-    
-    return emitterCell;
-}
- */
 
 # pragma mark Behavior Definitions
 
@@ -323,9 +198,11 @@ static CMMotionManager *motionManager;
     UIImageView *toRemove;
     if (tag1 == kTagLog && tag2 == kTagBlade){
         toRemove = (UIImageView *)item1;
+        [self addEmitterTo:toRemove];
         self.score++;
     } else if (tag1 == kTagBlade && tag2 == kTagLog){
         toRemove = (UIImageView *)item2;
+        [self addEmitterTo:toRemove];
         self.score++;
     } else if (tag1 == kTagRock && tag2 == kTagBlade){
         toRemove = (UIImageView *)item2;
