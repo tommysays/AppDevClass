@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D801E45019F4591600433BC6 /* JCLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D801E44F19F4591600433BC6 /* JCLModel.m */; };
+		D801E45219F4595700433BC6 /* Photos.plist in Resources */ = {isa = PBXBuildFile; fileRef = D801E45119F4595700433BC6 /* Photos.plist */; };
 		D817EF1319F453F50047F321 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D817EF1219F453F50047F321 /* Foundation.framework */; };
 		D817EF1519F453F50047F321 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D817EF1419F453F50047F321 /* CoreGraphics.framework */; };
 		D817EF1719F453F50047F321 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D817EF1619F453F50047F321 /* UIKit.framework */; };
@@ -35,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D801E44E19F4591600433BC6 /* JCLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLModel.h; sourceTree = "<group>"; };
+		D801E44F19F4591600433BC6 /* JCLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLModel.m; sourceTree = "<group>"; };
+		D801E45119F4595700433BC6 /* Photos.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Photos.plist; path = "../../../Assignment 7 Assets/Photos.plist"; sourceTree = "<group>"; };
 		D817EF0F19F453F50047F321 /* PhotoViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D817EF1219F453F50047F321 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D817EF1419F453F50047F321 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -122,6 +127,8 @@
 				D817EF2B19F453F50047F321 /* JCLViewController.m */,
 				D817EF2D19F453F50047F321 /* Images.xcassets */,
 				D817EF1919F453F50047F321 /* Supporting Files */,
+				D801E44E19F4591600433BC6 /* JCLModel.h */,
+				D801E44F19F4591600433BC6 /* JCLModel.m */,
 			);
 			path = PhotoViewer;
 			sourceTree = "<group>";
@@ -129,6 +136,7 @@
 		D817EF1919F453F50047F321 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D801E45119F4595700433BC6 /* Photos.plist */,
 				D817EF1A19F453F50047F321 /* PhotoViewer-Info.plist */,
 				D817EF1B19F453F50047F321 /* InfoPlist.strings */,
 				D817EF1E19F453F50047F321 /* main.m */,
@@ -236,6 +244,7 @@
 				D817EF2E19F453F50047F321 /* Images.xcassets in Resources */,
 				D817EF2619F453F50047F321 /* Main_iPhone.storyboard in Resources */,
 				D817EF1D19F453F50047F321 /* InfoPlist.strings in Resources */,
+				D801E45219F4595700433BC6 /* Photos.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +266,7 @@
 				D817EF2319F453F50047F321 /* JCLAppDelegate.m in Sources */,
 				D817EF2C19F453F50047F321 /* JCLViewController.m in Sources */,
 				D817EF1F19F453F50047F321 /* main.m in Sources */,
+				D801E45019F4591600433BC6 /* JCLModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +481,7 @@
 				D817EF4619F453F50047F321 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D817EF4719F453F50047F321 /* Build configuration list for PBXNativeTarget "PhotoViewerTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +490,7 @@
 				D817EF4919F453F50047F321 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
