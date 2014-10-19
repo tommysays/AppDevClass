@@ -9,6 +9,34 @@
 /* Begin PBXBuildFile section */
 		D801E45019F4591600433BC6 /* JCLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D801E44F19F4591600433BC6 /* JCLModel.m */; };
 		D801E45219F4595700433BC6 /* Photos.plist in Resources */ = {isa = PBXBuildFile; fileRef = D801E45119F4595700433BC6 /* Photos.plist */; };
+		D801E47019F4704100433BC6 /* BryceCanyon01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E45419F4704100433BC6 /* BryceCanyon01.jpg */; };
+		D801E47119F4704100433BC6 /* BryceCanyon02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E45519F4704100433BC6 /* BryceCanyon02.jpg */; };
+		D801E47219F4704100433BC6 /* BryceCanyon03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E45619F4704100433BC6 /* BryceCanyon03.jpg */; };
+		D801E47319F4704100433BC6 /* Carlsbad01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E45719F4704100433BC6 /* Carlsbad01.jpg */; };
+		D801E47419F4704100433BC6 /* Carlsbad02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E45819F4704100433BC6 /* Carlsbad02.jpg */; };
+		D801E47519F4704100433BC6 /* Carlsbad03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E45919F4704100433BC6 /* Carlsbad03.jpg */; };
+		D801E47619F4704100433BC6 /* Carlsbad04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E45A19F4704100433BC6 /* Carlsbad04.jpg */; };
+		D801E47719F4704100433BC6 /* Everglades01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E45B19F4704100433BC6 /* Everglades01.jpg */; };
+		D801E47819F4704100433BC6 /* Everglades02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E45C19F4704100433BC6 /* Everglades02.jpg */; };
+		D801E47919F4704100433BC6 /* Glacier01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E45D19F4704100433BC6 /* Glacier01.jpg */; };
+		D801E47A19F4704100433BC6 /* Glacier02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E45E19F4704100433BC6 /* Glacier02.jpg */; };
+		D801E47B19F4704100433BC6 /* Glacier03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E45F19F4704100433BC6 /* Glacier03.jpg */; };
+		D801E47C19F4704100433BC6 /* Glacier04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E46019F4704100433BC6 /* Glacier04.jpg */; };
+		D801E47D19F4704100433BC6 /* GrandTeton01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E46119F4704100433BC6 /* GrandTeton01.jpg */; };
+		D801E47E19F4704100433BC6 /* GrandTeton02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E46219F4704100433BC6 /* GrandTeton02.jpg */; };
+		D801E47F19F4704100433BC6 /* Yellowstone01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E46319F4704100433BC6 /* Yellowstone01.jpg */; };
+		D801E48019F4704100433BC6 /* Yellowstone02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E46419F4704100433BC6 /* Yellowstone02.jpg */; };
+		D801E48119F4704100433BC6 /* Yellowstone03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E46519F4704100433BC6 /* Yellowstone03.jpg */; };
+		D801E48219F4704100433BC6 /* Yellowstone04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E46619F4704100433BC6 /* Yellowstone04.jpg */; };
+		D801E48319F4704100433BC6 /* Yosemite01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E46719F4704100433BC6 /* Yosemite01.jpg */; };
+		D801E48419F4704100433BC6 /* Yosemite02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E46819F4704100433BC6 /* Yosemite02.jpg */; };
+		D801E48519F4704100433BC6 /* Yosemite03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E46919F4704100433BC6 /* Yosemite03.jpg */; };
+		D801E48619F4704100433BC6 /* Yosemite04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E46A19F4704100433BC6 /* Yosemite04.jpg */; };
+		D801E48719F4704100433BC6 /* Yosemite05.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E46B19F4704100433BC6 /* Yosemite05.jpg */; };
+		D801E48819F4704100433BC6 /* Yosemite06.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E46C19F4704100433BC6 /* Yosemite06.jpg */; };
+		D801E48919F4704100433BC6 /* Zion01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E46D19F4704100433BC6 /* Zion01.jpg */; };
+		D801E48A19F4704100433BC6 /* Zion02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E46E19F4704100433BC6 /* Zion02.jpg */; };
+		D801E48B19F4704100433BC6 /* Zion03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E46F19F4704100433BC6 /* Zion03.jpg */; };
 		D817EF1319F453F50047F321 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D817EF1219F453F50047F321 /* Foundation.framework */; };
 		D817EF1519F453F50047F321 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D817EF1419F453F50047F321 /* CoreGraphics.framework */; };
 		D817EF1719F453F50047F321 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D817EF1619F453F50047F321 /* UIKit.framework */; };
@@ -40,6 +68,34 @@
 		D801E44E19F4591600433BC6 /* JCLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLModel.h; sourceTree = "<group>"; };
 		D801E44F19F4591600433BC6 /* JCLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLModel.m; sourceTree = "<group>"; };
 		D801E45119F4595700433BC6 /* Photos.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Photos.plist; path = "../../../Assignment 7 Assets/Photos.plist"; sourceTree = "<group>"; };
+		D801E45419F4704100433BC6 /* BryceCanyon01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BryceCanyon01.jpg; sourceTree = "<group>"; };
+		D801E45519F4704100433BC6 /* BryceCanyon02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BryceCanyon02.jpg; sourceTree = "<group>"; };
+		D801E45619F4704100433BC6 /* BryceCanyon03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BryceCanyon03.jpg; sourceTree = "<group>"; };
+		D801E45719F4704100433BC6 /* Carlsbad01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Carlsbad01.jpg; sourceTree = "<group>"; };
+		D801E45819F4704100433BC6 /* Carlsbad02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Carlsbad02.jpg; sourceTree = "<group>"; };
+		D801E45919F4704100433BC6 /* Carlsbad03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Carlsbad03.jpg; sourceTree = "<group>"; };
+		D801E45A19F4704100433BC6 /* Carlsbad04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Carlsbad04.jpg; sourceTree = "<group>"; };
+		D801E45B19F4704100433BC6 /* Everglades01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Everglades01.jpg; sourceTree = "<group>"; };
+		D801E45C19F4704100433BC6 /* Everglades02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Everglades02.jpg; sourceTree = "<group>"; };
+		D801E45D19F4704100433BC6 /* Glacier01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Glacier01.jpg; sourceTree = "<group>"; };
+		D801E45E19F4704100433BC6 /* Glacier02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Glacier02.jpg; sourceTree = "<group>"; };
+		D801E45F19F4704100433BC6 /* Glacier03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Glacier03.jpg; sourceTree = "<group>"; };
+		D801E46019F4704100433BC6 /* Glacier04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Glacier04.jpg; sourceTree = "<group>"; };
+		D801E46119F4704100433BC6 /* GrandTeton01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GrandTeton01.jpg; sourceTree = "<group>"; };
+		D801E46219F4704100433BC6 /* GrandTeton02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GrandTeton02.jpg; sourceTree = "<group>"; };
+		D801E46319F4704100433BC6 /* Yellowstone01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yellowstone01.jpg; sourceTree = "<group>"; };
+		D801E46419F4704100433BC6 /* Yellowstone02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yellowstone02.jpg; sourceTree = "<group>"; };
+		D801E46519F4704100433BC6 /* Yellowstone03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yellowstone03.jpg; sourceTree = "<group>"; };
+		D801E46619F4704100433BC6 /* Yellowstone04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yellowstone04.jpg; sourceTree = "<group>"; };
+		D801E46719F4704100433BC6 /* Yosemite01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite01.jpg; sourceTree = "<group>"; };
+		D801E46819F4704100433BC6 /* Yosemite02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite02.jpg; sourceTree = "<group>"; };
+		D801E46919F4704100433BC6 /* Yosemite03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite03.jpg; sourceTree = "<group>"; };
+		D801E46A19F4704100433BC6 /* Yosemite04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite04.jpg; sourceTree = "<group>"; };
+		D801E46B19F4704100433BC6 /* Yosemite05.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite05.jpg; sourceTree = "<group>"; };
+		D801E46C19F4704100433BC6 /* Yosemite06.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite06.jpg; sourceTree = "<group>"; };
+		D801E46D19F4704100433BC6 /* Zion01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion01.jpg; sourceTree = "<group>"; };
+		D801E46E19F4704100433BC6 /* Zion02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion02.jpg; sourceTree = "<group>"; };
+		D801E46F19F4704100433BC6 /* Zion03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion03.jpg; sourceTree = "<group>"; };
 		D817EF0F19F453F50047F321 /* PhotoViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D817EF1219F453F50047F321 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D817EF1419F453F50047F321 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -86,6 +142,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D801E45319F4704100433BC6 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				D801E45419F4704100433BC6 /* BryceCanyon01.jpg */,
+				D801E45519F4704100433BC6 /* BryceCanyon02.jpg */,
+				D801E45619F4704100433BC6 /* BryceCanyon03.jpg */,
+				D801E45719F4704100433BC6 /* Carlsbad01.jpg */,
+				D801E45819F4704100433BC6 /* Carlsbad02.jpg */,
+				D801E45919F4704100433BC6 /* Carlsbad03.jpg */,
+				D801E45A19F4704100433BC6 /* Carlsbad04.jpg */,
+				D801E45B19F4704100433BC6 /* Everglades01.jpg */,
+				D801E45C19F4704100433BC6 /* Everglades02.jpg */,
+				D801E45D19F4704100433BC6 /* Glacier01.jpg */,
+				D801E45E19F4704100433BC6 /* Glacier02.jpg */,
+				D801E45F19F4704100433BC6 /* Glacier03.jpg */,
+				D801E46019F4704100433BC6 /* Glacier04.jpg */,
+				D801E46119F4704100433BC6 /* GrandTeton01.jpg */,
+				D801E46219F4704100433BC6 /* GrandTeton02.jpg */,
+				D801E46319F4704100433BC6 /* Yellowstone01.jpg */,
+				D801E46419F4704100433BC6 /* Yellowstone02.jpg */,
+				D801E46519F4704100433BC6 /* Yellowstone03.jpg */,
+				D801E46619F4704100433BC6 /* Yellowstone04.jpg */,
+				D801E46719F4704100433BC6 /* Yosemite01.jpg */,
+				D801E46819F4704100433BC6 /* Yosemite02.jpg */,
+				D801E46919F4704100433BC6 /* Yosemite03.jpg */,
+				D801E46A19F4704100433BC6 /* Yosemite04.jpg */,
+				D801E46B19F4704100433BC6 /* Yosemite05.jpg */,
+				D801E46C19F4704100433BC6 /* Yosemite06.jpg */,
+				D801E46D19F4704100433BC6 /* Zion01.jpg */,
+				D801E46E19F4704100433BC6 /* Zion02.jpg */,
+				D801E46F19F4704100433BC6 /* Zion03.jpg */,
+			);
+			path = Photos;
+			sourceTree = "<group>";
+		};
 		D817EF0619F453F50047F321 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +210,7 @@
 		D817EF1819F453F50047F321 /* PhotoViewer */ = {
 			isa = PBXGroup;
 			children = (
+				D801E45319F4704100433BC6 /* Photos */,
 				D817EF2119F453F50047F321 /* JCLAppDelegate.h */,
 				D817EF2219F453F50047F321 /* JCLAppDelegate.m */,
 				D817EF2419F453F50047F321 /* Main_iPhone.storyboard */,
@@ -240,11 +332,39 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D801E48419F4704100433BC6 /* Yosemite02.jpg in Resources */,
+				D801E47219F4704100433BC6 /* BryceCanyon03.jpg in Resources */,
+				D801E47819F4704100433BC6 /* Everglades02.jpg in Resources */,
+				D801E47919F4704100433BC6 /* Glacier01.jpg in Resources */,
+				D801E48B19F4704100433BC6 /* Zion03.jpg in Resources */,
+				D801E48619F4704100433BC6 /* Yosemite04.jpg in Resources */,
+				D801E47F19F4704100433BC6 /* Yellowstone01.jpg in Resources */,
+				D801E48819F4704100433BC6 /* Yosemite06.jpg in Resources */,
+				D801E48119F4704100433BC6 /* Yellowstone03.jpg in Resources */,
+				D801E47D19F4704100433BC6 /* GrandTeton01.jpg in Resources */,
+				D801E47419F4704100433BC6 /* Carlsbad02.jpg in Resources */,
+				D801E48919F4704100433BC6 /* Zion01.jpg in Resources */,
 				D817EF2919F453F50047F321 /* Main_iPad.storyboard in Resources */,
+				D801E47A19F4704100433BC6 /* Glacier02.jpg in Resources */,
+				D801E48719F4704100433BC6 /* Yosemite05.jpg in Resources */,
+				D801E48219F4704100433BC6 /* Yellowstone04.jpg in Resources */,
 				D817EF2E19F453F50047F321 /* Images.xcassets in Resources */,
+				D801E47B19F4704100433BC6 /* Glacier03.jpg in Resources */,
+				D801E47719F4704100433BC6 /* Everglades01.jpg in Resources */,
+				D801E47319F4704100433BC6 /* Carlsbad01.jpg in Resources */,
+				D801E47119F4704100433BC6 /* BryceCanyon02.jpg in Resources */,
 				D817EF2619F453F50047F321 /* Main_iPhone.storyboard in Resources */,
+				D801E48319F4704100433BC6 /* Yosemite01.jpg in Resources */,
 				D817EF1D19F453F50047F321 /* InfoPlist.strings in Resources */,
+				D801E48019F4704100433BC6 /* Yellowstone02.jpg in Resources */,
+				D801E47019F4704100433BC6 /* BryceCanyon01.jpg in Resources */,
+				D801E48519F4704100433BC6 /* Yosemite03.jpg in Resources */,
+				D801E47619F4704100433BC6 /* Carlsbad04.jpg in Resources */,
+				D801E48A19F4704100433BC6 /* Zion02.jpg in Resources */,
+				D801E47519F4704100433BC6 /* Carlsbad03.jpg in Resources */,
 				D801E45219F4595700433BC6 /* Photos.plist in Resources */,
+				D801E47C19F4704100433BC6 /* Glacier04.jpg in Resources */,
+				D801E47E19F4704100433BC6 /* GrandTeton02.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

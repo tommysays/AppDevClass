@@ -12,8 +12,10 @@
 
 @property (strong, nonatomic) NSArray *photosetArray;
 @property (strong, nonatomic) NSDictionary *images;
+@property NSInteger maxSetSize;
 
 - (void) initImages;
+- (NSInteger) maxSizeOfSet;
 - (NSInteger) numberOfSets;
 - (NSInteger) sizeOfSet: (NSInteger)photosetIndex;
 - (NSString *) nameOfSet: (NSInteger)photosetIndex;
