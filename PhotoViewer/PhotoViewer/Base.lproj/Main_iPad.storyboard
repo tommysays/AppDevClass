@@ -21,10 +21,30 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </scrollView>
+                            <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrowLeft" translatesAutoresizingMaskIntoConstraints="NO" id="aTK-Bn-8C6">
+                                <rect key="frame" x="20" y="475" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrowRight" translatesAutoresizingMaskIntoConstraints="NO" id="4H7-Mh-FtQ">
+                                <rect key="frame" x="673" y="475" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrowUp" translatesAutoresizingMaskIntoConstraints="NO" id="BVR-2d-Ibs">
+                                <rect key="frame" x="346" y="20" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrowDown" translatesAutoresizingMaskIntoConstraints="NO" id="Bkk-47-s0p">
+                                <rect key="frame" x="346" y="929" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="arrowDown" destination="Bkk-47-s0p" id="kKs-ne-M5j"/>
+                        <outlet property="arrowLeft" destination="aTK-Bn-8C6" id="hDS-ff-Fp5"/>
+                        <outlet property="arrowRight" destination="4H7-Mh-FtQ" id="n7M-Po-dD7"/>
+                        <outlet property="arrowUp" destination="BVR-2d-Ibs" id="axl-Yi-jMS"/>
                         <outlet property="mainScrollView" destination="oca-17-dls" id="BnC-3B-mM7"/>
                     </connections>
                 </viewController>
@@ -32,6 +52,12 @@
             <point key="canvasLocation" x="-39" y="-98"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrowDown" width="60" height="60"/>
+        <image name="arrowLeft" width="60" height="60"/>
+        <image name="arrowRight" width="60" height="60"/>
+        <image name="arrowUp" width="60" height="60"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

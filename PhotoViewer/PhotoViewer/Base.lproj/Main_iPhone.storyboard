@@ -20,10 +20,30 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </scrollView>
+                            <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrowLeft" translatesAutoresizingMaskIntoConstraints="NO" id="bHC-H7-iZT">
+                                <rect key="frame" x="20" y="266" width="35" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrowUp" translatesAutoresizingMaskIntoConstraints="NO" id="afG-Rr-J02">
+                                <rect key="frame" x="143" y="20" width="35" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrowRight" translatesAutoresizingMaskIntoConstraints="NO" id="ilJ-7e-lLI">
+                                <rect key="frame" x="265" y="266" width="35" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="arrowDown" translatesAutoresizingMaskIntoConstraints="NO" id="KUY-gn-2eR">
+                                <rect key="frame" x="143" y="513" width="35" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="arrowDown" destination="KUY-gn-2eR" id="4tO-Yt-Ab0"/>
+                        <outlet property="arrowLeft" destination="bHC-H7-iZT" id="Z2T-F6-3tW"/>
+                        <outlet property="arrowRight" destination="ilJ-7e-lLI" id="oYS-eb-GJn"/>
+                        <outlet property="arrowUp" destination="afG-Rr-J02" id="eTp-e2-EAJ"/>
                         <outlet property="mainScrollView" destination="6Im-vk-RjH" id="E1G-eF-6kv"/>
                     </connections>
                 </viewController>
@@ -31,6 +51,12 @@
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrowDown" width="60" height="60"/>
+        <image name="arrowLeft" width="60" height="60"/>
+        <image name="arrowRight" width="60" height="60"/>
+        <image name="arrowUp" width="60" height="60"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
