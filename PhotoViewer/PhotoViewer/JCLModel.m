@@ -43,7 +43,6 @@
 }
 
 - (NSInteger) maxSizeOfSet{
-    NSLog(@"max = %d", self.maxSetSize);
     return self.maxSetSize;
 }
 
