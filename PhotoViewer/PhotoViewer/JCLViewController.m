@@ -28,6 +28,7 @@
 @property BOOL moveVertical;
 @property BOOL moveHorizontal;
 @property BOOL isZoomed;
+@property CGFloat lastScale;
 
 @property NSTimer *arrowTimer;
 
@@ -46,6 +47,7 @@ const CGFloat kMaxZoomScale = 10.0;
 {
     [super viewDidLoad];
     
+    self.lastScale = 1.0;
     self.curSet = 0;
     self.curImageIndex = 0;
     self.isAtTop = YES;
@@ -74,10 +76,9 @@ const CGFloat kMaxZoomScale = 10.0;
     self.zoomScroll.minimumZoomScale = kMinZoomScale;
     self.zoomScroll.maximumZoomScale = kMaxZoomScale;
     self.zoomScroll.frame = self.view.frame;
-    //self.zoomScroll.contentSize = CGSizeMake(1000, 1000);
     self.zoomScroll.contentSize = self.zoomScroll.bounds.size;
     self.zoomScroll.bounces = true;
-    self.zoomScroll.backgroundColor = [UIColor blackColor];
+    //self.zoomScroll.backgroundColor = [UIColor blackColor];
     self.zoomScroll.hidden = true;
     self.zoomScroll.delegate = self;
     
@@ -158,15 +159,17 @@ const CGFloat kMaxZoomScale = 10.0;
 }
 
 - (void) scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale{
-    if (scale == 1.0){
+    if (self.zoomScroll.zoomScale == 1.0){
         self.zoomScroll.hidden = true;
         self.mainScrollView.hidden = false;
     }
 }
 
 - (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer{
-    
     if (self.zoomScroll.hidden == true){
+        for (UIView *view in self.zoomScroll.subviews){
+            [view removeFromSuperview];
+        }
         self.zoomScroll.hidden = false;
         self.mainScrollView.hidden = true;
         self.zoomImage = [[UIImageView alloc] initWithFrame:self.zoomScroll.frame];
@@ -178,31 +181,23 @@ const CGFloat kMaxZoomScale = 10.0;
         self.zoomImage.contentMode = UIViewContentModeScaleAspectFit;
         [self.zoomScroll addSubview:self.zoomImage];
     }
-    NSLog(@"Recognizer: %f", recognizer.scale);
-    [self.zoomScroll setZoomScale:recognizer.scale animated:YES];
-    NSLog(@"ZS: %f", self.zoomScroll.zoomScale);
-    /*
-    if (self.zoomScroll.zoomScale == 1.0){
-        self.zoomScroll.hidden = true;
+    [self.zoomScroll setZoomScale:(self.lastScale * recognizer.scale) animated:YES];
+    
+    if (recognizer.state == UIGestureRecognizerStateEnded){
+        self.lastScale = self.zoomScroll.zoomScale;
+        if (self.zoomScroll.zoomScale == 1.0){
+            self.zoomScroll.hidden = true;
+            self.mainScrollView.hidden = false;
+        }
     }
-     */
-}
-
-
-- (void) disableMainScrollView{
-    self.mainScrollView.userInteractionEnabled = false;
-    self.mainScrollView.hidden = true;
-}
-
-- (void) enableMainScrollView{
-    self.mainScrollView.userInteractionEnabled = true;
-    self.mainScrollView.hidden = false;
-    self.mainScrollView.contentOffset = self.lastOffset;
 }
 
 #pragma mark ScrollView Drag
 
 - (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    if (scrollView == self.zoomScroll){
+        return;
+    }
     self.moveHorizontal = false;
     self.moveVertical = false;
     self.dragStart = scrollView.contentOffset;
@@ -214,6 +209,9 @@ const CGFloat kMaxZoomScale = 10.0;
 }
 
 - (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    if (scrollView == self.zoomScroll){
+        return;
+    }
     CGFloat xOffset = [scrollView contentOffset].x;
     CGFloat yOffset = [scrollView contentOffset].y;
     xOffset /= scrollView.bounds.size.width;
@@ -231,6 +229,9 @@ const CGFloat kMaxZoomScale = 10.0;
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView == self.zoomScroll){
+        return;
+    }
     if (!self.isAtTop || self.moveVertical){
         scrollView.contentOffset = CGPointMake(self.dragStart.x, scrollView.contentOffset.y);
     } else if (self.moveHorizontal){
