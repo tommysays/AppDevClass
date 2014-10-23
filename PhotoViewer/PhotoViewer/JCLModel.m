@@ -10,6 +10,10 @@
 
 @implementation JCLModel
 
+@property (strong, nonatomic) NSArray *photosetArray;
+@property (strong, nonatomic) NSDictionary *images;
+@property NSInteger maxSetSize;
+
 - (void) initImages{
     [self readFromFile];
     [self loadImages];

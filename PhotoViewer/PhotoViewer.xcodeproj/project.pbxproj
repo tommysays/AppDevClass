@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D801E45019F4591600433BC6 /* JCLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D801E44F19F4591600433BC6 /* JCLModel.m */; };
-		D801E45219F4595700433BC6 /* Photos.plist in Resources */ = {isa = PBXBuildFile; fileRef = D801E45119F4595700433BC6 /* Photos.plist */; };
 		D801E47019F4704100433BC6 /* BryceCanyon01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E45419F4704100433BC6 /* BryceCanyon01.jpg */; };
 		D801E47119F4704100433BC6 /* BryceCanyon02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E45519F4704100433BC6 /* BryceCanyon02.jpg */; };
 		D801E47219F4704100433BC6 /* BryceCanyon03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D801E45619F4704100433BC6 /* BryceCanyon03.jpg */; };
@@ -52,6 +51,7 @@
 		D817EF3719F453F50047F321 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D817EF1619F453F50047F321 /* UIKit.framework */; };
 		D817EF3F19F453F50047F321 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D817EF3D19F453F50047F321 /* InfoPlist.strings */; };
 		D817EF4119F453F50047F321 /* PhotoViewerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D817EF4019F453F50047F321 /* PhotoViewerTests.m */; };
+		D81C239219F9A28700BE4A22 /* Photos.plist in Resources */ = {isa = PBXBuildFile; fileRef = D81C239119F9A28700BE4A22 /* Photos.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +67,6 @@
 /* Begin PBXFileReference section */
 		D801E44E19F4591600433BC6 /* JCLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLModel.h; sourceTree = "<group>"; };
 		D801E44F19F4591600433BC6 /* JCLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLModel.m; sourceTree = "<group>"; };
-		D801E45119F4595700433BC6 /* Photos.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Photos.plist; path = "../../../Assignment 7 Assets/Photos.plist"; sourceTree = "<group>"; };
 		D801E45419F4704100433BC6 /* BryceCanyon01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BryceCanyon01.jpg; sourceTree = "<group>"; };
 		D801E45519F4704100433BC6 /* BryceCanyon02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BryceCanyon02.jpg; sourceTree = "<group>"; };
 		D801E45619F4704100433BC6 /* BryceCanyon03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BryceCanyon03.jpg; sourceTree = "<group>"; };
@@ -116,6 +115,7 @@
 		D817EF3C19F453F50047F321 /* PhotoViewerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhotoViewerTests-Info.plist"; sourceTree = "<group>"; };
 		D817EF3E19F453F50047F321 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D817EF4019F453F50047F321 /* PhotoViewerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoViewerTests.m; sourceTree = "<group>"; };
+		D81C239119F9A28700BE4A22 /* Photos.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Photos.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,7 +228,7 @@
 		D817EF1919F453F50047F321 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D801E45119F4595700433BC6 /* Photos.plist */,
+				D81C239119F9A28700BE4A22 /* Photos.plist */,
 				D817EF1A19F453F50047F321 /* PhotoViewer-Info.plist */,
 				D817EF1B19F453F50047F321 /* InfoPlist.strings */,
 				D817EF1E19F453F50047F321 /* main.m */,
@@ -337,6 +337,7 @@
 				D801E47819F4704100433BC6 /* Everglades02.jpg in Resources */,
 				D801E47919F4704100433BC6 /* Glacier01.jpg in Resources */,
 				D801E48B19F4704100433BC6 /* Zion03.jpg in Resources */,
+				D81C239219F9A28700BE4A22 /* Photos.plist in Resources */,
 				D801E48619F4704100433BC6 /* Yosemite04.jpg in Resources */,
 				D801E47F19F4704100433BC6 /* Yellowstone01.jpg in Resources */,
 				D801E48819F4704100433BC6 /* Yosemite06.jpg in Resources */,
@@ -362,7 +363,6 @@
 				D801E47619F4704100433BC6 /* Carlsbad04.jpg in Resources */,
 				D801E48A19F4704100433BC6 /* Zion02.jpg in Resources */,
 				D801E47519F4704100433BC6 /* Carlsbad03.jpg in Resources */,
-				D801E45219F4595700433BC6 /* Photos.plist in Resources */,
 				D801E47C19F4704100433BC6 /* Glacier04.jpg in Resources */,
 				D801E47E19F4704100433BC6 /* GrandTeton02.jpg in Resources */,
 			);
