@@ -8,11 +8,36 @@
 
 #import "JCLModel.h"
 
-@implementation JCLModel
+@interface JCLModel ()
 
 @property (strong, nonatomic) NSArray *photosetArray;
 @property (strong, nonatomic) NSDictionary *images;
 @property NSInteger maxSetSize;
+
+@end
+
+@implementation JCLModel
+
+
+// Singleton code taken from class example.
++ (id) sharedInstance{
+    static id singleton;
+    @synchronized(self) {
+        if (!singleton) {
+            singleton = [[self alloc] init];
+        }
+    }
+    return singleton;
+}
+
+- (id) init{
+    self = [super init];
+    if (self){
+        [self initImages];
+    }
+    return self;
+}
+
 
 - (void) initImages{
     [self readFromFile];

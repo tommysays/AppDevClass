@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D815102A19F9AEBC003733DC /* JCLCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D815102919F9AEBC003733DC /* JCLCollectionViewController.m */; };
+		D815103019F9BAB1003733DC /* JCLCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D815102F19F9BAB1003733DC /* JCLCollectionViewCell.m */; };
+		D815103319F9BDA7003733DC /* JCLCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D815103219F9BDA7003733DC /* JCLCollectionReusableView.m */; };
 		D81C23A019F9AC4B00BE4A22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D81C239F19F9AC4B00BE4A22 /* Foundation.framework */; };
 		D81C23A219F9AC4B00BE4A22 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D81C23A119F9AC4B00BE4A22 /* CoreGraphics.framework */; };
 		D81C23A419F9AC4B00BE4A22 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D81C23A319F9AC4B00BE4A22 /* UIKit.framework */; };
@@ -64,6 +67,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D815102819F9AEBC003733DC /* JCLCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLCollectionViewController.h; sourceTree = "<group>"; };
+		D815102919F9AEBC003733DC /* JCLCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLCollectionViewController.m; sourceTree = "<group>"; };
+		D815102E19F9BAB1003733DC /* JCLCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLCollectionViewCell.h; sourceTree = "<group>"; };
+		D815102F19F9BAB1003733DC /* JCLCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLCollectionViewCell.m; sourceTree = "<group>"; };
+		D815103119F9BDA7003733DC /* JCLCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLCollectionReusableView.h; sourceTree = "<group>"; };
+		D815103219F9BDA7003733DC /* JCLCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLCollectionReusableView.m; sourceTree = "<group>"; };
 		D81C239C19F9AC4B00BE4A22 /* PhotoViewer2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoViewer2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D81C239F19F9AC4B00BE4A22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D81C23A119F9AC4B00BE4A22 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -140,6 +149,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D815102B19F9BA37003733DC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D81C23D519F9AC5B00BE4A22 /* JCLModel.m */,
+				D81C23D419F9AC5B00BE4A22 /* JCLModel.h */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		D815102C19F9BA4C003733DC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D815102819F9AEBC003733DC /* JCLCollectionViewController.h */,
+				D815102919F9AEBC003733DC /* JCLCollectionViewController.m */,
+				D81C23B419F9AC4B00BE4A22 /* JCLViewController.h */,
+				D81C23B519F9AC4B00BE4A22 /* JCLViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		D815102D19F9BA72003733DC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D81C23B119F9AC4B00BE4A22 /* Main.storyboard */,
+				D815102E19F9BAB1003733DC /* JCLCollectionViewCell.h */,
+				D815102F19F9BAB1003733DC /* JCLCollectionViewCell.m */,
+				D815103119F9BDA7003733DC /* JCLCollectionReusableView.h */,
+				D815103219F9BDA7003733DC /* JCLCollectionReusableView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		D81C239319F9AC4B00BE4A22 = {
 			isa = PBXGroup;
 			children = (
@@ -176,12 +217,10 @@
 				D81C23F519F9AD0500BE4A22 /* Photos */,
 				D81C23AE19F9AC4B00BE4A22 /* JCLAppDelegate.h */,
 				D81C23AF19F9AC4B00BE4A22 /* JCLAppDelegate.m */,
-				D81C23B119F9AC4B00BE4A22 /* Main.storyboard */,
-				D81C23B419F9AC4B00BE4A22 /* JCLViewController.h */,
-				D81C23B519F9AC4B00BE4A22 /* JCLViewController.m */,
+				D815102B19F9BA37003733DC /* Model */,
+				D815102D19F9BA72003733DC /* Views */,
+				D815102C19F9BA4C003733DC /* Controllers */,
 				D81C23B719F9AC4B00BE4A22 /* Images.xcassets */,
-				D81C23D419F9AC5B00BE4A22 /* JCLModel.h */,
-				D81C23D519F9AC5B00BE4A22 /* JCLModel.m */,
 				D81C23A619F9AC4B00BE4A22 /* Supporting Files */,
 			);
 			path = PhotoViewer2;
@@ -381,9 +420,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D81C23B019F9AC4B00BE4A22 /* JCLAppDelegate.m in Sources */,
+				D815103319F9BDA7003733DC /* JCLCollectionReusableView.m in Sources */,
 				D81C23B619F9AC4B00BE4A22 /* JCLViewController.m in Sources */,
+				D815103019F9BAB1003733DC /* JCLCollectionViewCell.m in Sources */,
 				D81C23AC19F9AC4B00BE4A22 /* main.m in Sources */,
 				D81C23D619F9AC5B00BE4A22 /* JCLModel.m in Sources */,
+				D815102A19F9AEBC003733DC /* JCLCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +630,7 @@
 				D81C23D019F9AC4B00BE4A22 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D81C23D119F9AC4B00BE4A22 /* Build configuration list for PBXNativeTarget "PhotoViewer2Tests" */ = {
 			isa = XCConfigurationList;
@@ -596,6 +639,7 @@
 				D81C23D319F9AC4B00BE4A22 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

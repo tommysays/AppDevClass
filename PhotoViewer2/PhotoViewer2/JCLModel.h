@@ -10,7 +10,7 @@
 
 @interface JCLModel : NSObject
 
-- (void) initImages;
++ (id) sharedInstance;
 - (NSInteger) maxSizeOfSet;
 - (NSInteger) numberOfSets;
 - (NSInteger) sizeOfSet: (NSInteger)photosetIndex;
