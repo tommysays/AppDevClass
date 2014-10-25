@@ -18,6 +18,9 @@
 
 @end
 
+const CGFloat kSectionInterItemSpacing = 10.0;
+const CGFloat kSectionLineSpacing = 10.0;
+
 @implementation JCLCollectionViewController
 
 - (id) initWithCoder:(NSCoder *)aDecoder{
@@ -28,8 +31,12 @@
     return self;
 }
 
-- (void) viewWillAppear:(BOOL)animated{
+- (void) viewDidAppear:(BOOL)animated{
     [self.collectionView reloadData];
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+    //[self.collectionView reloadData];
 }
 
 #pragma mark Collection View Data Source
@@ -49,7 +56,10 @@
     NSInteger photosetIndex = indexPath.section;
     NSInteger photoIndex = indexPath.row;
     UIImage *img = [self.model image:photoIndex fromSet:photosetIndex];
-    cell.img.image = img;
+    
+    cell.backgroundView = [[UIImageView alloc] initWithImage:img];
+    cell.backgroundView.contentMode = UIViewContentModeScaleAspectFit;
+    //[cell setImage:img];
     
     return cell;
 }
@@ -72,19 +82,19 @@
 #pragma mark Collection View Layout Protocol
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(150, 150);
+    return CGSizeMake(CELL_SIZE, CELL_SIZE);
 }
 
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 8.0;
+    return kSectionInterItemSpacing;
 }
 
 -(CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 10.0;
+    return kSectionLineSpacing;
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(10.0, 5.0, 40.0, 5.0);
+    return UIEdgeInsetsMake(kSectionLineSpacing, kSectionInterItemSpacing, kSectionLineSpacing, kSectionInterItemSpacing);
 }
 
 #pragma mark Collection View Delegate

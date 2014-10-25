@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+#ifndef CELLCONSTANTS
+#define CELLCONSTANTS
+
+#define CELL_SIZE 90
+
+#endif
+
 @interface JCLCollectionViewCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *img;
+- (void) setImage:(UIImage *)img;
 
 @end

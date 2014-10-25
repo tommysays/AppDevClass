@@ -14,18 +14,16 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+- (void) setImage:(UIImage *)img{
+    self.img.image = img;
+    self.img.bounds = self.bounds;
+    self.img.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
+    self.img.contentMode = UIViewContentModeScaleAspectFit;
 }
-*/
 
 @end
