@@ -11,19 +11,21 @@
 #import "JCLCollectionViewCell.h"
 #import "JCLModel.h"
 
-@interface JCLCollectionViewController () <UICollectionViewDelegateFlowLayout>
+@interface JCLCollectionViewController () <UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) JCLModel *model;
-@property (nonatomic, strong) UICollectionView *collectionView;
 
 @end
 
 @implementation JCLCollectionViewController
 
-- (void) viewDidLoad{
-    [super viewDidLoad];
-    
-    self.model = [JCLModel sharedInstance];
+- (id) initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    if (self){
+        _model = [JCLModel sharedInstance];
+    }
+    return self;
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -47,7 +49,7 @@
     NSInteger photosetIndex = indexPath.section;
     NSInteger photoIndex = indexPath.row;
     UIImage *img = [self.model image:photoIndex fromSet:photosetIndex];
-    cell.img = img;
+    cell.img.image = img;
     
     return cell;
 }

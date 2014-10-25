@@ -10,6 +10,6 @@
 
 @interface JCLCollectionReusableView : UICollectionReusableView
 
-@property (nonatomic, strong) UILabel *sectionTitle;
+@property (weak, nonatomic) IBOutlet UILabel *sectionTitle;
 
 @end

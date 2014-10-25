@@ -10,6 +10,6 @@
 
 @interface JCLCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, strong) UIImage *img;
+@property (weak, nonatomic) IBOutlet UIImageView *img;
 
 @end
