@@ -124,9 +124,7 @@ const CGFloat kSectionLineSpacing = 10.0;
     } completion:^(BOOL finished) {
         [scrollView setUserInteractionEnabled:true];
         [scrollView setContentSize:((UIView*)[[scrollView subviews] objectAtIndex:0]).bounds.size];
-        NSLog(@"content size: %@", NSStringFromCGSize(((UIView*)[[scrollView subviews] objectAtIndex:0]).bounds.size));
     }];
-    
 }
 - (void)tapRecognized:(UITapGestureRecognizer *)recognizer{
     JCLScrollView *scrollView = (JCLScrollView *)(recognizer.view);
@@ -143,6 +141,7 @@ const CGFloat kSectionLineSpacing = 10.0;
 }
 
 #pragma mark Segue
+
 - (IBAction)barPressed:(id)sender{
     [self dismissViewControllerAnimated:YES completion:nil];
 }

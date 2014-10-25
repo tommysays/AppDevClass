@@ -106,12 +106,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    UIImageView *imageView = ((JCLTableViewCell *)cell).imgView;
+    /*
+    JCLTableViewCell *cell = (JCLTableViewCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath];
+    
+    //UIImageView *imgView = (UIImageView)cell.backgroundView;
+    UIImageView *imageView = (UIImageView *)(cell.imgView);
     CGPoint offset = tableView.contentOffset;
-    CGRect adjustedFrame = CGRectMake(imageView.frame.origin.x + cell.frame.origin.x - offset.x, imageView.frame.origin.y + cell.frame.origin.y - offset.y, imageView.frame.size.width, imageView.frame.size.height);
-    JCLScrollView *scrollView = [[JCLScrollView alloc] initWithFrame:adjustedFrame];
-    self.startingFrame = adjustedFrame;
+    CGRect realCellFrame = CGRectMake(cell.frame.origin.x - offset.x, cell.frame.origin.y - offset.y, cell.frame.size.width, cell.frame.size.height);
+    JCLScrollView *scrollView = [[JCLScrollView alloc] initWithFrame:realCellFrame];
+    self.startingFrame = realCellFrame;
     scrollView.imgView = imageView;
     [scrollView addSubview:imageView];
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRecognized:)];
@@ -125,7 +128,38 @@
     } completion:^(BOOL finished) {
         [scrollView setUserInteractionEnabled:true];
         [scrollView setContentSize:((UIView*)[[scrollView subviews] objectAtIndex:0]).bounds.size];
-        NSLog(@"content size: %@", NSStringFromCGSize(((UIView*)[[scrollView subviews] objectAtIndex:0]).bounds.size));
+    }];
+     */
+    [tableView deselectRowAtIndexPath:indexPath animated:false];
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+//    UIImageView *imageView = ((JCLTableViewCell *)cell).imgView;
+    UIImageView *cellImageView = ((JCLTableViewCell *)cell).imgView;
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:(cellImageView.frame)];
+    
+    imageView.image = cellImageView.image;
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    CGPoint offset = tableView.contentOffset;
+    //CGRect adjustedFrame = CGRectMake(cellImageView.frame.origin.x + cell.frame.origin.x - offset.x, cellImageView.frame.origin.y + cell.frame.origin.y - offset.y, imageView.frame.size.width, imageView.frame.size.height);
+    CGRect adjustedFrame = CGRectMake(cellImageView.frame.origin.x + cell.frame.origin.x - offset.x, cellImageView.frame.origin.y + cell.frame.origin.y - offset.y, imageView.frame.size.width, imageView.frame.size.height);
+    JCLScrollView *scrollView = [[JCLScrollView alloc] initWithFrame:adjustedFrame];
+    
+    self.startingFrame = adjustedFrame;
+    scrollView.imgView = imageView;
+    [scrollView addSubview:imageView];
+    scrollView.imgView.frame = CGRectMake(0, 0, scrollView.bounds.size.width, scrollView.bounds.size.height);
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRecognized:)];
+    [scrollView addGestureRecognizer:tapRecognizer];
+    [self.view addSubview:scrollView];
+    
+    [self.tableView setUserInteractionEnabled:false];
+    [UIView animateWithDuration:kResizeAnimationTime animations:^{
+        scrollView.frame = self.view.frame;
+        scrollView.imgView.frame = scrollView.frame;
+        self.tableView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [scrollView setUserInteractionEnabled:true];
+        [scrollView setContentSize:((UIView*)[[scrollView subviews] objectAtIndex:0]).bounds.size];
     }];
 }
 
@@ -136,6 +170,7 @@
     }
     [UIView animateWithDuration:kResizeAnimationTime animations:^{
         scrollView.frame = self.startingFrame;
+        scrollView.imgView.frame = CGRectMake(0, 0, scrollView.bounds.size.width, scrollView.bounds.size.height);
         self.tableView.alpha = 1.0;
     } completion:^(BOOL finished) {
         [scrollView removeFromSuperview];
@@ -152,17 +187,5 @@
     }
     [self.tableView reloadData];
 }
-
-
-/*
-
--(NSArray*)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    NSMutableArray *titles = [NSMutableArray array];
-    for (int i=0; i<[self numberOfSectionsInTableView:tableView]; i++) {
-        [titles addObject:[NSString stringWithFormat:@"%02d", i*sectionSize]];
-    }
-    return titles;
-}
- */
 
 @end
