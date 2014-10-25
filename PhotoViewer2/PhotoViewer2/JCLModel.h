@@ -13,8 +13,9 @@
 + (id) sharedInstance;
 - (NSInteger) maxSizeOfSet;
 - (NSInteger) numberOfSets;
-- (NSInteger) sizeOfSet: (NSInteger)photosetIndex;
-- (NSString *) nameOfSet: (NSInteger)photosetIndex;
-- (UIImage *) image: (NSInteger)imgIndex fromSet:(NSInteger)photosetIndex;
+- (NSInteger) sizeOfSet:(NSInteger)photosetIndex;
+- (NSString *) nameOfSet:(NSInteger)photosetIndex;
+- (NSString *) nameOfImage:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex;
+- (UIImage *) image:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex;
 
 @end

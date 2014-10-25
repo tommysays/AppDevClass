@@ -86,6 +86,13 @@
     return [photoset objectForKey:@"name"];
 }
 
+- (NSString *) nameOfImage:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex{
+    NSDictionary *dict = [self.photosetArray objectAtIndex:photosetIndex];
+    NSArray *photos = [dict objectForKey:@"photos"];
+    NSString *name = [[photos objectAtIndex:imgIndex] objectForKey:@"imageName"];
+    return name;
+}
+
 - (UIImage *) image:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex{
     NSDictionary *dict = [self.photosetArray objectAtIndex:photosetIndex];
     NSArray *photos = [dict objectForKey:@"photos"];

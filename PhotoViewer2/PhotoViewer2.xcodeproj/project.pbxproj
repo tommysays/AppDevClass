@@ -54,6 +54,8 @@
 		D81C240F19F9AD0500BE4A22 /* Zion01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D81C23F219F9AD0500BE4A22 /* Zion01.jpg */; };
 		D81C241019F9AD0500BE4A22 /* Zion02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D81C23F319F9AD0500BE4A22 /* Zion02.jpg */; };
 		D81C241119F9AD0500BE4A22 /* Zion03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D81C23F419F9AD0500BE4A22 /* Zion03.jpg */; };
+		D871A35919FB46E20060B7EA /* JCLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D871A35819FB46E20060B7EA /* JCLTableViewController.m */; };
+		D871A35C19FB47BA0060B7EA /* JCLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D871A35B19FB47BA0060B7EA /* JCLTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +125,10 @@
 		D81C23F219F9AD0500BE4A22 /* Zion01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion01.jpg; sourceTree = "<group>"; };
 		D81C23F319F9AD0500BE4A22 /* Zion02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion02.jpg; sourceTree = "<group>"; };
 		D81C23F419F9AD0500BE4A22 /* Zion03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion03.jpg; sourceTree = "<group>"; };
+		D871A35719FB46E20060B7EA /* JCLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLTableViewController.h; sourceTree = "<group>"; };
+		D871A35819FB46E20060B7EA /* JCLTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLTableViewController.m; sourceTree = "<group>"; };
+		D871A35A19FB47BA0060B7EA /* JCLTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLTableViewCell.h; sourceTree = "<group>"; };
+		D871A35B19FB47BA0060B7EA /* JCLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +171,8 @@
 				D815102919F9AEBC003733DC /* JCLCollectionViewController.m */,
 				D81C23B419F9AC4B00BE4A22 /* JCLViewController.h */,
 				D81C23B519F9AC4B00BE4A22 /* JCLViewController.m */,
+				D871A35719FB46E20060B7EA /* JCLTableViewController.h */,
+				D871A35819FB46E20060B7EA /* JCLTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -177,6 +185,8 @@
 				D815102F19F9BAB1003733DC /* JCLCollectionViewCell.m */,
 				D815103119F9BDA7003733DC /* JCLCollectionReusableView.h */,
 				D815103219F9BDA7003733DC /* JCLCollectionReusableView.m */,
+				D871A35A19FB47BA0060B7EA /* JCLTableViewCell.h */,
+				D871A35B19FB47BA0060B7EA /* JCLTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -422,9 +432,11 @@
 				D81C23B019F9AC4B00BE4A22 /* JCLAppDelegate.m in Sources */,
 				D815103319F9BDA7003733DC /* JCLCollectionReusableView.m in Sources */,
 				D81C23B619F9AC4B00BE4A22 /* JCLViewController.m in Sources */,
+				D871A35919FB46E20060B7EA /* JCLTableViewController.m in Sources */,
 				D815103019F9BAB1003733DC /* JCLCollectionViewCell.m in Sources */,
 				D81C23AC19F9AC4B00BE4A22 /* main.m in Sources */,
 				D81C23D619F9AC5B00BE4A22 /* JCLModel.m in Sources */,
+				D871A35C19FB47BA0060B7EA /* JCLTableViewCell.m in Sources */,
 				D815102A19F9AEBC003733DC /* JCLCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

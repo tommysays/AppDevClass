@@ -100,31 +100,13 @@ const CGFloat kSectionLineSpacing = 10.0;
 #pragma mark Collection View Delegate
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    /* Replace with code to bring up zoomable scroll view for single image.
-     
-    ColorViewController *colorViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ColorViewController"];
+    UICollectionViewCell *cell = [self collectionView:self.collectionView cellForItemAtIndexPath:indexPath];
     
-    // initialize color
-    NSInteger index = indexPath.section*sectionSize + indexPath.row;
-    UIColor *color = [self.model backgroundColorForPage:index];
-    colorViewController.pageColor = color;
-    colorViewController.delegate = self;
+    // You can get location with cell.frame.origin
     
-    // create the popover & present
-    _myPopoverController = [[UIPopoverController alloc] initWithContentViewController:colorViewController];
-    UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
-    CGRect frame = cell.frame;
+    UIImageView *imageView = (UIImageView *)(cell.backgroundView);
     
     
-    
-    
-    // remember what was selected
-    self.selectedIndexPath = indexPath;
-    self.selectedIndex = index;
-    
-    [_myPopoverController presentPopoverFromRect:frame inView:self.collectionView  permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-     
-     */
 }
 
 @end
