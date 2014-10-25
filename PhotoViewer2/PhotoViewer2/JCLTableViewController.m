@@ -89,6 +89,8 @@
     UIView *view = [[UIView alloc] initWithFrame:frame];
     view.backgroundColor = kHeaderBackgroundColor;
     
+    // Constructing left/right icons.
+    
     CGFloat iconOffset = (height - kHeaderIconSize) / 2;
     
     CGRect leftIconFrame = CGRectMake(iconOffset, iconOffset, kHeaderIconSize, kHeaderIconSize);
@@ -103,6 +105,8 @@
     rightIcon.contentMode = UIViewContentModeScaleAspectFit;
     [view addSubview:rightIcon];
     
+    // Constructing label.
+    
     CGRect lblFrame = CGRectMake(0, kHeaderLabelY, width, kHeaderLabelHeight - 2 * kHeaderLabelY);
     UILabel *lbl = [[UILabel alloc] initWithFrame:lblFrame];
     lbl.text = sectionName;
@@ -110,6 +114,8 @@
     lbl.textColor = kHeaderFontColor;
     lbl.textAlignment = NSTextAlignmentCenter;
     [view addSubview:lbl];
+    
+    // Constructing button.
     
     UIButton *btn = [[UIButton alloc] initWithFrame:frame];
     btn.tag = section;
@@ -121,6 +127,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:false];
+    
+    // Get cell and its imageview so that we can set frame origin and size to correct values.
+    
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     UIImageView *cellImageView = ((JCLTableViewCell *)cell).imgView;
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:(cellImageView.frame)];
@@ -140,6 +149,8 @@
     [scrollView addGestureRecognizer:tapRecognizer];
     [self.view addSubview:scrollView];
     
+    // Disable user interaction while animating, keep table disabled until tap.
+    
     [self.tableView setUserInteractionEnabled:false];
     [UIView animateWithDuration:kResizeAnimationTime animations:^{
         scrollView.frame = self.view.frame;
@@ -153,10 +164,16 @@
 }
 
 - (void)tapRecognized:(UITapGestureRecognizer *)recognizer{
+    
+    // Only allow dismissal of scroll if zoomed to 1.0
+    
     JCLScrollView *scrollView = (JCLScrollView *)(recognizer.view);
     if (scrollView.zoomScale != 1.0){
         return;
     }
+    
+    // Animate view back to its starting position, remove it, and restore user interaction.
+    
     [UIView animateWithDuration:kResizeAnimationTime animations:^{
         scrollView.frame = self.startingFrame;
         scrollView.imgView.frame = CGRectMake(0, 0, scrollView.bounds.size.width, scrollView.bounds.size.height);
@@ -164,7 +181,6 @@
     } completion:^(BOOL finished) {
         [scrollView removeFromSuperview];
         [self.tableView setUserInteractionEnabled:true];
-        [self.tableView reloadData];
     }];
 }
 
