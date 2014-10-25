@@ -18,6 +18,5 @@
 @interface JCLCollectionViewCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *img;
-- (void) setImage:(UIImage *)img;
 
 @end

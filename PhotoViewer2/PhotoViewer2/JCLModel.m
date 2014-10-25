@@ -89,7 +89,7 @@
 - (NSString *) nameOfImage:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex{
     NSDictionary *dict = [self.photosetArray objectAtIndex:photosetIndex];
     NSArray *photos = [dict objectForKey:@"photos"];
-    NSString *name = [[photos objectAtIndex:imgIndex] objectForKey:@"imageName"];
+    NSString *name = [[photos objectAtIndex:imgIndex] objectForKey:@"caption"];
     return name;
 }
 

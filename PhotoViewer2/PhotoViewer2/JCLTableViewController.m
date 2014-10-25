@@ -10,10 +10,19 @@
 #import "JCLTableViewCell.h"
 #import "JCLModel.h"
 
+#define kHeaderBackgroundColor [UIColor grayColor]
+#define kHeaderFontColor [UIColor whiteColor]
+#define kHeaderFontSize 17
+#define kHeaderLabelX 20
+#define kHeaderLabelY 7
+#define kHeaderLabelHeight 20
+#define kHeaderLabelWidth 200
+
 @interface JCLTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) JCLModel *model;
+@property (nonatomic, strong) NSMutableDictionary *closedSections;
 
 @end
 
@@ -23,7 +32,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _model = [JCLModel sharedInstance];
+        _closedSections = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -32,6 +42,7 @@
     self = [super initWithCoder:aDecoder];
     if (self){
         _model = [JCLModel sharedInstance];
+        _closedSections = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -39,13 +50,6 @@
 - (void)viewDidLoad
 {
     [self.tableView reloadData];
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -57,7 +61,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.model sizeOfSet:section];
+    if ([self.closedSections objectForKey:[NSNumber numberWithInteger:section]]){
+        return 0;
+    } else{
+        return [self.model sizeOfSet:section];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -67,31 +75,49 @@
     
     NSInteger photosetIndex = indexPath.section;
     NSInteger photoIndex = indexPath.row;
+    
     cell.photoCaption.text = [self.model nameOfImage:photoIndex fromSet:photosetIndex];
-    cell.imageView.image = [self.model image:photoIndex fromSet:photosetIndex];
-    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    cell.imgView.image = [self.model image:photoIndex fromSet:photosetIndex];
+    cell.imgView.contentMode = UIViewContentModeScaleAspectFit;
     
     return cell;
 }
 
-/*
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     NSString *sectionName = [self.model nameOfSet:section];
     CGFloat width = self.view.frame.size.width;
-    CGFloat height = tableView.sectionFooterHeight;
+    CGFloat height = tableView.sectionHeaderHeight;
+    
     CGRect frame = CGRectMake(0, 0, width, height);
     UIView *view = [[UIView alloc] initWithFrame:frame];
-    UILabel *lbl = [[UILabel alloc] initWithFrame:frame];
+    view.backgroundColor = kHeaderBackgroundColor;
+    
+    CGRect lblFrame = CGRectMake(kHeaderLabelX, kHeaderLabelY, width - kHeaderLabelX * 2, kHeaderLabelHeight);
+    UILabel *lbl = [[UILabel alloc] initWithFrame:lblFrame];
+    lbl.text = sectionName;
+    lbl.font = [UIFont systemFontOfSize:kHeaderFontSize];
+    lbl.textColor = kHeaderFontColor;
+    lbl.textAlignment = NSTextAlignmentCenter;
     [view addSubview:lbl];
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:frame];
+    btn.tag = section;
+    [btn addTarget:self action:@selector(sectionPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:btn];
+    
     return view;
 }
-*/
 
-
-// Section titles & index
--(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [self.model nameOfSet:section];
+- (IBAction)sectionPressed:(id)sender{
+    NSInteger sectionIndex = [sender tag];
+    if ([self.closedSections objectForKey:[NSNumber numberWithInteger:sectionIndex]]){
+        [self.closedSections removeObjectForKey:[NSNumber numberWithInteger:sectionIndex]];
+    } else{
+        [self.closedSections setObject:@"closed" forKey:[NSNumber numberWithInteger:sectionIndex]];
+    }
+    [self.tableView reloadData];
 }
+
 /*
 
 -(NSArray*)sectionIndexTitlesForTableView:(UITableView *)tableView {

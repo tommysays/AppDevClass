@@ -11,6 +11,6 @@
 @interface JCLTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *photoCaption;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imgView;
 
 @end
