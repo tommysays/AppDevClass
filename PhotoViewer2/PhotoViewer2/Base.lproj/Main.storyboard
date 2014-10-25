@@ -72,6 +72,7 @@
                     <navigationItem key="navigationItem" id="4oc-f4-xVX"/>
                     <connections>
                         <outlet property="tableView" destination="0PD-jO-ks7" id="zbM-PR-b4j"/>
+                        <outlet property="toolbar" destination="3Eg-cG-NpK" id="2a9-Zw-Qa0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -161,6 +162,7 @@
                     <navigationItem key="navigationItem" id="Jlm-Xg-1jj"/>
                     <connections>
                         <outlet property="collectionView" destination="z0O-jE-BLw" id="38m-wv-m8E"/>
+                        <outlet property="toolbar" destination="9FO-Ib-6xv" id="fVJ-qo-p9h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fsB-7d-YLC" userLabel="First Responder" sceneMemberID="firstResponder"/>

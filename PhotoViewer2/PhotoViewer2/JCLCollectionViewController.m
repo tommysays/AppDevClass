@@ -15,6 +15,7 @@
 
 @interface JCLCollectionViewController () <UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) JCLModel *model;
 - (IBAction)barPressed:(id)sender;
@@ -140,6 +141,7 @@ const CGFloat kSectionLineSpacing = 10.0;
     [UIView animateWithDuration:kResizeAnimationTime animations:^{
         scrollView.frame = self.view.frame;
         self.collectionView.alpha = 0.0;
+        self.toolbar.alpha = 0.0;
     } completion:^(BOOL finished) {
         [scrollView setUserInteractionEnabled:true];
         [scrollView setContentSize:((UIView*)[[scrollView subviews] objectAtIndex:0]).bounds.size];
@@ -153,6 +155,7 @@ const CGFloat kSectionLineSpacing = 10.0;
     [UIView animateWithDuration:kResizeAnimationTime animations:^{
         scrollView.frame = self.startingFrame;
         self.collectionView.alpha = 1.0;
+        self.toolbar.alpha = 1.0;
     } completion:^(BOOL finished) {
         [scrollView removeFromSuperview];
         [self.collectionView setUserInteractionEnabled:true];

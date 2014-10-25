@@ -17,6 +17,7 @@
 @interface JCLTableViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, strong) JCLModel *model;
 @property (nonatomic, strong) NSMutableDictionary *closedSections;
 @property CGRect startingFrame;
@@ -67,7 +68,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if ([self.closedSections objectForKey:[NSNumber numberWithInteger:indexPath.section]]){
+        return nil;
+    }
     JCLTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TableCell" forIndexPath:indexPath];
     
     NSInteger photosetIndex = indexPath.section;
@@ -156,10 +159,11 @@
         scrollView.frame = self.view.frame;
         scrollView.imgView.frame = scrollView.frame;
         self.tableView.alpha = 0.0;
+        self.toolbar.alpha = 0.0;
     } completion:^(BOOL finished) {
         [scrollView setUserInteractionEnabled:true];
         [scrollView adjustContentSize];
-        //[scrollView setContentSize:((UIView*)[[scrollView subviews] objectAtIndex:0]).bounds.size];
+        [cell removeFromSuperview]; // Apparently, "getting" the cell made the tableview keep it, even if its section collapsed later. This fixes that issue.
     }];
 }
 
@@ -178,6 +182,7 @@
         scrollView.frame = self.startingFrame;
         scrollView.imgView.frame = CGRectMake(0, 0, scrollView.bounds.size.width, scrollView.bounds.size.height);
         self.tableView.alpha = 1.0;
+        self.toolbar.alpha = 1.0;
     } completion:^(BOOL finished) {
         [scrollView removeFromSuperview];
         [self.tableView setUserInteractionEnabled:true];
