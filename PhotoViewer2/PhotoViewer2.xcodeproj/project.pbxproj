@@ -56,6 +56,8 @@
 		D81C241119F9AD0500BE4A22 /* Zion03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D81C23F419F9AD0500BE4A22 /* Zion03.jpg */; };
 		D871A35919FB46E20060B7EA /* JCLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D871A35819FB46E20060B7EA /* JCLTableViewController.m */; };
 		D871A35C19FB47BA0060B7EA /* JCLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D871A35B19FB47BA0060B7EA /* JCLTableViewCell.m */; };
+		D877F8CB19FC13FE00B9CB49 /* JCLScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D877F8CA19FC13FE00B9CB49 /* JCLScrollView.m */; };
+		D877F8CE19FC282400B9CB49 /* JCLConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D877F8CD19FC282400B9CB49 /* JCLConstants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +131,10 @@
 		D871A35819FB46E20060B7EA /* JCLTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLTableViewController.m; sourceTree = "<group>"; };
 		D871A35A19FB47BA0060B7EA /* JCLTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLTableViewCell.h; sourceTree = "<group>"; };
 		D871A35B19FB47BA0060B7EA /* JCLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLTableViewCell.m; sourceTree = "<group>"; };
+		D877F8C919FC13FE00B9CB49 /* JCLScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLScrollView.h; sourceTree = "<group>"; };
+		D877F8CA19FC13FE00B9CB49 /* JCLScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLScrollView.m; sourceTree = "<group>"; };
+		D877F8CC19FC282400B9CB49 /* JCLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLConstants.h; sourceTree = "<group>"; };
+		D877F8CD19FC282400B9CB49 /* JCLConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLConstants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +193,8 @@
 				D815103219F9BDA7003733DC /* JCLCollectionReusableView.m */,
 				D871A35A19FB47BA0060B7EA /* JCLTableViewCell.h */,
 				D871A35B19FB47BA0060B7EA /* JCLTableViewCell.m */,
+				D877F8C919FC13FE00B9CB49 /* JCLScrollView.h */,
+				D877F8CA19FC13FE00B9CB49 /* JCLScrollView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -244,6 +252,8 @@
 				D81C23A819F9AC4B00BE4A22 /* InfoPlist.strings */,
 				D81C23AB19F9AC4B00BE4A22 /* main.m */,
 				D81C23AD19F9AC4B00BE4A22 /* PhotoViewer2-Prefix.pch */,
+				D877F8CC19FC282400B9CB49 /* JCLConstants.h */,
+				D877F8CD19FC282400B9CB49 /* JCLConstants.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -436,6 +446,8 @@
 				D815103019F9BAB1003733DC /* JCLCollectionViewCell.m in Sources */,
 				D81C23AC19F9AC4B00BE4A22 /* main.m in Sources */,
 				D81C23D619F9AC5B00BE4A22 /* JCLModel.m in Sources */,
+				D877F8CE19FC282400B9CB49 /* JCLConstants.m in Sources */,
+				D877F8CB19FC13FE00B9CB49 /* JCLScrollView.m in Sources */,
 				D871A35C19FB47BA0060B7EA /* JCLTableViewCell.m in Sources */,
 				D815102A19F9AEBC003733DC /* JCLCollectionViewController.m in Sources */,
 			);

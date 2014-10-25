@@ -6,15 +6,19 @@
 //  Copyright (c) 2014 Joshua Lee. All rights reserved.
 //
 
+#import "JCLScrollView.h"
 #import "JCLCollectionViewController.h"
 #import "JCLCollectionReusableView.h"
 #import "JCLCollectionViewCell.h"
 #import "JCLModel.h"
+#import "JCLConstants.h"
 
-@interface JCLCollectionViewController () <UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface JCLCollectionViewController () <UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) JCLModel *model;
+- (IBAction)barPressed:(id)sender;
+@property CGRect startingFrame;
 
 @end
 
@@ -82,7 +86,7 @@ const CGFloat kSectionLineSpacing = 10.0;
 #pragma mark Collection View Layout Protocol
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(CELL_SIZE, CELL_SIZE);
+    return CGSizeMake(kCollectionCellSize, kCollectionCellSize);
 }
 
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
@@ -102,11 +106,44 @@ const CGFloat kSectionLineSpacing = 10.0;
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [self collectionView:self.collectionView cellForItemAtIndexPath:indexPath];
     
-    // You can get location with cell.frame.origin
-    
     UIImageView *imageView = (UIImageView *)(cell.backgroundView);
+    CGPoint offset = collectionView.contentOffset;
+    CGRect realCellFrame = CGRectMake(cell.frame.origin.x - offset.x, cell.frame.origin.y - offset.y, cell.frame.size.width, cell.frame.size.height);
+    JCLScrollView *scrollView = [[JCLScrollView alloc] initWithFrame:realCellFrame];
+    self.startingFrame = realCellFrame;
+    scrollView.imgView = imageView;
+    [scrollView addSubview:imageView];
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRecognized:)];
+    [scrollView addGestureRecognizer:tapRecognizer];
+    [self.view addSubview:scrollView];
     
+    [self.collectionView setUserInteractionEnabled:false];
+    [UIView animateWithDuration:kResizeAnimationTime animations:^{
+        scrollView.frame = self.view.frame;
+        self.collectionView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [scrollView setUserInteractionEnabled:true];
+        [scrollView setContentSize:((UIView*)[[scrollView subviews] objectAtIndex:0]).bounds.size];
+        NSLog(@"content size: %@", NSStringFromCGSize(((UIView*)[[scrollView subviews] objectAtIndex:0]).bounds.size));
+    }];
     
 }
+- (void)tapRecognized:(UITapGestureRecognizer *)recognizer{
+    JCLScrollView *scrollView = (JCLScrollView *)(recognizer.view);
+    if (scrollView.zoomScale != 1.0){
+        return;
+    }
+    [UIView animateWithDuration:kResizeAnimationTime animations:^{
+        scrollView.frame = self.startingFrame;
+        self.collectionView.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        [scrollView removeFromSuperview];
+        [self.collectionView setUserInteractionEnabled:true];
+    }];
+}
 
+#pragma mark Segue
+- (IBAction)barPressed:(id)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

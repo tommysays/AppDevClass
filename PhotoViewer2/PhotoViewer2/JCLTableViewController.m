@@ -6,23 +6,20 @@
 //  Copyright (c) 2014 Joshua Lee. All rights reserved.
 //
 
+#import "JCLScrollView.h"
 #import "JCLTableViewController.h"
 #import "JCLTableViewCell.h"
 #import "JCLModel.h"
+#import "JCLConstants.h"
 
-#define kHeaderBackgroundColor [UIColor grayColor]
-#define kHeaderFontColor [UIColor whiteColor]
-#define kHeaderFontSize 17
-#define kHeaderLabelX 20
-#define kHeaderLabelY 7
-#define kHeaderLabelHeight 20
-#define kHeaderLabelWidth 200
 
-@interface JCLTableViewController ()
+
+@interface JCLTableViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) JCLModel *model;
 @property (nonatomic, strong) NSMutableDictionary *closedSections;
+@property CGRect startingFrame;
 
 @end
 
@@ -92,7 +89,7 @@
     UIView *view = [[UIView alloc] initWithFrame:frame];
     view.backgroundColor = kHeaderBackgroundColor;
     
-    CGRect lblFrame = CGRectMake(kHeaderLabelX, kHeaderLabelY, width - kHeaderLabelX * 2, kHeaderLabelHeight);
+    CGRect lblFrame = CGRectMake(kHeaderLabelX, kHeaderLabelY, width, kHeaderLabelHeight);
     UILabel *lbl = [[UILabel alloc] initWithFrame:lblFrame];
     lbl.text = sectionName;
     lbl.font = [UIFont systemFontOfSize:kHeaderFontSize];
@@ -105,7 +102,45 @@
     [btn addTarget:self action:@selector(sectionPressed:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:btn];
     
-    return view;
+    return view;    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    UIImageView *imageView = ((JCLTableViewCell *)cell).imgView;
+    CGPoint offset = tableView.contentOffset;
+    CGRect adjustedFrame = CGRectMake(imageView.frame.origin.x + cell.frame.origin.x - offset.x, imageView.frame.origin.y + cell.frame.origin.y - offset.y, imageView.frame.size.width, imageView.frame.size.height);
+    JCLScrollView *scrollView = [[JCLScrollView alloc] initWithFrame:adjustedFrame];
+    self.startingFrame = adjustedFrame;
+    scrollView.imgView = imageView;
+    [scrollView addSubview:imageView];
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRecognized:)];
+    [scrollView addGestureRecognizer:tapRecognizer];
+    [self.view addSubview:scrollView];
+    
+    [self.tableView setUserInteractionEnabled:false];
+    [UIView animateWithDuration:kResizeAnimationTime animations:^{
+        scrollView.frame = self.view.frame;
+        self.tableView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [scrollView setUserInteractionEnabled:true];
+        [scrollView setContentSize:((UIView*)[[scrollView subviews] objectAtIndex:0]).bounds.size];
+        NSLog(@"content size: %@", NSStringFromCGSize(((UIView*)[[scrollView subviews] objectAtIndex:0]).bounds.size));
+    }];
+}
+
+- (void)tapRecognized:(UITapGestureRecognizer *)recognizer{
+    JCLScrollView *scrollView = (JCLScrollView *)(recognizer.view);
+    if (scrollView.zoomScale != 1.0){
+        return;
+    }
+    [UIView animateWithDuration:kResizeAnimationTime animations:^{
+        scrollView.frame = self.startingFrame;
+        self.tableView.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        [scrollView removeFromSuperview];
+        [self.tableView setUserInteractionEnabled:true];
+    }];
 }
 
 - (IBAction)sectionPressed:(id)sender{
@@ -118,6 +153,7 @@
     [self.tableView reloadData];
 }
 
+
 /*
 
 -(NSArray*)sectionIndexTitlesForTableView:(UITableView *)tableView {
@@ -128,16 +164,5 @@
     return titles;
 }
  */
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
