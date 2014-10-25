@@ -13,14 +13,16 @@
 
 #define kCollectionCellSize 90
 
-#define kHeaderBackgroundColor [UIColor grayColor]
-#define kHeaderFontColor [UIColor whiteColor]
+#define kHeaderBackgroundColor [UIColor colorWithRed:1.0 green:0.8 blue:0.4 alpha:1.0]
+#define kHeaderFontColor [UIColor blackColor]
 #define kHeaderFontSize 17
 #define kHeaderLabelX 20
 #define kHeaderLabelY 7
-#define kHeaderLabelHeight 20
+#define kHeaderLabelHeight 60
 #define kHeaderLabelWidth 200
-#define kResizeAnimationTime 1.0
+#define kHeaderIconSize 50
+
+#define kResizeAnimationTime 0.6
 #define kMinimumZoomScale 1.0
 #define kMaximumZoomScale 10.0
 

@@ -89,7 +89,21 @@
     UIView *view = [[UIView alloc] initWithFrame:frame];
     view.backgroundColor = kHeaderBackgroundColor;
     
-    CGRect lblFrame = CGRectMake(kHeaderLabelX, kHeaderLabelY, width, kHeaderLabelHeight);
+    CGFloat iconOffset = (height - kHeaderIconSize) / 2;
+    
+    CGRect leftIconFrame = CGRectMake(iconOffset, iconOffset, kHeaderIconSize, kHeaderIconSize);
+    UIImageView *leftIcon = [[UIImageView alloc] initWithFrame:leftIconFrame];
+    leftIcon.image = [self.model nationalParkImage];
+    leftIcon.contentMode = UIViewContentModeScaleAspectFit;
+    [view addSubview:leftIcon];
+    
+    CGRect rightIconFrame = CGRectMake(width - iconOffset - kHeaderIconSize, iconOffset, kHeaderIconSize, kHeaderIconSize);
+    UIImageView *rightIcon = [[UIImageView alloc] initWithFrame:rightIconFrame];
+    rightIcon.image = [self.model nationalParkImage];
+    rightIcon.contentMode = UIViewContentModeScaleAspectFit;
+    [view addSubview:rightIcon];
+    
+    CGRect lblFrame = CGRectMake(0, kHeaderLabelY, width, kHeaderLabelHeight - 2 * kHeaderLabelY);
     UILabel *lbl = [[UILabel alloc] initWithFrame:lblFrame];
     lbl.text = sectionName;
     lbl.font = [UIFont systemFontOfSize:kHeaderFontSize];
@@ -106,33 +120,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    /*
-    JCLTableViewCell *cell = (JCLTableViewCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath];
-    
-    //UIImageView *imgView = (UIImageView)cell.backgroundView;
-    UIImageView *imageView = (UIImageView *)(cell.imgView);
-    CGPoint offset = tableView.contentOffset;
-    CGRect realCellFrame = CGRectMake(cell.frame.origin.x - offset.x, cell.frame.origin.y - offset.y, cell.frame.size.width, cell.frame.size.height);
-    JCLScrollView *scrollView = [[JCLScrollView alloc] initWithFrame:realCellFrame];
-    self.startingFrame = realCellFrame;
-    scrollView.imgView = imageView;
-    [scrollView addSubview:imageView];
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRecognized:)];
-    [scrollView addGestureRecognizer:tapRecognizer];
-    [self.view addSubview:scrollView];
-    
-    [self.tableView setUserInteractionEnabled:false];
-    [UIView animateWithDuration:kResizeAnimationTime animations:^{
-        scrollView.frame = self.view.frame;
-        self.tableView.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        [scrollView setUserInteractionEnabled:true];
-        [scrollView setContentSize:((UIView*)[[scrollView subviews] objectAtIndex:0]).bounds.size];
-    }];
-     */
     [tableView deselectRowAtIndexPath:indexPath animated:false];
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-//    UIImageView *imageView = ((JCLTableViewCell *)cell).imgView;
     UIImageView *cellImageView = ((JCLTableViewCell *)cell).imgView;
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:(cellImageView.frame)];
     
@@ -140,7 +129,6 @@
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     CGPoint offset = tableView.contentOffset;
-    //CGRect adjustedFrame = CGRectMake(cellImageView.frame.origin.x + cell.frame.origin.x - offset.x, cellImageView.frame.origin.y + cell.frame.origin.y - offset.y, imageView.frame.size.width, imageView.frame.size.height);
     CGRect adjustedFrame = CGRectMake(cellImageView.frame.origin.x + cell.frame.origin.x - offset.x, cellImageView.frame.origin.y + cell.frame.origin.y - offset.y, imageView.frame.size.width, imageView.frame.size.height);
     JCLScrollView *scrollView = [[JCLScrollView alloc] initWithFrame:adjustedFrame];
     
@@ -159,7 +147,8 @@
         self.tableView.alpha = 0.0;
     } completion:^(BOOL finished) {
         [scrollView setUserInteractionEnabled:true];
-        [scrollView setContentSize:((UIView*)[[scrollView subviews] objectAtIndex:0]).bounds.size];
+        [scrollView adjustContentSize];
+        //[scrollView setContentSize:((UIView*)[[scrollView subviews] objectAtIndex:0]).bounds.size];
     }];
 }
 
@@ -175,6 +164,7 @@
     } completion:^(BOOL finished) {
         [scrollView removeFromSuperview];
         [self.tableView setUserInteractionEnabled:true];
+        [self.tableView reloadData];
     }];
 }
 

@@ -16,6 +16,7 @@
 - (NSInteger) sizeOfSet:(NSInteger)photosetIndex;
 - (NSString *) nameOfSet:(NSInteger)photosetIndex;
 - (NSString *) nameOfImage:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex;
+- (UIImage *) nationalParkImage;
 - (UIImage *) image:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex;
 
 @end

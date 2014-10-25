@@ -76,6 +76,25 @@ const CGFloat kSectionLineSpacing = 10.0;
         NSInteger photosetIndex = indexPath.section;
         NSString *title = [self.model nameOfSet:photosetIndex];
         headerView.sectionTitle.text = title;
+        headerView.sectionTitle.textColor = kHeaderFontColor;
+        headerView.backgroundColor = kHeaderBackgroundColor;
+        
+        CGFloat height = headerView.bounds.size.height;
+        CGFloat width = headerView.bounds.size.width;
+        
+        CGFloat iconOffset = (height - kHeaderIconSize) / 2;
+        
+        CGRect leftIconFrame = CGRectMake(iconOffset, iconOffset, kHeaderIconSize, kHeaderIconSize);
+        UIImageView *leftIcon = [[UIImageView alloc] initWithFrame:leftIconFrame];
+        leftIcon.image = [self.model nationalParkImage];
+        leftIcon.contentMode = UIViewContentModeScaleAspectFit;
+        [headerView addSubview:leftIcon];
+        
+        CGRect rightIconFrame = CGRectMake(width - iconOffset - kHeaderIconSize, iconOffset, kHeaderIconSize, kHeaderIconSize);
+        UIImageView *rightIcon = [[UIImageView alloc] initWithFrame:rightIconFrame];
+        rightIcon.image = [self.model nationalParkImage];
+        rightIcon.contentMode = UIViewContentModeScaleAspectFit;
+        [headerView addSubview:rightIcon];
         
         reusableview = headerView;
     }

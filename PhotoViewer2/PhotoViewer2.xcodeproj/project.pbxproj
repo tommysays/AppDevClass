@@ -58,6 +58,7 @@
 		D871A35C19FB47BA0060B7EA /* JCLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D871A35B19FB47BA0060B7EA /* JCLTableViewCell.m */; };
 		D877F8CB19FC13FE00B9CB49 /* JCLScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D877F8CA19FC13FE00B9CB49 /* JCLScrollView.m */; };
 		D877F8CE19FC282400B9CB49 /* JCLConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D877F8CD19FC282400B9CB49 /* JCLConstants.m */; };
+		D877F8D019FC435A00B9CB49 /* NationalPark.png in Resources */ = {isa = PBXBuildFile; fileRef = D877F8CF19FC435A00B9CB49 /* NationalPark.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,7 @@
 		D877F8CA19FC13FE00B9CB49 /* JCLScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLScrollView.m; sourceTree = "<group>"; };
 		D877F8CC19FC282400B9CB49 /* JCLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLConstants.h; sourceTree = "<group>"; };
 		D877F8CD19FC282400B9CB49 /* JCLConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLConstants.m; sourceTree = "<group>"; };
+		D877F8CF19FC435A00B9CB49 /* NationalPark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NationalPark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +281,7 @@
 		D81C23F519F9AD0500BE4A22 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
+				D877F8CF19FC435A00B9CB49 /* NationalPark.png */,
 				D81C23D919F9AD0500BE4A22 /* BryceCanyon01.jpg */,
 				D81C23DA19F9AD0500BE4A22 /* BryceCanyon02.jpg */,
 				D81C23DB19F9AD0500BE4A22 /* BryceCanyon03.jpg */,
@@ -410,6 +413,7 @@
 				D81C240B19F9AD0500BE4A22 /* Yosemite03.jpg in Resources */,
 				D81C241019F9AD0500BE4A22 /* Zion02.jpg in Resources */,
 				D81C23FE19F9AD0500BE4A22 /* Everglades02.jpg in Resources */,
+				D877F8D019FC435A00B9CB49 /* NationalPark.png in Resources */,
 				D81C23FA19F9AD0500BE4A22 /* Carlsbad02.jpg in Resources */,
 				D81C240819F9AD0500BE4A22 /* Yellowstone04.jpg in Resources */,
 				D81C23FF19F9AD0500BE4A22 /* Glacier01.jpg in Resources */,

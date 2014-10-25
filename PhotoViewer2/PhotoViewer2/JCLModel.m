@@ -64,6 +64,8 @@
             self.maxSetSize = [imgData count];
         }
     }
+    UIImage *img = [UIImage imageNamed:@"NationalPark"];
+    [temp setObject:img forKey:@"nationalPark"];
     self.images = temp;
 }
 
@@ -91,6 +93,10 @@
     NSArray *photos = [dict objectForKey:@"photos"];
     NSString *name = [[photos objectAtIndex:imgIndex] objectForKey:@"caption"];
     return name;
+}
+
+- (UIImage *) nationalParkImage{
+    return [self.images objectForKey:@"nationalPark"];
 }
 
 - (UIImage *) image:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex{
