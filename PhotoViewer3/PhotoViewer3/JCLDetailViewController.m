@@ -6,9 +6,13 @@
 //  Copyright (c) 2014 Joshua Lee. All rights reserved.
 //
 
+#import "JCLZoomViewController.h"
 #import "JCLDetailViewController.h"
+#import "JCLScrollView.h"
 
-@interface JCLDetailViewController () <UIGestureRecognizerDelegate>
+@interface JCLDetailViewController ()
+
+@property CGRect startingFrame;
 
 @end
 
@@ -28,13 +32,17 @@
     [super viewDidLoad];
     
     self.imgView.image = self.image;
+    self.imgView.contentMode = UIViewContentModeScaleAspectFit;
+    self.imgView.userInteractionEnabled = YES;
     self.caption.text = self.captionText;
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSLog(@"About to segue.");
+    if ([segue.identifier isEqualToString:@"DetailToZoom"]){
+        NSLog(@"Segue from detail to zoom.");
+        JCLZoomViewController *destController = segue.destinationViewController;
+        destController.passedImage = self.imgView.image;
+    }
 }
 
 /*

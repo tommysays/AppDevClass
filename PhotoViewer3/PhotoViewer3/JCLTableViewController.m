@@ -131,72 +131,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:false];
     
-    self.imgToSend = [self.model image:indexPath.row fromSet:indexPath.section];
-    self.captionToSend = [self.model nameOfImage:indexPath.row fromSet:indexPath.section];
-    
-    
-    [self performSegueWithIdentifier:@"TableToDetail" sender:self];
-    
-    
-    // Get cell and its imageview so that we can set frame origin and size to correct values.
-    
-    /*
-    
-    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    UIImageView *cellImageView = ((JCLTableViewCell *)cell).imgView;
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:(cellImageView.frame)];
-    
-    imageView.image = cellImageView.image;
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    
-    CGPoint offset = tableView.contentOffset;
-    CGRect adjustedFrame = CGRectMake(cellImageView.frame.origin.x + cell.frame.origin.x - offset.x, cellImageView.frame.origin.y + cell.frame.origin.y - offset.y, imageView.frame.size.width, imageView.frame.size.height);
-    JCLScrollView *scrollView = [[JCLScrollView alloc] initWithFrame:adjustedFrame];
-    
-    self.startingFrame = adjustedFrame;
-    scrollView.imgView = imageView;
-    [scrollView addSubview:imageView];
-    scrollView.imgView.frame = CGRectMake(0, 0, scrollView.bounds.size.width, scrollView.bounds.size.height);
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRecognized:)];
-    [scrollView addGestureRecognizer:tapRecognizer];
-    [self.view addSubview:scrollView];
-    
-    // Disable user interaction while animating, keep table disabled until tap.
-    
-    [self.tableView setUserInteractionEnabled:false];
-    [UIView animateWithDuration:kResizeAnimationTime animations:^{
-        scrollView.frame = self.view.frame;
-        scrollView.imgView.frame = scrollView.frame;
-        self.tableView.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        [scrollView setUserInteractionEnabled:true];
-        [scrollView adjustContentSize];
-        [cell removeFromSuperview]; // Apparently, "getting" the cell made the tableview keep it, even if its section collapsed later. This fixes that issue.
-    }];
-     */
-}
-
-- (void)tapRecognized:(UITapGestureRecognizer *)recognizer{
-    
-    // Only allow dismissal of scroll if zoomed to 1.0
-    
-    JCLScrollView *scrollView = (JCLScrollView *)(recognizer.view);
-    if (scrollView.zoomScale != 1.0){
-        return;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone){
+        [tableView deselectRowAtIndexPath:indexPath animated:false];
+        
+        self.imgToSend = [self.model image:indexPath.row fromSet:indexPath.section];
+        self.captionToSend = [self.model nameOfImage:indexPath.row fromSet:indexPath.section];
+        
+        [self performSegueWithIdentifier:@"TableToDetail" sender:self];
     }
-    
-    // Animate view back to its starting position, remove it, and restore user interaction.
-    
-    [UIView animateWithDuration:kResizeAnimationTime animations:^{
-        scrollView.frame = self.startingFrame;
-        scrollView.imgView.frame = CGRectMake(0, 0, scrollView.bounds.size.width, scrollView.bounds.size.height);
-        self.tableView.alpha = 1.0;
-    } completion:^(BOOL finished) {
-        [scrollView removeFromSuperview];
-        [self.tableView setUserInteractionEnabled:true];
-    }];
 }
 
 - (IBAction)sectionPressed:(id)sender{

@@ -85,6 +85,10 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S4E-Oc-9vc">
                                 <rect key="frame" x="20" y="79" width="280" height="280"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ID3-GC-jJ8" appends="YES" id="aqm-Lh-3Ig"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -96,14 +100,38 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e2h-yz-XfE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ID3-GC-jJ8">
+                    <connections>
+                        <segue destination="pAR-Rt-9z6" kind="push" identifier="DetailToZoom" id="DoD-nT-WGu"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="848" y="614"/>
+            <point key="canvasLocation" x="846" y="614"/>
+        </scene>
+        <!--Zoom View Controller-->
+        <scene sceneID="xiv-eB-UXh">
+            <objects>
+                <viewController id="pAR-Rt-9z6" customClass="JCLZoomViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7lu-fv-l9d"/>
+                        <viewControllerLayoutGuide type="bottom" id="lUN-RM-dX2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yec-Gr-Pa4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gyD-mG-VXb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KHU-d2-m6d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1324" y="614"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="CFo-PO-3v3">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="G9m-oi-RpP" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="8qG-OW-Rit">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>

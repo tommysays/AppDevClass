@@ -61,6 +61,7 @@
 		D880B4301A057071001B73C8 /* Zion02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B4131A057071001B73C8 /* Zion02.jpg */; };
 		D880B4311A057071001B73C8 /* Zion03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B4141A057071001B73C8 /* Zion03.jpg */; };
 		D880B4341A0589B5001B73C8 /* JCLDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D880B4331A0589B5001B73C8 /* JCLDetailViewController.m */; };
+		D880B4371A0596AC001B73C8 /* JCLZoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D880B4361A0596AC001B73C8 /* JCLZoomViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,8 @@
 		D880B4141A057071001B73C8 /* Zion03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion03.jpg; sourceTree = "<group>"; };
 		D880B4321A0589B5001B73C8 /* JCLDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLDetailViewController.h; sourceTree = "<group>"; };
 		D880B4331A0589B5001B73C8 /* JCLDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLDetailViewController.m; sourceTree = "<group>"; };
+		D880B4351A0596AC001B73C8 /* JCLZoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLZoomViewController.h; sourceTree = "<group>"; };
+		D880B4361A0596AC001B73C8 /* JCLZoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLZoomViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +199,8 @@
 				D8587BC71A05566800B99D21 /* JCLViewController.m */,
 				D880B4321A0589B5001B73C8 /* JCLDetailViewController.h */,
 				D880B4331A0589B5001B73C8 /* JCLDetailViewController.m */,
+				D880B4351A0596AC001B73C8 /* JCLZoomViewController.h */,
+				D880B4361A0596AC001B73C8 /* JCLZoomViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -461,6 +466,7 @@
 				D80450271A0558DF008936B8 /* JCLTableViewController.m in Sources */,
 				D80450231A0558DF008936B8 /* JCLConstants.m in Sources */,
 				D80450241A0558DF008936B8 /* JCLModel.m in Sources */,
+				D880B4371A0596AC001B73C8 /* JCLZoomViewController.m in Sources */,
 				D80450251A0558DF008936B8 /* JCLScrollView.m in Sources */,
 				D880B4341A0589B5001B73C8 /* JCLDetailViewController.m in Sources */,
 			);
