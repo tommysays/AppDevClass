@@ -7,6 +7,7 @@
 //
 
 #import "JCLScrollView.h"
+#import "JCLDetailViewController.h"
 #import "JCLTableViewController.h"
 #import "JCLTableViewCell.h"
 #import "JCLModel.h"
@@ -17,10 +18,11 @@
 @interface JCLTableViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, strong) JCLModel *model;
 @property (nonatomic, strong) NSMutableDictionary *closedSections;
 @property CGRect startingFrame;
+@property (nonatomic, strong) UIImage *imgToSend;
+@property (nonatomic, strong) NSString *captionToSend;
 
 @end
 
@@ -131,7 +133,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:false];
     
+    self.imgToSend = [self.model image:indexPath.row fromSet:indexPath.section];
+    self.captionToSend = [self.model nameOfImage:indexPath.row fromSet:indexPath.section];
+    
+    
+    [self performSegueWithIdentifier:@"TableToDetail" sender:self];
+    
+    
     // Get cell and its imageview so that we can set frame origin and size to correct values.
+    
+    /*
     
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     UIImageView *cellImageView = ((JCLTableViewCell *)cell).imgView;
@@ -159,12 +170,12 @@
         scrollView.frame = self.view.frame;
         scrollView.imgView.frame = scrollView.frame;
         self.tableView.alpha = 0.0;
-        self.toolbar.alpha = 0.0;
     } completion:^(BOOL finished) {
         [scrollView setUserInteractionEnabled:true];
         [scrollView adjustContentSize];
         [cell removeFromSuperview]; // Apparently, "getting" the cell made the tableview keep it, even if its section collapsed later. This fixes that issue.
     }];
+     */
 }
 
 - (void)tapRecognized:(UITapGestureRecognizer *)recognizer{
@@ -182,7 +193,6 @@
         scrollView.frame = self.startingFrame;
         scrollView.imgView.frame = CGRectMake(0, 0, scrollView.bounds.size.width, scrollView.bounds.size.height);
         self.tableView.alpha = 1.0;
-        self.toolbar.alpha = 1.0;
     } completion:^(BOOL finished) {
         [scrollView removeFromSuperview];
         [self.tableView setUserInteractionEnabled:true];
@@ -197,6 +207,14 @@
         [self.closedSections setObject:@"closed" forKey:[NSNumber numberWithInteger:sectionIndex]];
     }
     [self.tableView reloadData];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"TableToDetail"]){
+        JCLDetailViewController *destController = segue.destinationViewController;
+        destController.image = self.imgToSend;
+        destController.captionText = self.captionToSend;
+    }
 }
 
 @end

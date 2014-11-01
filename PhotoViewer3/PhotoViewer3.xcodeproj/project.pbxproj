@@ -15,6 +15,7 @@
 		D80450251A0558DF008936B8 /* JCLScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D804501B1A0558DF008936B8 /* JCLScrollView.m */; };
 		D80450261A0558DF008936B8 /* JCLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D804501D1A0558DF008936B8 /* JCLTableViewCell.m */; };
 		D80450271A0558DF008936B8 /* JCLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D804501F1A0558DF008936B8 /* JCLTableViewController.m */; };
+		D804502C1A0559BC008936B8 /* Photos.plist in Resources */ = {isa = PBXBuildFile; fileRef = D804502B1A0559BC008936B8 /* Photos.plist */; };
 		D8587BAF1A05566800B99D21 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8587BAE1A05566800B99D21 /* Foundation.framework */; };
 		D8587BB11A05566800B99D21 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8587BB01A05566800B99D21 /* CoreGraphics.framework */; };
 		D8587BB31A05566800B99D21 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8587BB21A05566800B99D21 /* UIKit.framework */; };
@@ -30,6 +31,36 @@
 		D8587BD31A05566800B99D21 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8587BB21A05566800B99D21 /* UIKit.framework */; };
 		D8587BDB1A05566800B99D21 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8587BD91A05566800B99D21 /* InfoPlist.strings */; };
 		D8587BDD1A05566800B99D21 /* PhotoViewer3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8587BDC1A05566800B99D21 /* PhotoViewer3Tests.m */; };
+		D880B4151A057071001B73C8 /* BryceCanyon01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B3F81A057071001B73C8 /* BryceCanyon01.jpg */; };
+		D880B4161A057071001B73C8 /* BryceCanyon02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B3F91A057071001B73C8 /* BryceCanyon02.jpg */; };
+		D880B4171A057071001B73C8 /* BryceCanyon03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B3FA1A057071001B73C8 /* BryceCanyon03.jpg */; };
+		D880B4181A057071001B73C8 /* Carlsbad01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B3FB1A057071001B73C8 /* Carlsbad01.jpg */; };
+		D880B4191A057071001B73C8 /* Carlsbad02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B3FC1A057071001B73C8 /* Carlsbad02.jpg */; };
+		D880B41A1A057071001B73C8 /* Carlsbad03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B3FD1A057071001B73C8 /* Carlsbad03.jpg */; };
+		D880B41B1A057071001B73C8 /* Carlsbad04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B3FE1A057071001B73C8 /* Carlsbad04.jpg */; };
+		D880B41C1A057071001B73C8 /* Everglades01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B3FF1A057071001B73C8 /* Everglades01.jpg */; };
+		D880B41D1A057071001B73C8 /* Everglades02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B4001A057071001B73C8 /* Everglades02.jpg */; };
+		D880B41E1A057071001B73C8 /* Glacier01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B4011A057071001B73C8 /* Glacier01.jpg */; };
+		D880B41F1A057071001B73C8 /* Glacier02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B4021A057071001B73C8 /* Glacier02.jpg */; };
+		D880B4201A057071001B73C8 /* Glacier03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B4031A057071001B73C8 /* Glacier03.jpg */; };
+		D880B4211A057071001B73C8 /* Glacier04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B4041A057071001B73C8 /* Glacier04.jpg */; };
+		D880B4221A057071001B73C8 /* GrandTeton01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B4051A057071001B73C8 /* GrandTeton01.jpg */; };
+		D880B4231A057071001B73C8 /* GrandTeton02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B4061A057071001B73C8 /* GrandTeton02.jpg */; };
+		D880B4241A057071001B73C8 /* NationalPark.png in Resources */ = {isa = PBXBuildFile; fileRef = D880B4071A057071001B73C8 /* NationalPark.png */; };
+		D880B4251A057071001B73C8 /* Yellowstone01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B4081A057071001B73C8 /* Yellowstone01.jpg */; };
+		D880B4261A057071001B73C8 /* Yellowstone02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B4091A057071001B73C8 /* Yellowstone02.jpg */; };
+		D880B4271A057071001B73C8 /* Yellowstone03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B40A1A057071001B73C8 /* Yellowstone03.jpg */; };
+		D880B4281A057071001B73C8 /* Yellowstone04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B40B1A057071001B73C8 /* Yellowstone04.jpg */; };
+		D880B4291A057071001B73C8 /* Yosemite01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B40C1A057071001B73C8 /* Yosemite01.jpg */; };
+		D880B42A1A057071001B73C8 /* Yosemite02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B40D1A057071001B73C8 /* Yosemite02.jpg */; };
+		D880B42B1A057071001B73C8 /* Yosemite03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B40E1A057071001B73C8 /* Yosemite03.jpg */; };
+		D880B42C1A057071001B73C8 /* Yosemite04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B40F1A057071001B73C8 /* Yosemite04.jpg */; };
+		D880B42D1A057071001B73C8 /* Yosemite05.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B4101A057071001B73C8 /* Yosemite05.jpg */; };
+		D880B42E1A057071001B73C8 /* Yosemite06.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B4111A057071001B73C8 /* Yosemite06.jpg */; };
+		D880B42F1A057071001B73C8 /* Zion01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B4121A057071001B73C8 /* Zion01.jpg */; };
+		D880B4301A057071001B73C8 /* Zion02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B4131A057071001B73C8 /* Zion02.jpg */; };
+		D880B4311A057071001B73C8 /* Zion03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D880B4141A057071001B73C8 /* Zion03.jpg */; };
+		D880B4341A0589B5001B73C8 /* JCLDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D880B4331A0589B5001B73C8 /* JCLDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +90,7 @@
 		D804501D1A0558DF008936B8 /* JCLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLTableViewCell.m; sourceTree = "<group>"; };
 		D804501E1A0558DF008936B8 /* JCLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLTableViewController.h; sourceTree = "<group>"; };
 		D804501F1A0558DF008936B8 /* JCLTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLTableViewController.m; sourceTree = "<group>"; };
+		D804502B1A0559BC008936B8 /* Photos.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Photos.plist; sourceTree = "<group>"; };
 		D8587BAB1A05566800B99D21 /* PhotoViewer3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoViewer3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8587BAE1A05566800B99D21 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D8587BB01A05566800B99D21 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -79,6 +111,37 @@
 		D8587BD81A05566800B99D21 /* PhotoViewer3Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhotoViewer3Tests-Info.plist"; sourceTree = "<group>"; };
 		D8587BDA1A05566800B99D21 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8587BDC1A05566800B99D21 /* PhotoViewer3Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoViewer3Tests.m; sourceTree = "<group>"; };
+		D880B3F81A057071001B73C8 /* BryceCanyon01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BryceCanyon01.jpg; sourceTree = "<group>"; };
+		D880B3F91A057071001B73C8 /* BryceCanyon02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BryceCanyon02.jpg; sourceTree = "<group>"; };
+		D880B3FA1A057071001B73C8 /* BryceCanyon03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BryceCanyon03.jpg; sourceTree = "<group>"; };
+		D880B3FB1A057071001B73C8 /* Carlsbad01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Carlsbad01.jpg; sourceTree = "<group>"; };
+		D880B3FC1A057071001B73C8 /* Carlsbad02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Carlsbad02.jpg; sourceTree = "<group>"; };
+		D880B3FD1A057071001B73C8 /* Carlsbad03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Carlsbad03.jpg; sourceTree = "<group>"; };
+		D880B3FE1A057071001B73C8 /* Carlsbad04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Carlsbad04.jpg; sourceTree = "<group>"; };
+		D880B3FF1A057071001B73C8 /* Everglades01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Everglades01.jpg; sourceTree = "<group>"; };
+		D880B4001A057071001B73C8 /* Everglades02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Everglades02.jpg; sourceTree = "<group>"; };
+		D880B4011A057071001B73C8 /* Glacier01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Glacier01.jpg; sourceTree = "<group>"; };
+		D880B4021A057071001B73C8 /* Glacier02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Glacier02.jpg; sourceTree = "<group>"; };
+		D880B4031A057071001B73C8 /* Glacier03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Glacier03.jpg; sourceTree = "<group>"; };
+		D880B4041A057071001B73C8 /* Glacier04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Glacier04.jpg; sourceTree = "<group>"; };
+		D880B4051A057071001B73C8 /* GrandTeton01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GrandTeton01.jpg; sourceTree = "<group>"; };
+		D880B4061A057071001B73C8 /* GrandTeton02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GrandTeton02.jpg; sourceTree = "<group>"; };
+		D880B4071A057071001B73C8 /* NationalPark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NationalPark.png; sourceTree = "<group>"; };
+		D880B4081A057071001B73C8 /* Yellowstone01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yellowstone01.jpg; sourceTree = "<group>"; };
+		D880B4091A057071001B73C8 /* Yellowstone02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yellowstone02.jpg; sourceTree = "<group>"; };
+		D880B40A1A057071001B73C8 /* Yellowstone03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yellowstone03.jpg; sourceTree = "<group>"; };
+		D880B40B1A057071001B73C8 /* Yellowstone04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yellowstone04.jpg; sourceTree = "<group>"; };
+		D880B40C1A057071001B73C8 /* Yosemite01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite01.jpg; sourceTree = "<group>"; };
+		D880B40D1A057071001B73C8 /* Yosemite02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite02.jpg; sourceTree = "<group>"; };
+		D880B40E1A057071001B73C8 /* Yosemite03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite03.jpg; sourceTree = "<group>"; };
+		D880B40F1A057071001B73C8 /* Yosemite04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite04.jpg; sourceTree = "<group>"; };
+		D880B4101A057071001B73C8 /* Yosemite05.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite05.jpg; sourceTree = "<group>"; };
+		D880B4111A057071001B73C8 /* Yosemite06.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite06.jpg; sourceTree = "<group>"; };
+		D880B4121A057071001B73C8 /* Zion01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion01.jpg; sourceTree = "<group>"; };
+		D880B4131A057071001B73C8 /* Zion02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion02.jpg; sourceTree = "<group>"; };
+		D880B4141A057071001B73C8 /* Zion03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion03.jpg; sourceTree = "<group>"; };
+		D880B4321A0589B5001B73C8 /* JCLDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLDetailViewController.h; sourceTree = "<group>"; };
+		D880B4331A0589B5001B73C8 /* JCLDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +168,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D80450281A0558FA008936B8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D8587BC01A05566800B99D21 /* Main_iPhone.storyboard */,
+				D8587BC31A05566800B99D21 /* Main_iPad.storyboard */,
+				D804501A1A0558DF008936B8 /* JCLScrollView.h */,
+				D804501B1A0558DF008936B8 /* JCLScrollView.m */,
+				D804501C1A0558DF008936B8 /* JCLTableViewCell.h */,
+				D804501D1A0558DF008936B8 /* JCLTableViewCell.m */,
+				D80450101A0558DF008936B8 /* JCLCollectionReusableView.h */,
+				D80450111A0558DF008936B8 /* JCLCollectionReusableView.m */,
+				D80450121A0558DF008936B8 /* JCLCollectionViewCell.h */,
+				D80450131A0558DF008936B8 /* JCLCollectionViewCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D80450291A055924008936B8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D80450141A0558DF008936B8 /* JCLCollectionViewController.h */,
+				D80450151A0558DF008936B8 /* JCLCollectionViewController.m */,
+				D804501E1A0558DF008936B8 /* JCLTableViewController.h */,
+				D804501F1A0558DF008936B8 /* JCLTableViewController.m */,
+				D8587BC61A05566800B99D21 /* JCLViewController.h */,
+				D8587BC71A05566800B99D21 /* JCLViewController.m */,
+				D880B4321A0589B5001B73C8 /* JCLDetailViewController.h */,
+				D880B4331A0589B5001B73C8 /* JCLDetailViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		D804502A1A05593F008936B8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D80450181A0558DF008936B8 /* JCLModel.h */,
+				D80450191A0558DF008936B8 /* JCLModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		D8587BA21A05566800B99D21 = {
 			isa = PBXGroup;
 			children = (
@@ -138,28 +242,10 @@
 		D8587BB41A05566800B99D21 /* PhotoViewer3 */ = {
 			isa = PBXGroup;
 			children = (
-				D80450101A0558DF008936B8 /* JCLCollectionReusableView.h */,
-				D80450111A0558DF008936B8 /* JCLCollectionReusableView.m */,
-				D80450121A0558DF008936B8 /* JCLCollectionViewCell.h */,
-				D80450131A0558DF008936B8 /* JCLCollectionViewCell.m */,
-				D80450141A0558DF008936B8 /* JCLCollectionViewController.h */,
-				D80450151A0558DF008936B8 /* JCLCollectionViewController.m */,
-				D80450161A0558DF008936B8 /* JCLConstants.h */,
-				D80450171A0558DF008936B8 /* JCLConstants.m */,
-				D80450181A0558DF008936B8 /* JCLModel.h */,
-				D80450191A0558DF008936B8 /* JCLModel.m */,
-				D804501A1A0558DF008936B8 /* JCLScrollView.h */,
-				D804501B1A0558DF008936B8 /* JCLScrollView.m */,
-				D804501C1A0558DF008936B8 /* JCLTableViewCell.h */,
-				D804501D1A0558DF008936B8 /* JCLTableViewCell.m */,
-				D804501E1A0558DF008936B8 /* JCLTableViewController.h */,
-				D804501F1A0558DF008936B8 /* JCLTableViewController.m */,
-				D8587BBD1A05566800B99D21 /* JCLAppDelegate.h */,
-				D8587BBE1A05566800B99D21 /* JCLAppDelegate.m */,
-				D8587BC01A05566800B99D21 /* Main_iPhone.storyboard */,
-				D8587BC31A05566800B99D21 /* Main_iPad.storyboard */,
-				D8587BC61A05566800B99D21 /* JCLViewController.h */,
-				D8587BC71A05566800B99D21 /* JCLViewController.m */,
+				D880B3F71A057071001B73C8 /* Photos */,
+				D804502A1A05593F008936B8 /* Models */,
+				D80450291A055924008936B8 /* Controllers */,
+				D80450281A0558FA008936B8 /* Views */,
 				D8587BC91A05566800B99D21 /* Images.xcassets */,
 				D8587BB51A05566800B99D21 /* Supporting Files */,
 			);
@@ -169,6 +255,11 @@
 		D8587BB51A05566800B99D21 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D804502B1A0559BC008936B8 /* Photos.plist */,
+				D80450161A0558DF008936B8 /* JCLConstants.h */,
+				D80450171A0558DF008936B8 /* JCLConstants.m */,
+				D8587BBD1A05566800B99D21 /* JCLAppDelegate.h */,
+				D8587BBE1A05566800B99D21 /* JCLAppDelegate.m */,
 				D8587BB61A05566800B99D21 /* PhotoViewer3-Info.plist */,
 				D8587BB71A05566800B99D21 /* InfoPlist.strings */,
 				D8587BBA1A05566800B99D21 /* main.m */,
@@ -193,6 +284,42 @@
 				D8587BD91A05566800B99D21 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D880B3F71A057071001B73C8 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				D880B3F81A057071001B73C8 /* BryceCanyon01.jpg */,
+				D880B3F91A057071001B73C8 /* BryceCanyon02.jpg */,
+				D880B3FA1A057071001B73C8 /* BryceCanyon03.jpg */,
+				D880B3FB1A057071001B73C8 /* Carlsbad01.jpg */,
+				D880B3FC1A057071001B73C8 /* Carlsbad02.jpg */,
+				D880B3FD1A057071001B73C8 /* Carlsbad03.jpg */,
+				D880B3FE1A057071001B73C8 /* Carlsbad04.jpg */,
+				D880B3FF1A057071001B73C8 /* Everglades01.jpg */,
+				D880B4001A057071001B73C8 /* Everglades02.jpg */,
+				D880B4011A057071001B73C8 /* Glacier01.jpg */,
+				D880B4021A057071001B73C8 /* Glacier02.jpg */,
+				D880B4031A057071001B73C8 /* Glacier03.jpg */,
+				D880B4041A057071001B73C8 /* Glacier04.jpg */,
+				D880B4051A057071001B73C8 /* GrandTeton01.jpg */,
+				D880B4061A057071001B73C8 /* GrandTeton02.jpg */,
+				D880B4071A057071001B73C8 /* NationalPark.png */,
+				D880B4081A057071001B73C8 /* Yellowstone01.jpg */,
+				D880B4091A057071001B73C8 /* Yellowstone02.jpg */,
+				D880B40A1A057071001B73C8 /* Yellowstone03.jpg */,
+				D880B40B1A057071001B73C8 /* Yellowstone04.jpg */,
+				D880B40C1A057071001B73C8 /* Yosemite01.jpg */,
+				D880B40D1A057071001B73C8 /* Yosemite02.jpg */,
+				D880B40E1A057071001B73C8 /* Yosemite03.jpg */,
+				D880B40F1A057071001B73C8 /* Yosemite04.jpg */,
+				D880B4101A057071001B73C8 /* Yosemite05.jpg */,
+				D880B4111A057071001B73C8 /* Yosemite06.jpg */,
+				D880B4121A057071001B73C8 /* Zion01.jpg */,
+				D880B4131A057071001B73C8 /* Zion02.jpg */,
+				D880B4141A057071001B73C8 /* Zion03.jpg */,
+			);
+			path = Photos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,10 +399,40 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D880B4271A057071001B73C8 /* Yellowstone03.jpg in Resources */,
+				D880B42D1A057071001B73C8 /* Yosemite05.jpg in Resources */,
+				D880B42A1A057071001B73C8 /* Yosemite02.jpg in Resources */,
+				D880B4171A057071001B73C8 /* BryceCanyon03.jpg in Resources */,
+				D880B41D1A057071001B73C8 /* Everglades02.jpg in Resources */,
+				D880B4251A057071001B73C8 /* Yellowstone01.jpg in Resources */,
+				D880B41E1A057071001B73C8 /* Glacier01.jpg in Resources */,
+				D880B4241A057071001B73C8 /* NationalPark.png in Resources */,
+				D880B4221A057071001B73C8 /* GrandTeton01.jpg in Resources */,
+				D880B4191A057071001B73C8 /* Carlsbad02.jpg in Resources */,
 				D8587BC51A05566800B99D21 /* Main_iPad.storyboard in Resources */,
+				D880B41F1A057071001B73C8 /* Glacier02.jpg in Resources */,
+				D880B42C1A057071001B73C8 /* Yosemite04.jpg in Resources */,
 				D8587BCA1A05566800B99D21 /* Images.xcassets in Resources */,
+				D880B4291A057071001B73C8 /* Yosemite01.jpg in Resources */,
+				D880B4201A057071001B73C8 /* Glacier03.jpg in Resources */,
+				D880B41C1A057071001B73C8 /* Everglades01.jpg in Resources */,
+				D880B42B1A057071001B73C8 /* Yosemite03.jpg in Resources */,
+				D880B4181A057071001B73C8 /* Carlsbad01.jpg in Resources */,
+				D880B4161A057071001B73C8 /* BryceCanyon02.jpg in Resources */,
+				D880B4301A057071001B73C8 /* Zion02.jpg in Resources */,
 				D8587BC21A05566800B99D21 /* Main_iPhone.storyboard in Resources */,
 				D8587BB91A05566800B99D21 /* InfoPlist.strings in Resources */,
+				D880B4261A057071001B73C8 /* Yellowstone02.jpg in Resources */,
+				D880B4151A057071001B73C8 /* BryceCanyon01.jpg in Resources */,
+				D880B41B1A057071001B73C8 /* Carlsbad04.jpg in Resources */,
+				D880B41A1A057071001B73C8 /* Carlsbad03.jpg in Resources */,
+				D880B42F1A057071001B73C8 /* Zion01.jpg in Resources */,
+				D880B4311A057071001B73C8 /* Zion03.jpg in Resources */,
+				D804502C1A0559BC008936B8 /* Photos.plist in Resources */,
+				D880B4211A057071001B73C8 /* Glacier04.jpg in Resources */,
+				D880B42E1A057071001B73C8 /* Yosemite06.jpg in Resources */,
+				D880B4231A057071001B73C8 /* GrandTeton02.jpg in Resources */,
+				D880B4281A057071001B73C8 /* Yellowstone04.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +462,7 @@
 				D80450231A0558DF008936B8 /* JCLConstants.m in Sources */,
 				D80450241A0558DF008936B8 /* JCLModel.m in Sources */,
 				D80450251A0558DF008936B8 /* JCLScrollView.m in Sources */,
+				D880B4341A0589B5001B73C8 /* JCLDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
