@@ -37,23 +37,11 @@
     self.caption.text = self.captionText;
 }
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSLog(@"About to segue.");
     if ([segue.identifier isEqualToString:@"DetailToZoom"]){
-        NSLog(@"Segue from detail to zoom.");
         JCLZoomViewController *destController = segue.destinationViewController;
         destController.passedImage = self.imgView.image;
+        destController.navigationItem.title = self.captionText;
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

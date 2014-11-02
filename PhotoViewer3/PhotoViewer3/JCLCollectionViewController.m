@@ -14,15 +14,14 @@
 #import "JCLModel.h"
 #import "JCLConstants.h"
 
-@interface JCLCollectionViewController () <UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate>
+@interface JCLCollectionViewController () <UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) JCLModel *model;
 @property CGRect startingFrame;
 
-@property (nonatomic, strong) NSString *captionToSend;
-@property (nonatomic, strong) UIImage *imgToSend;
+@property (nonatomic, strong) NSIndexPath *indexToSend;
 
 @end
 
@@ -127,61 +126,17 @@ const CGFloat kSectionLineSpacing = 10.0;
 #pragma mark Collection View Delegate
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    self.captionToSend = [self.model nameOfImage:indexPath.row fromSet:indexPath.section];
-    self.imgToSend = [self.model image:indexPath.row fromSet:indexPath.section];
-    
+    self.indexToSend = indexPath;
     [self performSegueWithIdentifier:@"CollectionToDetail" sender:self];
-    
-    /*
-    
-    UIImageView *imageView = (UIImageView *)(cell.backgroundView);
-    CGPoint offset = collectionView.contentOffset;
-    CGRect realCellFrame = CGRectMake(cell.frame.origin.x - offset.x, cell.frame.origin.y - offset.y, cell.frame.size.width, cell.frame.size.height);
-    JCLScrollView *scrollView = [[JCLScrollView alloc] initWithFrame:realCellFrame];
-    self.startingFrame = realCellFrame;
-    scrollView.imgView = imageView;
-    [scrollView addSubview:imageView];
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRecognized:)];
-    [scrollView addGestureRecognizer:tapRecognizer];
-    [self.view addSubview:scrollView];
-    
-    [self.collectionView setUserInteractionEnabled:false];
-    [UIView animateWithDuration:kResizeAnimationTime animations:^{
-        scrollView.frame = self.view.frame;
-        self.collectionView.alpha = 0.0;
-        self.toolbar.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        [scrollView setUserInteractionEnabled:true];
-        [scrollView setContentSize:((UIView*)[[scrollView subviews] objectAtIndex:0]).bounds.size];
-    }];
-     */
-}
-- (void)tapRecognized:(UITapGestureRecognizer *)recognizer{
-    JCLScrollView *scrollView = (JCLScrollView *)(recognizer.view);
-    if (scrollView.zoomScale != 1.0){
-        return;
-    }
-    [UIView animateWithDuration:kResizeAnimationTime animations:^{
-        scrollView.frame = self.startingFrame;
-        self.collectionView.alpha = 1.0;
-        self.toolbar.alpha = 1.0;
-    } completion:^(BOOL finished) {
-        [scrollView removeFromSuperview];
-        [self.collectionView setUserInteractionEnabled:true];
-    }];
 }
 
 #pragma mark Segue
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"CollectionToDetail"]){
-        NSLog(@"Performing Collection to Detail Segue");
         JCLDetailViewController *destController = segue.destinationViewController;
-        if (self.imgToSend){
-            NSLog(@"Image loaded.");
-        }
-        destController.image = self.imgToSend;
-        destController.captionText = self.captionToSend;
+        destController.captionText = [self.model nameOfImage:self.indexToSend.row fromSet:self.indexToSend.section];;
+        destController.image = [self.model image:self.indexToSend.row fromSet:self.indexToSend.section];
+        destController.navigationItem.title = [self.model nameOfSet:self.indexToSend.section];
     }
 }
 @end

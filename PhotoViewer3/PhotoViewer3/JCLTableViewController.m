@@ -20,9 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) JCLModel *model;
 @property (nonatomic, strong) NSMutableDictionary *closedSections;
-@property CGRect startingFrame;
-@property (nonatomic, strong) UIImage *imgToSend;
-@property (nonatomic, strong) NSString *captionToSend;
+@property (nonatomic, strong) NSIndexPath* indexToSend;
 
 @end
 
@@ -34,7 +32,7 @@
     if (self) {
         _model = [JCLModel sharedInstance];
         _closedSections = [[NSMutableDictionary alloc] init];
-    }
+            }
     return self;
 }
 
@@ -49,6 +47,9 @@
 
 - (void)viewDidLoad
 {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 100, 0)];
+    }
     [self.tableView reloadData];
 }
 
@@ -61,18 +62,23 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"asdf");
     if ([self.closedSections objectForKey:[NSNumber numberWithInteger:section]]){
+        NSLog(@"Section %d has 0", section);
         return 0;
     } else{
+        NSLog(@"Section %d has %d", section, [self.model sizeOfSet:section]);
         return [self.model sizeOfSet:section];
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
     if ([self.closedSections objectForKey:[NSNumber numberWithInteger:indexPath.section]]){
         return nil;
     }
+     */
     JCLTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TableCell" forIndexPath:indexPath];
     
     NSInteger photosetIndex = indexPath.section;
@@ -130,17 +136,19 @@
     return view;    
 }
 
+#pragma mark TableView Delegate Methods
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone){
         [tableView deselectRowAtIndexPath:indexPath animated:false];
-        
-        self.imgToSend = [self.model image:indexPath.row fromSet:indexPath.section];
-        self.captionToSend = [self.model nameOfImage:indexPath.row fromSet:indexPath.section];
-        
+        self.indexToSend = indexPath;
         [self performSegueWithIdentifier:@"TableToDetail" sender:self];
+    } else{
+        NSLog(@"hello");
     }
 }
+
+#pragma mark Button Reactions
 
 - (IBAction)sectionPressed:(id)sender{
     NSInteger sectionIndex = [sender tag];
@@ -152,11 +160,14 @@
     [self.tableView reloadData];
 }
 
+#pragma mark Segue
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"TableToDetail"]){
         JCLDetailViewController *destController = segue.destinationViewController;
-        destController.image = self.imgToSend;
-        destController.captionText = self.captionToSend;
+        destController.image = [self.model image:self.indexToSend.row fromSet:self.indexToSend.section];
+        destController.captionText = [self.model nameOfImage:self.indexToSend.row fromSet:self.indexToSend.section];
+        destController.navigationItem.title = [self.model nameOfSet:self.indexToSend.section];
     }
 }
 
