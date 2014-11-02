@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JCLZoomViewController.h"
 
-@interface JCLDetailViewController : UIViewController
+@interface JCLDetailViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *caption;
@@ -16,4 +17,8 @@
 @property (nonatomic, strong) NSString *captionText;
 @property (nonatomic, strong) UIImage *image;
 
+@property BOOL isUnwound;
+@property JCLZoomViewController *zoomController;
+
+- (void) reloadData;
 @end

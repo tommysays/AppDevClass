@@ -10,7 +10,4 @@
 
 @interface JCLScrollView : UIScrollView <UIScrollViewDelegate>
 
-//@property (nonatomic, weak) IBOutlet UIImageView *imgView;
-- (void) adjustContentSize;
-
 @end

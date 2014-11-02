@@ -21,10 +21,18 @@
 @property (nonatomic, strong) JCLModel *model;
 @property (nonatomic, strong) NSMutableDictionary *closedSections;
 @property (nonatomic, strong) NSIndexPath* indexToSend;
+@property (nonatomic, strong) JCLDetailViewController *detailViewController;
 
 @end
 
 @implementation JCLTableViewController
+
+-(void)awakeFromNib
+{
+    UINavigationController *navController = [self.splitViewController.viewControllers lastObject];
+    self.detailViewController = (id)navController.topViewController;
+    self.splitViewController.delegate = self.detailViewController;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -62,12 +70,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"asdf");
     if ([self.closedSections objectForKey:[NSNumber numberWithInteger:section]]){
-        NSLog(@"Section %d has 0", section);
         return 0;
     } else{
-        NSLog(@"Section %d has %d", section, [self.model sizeOfSet:section]);
         return [self.model sizeOfSet:section];
     }
 }
@@ -144,7 +149,13 @@
         self.indexToSend = indexPath;
         [self performSegueWithIdentifier:@"TableToDetail" sender:self];
     } else{
-        NSLog(@"hello");
+        self.detailViewController.image = [self.model image:indexPath.row fromSet:indexPath.section];
+        self.detailViewController.captionText = [self.model nameOfImage:indexPath.row fromSet:indexPath.section];
+        [self.detailViewController reloadData];
+        if (self.detailViewController.isUnwound == NO){
+            [self.detailViewController.zoomController.navigationController popViewControllerAnimated:YES];
+            self.detailViewController.isUnwound = YES;
+        }
     }
 }
 

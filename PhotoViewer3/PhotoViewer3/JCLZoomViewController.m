@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Joshua Lee. All rights reserved.
 //
 
+#import "JCLConstants.h"
 #import "JCLZoomViewController.h"
 
 @interface JCLZoomViewController () <UIScrollViewDelegate>
@@ -21,9 +22,26 @@
     self.zoomImg = [[UIImageView alloc] initWithFrame:self.view.frame];
     self.zoomImg.image = self.passedImage;
     self.zoomImg.contentMode = UIViewContentModeScaleAspectFit;
+    if (self.zoomImg.image){
+        NSLog(@"nosodfijs");
+    }
     [self.scrollView addSubview:self.zoomImg];
     self.scrollView.delegate = self;
     [self.view addSubview:self.scrollView];
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+    self.scrollView.frame = self.view.frame;
+    self.zoomImg.frame = self.view.frame;
+    [self adjustContentSize];
+}
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    [UIView animateWithDuration:kRotationDuration animations:^{
+        self.scrollView.center = self.view.center;
+    } completion:^(BOOL finished) {
+        [self adjustContentSize];
+    }];
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{

@@ -26,6 +26,8 @@
 #define kMinimumZoomScale 1.0
 #define kMaximumZoomScale 10.0
 
+#define kRotationDuration 0.15
+
 #endif
 
 @interface JCLConstants : NSObject
