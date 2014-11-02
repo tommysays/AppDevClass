@@ -22,9 +22,6 @@
     self.zoomImg = [[UIImageView alloc] initWithFrame:self.view.frame];
     self.zoomImg.image = self.passedImage;
     self.zoomImg.contentMode = UIViewContentModeScaleAspectFit;
-    if (self.zoomImg.image){
-        NSLog(@"nosodfijs");
-    }
     [self.scrollView addSubview:self.zoomImg];
     self.scrollView.delegate = self;
     [self.view addSubview:self.scrollView];

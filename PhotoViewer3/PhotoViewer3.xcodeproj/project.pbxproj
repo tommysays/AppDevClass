@@ -24,7 +24,6 @@
 		D8587BBF1A05566800B99D21 /* JCLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8587BBE1A05566800B99D21 /* JCLAppDelegate.m */; };
 		D8587BC21A05566800B99D21 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8587BC01A05566800B99D21 /* Main_iPhone.storyboard */; };
 		D8587BC51A05566800B99D21 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8587BC31A05566800B99D21 /* Main_iPad.storyboard */; };
-		D8587BC81A05566800B99D21 /* JCLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8587BC71A05566800B99D21 /* JCLViewController.m */; };
 		D8587BCA1A05566800B99D21 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8587BC91A05566800B99D21 /* Images.xcassets */; };
 		D8587BD11A05566800B99D21 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8587BD01A05566800B99D21 /* XCTest.framework */; };
 		D8587BD21A05566800B99D21 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8587BAE1A05566800B99D21 /* Foundation.framework */; };
@@ -104,8 +103,6 @@
 		D8587BBE1A05566800B99D21 /* JCLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCLAppDelegate.m; sourceTree = "<group>"; };
 		D8587BC11A05566800B99D21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		D8587BC41A05566800B99D21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		D8587BC61A05566800B99D21 /* JCLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCLViewController.h; sourceTree = "<group>"; };
-		D8587BC71A05566800B99D21 /* JCLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCLViewController.m; sourceTree = "<group>"; };
 		D8587BC91A05566800B99D21 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D8587BCF1A05566800B99D21 /* PhotoViewer3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoViewer3Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8587BD01A05566800B99D21 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -195,8 +192,6 @@
 				D80450151A0558DF008936B8 /* JCLCollectionViewController.m */,
 				D804501E1A0558DF008936B8 /* JCLTableViewController.h */,
 				D804501F1A0558DF008936B8 /* JCLTableViewController.m */,
-				D8587BC61A05566800B99D21 /* JCLViewController.h */,
-				D8587BC71A05566800B99D21 /* JCLViewController.m */,
 				D880B4321A0589B5001B73C8 /* JCLDetailViewController.h */,
 				D880B4331A0589B5001B73C8 /* JCLDetailViewController.m */,
 				D880B4351A0596AC001B73C8 /* JCLZoomViewController.h */,
@@ -461,7 +456,6 @@
 				D8587BBF1A05566800B99D21 /* JCLAppDelegate.m in Sources */,
 				D80450261A0558DF008936B8 /* JCLTableViewCell.m in Sources */,
 				D80450201A0558DF008936B8 /* JCLCollectionReusableView.m in Sources */,
-				D8587BC81A05566800B99D21 /* JCLViewController.m in Sources */,
 				D8587BBB1A05566800B99D21 /* main.m in Sources */,
 				D80450271A0558DF008936B8 /* JCLTableViewController.m in Sources */,
 				D80450231A0558DF008936B8 /* JCLConstants.m in Sources */,

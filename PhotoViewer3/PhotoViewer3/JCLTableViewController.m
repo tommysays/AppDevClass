@@ -79,11 +79,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    if ([self.closedSections objectForKey:[NSNumber numberWithInteger:indexPath.section]]){
-        return nil;
-    }
-     */
     JCLTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TableCell" forIndexPath:indexPath];
     
     NSInteger photosetIndex = indexPath.section;

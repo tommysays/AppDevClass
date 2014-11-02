@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JCLZoomViewController.h"
 
+
 @interface JCLDetailViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;

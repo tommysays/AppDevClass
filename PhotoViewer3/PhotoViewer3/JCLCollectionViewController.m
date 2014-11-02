@@ -42,10 +42,6 @@ const CGFloat kSectionLineSpacing = 10.0;
     [self.collectionView reloadData];
 }
 
-- (void) viewWillAppear:(BOOL)animated{
-    //[self.collectionView reloadData];
-}
-
 #pragma mark Collection View Data Source
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
