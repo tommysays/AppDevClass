@@ -22,6 +22,7 @@
 		D81358501A0EFE10001D856B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D813582F1A0EFE10001D856B /* UIKit.framework */; };
 		D81358581A0EFE10001D856B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D81358561A0EFE10001D856B /* InfoPlist.strings */; };
 		D813585A1A0EFE10001D856B /* Final_Project_ProposalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D81358591A0EFE10001D856B /* Final_Project_ProposalTests.m */; };
+		D8B4B8301A0F20D600660D24 /* app_proposal.docx in Resources */ = {isa = PBXBuildFile; fileRef = D8B4B82F1A0F20D600660D24 /* app_proposal.docx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		D81358551A0EFE10001D856B /* Final Project ProposalTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Final Project ProposalTests-Info.plist"; sourceTree = "<group>"; };
 		D81358571A0EFE10001D856B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D81358591A0EFE10001D856B /* Final_Project_ProposalTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Final_Project_ProposalTests.m; sourceTree = "<group>"; };
+		D8B4B82F1A0F20D600660D24 /* app_proposal.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = app_proposal.docx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		D813581F1A0EFE10001D856B = {
 			isa = PBXGroup;
 			children = (
+				D8B4B82F1A0F20D600660D24 /* app_proposal.docx */,
 				D81358311A0EFE10001D856B /* Final Project Proposal */,
 				D81358531A0EFE10001D856B /* Final Project ProposalTests */,
 				D813582A1A0EFE10001D856B /* Frameworks */,
@@ -236,6 +239,7 @@
 				D81358471A0EFE10001D856B /* Images.xcassets in Resources */,
 				D813583F1A0EFE10001D856B /* Main_iPhone.storyboard in Resources */,
 				D81358361A0EFE10001D856B /* InfoPlist.strings in Resources */,
+				D8B4B8301A0F20D600660D24 /* app_proposal.docx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +475,7 @@
 				D813585F1A0EFE10001D856B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D81358601A0EFE10001D856B /* Build configuration list for PBXNativeTarget "Final Project ProposalTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +484,7 @@
 				D81358621A0EFE10001D856B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
