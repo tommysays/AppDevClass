@@ -1,0 +1,666 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D85C5AF01A102215001DCC6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85C5AEF1A102215001DCC6B /* Foundation.framework */; };
+		D85C5AF21A102215001DCC6B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85C5AF11A102215001DCC6B /* CoreGraphics.framework */; };
+		D85C5AF41A102215001DCC6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85C5AF31A102215001DCC6B /* UIKit.framework */; };
+		D85C5AFA1A102215001DCC6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D85C5AF81A102215001DCC6B /* InfoPlist.strings */; };
+		D85C5AFC1A102215001DCC6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D85C5AFB1A102215001DCC6B /* main.m */; };
+		D85C5B001A102215001DCC6B /* JCLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D85C5AFF1A102215001DCC6B /* JCLAppDelegate.m */; };
+		D85C5B031A102215001DCC6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B011A102215001DCC6B /* Main.storyboard */; };
+		D85C5B061A102215001DCC6B /* JCLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D85C5B051A102215001DCC6B /* JCLViewController.m */; };
+		D85C5B081A102215001DCC6B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B071A102215001DCC6B /* Images.xcassets */; };
+		D85C5B0F1A102215001DCC6B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85C5B0E1A102215001DCC6B /* XCTest.framework */; };
+		D85C5B101A102215001DCC6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85C5AEF1A102215001DCC6B /* Foundation.framework */; };
+		D85C5B111A102215001DCC6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85C5AF31A102215001DCC6B /* UIKit.framework */; };
+		D85C5B191A102215001DCC6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B171A102215001DCC6B /* InfoPlist.strings */; };
+		D85C5B1B1A102215001DCC6B /* PhotoViewer4Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D85C5B1A1A102215001DCC6B /* PhotoViewer4Tests.m */; };
+		D85C5B521A1022AF001DCC6B /* JCLConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D85C5B261A1022AF001DCC6B /* JCLConstants.m */; };
+		D85C5B531A1022AF001DCC6B /* JCLDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D85C5B281A1022AF001DCC6B /* JCLDetailViewController.m */; };
+		D85C5B541A1022AF001DCC6B /* JCLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D85C5B2A1A1022AF001DCC6B /* JCLModel.m */; };
+		D85C5B551A1022AF001DCC6B /* JCLScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D85C5B2C1A1022AF001DCC6B /* JCLScrollView.m */; };
+		D85C5B561A1022AF001DCC6B /* JCLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D85C5B2E1A1022AF001DCC6B /* JCLTableViewCell.m */; };
+		D85C5B571A1022AF001DCC6B /* JCLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D85C5B301A1022AF001DCC6B /* JCLTableViewController.m */; };
+		D85C5B581A1022AF001DCC6B /* JCLZoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D85C5B321A1022AF001DCC6B /* JCLZoomViewController.m */; };
+		D85C5B591A1022AF001DCC6B /* BryceCanyon01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B341A1022AF001DCC6B /* BryceCanyon01.jpg */; };
+		D85C5B5A1A1022AF001DCC6B /* BryceCanyon02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B351A1022AF001DCC6B /* BryceCanyon02.jpg */; };
+		D85C5B5B1A1022AF001DCC6B /* BryceCanyon03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B361A1022AF001DCC6B /* BryceCanyon03.jpg */; };
+		D85C5B5C1A1022AF001DCC6B /* Carlsbad01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B371A1022AF001DCC6B /* Carlsbad01.jpg */; };
+		D85C5B5D1A1022AF001DCC6B /* Carlsbad02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B381A1022AF001DCC6B /* Carlsbad02.jpg */; };
+		D85C5B5E1A1022AF001DCC6B /* Carlsbad03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B391A1022AF001DCC6B /* Carlsbad03.jpg */; };
+		D85C5B5F1A1022AF001DCC6B /* Carlsbad04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B3A1A1022AF001DCC6B /* Carlsbad04.jpg */; };
+		D85C5B601A1022AF001DCC6B /* Everglades01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B3B1A1022AF001DCC6B /* Everglades01.jpg */; };
+		D85C5B611A1022AF001DCC6B /* Everglades02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B3C1A1022AF001DCC6B /* Everglades02.jpg */; };
+		D85C5B621A1022AF001DCC6B /* Glacier01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B3D1A1022AF001DCC6B /* Glacier01.jpg */; };
+		D85C5B631A1022AF001DCC6B /* Glacier02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B3E1A1022AF001DCC6B /* Glacier02.jpg */; };
+		D85C5B641A1022AF001DCC6B /* Glacier03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B3F1A1022AF001DCC6B /* Glacier03.jpg */; };
+		D85C5B651A1022AF001DCC6B /* Glacier04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B401A1022AF001DCC6B /* Glacier04.jpg */; };
+		D85C5B661A1022AF001DCC6B /* GrandTeton01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B411A1022AF001DCC6B /* GrandTeton01.jpg */; };
+		D85C5B671A1022AF001DCC6B /* GrandTeton02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B421A1022AF001DCC6B /* GrandTeton02.jpg */; };
+		D85C5B681A1022AF001DCC6B /* NationalPark.png in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B431A1022AF001DCC6B /* NationalPark.png */; };
+		D85C5B691A1022AF001DCC6B /* Yellowstone01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B441A1022AF001DCC6B /* Yellowstone01.jpg */; };
+		D85C5B6A1A1022AF001DCC6B /* Yellowstone02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B451A1022AF001DCC6B /* Yellowstone02.jpg */; };
+		D85C5B6B1A1022AF001DCC6B /* Yellowstone03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B461A1022AF001DCC6B /* Yellowstone03.jpg */; };
+		D85C5B6C1A1022AF001DCC6B /* Yellowstone04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B471A1022AF001DCC6B /* Yellowstone04.jpg */; };
+		D85C5B6D1A1022AF001DCC6B /* Yosemite01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B481A1022AF001DCC6B /* Yosemite01.jpg */; };
+		D85C5B6E1A1022AF001DCC6B /* Yosemite02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B491A1022AF001DCC6B /* Yosemite02.jpg */; };
+		D85C5B6F1A1022AF001DCC6B /* Yosemite03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B4A1A1022AF001DCC6B /* Yosemite03.jpg */; };
+		D85C5B701A1022AF001DCC6B /* Yosemite04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B4B1A1022AF001DCC6B /* Yosemite04.jpg */; };
+		D85C5B711A1022AF001DCC6B /* Yosemite05.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B4C1A1022AF001DCC6B /* Yosemite05.jpg */; };
+		D85C5B721A1022AF001DCC6B /* Yosemite06.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B4D1A1022AF001DCC6B /* Yosemite06.jpg */; };
+		D85C5B731A1022AF001DCC6B /* Zion01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B4E1A1022AF001DCC6B /* Zion01.jpg */; };
+		D85C5B741A1022AF001DCC6B /* Zion02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B4F1A1022AF001DCC6B /* Zion02.jpg */; };
+		D85C5B751A1022AF001DCC6B /* Zion03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B501A1022AF001DCC6B /* Zion03.jpg */; };
+		D85C5B761A1022AF001DCC6B /* Photos.plist in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B511A1022AF001DCC6B /* Photos.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D85C5B121A102215001DCC6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D85C5AE41A102215001DCC6B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D85C5AEB1A102215001DCC6B;
+			remoteInfo = PhotoViewer4;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D85C5AEC1A102215001DCC6B /* PhotoViewer4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoViewer4.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D85C5AEF1A102215001DCC6B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D85C5AF11A102215001DCC6B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D85C5AF31A102215001DCC6B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D85C5AF71A102215001DCC6B /* PhotoViewer4-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhotoViewer4-Info.plist"; sourceTree = "<group>"; };
+		D85C5AF91A102215001DCC6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D85C5AFB1A102215001DCC6B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D85C5AFD1A102215001DCC6B /* PhotoViewer4-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PhotoViewer4-Prefix.pch"; sourceTree = "<group>"; };
+		D85C5AFE1A102215001DCC6B /* JCLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCLAppDelegate.h; sourceTree = "<group>"; };
+		D85C5AFF1A102215001DCC6B /* JCLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCLAppDelegate.m; sourceTree = "<group>"; };
+		D85C5B021A102215001DCC6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D85C5B041A102215001DCC6B /* JCLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCLViewController.h; sourceTree = "<group>"; };
+		D85C5B051A102215001DCC6B /* JCLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCLViewController.m; sourceTree = "<group>"; };
+		D85C5B071A102215001DCC6B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D85C5B0D1A102215001DCC6B /* PhotoViewer4Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoViewer4Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D85C5B0E1A102215001DCC6B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D85C5B161A102215001DCC6B /* PhotoViewer4Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhotoViewer4Tests-Info.plist"; sourceTree = "<group>"; };
+		D85C5B181A102215001DCC6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D85C5B1A1A102215001DCC6B /* PhotoViewer4Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoViewer4Tests.m; sourceTree = "<group>"; };
+		D85C5B251A1022AF001DCC6B /* JCLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLConstants.h; sourceTree = "<group>"; };
+		D85C5B261A1022AF001DCC6B /* JCLConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLConstants.m; sourceTree = "<group>"; };
+		D85C5B271A1022AF001DCC6B /* JCLDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLDetailViewController.h; sourceTree = "<group>"; };
+		D85C5B281A1022AF001DCC6B /* JCLDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLDetailViewController.m; sourceTree = "<group>"; };
+		D85C5B291A1022AF001DCC6B /* JCLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLModel.h; sourceTree = "<group>"; };
+		D85C5B2A1A1022AF001DCC6B /* JCLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLModel.m; sourceTree = "<group>"; };
+		D85C5B2B1A1022AF001DCC6B /* JCLScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLScrollView.h; sourceTree = "<group>"; };
+		D85C5B2C1A1022AF001DCC6B /* JCLScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLScrollView.m; sourceTree = "<group>"; };
+		D85C5B2D1A1022AF001DCC6B /* JCLTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLTableViewCell.h; sourceTree = "<group>"; };
+		D85C5B2E1A1022AF001DCC6B /* JCLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLTableViewCell.m; sourceTree = "<group>"; };
+		D85C5B2F1A1022AF001DCC6B /* JCLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLTableViewController.h; sourceTree = "<group>"; };
+		D85C5B301A1022AF001DCC6B /* JCLTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLTableViewController.m; sourceTree = "<group>"; };
+		D85C5B311A1022AF001DCC6B /* JCLZoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLZoomViewController.h; sourceTree = "<group>"; };
+		D85C5B321A1022AF001DCC6B /* JCLZoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLZoomViewController.m; sourceTree = "<group>"; };
+		D85C5B341A1022AF001DCC6B /* BryceCanyon01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BryceCanyon01.jpg; sourceTree = "<group>"; };
+		D85C5B351A1022AF001DCC6B /* BryceCanyon02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BryceCanyon02.jpg; sourceTree = "<group>"; };
+		D85C5B361A1022AF001DCC6B /* BryceCanyon03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BryceCanyon03.jpg; sourceTree = "<group>"; };
+		D85C5B371A1022AF001DCC6B /* Carlsbad01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Carlsbad01.jpg; sourceTree = "<group>"; };
+		D85C5B381A1022AF001DCC6B /* Carlsbad02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Carlsbad02.jpg; sourceTree = "<group>"; };
+		D85C5B391A1022AF001DCC6B /* Carlsbad03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Carlsbad03.jpg; sourceTree = "<group>"; };
+		D85C5B3A1A1022AF001DCC6B /* Carlsbad04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Carlsbad04.jpg; sourceTree = "<group>"; };
+		D85C5B3B1A1022AF001DCC6B /* Everglades01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Everglades01.jpg; sourceTree = "<group>"; };
+		D85C5B3C1A1022AF001DCC6B /* Everglades02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Everglades02.jpg; sourceTree = "<group>"; };
+		D85C5B3D1A1022AF001DCC6B /* Glacier01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Glacier01.jpg; sourceTree = "<group>"; };
+		D85C5B3E1A1022AF001DCC6B /* Glacier02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Glacier02.jpg; sourceTree = "<group>"; };
+		D85C5B3F1A1022AF001DCC6B /* Glacier03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Glacier03.jpg; sourceTree = "<group>"; };
+		D85C5B401A1022AF001DCC6B /* Glacier04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Glacier04.jpg; sourceTree = "<group>"; };
+		D85C5B411A1022AF001DCC6B /* GrandTeton01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GrandTeton01.jpg; sourceTree = "<group>"; };
+		D85C5B421A1022AF001DCC6B /* GrandTeton02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GrandTeton02.jpg; sourceTree = "<group>"; };
+		D85C5B431A1022AF001DCC6B /* NationalPark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NationalPark.png; sourceTree = "<group>"; };
+		D85C5B441A1022AF001DCC6B /* Yellowstone01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yellowstone01.jpg; sourceTree = "<group>"; };
+		D85C5B451A1022AF001DCC6B /* Yellowstone02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yellowstone02.jpg; sourceTree = "<group>"; };
+		D85C5B461A1022AF001DCC6B /* Yellowstone03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yellowstone03.jpg; sourceTree = "<group>"; };
+		D85C5B471A1022AF001DCC6B /* Yellowstone04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yellowstone04.jpg; sourceTree = "<group>"; };
+		D85C5B481A1022AF001DCC6B /* Yosemite01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite01.jpg; sourceTree = "<group>"; };
+		D85C5B491A1022AF001DCC6B /* Yosemite02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite02.jpg; sourceTree = "<group>"; };
+		D85C5B4A1A1022AF001DCC6B /* Yosemite03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite03.jpg; sourceTree = "<group>"; };
+		D85C5B4B1A1022AF001DCC6B /* Yosemite04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite04.jpg; sourceTree = "<group>"; };
+		D85C5B4C1A1022AF001DCC6B /* Yosemite05.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite05.jpg; sourceTree = "<group>"; };
+		D85C5B4D1A1022AF001DCC6B /* Yosemite06.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Yosemite06.jpg; sourceTree = "<group>"; };
+		D85C5B4E1A1022AF001DCC6B /* Zion01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion01.jpg; sourceTree = "<group>"; };
+		D85C5B4F1A1022AF001DCC6B /* Zion02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion02.jpg; sourceTree = "<group>"; };
+		D85C5B501A1022AF001DCC6B /* Zion03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion03.jpg; sourceTree = "<group>"; };
+		D85C5B511A1022AF001DCC6B /* Photos.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Photos.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D85C5AE91A102215001DCC6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D85C5AF21A102215001DCC6B /* CoreGraphics.framework in Frameworks */,
+				D85C5AF41A102215001DCC6B /* UIKit.framework in Frameworks */,
+				D85C5AF01A102215001DCC6B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D85C5B0A1A102215001DCC6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D85C5B0F1A102215001DCC6B /* XCTest.framework in Frameworks */,
+				D85C5B111A102215001DCC6B /* UIKit.framework in Frameworks */,
+				D85C5B101A102215001DCC6B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D85C5AE31A102215001DCC6B = {
+			isa = PBXGroup;
+			children = (
+				D85C5AF51A102215001DCC6B /* PhotoViewer4 */,
+				D85C5B141A102215001DCC6B /* PhotoViewer4Tests */,
+				D85C5AEE1A102215001DCC6B /* Frameworks */,
+				D85C5AED1A102215001DCC6B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D85C5AED1A102215001DCC6B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D85C5AEC1A102215001DCC6B /* PhotoViewer4.app */,
+				D85C5B0D1A102215001DCC6B /* PhotoViewer4Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D85C5AEE1A102215001DCC6B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D85C5AEF1A102215001DCC6B /* Foundation.framework */,
+				D85C5AF11A102215001DCC6B /* CoreGraphics.framework */,
+				D85C5AF31A102215001DCC6B /* UIKit.framework */,
+				D85C5B0E1A102215001DCC6B /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D85C5AF51A102215001DCC6B /* PhotoViewer4 */ = {
+			isa = PBXGroup;
+			children = (
+				D85C5B331A1022AF001DCC6B /* Photos */,
+				D85C5B771A1022DB001DCC6B /* Model */,
+				D85C5B781A1022F0001DCC6B /* Views */,
+				D85C5B241A102221001DCC6B /* Controllers */,
+				D85C5AFE1A102215001DCC6B /* JCLAppDelegate.h */,
+				D85C5AFF1A102215001DCC6B /* JCLAppDelegate.m */,
+				D85C5B041A102215001DCC6B /* JCLViewController.h */,
+				D85C5B051A102215001DCC6B /* JCLViewController.m */,
+				D85C5B071A102215001DCC6B /* Images.xcassets */,
+				D85C5AF61A102215001DCC6B /* Supporting Files */,
+			);
+			path = PhotoViewer4;
+			sourceTree = "<group>";
+		};
+		D85C5AF61A102215001DCC6B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D85C5B251A1022AF001DCC6B /* JCLConstants.h */,
+				D85C5B261A1022AF001DCC6B /* JCLConstants.m */,
+				D85C5B511A1022AF001DCC6B /* Photos.plist */,
+				D85C5AF71A102215001DCC6B /* PhotoViewer4-Info.plist */,
+				D85C5AF81A102215001DCC6B /* InfoPlist.strings */,
+				D85C5AFB1A102215001DCC6B /* main.m */,
+				D85C5AFD1A102215001DCC6B /* PhotoViewer4-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D85C5B141A102215001DCC6B /* PhotoViewer4Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D85C5B1A1A102215001DCC6B /* PhotoViewer4Tests.m */,
+				D85C5B151A102215001DCC6B /* Supporting Files */,
+			);
+			path = PhotoViewer4Tests;
+			sourceTree = "<group>";
+		};
+		D85C5B151A102215001DCC6B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D85C5B161A102215001DCC6B /* PhotoViewer4Tests-Info.plist */,
+				D85C5B171A102215001DCC6B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D85C5B241A102221001DCC6B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D85C5B271A1022AF001DCC6B /* JCLDetailViewController.h */,
+				D85C5B281A1022AF001DCC6B /* JCLDetailViewController.m */,
+				D85C5B2F1A1022AF001DCC6B /* JCLTableViewController.h */,
+				D85C5B301A1022AF001DCC6B /* JCLTableViewController.m */,
+				D85C5B311A1022AF001DCC6B /* JCLZoomViewController.h */,
+				D85C5B321A1022AF001DCC6B /* JCLZoomViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		D85C5B331A1022AF001DCC6B /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				D85C5B341A1022AF001DCC6B /* BryceCanyon01.jpg */,
+				D85C5B351A1022AF001DCC6B /* BryceCanyon02.jpg */,
+				D85C5B361A1022AF001DCC6B /* BryceCanyon03.jpg */,
+				D85C5B371A1022AF001DCC6B /* Carlsbad01.jpg */,
+				D85C5B381A1022AF001DCC6B /* Carlsbad02.jpg */,
+				D85C5B391A1022AF001DCC6B /* Carlsbad03.jpg */,
+				D85C5B3A1A1022AF001DCC6B /* Carlsbad04.jpg */,
+				D85C5B3B1A1022AF001DCC6B /* Everglades01.jpg */,
+				D85C5B3C1A1022AF001DCC6B /* Everglades02.jpg */,
+				D85C5B3D1A1022AF001DCC6B /* Glacier01.jpg */,
+				D85C5B3E1A1022AF001DCC6B /* Glacier02.jpg */,
+				D85C5B3F1A1022AF001DCC6B /* Glacier03.jpg */,
+				D85C5B401A1022AF001DCC6B /* Glacier04.jpg */,
+				D85C5B411A1022AF001DCC6B /* GrandTeton01.jpg */,
+				D85C5B421A1022AF001DCC6B /* GrandTeton02.jpg */,
+				D85C5B431A1022AF001DCC6B /* NationalPark.png */,
+				D85C5B441A1022AF001DCC6B /* Yellowstone01.jpg */,
+				D85C5B451A1022AF001DCC6B /* Yellowstone02.jpg */,
+				D85C5B461A1022AF001DCC6B /* Yellowstone03.jpg */,
+				D85C5B471A1022AF001DCC6B /* Yellowstone04.jpg */,
+				D85C5B481A1022AF001DCC6B /* Yosemite01.jpg */,
+				D85C5B491A1022AF001DCC6B /* Yosemite02.jpg */,
+				D85C5B4A1A1022AF001DCC6B /* Yosemite03.jpg */,
+				D85C5B4B1A1022AF001DCC6B /* Yosemite04.jpg */,
+				D85C5B4C1A1022AF001DCC6B /* Yosemite05.jpg */,
+				D85C5B4D1A1022AF001DCC6B /* Yosemite06.jpg */,
+				D85C5B4E1A1022AF001DCC6B /* Zion01.jpg */,
+				D85C5B4F1A1022AF001DCC6B /* Zion02.jpg */,
+				D85C5B501A1022AF001DCC6B /* Zion03.jpg */,
+			);
+			path = Photos;
+			sourceTree = "<group>";
+		};
+		D85C5B771A1022DB001DCC6B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D85C5B291A1022AF001DCC6B /* JCLModel.h */,
+				D85C5B2A1A1022AF001DCC6B /* JCLModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		D85C5B781A1022F0001DCC6B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D85C5B011A102215001DCC6B /* Main.storyboard */,
+				D85C5B2B1A1022AF001DCC6B /* JCLScrollView.h */,
+				D85C5B2C1A1022AF001DCC6B /* JCLScrollView.m */,
+				D85C5B2D1A1022AF001DCC6B /* JCLTableViewCell.h */,
+				D85C5B2E1A1022AF001DCC6B /* JCLTableViewCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D85C5AEB1A102215001DCC6B /* PhotoViewer4 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D85C5B1E1A102215001DCC6B /* Build configuration list for PBXNativeTarget "PhotoViewer4" */;
+			buildPhases = (
+				D85C5AE81A102215001DCC6B /* Sources */,
+				D85C5AE91A102215001DCC6B /* Frameworks */,
+				D85C5AEA1A102215001DCC6B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PhotoViewer4;
+			productName = PhotoViewer4;
+			productReference = D85C5AEC1A102215001DCC6B /* PhotoViewer4.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D85C5B0C1A102215001DCC6B /* PhotoViewer4Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D85C5B211A102215001DCC6B /* Build configuration list for PBXNativeTarget "PhotoViewer4Tests" */;
+			buildPhases = (
+				D85C5B091A102215001DCC6B /* Sources */,
+				D85C5B0A1A102215001DCC6B /* Frameworks */,
+				D85C5B0B1A102215001DCC6B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D85C5B131A102215001DCC6B /* PBXTargetDependency */,
+			);
+			name = PhotoViewer4Tests;
+			productName = PhotoViewer4Tests;
+			productReference = D85C5B0D1A102215001DCC6B /* PhotoViewer4Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D85C5AE41A102215001DCC6B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = JCL;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Joshua Lee";
+				TargetAttributes = {
+					D85C5B0C1A102215001DCC6B = {
+						TestTargetID = D85C5AEB1A102215001DCC6B;
+					};
+				};
+			};
+			buildConfigurationList = D85C5AE71A102215001DCC6B /* Build configuration list for PBXProject "PhotoViewer4" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D85C5AE31A102215001DCC6B;
+			productRefGroup = D85C5AED1A102215001DCC6B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D85C5AEB1A102215001DCC6B /* PhotoViewer4 */,
+				D85C5B0C1A102215001DCC6B /* PhotoViewer4Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D85C5AEA1A102215001DCC6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D85C5B731A1022AF001DCC6B /* Zion01.jpg in Resources */,
+				D85C5B081A102215001DCC6B /* Images.xcassets in Resources */,
+				D85C5B6E1A1022AF001DCC6B /* Yosemite02.jpg in Resources */,
+				D85C5B5F1A1022AF001DCC6B /* Carlsbad04.jpg in Resources */,
+				D85C5AFA1A102215001DCC6B /* InfoPlist.strings in Resources */,
+				D85C5B761A1022AF001DCC6B /* Photos.plist in Resources */,
+				D85C5B681A1022AF001DCC6B /* NationalPark.png in Resources */,
+				D85C5B661A1022AF001DCC6B /* GrandTeton01.jpg in Resources */,
+				D85C5B6D1A1022AF001DCC6B /* Yosemite01.jpg in Resources */,
+				D85C5B591A1022AF001DCC6B /* BryceCanyon01.jpg in Resources */,
+				D85C5B6B1A1022AF001DCC6B /* Yellowstone03.jpg in Resources */,
+				D85C5B6A1A1022AF001DCC6B /* Yellowstone02.jpg in Resources */,
+				D85C5B671A1022AF001DCC6B /* GrandTeton02.jpg in Resources */,
+				D85C5B721A1022AF001DCC6B /* Yosemite06.jpg in Resources */,
+				D85C5B5D1A1022AF001DCC6B /* Carlsbad02.jpg in Resources */,
+				D85C5B621A1022AF001DCC6B /* Glacier01.jpg in Resources */,
+				D85C5B601A1022AF001DCC6B /* Everglades01.jpg in Resources */,
+				D85C5B701A1022AF001DCC6B /* Yosemite04.jpg in Resources */,
+				D85C5B691A1022AF001DCC6B /* Yellowstone01.jpg in Resources */,
+				D85C5B6F1A1022AF001DCC6B /* Yosemite03.jpg in Resources */,
+				D85C5B741A1022AF001DCC6B /* Zion02.jpg in Resources */,
+				D85C5B651A1022AF001DCC6B /* Glacier04.jpg in Resources */,
+				D85C5B631A1022AF001DCC6B /* Glacier02.jpg in Resources */,
+				D85C5B6C1A1022AF001DCC6B /* Yellowstone04.jpg in Resources */,
+				D85C5B641A1022AF001DCC6B /* Glacier03.jpg in Resources */,
+				D85C5B711A1022AF001DCC6B /* Yosemite05.jpg in Resources */,
+				D85C5B031A102215001DCC6B /* Main.storyboard in Resources */,
+				D85C5B611A1022AF001DCC6B /* Everglades02.jpg in Resources */,
+				D85C5B5B1A1022AF001DCC6B /* BryceCanyon03.jpg in Resources */,
+				D85C5B751A1022AF001DCC6B /* Zion03.jpg in Resources */,
+				D85C5B5C1A1022AF001DCC6B /* Carlsbad01.jpg in Resources */,
+				D85C5B5E1A1022AF001DCC6B /* Carlsbad03.jpg in Resources */,
+				D85C5B5A1A1022AF001DCC6B /* BryceCanyon02.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D85C5B0B1A102215001DCC6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D85C5B191A102215001DCC6B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D85C5AE81A102215001DCC6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D85C5B531A1022AF001DCC6B /* JCLDetailViewController.m in Sources */,
+				D85C5B581A1022AF001DCC6B /* JCLZoomViewController.m in Sources */,
+				D85C5B561A1022AF001DCC6B /* JCLTableViewCell.m in Sources */,
+				D85C5B001A102215001DCC6B /* JCLAppDelegate.m in Sources */,
+				D85C5B571A1022AF001DCC6B /* JCLTableViewController.m in Sources */,
+				D85C5B061A102215001DCC6B /* JCLViewController.m in Sources */,
+				D85C5B551A1022AF001DCC6B /* JCLScrollView.m in Sources */,
+				D85C5AFC1A102215001DCC6B /* main.m in Sources */,
+				D85C5B521A1022AF001DCC6B /* JCLConstants.m in Sources */,
+				D85C5B541A1022AF001DCC6B /* JCLModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D85C5B091A102215001DCC6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D85C5B1B1A102215001DCC6B /* PhotoViewer4Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D85C5B131A102215001DCC6B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D85C5AEB1A102215001DCC6B /* PhotoViewer4 */;
+			targetProxy = D85C5B121A102215001DCC6B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D85C5AF81A102215001DCC6B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D85C5AF91A102215001DCC6B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D85C5B011A102215001DCC6B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D85C5B021A102215001DCC6B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D85C5B171A102215001DCC6B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D85C5B181A102215001DCC6B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D85C5B1C1A102215001DCC6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D85C5B1D1A102215001DCC6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D85C5B1F1A102215001DCC6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotoViewer4/PhotoViewer4-Prefix.pch";
+				INFOPLIST_FILE = "PhotoViewer4/PhotoViewer4-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D85C5B201A102215001DCC6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotoViewer4/PhotoViewer4-Prefix.pch";
+				INFOPLIST_FILE = "PhotoViewer4/PhotoViewer4-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D85C5B221A102215001DCC6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PhotoViewer4.app/PhotoViewer4";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotoViewer4/PhotoViewer4-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "PhotoViewer4Tests/PhotoViewer4Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D85C5B231A102215001DCC6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PhotoViewer4.app/PhotoViewer4";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhotoViewer4/PhotoViewer4-Prefix.pch";
+				INFOPLIST_FILE = "PhotoViewer4Tests/PhotoViewer4Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D85C5AE71A102215001DCC6B /* Build configuration list for PBXProject "PhotoViewer4" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D85C5B1C1A102215001DCC6B /* Debug */,
+				D85C5B1D1A102215001DCC6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D85C5B1E1A102215001DCC6B /* Build configuration list for PBXNativeTarget "PhotoViewer4" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D85C5B1F1A102215001DCC6B /* Debug */,
+				D85C5B201A102215001DCC6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D85C5B211A102215001DCC6B /* Build configuration list for PBXNativeTarget "PhotoViewer4Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D85C5B221A102215001DCC6B /* Debug */,
+				D85C5B231A102215001DCC6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D85C5AE41A102215001DCC6B /* Project object */;
+}
