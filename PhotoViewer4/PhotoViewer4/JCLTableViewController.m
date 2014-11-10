@@ -66,9 +66,20 @@
 
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
+    NSLog(@"Set editing: %@, Animated: %@", [NSNumber numberWithBool:editing], [NSNumber numberWithBool:animated]);
     [super setEditing:editing animated:animated];
 	[self.tableView setEditing:editing animated:animated];
 	[self.tableView reloadData];
+}
+
+// Prevent user from trying to drop cell in another section.
+- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath{
+    
+    if (sourceIndexPath.section != proposedDestinationIndexPath.section){
+        return sourceIndexPath;
+    } else{
+        return proposedDestinationIndexPath;
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
@@ -220,8 +231,13 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 	if (buttonIndex == 1){
-		[self.model addPark:[alertView textFieldAtIndex:0].text];
-		[self.tableView reloadData];
+        NSString *name = [alertView textFieldAtIndex:0].text;
+        // Only add park if name has at least 1 non-whitespace character.
+        if ([[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] != 0){
+            NSInteger sectionIndex = [self.model addPark:[alertView textFieldAtIndex:0].text];
+            NSIndexSet *set = [NSIndexSet indexSetWithIndex:sectionIndex];
+            [self.tableView insertSections:set withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
 	}
 }
 

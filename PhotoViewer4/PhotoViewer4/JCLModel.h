@@ -23,7 +23,7 @@
 
 // Mutators:
 
-- (void) addPark:(NSString *)parkName;
+- (NSInteger) addPark:(NSString *)parkName;
 - (void) addImage:(UIImage *)image toSet:(NSInteger)photosetIndex;
 - (void) changeCaption:(NSString *)caption forImage:(NSInteger)imgIndex forSet:(NSInteger)photosetIndex;
 - (void) changeDescription:(NSString *)description forImage:(NSInteger)imgIndex forSet:(NSInteger)photosetIndex;

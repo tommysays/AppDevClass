@@ -10,8 +10,7 @@
 
 @interface JCLModel ()
 
-@property (strong, nonatomic) NSMutableArray *photosetArray;
-@property (strong, nonatomic) NSMutableArray *images;
+@property NSMutableArray *photosetArray;
 @property NSInteger maxSetSize;
 @property UIImage *natImage;
 
@@ -44,6 +43,7 @@
     [self readFromFile];
     [self loadImages];
     [self initializeDescriptions];
+    [self sortParksByName];
 }
 - (void) readFromFile{
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Photos" ofType:@"plist"];
@@ -51,28 +51,25 @@
 }
 
 - (void) loadImages{
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
-    NSInteger size = [self.photosetArray count];
     self.maxSetSize = 0;
-    for (NSInteger i = 0; i < size; i++){
-        NSDictionary *photoset = [self.photosetArray objectAtIndex:i];
+    for (NSInteger i = 0; i < [self.photosetArray count]; i++){
+        NSMutableDictionary *photoset = [self.photosetArray objectAtIndex:i];
         NSArray *imgData = [photoset objectForKey:@"photos"];
-        NSMutableArray *temp2 = [[NSMutableArray alloc] init];
+        NSMutableArray *temp = [[NSMutableArray alloc] init];
         for (NSInteger j = 0; j < [imgData count]; j++){
             NSDictionary *imgDict = [imgData objectAtIndex:j];
             NSString *imgName = [imgDict objectForKey:@"imageName"];
             UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", imgName]];
-            [temp2 addObject:img];
+            [temp addObject:img];
         }
-        [temp addObject:temp2];
+        [photoset setObject:temp forKey:@"images"];
+        
         if (self.maxSetSize < [imgData count]){
             self.maxSetSize = [imgData count];
         }
     }
     UIImage *img = [UIImage imageNamed:@"NationalPark"];
-    self.natImage = img;
-    self.images = temp;
-}
+    self.natImage = img;}
 
 // Initializes all photo descriptions to be blank, unless they have already been set.
 - (void) initializeDescriptions{
@@ -125,17 +122,22 @@
 }
 
 - (UIImage *) image:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex{
-    return [[self.images objectAtIndex:photosetIndex] objectAtIndex:imgIndex];
+    NSArray *images = [[self.photosetArray objectAtIndex:photosetIndex] objectForKey:@"images"];
+    return [images objectAtIndex:imgIndex];
 }
 
 #pragma mark Model mutators
 
-- (void) addPark:(NSString *)parkName{
+- (NSInteger) addPark:(NSString *)parkName{
     NSMutableDictionary *parkDict = [[NSMutableDictionary alloc] init];
     [parkDict setObject:parkName forKey:@"name"];
     NSMutableArray *photos = [[NSMutableArray alloc] init];
     [parkDict setObject:photos forKey:@"photos"];
+    NSMutableArray *images = [[NSMutableArray alloc] init];
+    [parkDict setObject:images forKey:@"images"];
     [self.photosetArray addObject:parkDict];
+    [self sortParksByName];
+    return [self.photosetArray indexOfObject:parkDict];
 }
 
 - (void) addImage:(UIImage *)image toSet:(NSInteger)photosetIndex{
@@ -149,7 +151,9 @@
     [entry setObject:@"Untitled" forKey:@"caption"];
     [entry setObject:@"" forKey:@"description"];
     [photos addObject:entry];
-    [[self.images objectAtIndex:photosetIndex] addObject:entry];
+    
+    NSMutableArray *images = [parkDict objectForKey:@"images"];
+    [images addObject:image];
 }
 
 - (void) changeCaption:(NSString *)caption forImage:(NSInteger)imgIndex forSet:(NSInteger)photosetIndex{
@@ -167,22 +171,30 @@
 }
 
 - (void) moveImageFrom:(NSInteger)sourceImgIndex to:(NSInteger)destImgIndex fromSet:(NSInteger)photosetIndex{
+    
     NSMutableDictionary *parkDict = [self.photosetArray objectAtIndex:photosetIndex];
     NSMutableArray *photos = [parkDict objectForKey:@"photos"];
     NSMutableDictionary *entry = [photos objectAtIndex:sourceImgIndex];
     [photos removeObjectAtIndex:sourceImgIndex];
     [photos insertObject:entry atIndex:destImgIndex];
     
-    UIImage *temp = [[self.images objectAtIndex:photosetIndex] objectAtIndex:sourceImgIndex];
-    [[self.images objectAtIndex:photosetIndex] removeObjectAtIndex:sourceImgIndex];
-    [[self.images objectAtIndex:photosetIndex] insertObject:temp atIndex:destImgIndex];
+    NSMutableArray *images = [parkDict objectForKey:@"images"];
+    UIImage *img = [images objectAtIndex:sourceImgIndex];
+    [images removeObjectAtIndex:sourceImgIndex];
+    [images insertObject:img atIndex:destImgIndex];
 }
 
 - (void) removeImage:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex{
-    [[self.images objectAtIndex:photosetIndex] removeObjectAtIndex:imgIndex];
     NSMutableDictionary *parkDict = [self.photosetArray objectAtIndex:photosetIndex];
     NSMutableArray *photos = [parkDict objectForKey:@"photos"];
     [photos removeObjectAtIndex:imgIndex];
+    NSMutableArray *images = [parkDict objectForKey:@"images"];
+    [images removeObjectAtIndex:imgIndex];
+}
+
+- (void) sortParksByName{
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    [self.photosetArray sortUsingDescriptors:@[sortDescriptor]];
 }
 
 @end
