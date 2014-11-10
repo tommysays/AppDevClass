@@ -16,7 +16,7 @@
 @property CGRect startingFrame;
 @property JCLModel *model;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
+@property BOOL descEdit;
 @end
 
 @implementation JCLDetailViewController
@@ -34,6 +34,10 @@
     self.imgView.center = CGPointMake(self.view.center.x, self.imgView.center.y);
     self.caption.center = CGPointMake(self.view.center.x, self.caption.center.y);
     [self.caption setEnabled:false];
+    self.descEdit = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void) reloadData{
@@ -54,6 +58,12 @@
 {
     [super setEditing:editing animated:animated];
     [self.caption setEnabled:editing];
+    if (editing){
+        if (!self.descEdit)
+            [self.caption becomeFirstResponder];
+    } else{
+        [self.view endEditing:YES];
+    }
 }
 
 #pragma mark - Split view
@@ -67,21 +77,24 @@
     [self.navigationItem setLeftBarButtonItem:nil];
 }
 
-#pragma mark TextField Delegate
+#pragma mark TextView Delegate
 
-- (void) textFieldDidBeginEditing:(UITextField *)textField{
-    NSLog(@"text begin edit.");
+- (void) textViewDidBeginEditing:(UITextView *)textField{
+    if (!self.editing){
+        [self setEditing:YES animated:YES];
+    }
+    self.descEdit = YES;
 }
 
-- (void) textFieldDidEndEditing:(UITextField *)textField{
-    NSLog(@"Did end editing.");
-    
+- (void) textViewDidEndEditing:(UITextView *)textField{
+    if (self.editing){
+        [self setEditing:NO animated:YES];
+    }
+    self.descEdit = NO;
 }
 
 - (void)keyboardWillBeShown:(NSNotification*)notification{
-    NSDictionary *info = [notification userInfo];
-    NSLog(@"sfsf");
-    CGRect frame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    NSDictionary *info = [notification userInfo];    CGRect frame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGSize keyboardSize = frame.size;
     self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
 }
