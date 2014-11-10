@@ -74,6 +74,7 @@
         <!--Add Photo View Controller-->
         <scene sceneID="lmb-Yj-pcC">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j8n-Ge-U5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="ahd-Qe-eXh" customClass="JCLAddPhotoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Z7G-Ap-NQw"/>
@@ -90,13 +91,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxY-PM-R3k">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mxY-PM-R3k">
                                 <rect key="frame" x="35" y="36" width="250" height="250"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="GFs-Tl-1dD" appends="YES" id="qoM-Xx-5Tt"/>
-                                </connections>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WN3-JE-p0p">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
@@ -133,14 +131,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="addPhotoPressed" destination="vVl-Uc-4DE" id="sao-2R-5xE"/>
                         <outlet property="pickerView" destination="sm4-WD-CHZ" id="1vh-z4-L2p"/>
                         <outlet property="promptLabel" destination="5Q2-28-yJs" id="dOI-yG-AoP"/>
                         <outlet property="promptPhoto" destination="mxY-PM-R3k" id="6K3-A1-oTE"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j8n-Ge-U5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="GFs-Tl-1dD"/>
             </objects>
             <point key="canvasLocation" x="582" y="840"/>
         </scene>

@@ -9,7 +9,7 @@
 #import "JCLAddPhotoViewController.h"
 #import "JCLModel.h"
 
-@interface JCLAddPhotoViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface JCLAddPhotoViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UILabel *promptLabel;
@@ -31,6 +31,8 @@
     
     self.model = [JCLModel sharedInstance];
     self.photoIsSet = false;
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRecognized:)];
+    [self.promptPhoto addGestureRecognizer:singleTap];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,6 +65,33 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark Image Picker Delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+    self.promptLabel.hidden = YES;
+    self.promptPhoto.image = chosenImage;
+    self.promptPhoto.contentMode = UIViewContentModeScaleAspectFit;
+    self.photoIsSet = YES;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark Gesture Recognizer
+
+-(void)tapRecognized:(UITapGestureRecognizer *)recognizer
+{
+    
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = YES;
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:imagePicker animated:YES completion:NULL];
+    
+}
 
 #pragma mark Button methods
 
