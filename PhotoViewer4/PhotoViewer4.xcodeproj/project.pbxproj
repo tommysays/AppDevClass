@@ -57,6 +57,7 @@
 		D85C5B741A1022AF001DCC6B /* Zion02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B4F1A1022AF001DCC6B /* Zion02.jpg */; };
 		D85C5B751A1022AF001DCC6B /* Zion03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B501A1022AF001DCC6B /* Zion03.jpg */; };
 		D85C5B761A1022AF001DCC6B /* Photos.plist in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B511A1022AF001DCC6B /* Photos.plist */; };
+		D871443A1A10599600320BD5 /* JCLAddPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D87144391A10599600320BD5 /* JCLAddPhotoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,8 @@
 		D85C5B4F1A1022AF001DCC6B /* Zion02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion02.jpg; sourceTree = "<group>"; };
 		D85C5B501A1022AF001DCC6B /* Zion03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Zion03.jpg; sourceTree = "<group>"; };
 		D85C5B511A1022AF001DCC6B /* Photos.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Photos.plist; sourceTree = "<group>"; };
+		D87144381A10599600320BD5 /* JCLAddPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLAddPhotoViewController.h; sourceTree = "<group>"; };
+		D87144391A10599600320BD5 /* JCLAddPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLAddPhotoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +246,8 @@
 				D85C5B301A1022AF001DCC6B /* JCLTableViewController.m */,
 				D85C5B311A1022AF001DCC6B /* JCLZoomViewController.h */,
 				D85C5B321A1022AF001DCC6B /* JCLZoomViewController.m */,
+				D87144381A10599600320BD5 /* JCLAddPhotoViewController.h */,
+				D87144391A10599600320BD5 /* JCLAddPhotoViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -435,6 +440,7 @@
 				D85C5B531A1022AF001DCC6B /* JCLDetailViewController.m in Sources */,
 				D85C5B581A1022AF001DCC6B /* JCLZoomViewController.m in Sources */,
 				D85C5B561A1022AF001DCC6B /* JCLTableViewCell.m in Sources */,
+				D871443A1A10599600320BD5 /* JCLAddPhotoViewController.m in Sources */,
 				D85C5B001A102215001DCC6B /* JCLAppDelegate.m in Sources */,
 				D85C5B571A1022AF001DCC6B /* JCLTableViewController.m in Sources */,
 				D85C5B551A1022AF001DCC6B /* JCLScrollView.m in Sources */,

@@ -10,4 +10,6 @@
 
 @interface JCLTableViewController : UIViewController
 
+- (void) dismissAddPhotoView;
+
 @end

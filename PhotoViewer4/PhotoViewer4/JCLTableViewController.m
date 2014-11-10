@@ -9,6 +9,7 @@
 #import "JCLScrollView.h"
 #import "JCLDetailViewController.h"
 #import "JCLTableViewController.h"
+#import "JCLAddPhotoViewController.h"
 #import "JCLTableViewCell.h"
 #import "JCLModel.h"
 #import "JCLConstants.h"
@@ -24,6 +25,7 @@
 @property (nonatomic, strong) NSIndexPath* indexToSend;
 @property (nonatomic, strong) JCLDetailViewController *detailViewController;
 @property UIActionSheet *addSheet;
+@property JCLAddPhotoViewController *addPhotoController;
 
 @end
 
@@ -222,8 +224,8 @@
 		alertTextField.keyboardType = UIKeyboardTypeAlphabet;
 		alertTextField.placeholder = @"My Park";
 		[alert show];
-	} else{
-        //things.
+	} else if (buttonIndex == 1){
+        [self performSegueWithIdentifier:@"TableToAddPhoto" sender:self];
 	}
 }
 
@@ -249,7 +251,21 @@
         destController.image = [self.model image:self.indexToSend.row fromSet:self.indexToSend.section];
         destController.captionText = [self.model nameOfImage:self.indexToSend.row fromSet:self.indexToSend.section];
         destController.navigationItem.title = [self.model nameOfSet:self.indexToSend.section];
+    } else if ([segue.identifier isEqualToString:@"TableToAddPhoto"]){
+        JCLAddPhotoViewController *destController = segue.destinationViewController;
+        self.addPhotoController = destController;
+        destController.parentView = self;
     }
+}
+
+- (void) dismissAddPhotoView{
+    if (!self.addPhotoController.didCancel){
+        NSInteger section = self.addPhotoController.selectedPark;
+        NSInteger row = [self.model sizeOfSet:section];
+        [self.model addImage:self.addPhotoController.selectedImage toSet:self.addPhotoController.selectedPark];
+        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:section]]withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    [self.addPhotoController dismissViewControllerAnimated:true completion:^{}];
 }
 
 @end
