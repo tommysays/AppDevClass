@@ -10,6 +10,8 @@
 
 @interface JCLModel : NSObject
 
+// Accessors:
+
 + (id) sharedInstance;
 - (NSInteger) maxSizeOfSet;
 - (NSInteger) numberOfSets;
@@ -18,6 +20,8 @@
 - (NSString *) nameOfImage:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex;
 - (UIImage *) nationalParkImage;
 - (UIImage *) image:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex;
+
+// Mutators:
 
 - (void) addPark:(NSString *)parkName;
 - (void) addImage:(UIImage *)image toSet:(NSInteger)photosetIndex;

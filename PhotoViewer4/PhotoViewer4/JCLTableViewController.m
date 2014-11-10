@@ -15,13 +15,15 @@
 
 
 
-@interface JCLTableViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
+@interface JCLTableViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
 
+- (IBAction)addButtonPressed:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) JCLModel *model;
 @property (nonatomic, strong) NSMutableDictionary *closedSections;
 @property (nonatomic, strong) NSIndexPath* indexToSend;
 @property (nonatomic, strong) JCLDetailViewController *detailViewController;
+@property UIActionSheet *addSheet;
 
 @end
 
@@ -194,6 +196,33 @@
         [self.closedSections setObject:@"closed" forKey:[NSNumber numberWithInteger:sectionIndex]];
     }
     [self.tableView reloadData];
+}
+
+- (IBAction)addButtonPressed:(id)sender{
+	self.addSheet = [[UIActionSheet alloc] initWithTitle:@"Choose" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"New Park", @"New Photo", nil];
+    [self.addSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+	if (buttonIndex == 0){
+		UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Enter Park Name" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+		alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+		UITextField * alertTextField = [alert textFieldAtIndex:0];
+		alertTextField.keyboardType = UIKeyboardTypeAlphabet;
+		alertTextField.placeholder = @"My Park";
+		[alert show];
+	} else{
+        //things.
+	}
+}
+
+#pragma mark Alert Delegate Methods.
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+	if (buttonIndex == 1){
+		[self.model addPark:[alertView textFieldAtIndex:0].text];
+		[self.tableView reloadData];
+	}
 }
 
 #pragma mark Segue

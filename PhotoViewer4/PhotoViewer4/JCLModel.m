@@ -143,6 +143,8 @@
     NSMutableArray *photos = [parkDict objectForKey:@"photos"];
     NSInteger imgIndex = [photos count];
     NSMutableDictionary *entry = [[NSMutableDictionary alloc] init];
+    // The imageName here is not important, as it is never used later or presented to the user.
+    // However, I set one anyway, in case I try to access it later for whatever reason.
     [entry setObject:[NSString stringWithFormat:@"%d, %d", photosetIndex, imgIndex] forKey:@"imageName"];
     [entry setObject:@"Untitled" forKey:@"caption"];
     [entry setObject:@"" forKey:@"description"];
@@ -178,7 +180,9 @@
 
 - (void) removeImage:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex{
     [[self.images objectAtIndex:photosetIndex] removeObjectAtIndex:imgIndex];
-    [[self.photosetArray objectAtIndex:photosetIndex] removeObjectAtIndex:imgIndex];
+    NSMutableDictionary *parkDict = [self.photosetArray objectAtIndex:photosetIndex];
+    NSMutableArray *photos = [parkDict objectForKey:@"photos"];
+    [photos removeObjectAtIndex:imgIndex];
 }
 
 @end
