@@ -205,10 +205,23 @@
     NSInteger sectionIndex = [sender tag];
     if ([self.closedSections objectForKey:[NSNumber numberWithInteger:sectionIndex]]){
         [self.closedSections removeObjectForKey:[NSNumber numberWithInteger:sectionIndex]];
+        NSInteger numRows = [self tableView:self.tableView numberOfRowsInSection:sectionIndex];
+        NSMutableArray *paths = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < numRows; i++){
+            [paths addObject:[NSIndexPath indexPathForRow:i inSection:sectionIndex]];
+        }
+        [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
     } else{
+        NSInteger numRows = [self tableView:self.tableView numberOfRowsInSection:sectionIndex];
+        NSMutableArray *paths = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < numRows; i++){
+            [paths addObject:[NSIndexPath indexPathForRow:i inSection:sectionIndex]];
+        }
         [self.closedSections setObject:@"closed" forKey:[NSNumber numberWithInteger:sectionIndex]];
+        
+        [self.tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
     }
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
 }
 
 - (IBAction)addButtonPressed:(id)sender{
