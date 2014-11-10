@@ -55,10 +55,50 @@
 
 - (void)viewDidLoad
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
-        [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 100, 0)];
-    }
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
     [self.tableView reloadData];
+}
+
+#pragma mark - Editing methods.
+
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+	[self.tableView setEditing:editing animated:animated];
+	[self.tableView reloadData];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+	if (fromIndexPath.section == toIndexPath.section){
+		[self.model moveImageFrom:fromIndexPath.row to:toIndexPath.row fromSet:fromIndexPath.section];
+	}
+    [self.tableView reloadData];
+}
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+	return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (editingStyle == UITableViewCellEditingStyleDelete)
+	{
+		[self.model removeImage:indexPath.row fromSet:indexPath.section];
+		[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+	}
+	
 }
 
 #pragma mark - Table view data source

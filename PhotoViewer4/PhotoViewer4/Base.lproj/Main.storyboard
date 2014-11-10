@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Table View Controller - National Parks-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="JCLViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="JCLTableViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -46,24 +46,28 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="Axa-bs-qfY"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="NgY-XV-PBC"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Xyk-Ul-4iX"/>
+                    <navigationItem key="navigationItem" title="National Parks" id="Xyk-Ul-4iX"/>
                     <connections>
-                        <segue destination="CA0-sL-68e" kind="push" id="ueI-pS-Sfn"/>
+                        <outlet property="tableView" destination="MaE-vW-K7h" id="2et-Dn-TI8"/>
+                        <segue destination="CA0-sL-68e" kind="push" identifier="TableToDetail" id="ueI-pS-Sfn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="582" y="138"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="np5-0m-Uk1">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gMG-XE-aVZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="CA0-sL-68e" sceneMemberID="viewController">
+                <viewController id="CA0-sL-68e" customClass="JCLDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bP9-WZ-pZm"/>
                         <viewControllerLayoutGuide type="bottom" id="wIE-cq-srx"/>
@@ -92,19 +96,24 @@
                         <gestureRecognizers/>
                     </view>
                     <navigationItem key="navigationItem" id="nMM-0f-mLJ"/>
+                    <connections>
+                        <outlet property="caption" destination="L93-Z0-xOM" id="A6a-VD-Rhp"/>
+                        <outlet property="imgView" destination="NUX-E3-3TD" id="kAI-xQ-A2B"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gMG-XE-aVZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="PTE-fO-tqQ">
                     <connections>
-                        <segue destination="gL4-rK-sks" kind="push" id="PRm-e6-Cy6"/>
+                        <segue destination="gL4-rK-sks" kind="push" identifier="DetailToZoom" id="PRm-e6-Cy6"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1017" y="138"/>
         </scene>
-        <!--View Controller-->
+        <!--Zoom View Controller-->
         <scene sceneID="jjd-2O-1mu">
             <objects>
-                <viewController id="gL4-rK-sks" sceneMemberID="viewController">
+                <viewController id="gL4-rK-sks" customClass="JCLZoomViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zCj-og-1xg"/>
                         <viewControllerLayoutGuide type="bottom" id="msK-Fh-JWt"/>

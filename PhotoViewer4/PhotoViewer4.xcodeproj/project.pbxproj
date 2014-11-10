@@ -14,7 +14,6 @@
 		D85C5AFC1A102215001DCC6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D85C5AFB1A102215001DCC6B /* main.m */; };
 		D85C5B001A102215001DCC6B /* JCLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D85C5AFF1A102215001DCC6B /* JCLAppDelegate.m */; };
 		D85C5B031A102215001DCC6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B011A102215001DCC6B /* Main.storyboard */; };
-		D85C5B061A102215001DCC6B /* JCLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D85C5B051A102215001DCC6B /* JCLViewController.m */; };
 		D85C5B081A102215001DCC6B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D85C5B071A102215001DCC6B /* Images.xcassets */; };
 		D85C5B0F1A102215001DCC6B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85C5B0E1A102215001DCC6B /* XCTest.framework */; };
 		D85C5B101A102215001DCC6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85C5AEF1A102215001DCC6B /* Foundation.framework */; };
@@ -82,8 +81,6 @@
 		D85C5AFE1A102215001DCC6B /* JCLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCLAppDelegate.h; sourceTree = "<group>"; };
 		D85C5AFF1A102215001DCC6B /* JCLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCLAppDelegate.m; sourceTree = "<group>"; };
 		D85C5B021A102215001DCC6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D85C5B041A102215001DCC6B /* JCLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCLViewController.h; sourceTree = "<group>"; };
-		D85C5B051A102215001DCC6B /* JCLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCLViewController.m; sourceTree = "<group>"; };
 		D85C5B071A102215001DCC6B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D85C5B0D1A102215001DCC6B /* PhotoViewer4Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoViewer4Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85C5B0E1A102215001DCC6B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -199,8 +196,6 @@
 				D85C5B241A102221001DCC6B /* Controllers */,
 				D85C5AFE1A102215001DCC6B /* JCLAppDelegate.h */,
 				D85C5AFF1A102215001DCC6B /* JCLAppDelegate.m */,
-				D85C5B041A102215001DCC6B /* JCLViewController.h */,
-				D85C5B051A102215001DCC6B /* JCLViewController.m */,
 				D85C5B071A102215001DCC6B /* Images.xcassets */,
 				D85C5AF61A102215001DCC6B /* Supporting Files */,
 			);
@@ -442,7 +437,6 @@
 				D85C5B561A1022AF001DCC6B /* JCLTableViewCell.m in Sources */,
 				D85C5B001A102215001DCC6B /* JCLAppDelegate.m in Sources */,
 				D85C5B571A1022AF001DCC6B /* JCLTableViewController.m in Sources */,
-				D85C5B061A102215001DCC6B /* JCLViewController.m in Sources */,
 				D85C5B551A1022AF001DCC6B /* JCLScrollView.m in Sources */,
 				D85C5AFC1A102215001DCC6B /* main.m in Sources */,
 				D85C5B521A1022AF001DCC6B /* JCLConstants.m in Sources */,
@@ -651,6 +645,7 @@
 				D85C5B201A102215001DCC6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D85C5B211A102215001DCC6B /* Build configuration list for PBXNativeTarget "PhotoViewer4Tests" */ = {
 			isa = XCConfigurationList;
@@ -659,6 +654,7 @@
 				D85C5B231A102215001DCC6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

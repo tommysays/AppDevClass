@@ -19,4 +19,10 @@
 - (UIImage *) nationalParkImage;
 - (UIImage *) image:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex;
 
+- (void) addPark:(NSString *)parkName;
+- (void) addImage:(UIImage *)image toSet:(NSInteger)photosetIndex;
+- (void) changeCaption:(NSString *)caption forImage:(NSInteger)imgIndex forSet:(NSInteger)photosetIndex;
+- (void) changeDescription:(NSString *)description forImage:(NSInteger)imgIndex forSet:(NSInteger)photosetIndex;
+- (void) moveImageFrom:(NSInteger)sourceImgIndex to:(NSInteger)destImgIndex fromSet:(NSInteger)photosetIndex;
+- (void) removeImage:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex;
 @end
