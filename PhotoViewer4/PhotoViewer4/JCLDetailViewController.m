@@ -9,10 +9,13 @@
 #import "JCLDetailViewController.h"
 #import "JCLScrollView.h"
 #import "JCLConstants.h"
+#import "JCLModel.h"
 
-@interface JCLDetailViewController ()
+@interface JCLDetailViewController () <UITextFieldDelegate, UITextViewDelegate>
 
 @property CGRect startingFrame;
+@property JCLModel *model;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -22,11 +25,15 @@
 {
     [super viewDidLoad];
     [self reloadData];
+    self.model = [JCLModel sharedInstance];
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.descriptionField.text = [self.model descriptionOfImage:self.modelIndexPath.row fromSet:self.modelIndexPath.section];
     self.isUnwound = YES;
     self.imgView.contentMode = UIViewContentModeScaleAspectFit;
     self.imgView.userInteractionEnabled = YES;
     self.imgView.center = CGPointMake(self.view.center.x, self.imgView.center.y);
     self.caption.center = CGPointMake(self.view.center.x, self.caption.center.y);
+    [self.caption setEnabled:false];
 }
 
 - (void) reloadData{
@@ -41,6 +48,14 @@
     }];
 }
 
+#pragma mark Edit methods
+
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    [self.caption setEnabled:editing];
+}
+
 #pragma mark - Split view
 - (void) splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController{
     
@@ -52,6 +67,28 @@
     [self.navigationItem setLeftBarButtonItem:nil];
 }
 
+#pragma mark TextField Delegate
+
+- (void) textFieldDidBeginEditing:(UITextField *)textField{
+    NSLog(@"text begin edit.");
+}
+
+- (void) textFieldDidEndEditing:(UITextField *)textField{
+    NSLog(@"Did end editing.");
+    
+}
+
+- (void)keyboardWillBeShown:(NSNotification*)notification{
+    NSDictionary *info = [notification userInfo];
+    NSLog(@"sfsf");
+    CGRect frame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGSize keyboardSize = frame.size;
+    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
+}
+- (void)keyboardWillHide:(NSNotification*)notification{
+    self.scrollView.contentInset = UIEdgeInsetsZero;
+}
+
 #pragma mark Segue Methods
 
 - (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
@@ -59,6 +96,11 @@
         return false;
     }
     return true;
+}
+
+- (void) willMoveToParentViewController:(UIViewController *)parent{
+    [self.model changeCaption:self.caption.text forImage:self.modelIndexPath.row forSet:self.modelIndexPath.section];
+    [self.model changeDescription:self.descriptionField.text forImage:self.modelIndexPath.row forSet:self.modelIndexPath.section];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

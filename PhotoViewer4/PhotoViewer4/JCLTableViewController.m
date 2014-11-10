@@ -59,19 +59,28 @@
 
 - (void)viewDidLoad
 {
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [super viewDidLoad];
     
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.tableView reloadData];
 }
 
+- (void) viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
+}
 #pragma mark - Editing methods.
 
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
-    NSLog(@"Set editing: %@, Animated: %@", [NSNumber numberWithBool:editing], [NSNumber numberWithBool:animated]);
     [super setEditing:editing animated:animated];
 	[self.tableView setEditing:editing animated:animated];
-	[self.tableView reloadData];
+    NSMutableArray *paths = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0; i < [self.model numberOfSets]; ++i){
+        for (NSInteger j = 0; j < [self tableView:self.tableView numberOfRowsInSection:i]; ++j){
+            [paths addObject:[NSIndexPath indexPathForRow:j inSection:i]];
+        }
+    }
+    [self.tableView reloadRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 // Prevent user from trying to drop cell in another section.
@@ -141,6 +150,11 @@
     
     cell.photoCaption.text = [self.model nameOfImage:photoIndex fromSet:photosetIndex];
     cell.imgView.image = [self.model image:photoIndex fromSet:photosetIndex];
+    if (!self.editing){
+        cell.imgView.hidden = NO;
+    } else{
+        cell.imgView.hidden = YES;
+    }
     cell.imgView.contentMode = UIViewContentModeScaleAspectFit;
     
     return cell;
@@ -264,6 +278,7 @@
         destController.image = [self.model image:self.indexToSend.row fromSet:self.indexToSend.section];
         destController.captionText = [self.model nameOfImage:self.indexToSend.row fromSet:self.indexToSend.section];
         destController.navigationItem.title = [self.model nameOfSet:self.indexToSend.section];
+        destController.modelIndexPath = self.indexToSend;
     } else if ([segue.identifier isEqualToString:@"TableToAddPhoto"]){
         JCLAddPhotoViewController *destController = segue.destinationViewController;
         self.addPhotoController = destController;

@@ -20,6 +20,7 @@
 - (NSString *) nameOfImage:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex;
 - (UIImage *) nationalParkImage;
 - (UIImage *) image:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex;
+- (NSString *) descriptionOfImage:(NSInteger)imgIndex fromSet:(NSInteger)photosetIndex;
 
 // Mutators:
 

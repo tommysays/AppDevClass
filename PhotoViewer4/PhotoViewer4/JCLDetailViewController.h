@@ -13,10 +13,13 @@
 @interface JCLDetailViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
-@property (weak, nonatomic) IBOutlet UILabel *caption;
+@property (weak, nonatomic) IBOutlet UITextField *caption;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionField;
 
 @property (nonatomic, strong) NSString *captionText;
 @property (nonatomic, strong) UIImage *image;
+
+@property NSIndexPath *modelIndexPath;
 
 @property BOOL isUnwound;
 @property JCLZoomViewController *zoomController;
