@@ -609,7 +609,7 @@
                                 <rect key="frame" x="283" y="544" width="203" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.99340470280000004" green="1" blue="0.3946341183" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Manage Player Profiles">
+                                <state key="normal" title="Add Player Profile">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>

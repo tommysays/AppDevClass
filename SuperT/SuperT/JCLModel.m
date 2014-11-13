@@ -68,8 +68,7 @@
     JCLPlayer *player = [[JCLPlayer alloc] initWithName:name];
     [self.playerIDs setObject:player forKey:player.identificationNumber];
     [self.playerList addObject:player];
-    NSLog(@"Added %@", name);
-    NSLog(@"Count = %d", [self.playerList count]);
+    [self sortPlayersByName];
 }
 
 - (void) removePlayer:(JCLPlayer *)player{
@@ -83,6 +82,11 @@
 - (void) removePlayerAtIndex:(NSInteger)playerIndex{
     __weak JCLPlayer *player = [self.playerList objectAtIndex:playerIndex];
     [self removePlayer:player];
+}
+
+- (void) sortPlayersByName{
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    [self.playerList sortUsingDescriptors:@[sortDescriptor]];
 }
 
 @end
