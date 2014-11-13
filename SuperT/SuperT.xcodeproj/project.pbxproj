@@ -1,0 +1,508 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D853D6771A150CE50072F890 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D853D6761A150CE50072F890 /* Foundation.framework */; };
+		D853D6791A150CE50072F890 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D853D6781A150CE50072F890 /* CoreGraphics.framework */; };
+		D853D67B1A150CE50072F890 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D853D67A1A150CE50072F890 /* UIKit.framework */; };
+		D853D6811A150CE50072F890 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D853D67F1A150CE50072F890 /* InfoPlist.strings */; };
+		D853D6831A150CE50072F890 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D853D6821A150CE50072F890 /* main.m */; };
+		D853D6871A150CE50072F890 /* JCLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D853D6861A150CE50072F890 /* JCLAppDelegate.m */; };
+		D853D68A1A150CE50072F890 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D853D6881A150CE50072F890 /* Main.storyboard */; };
+		D853D68D1A150CE50072F890 /* JCLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D853D68C1A150CE50072F890 /* JCLViewController.m */; };
+		D853D68F1A150CE50072F890 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D853D68E1A150CE50072F890 /* Images.xcassets */; };
+		D853D6961A150CE50072F890 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D853D6951A150CE50072F890 /* XCTest.framework */; };
+		D853D6971A150CE50072F890 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D853D6761A150CE50072F890 /* Foundation.framework */; };
+		D853D6981A150CE50072F890 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D853D67A1A150CE50072F890 /* UIKit.framework */; };
+		D853D6A01A150CE50072F890 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D853D69E1A150CE50072F890 /* InfoPlist.strings */; };
+		D853D6A21A150CE50072F890 /* SuperTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D853D6A11A150CE50072F890 /* SuperTTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D853D6991A150CE50072F890 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D853D66B1A150CE50072F890 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D853D6721A150CE50072F890;
+			remoteInfo = SuperT;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D853D6731A150CE50072F890 /* SuperT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D853D6761A150CE50072F890 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D853D6781A150CE50072F890 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D853D67A1A150CE50072F890 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D853D67E1A150CE50072F890 /* SuperT-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SuperT-Info.plist"; sourceTree = "<group>"; };
+		D853D6801A150CE50072F890 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D853D6821A150CE50072F890 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D853D6841A150CE50072F890 /* SuperT-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperT-Prefix.pch"; sourceTree = "<group>"; };
+		D853D6851A150CE50072F890 /* JCLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCLAppDelegate.h; sourceTree = "<group>"; };
+		D853D6861A150CE50072F890 /* JCLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCLAppDelegate.m; sourceTree = "<group>"; };
+		D853D6891A150CE50072F890 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D853D68B1A150CE50072F890 /* JCLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCLViewController.h; sourceTree = "<group>"; };
+		D853D68C1A150CE50072F890 /* JCLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCLViewController.m; sourceTree = "<group>"; };
+		D853D68E1A150CE50072F890 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D853D6941A150CE50072F890 /* SuperTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D853D6951A150CE50072F890 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D853D69D1A150CE50072F890 /* SuperTTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SuperTTests-Info.plist"; sourceTree = "<group>"; };
+		D853D69F1A150CE50072F890 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D853D6A11A150CE50072F890 /* SuperTTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperTTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D853D6701A150CE50072F890 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D853D6791A150CE50072F890 /* CoreGraphics.framework in Frameworks */,
+				D853D67B1A150CE50072F890 /* UIKit.framework in Frameworks */,
+				D853D6771A150CE50072F890 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D853D6911A150CE50072F890 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D853D6961A150CE50072F890 /* XCTest.framework in Frameworks */,
+				D853D6981A150CE50072F890 /* UIKit.framework in Frameworks */,
+				D853D6971A150CE50072F890 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D853D66A1A150CE50072F890 = {
+			isa = PBXGroup;
+			children = (
+				D853D67C1A150CE50072F890 /* SuperT */,
+				D853D69B1A150CE50072F890 /* SuperTTests */,
+				D853D6751A150CE50072F890 /* Frameworks */,
+				D853D6741A150CE50072F890 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D853D6741A150CE50072F890 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D853D6731A150CE50072F890 /* SuperT.app */,
+				D853D6941A150CE50072F890 /* SuperTTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D853D6751A150CE50072F890 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D853D6761A150CE50072F890 /* Foundation.framework */,
+				D853D6781A150CE50072F890 /* CoreGraphics.framework */,
+				D853D67A1A150CE50072F890 /* UIKit.framework */,
+				D853D6951A150CE50072F890 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D853D67C1A150CE50072F890 /* SuperT */ = {
+			isa = PBXGroup;
+			children = (
+				D88058EF1A150D9200615C06 /* Model */,
+				D88058EC1A150D6F00615C06 /* Views */,
+				D88058ED1A150D7700615C06 /* Controllers */,
+				D88058EE1A150D8B00615C06 /* App Delegate */,
+				D853D67D1A150CE50072F890 /* Supporting Files */,
+				D853D68E1A150CE50072F890 /* Images.xcassets */,
+			);
+			path = SuperT;
+			sourceTree = "<group>";
+		};
+		D853D67D1A150CE50072F890 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D853D67E1A150CE50072F890 /* SuperT-Info.plist */,
+				D853D67F1A150CE50072F890 /* InfoPlist.strings */,
+				D853D6821A150CE50072F890 /* main.m */,
+				D853D6841A150CE50072F890 /* SuperT-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D853D69B1A150CE50072F890 /* SuperTTests */ = {
+			isa = PBXGroup;
+			children = (
+				D853D6A11A150CE50072F890 /* SuperTTests.m */,
+				D853D69C1A150CE50072F890 /* Supporting Files */,
+			);
+			path = SuperTTests;
+			sourceTree = "<group>";
+		};
+		D853D69C1A150CE50072F890 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D853D69D1A150CE50072F890 /* SuperTTests-Info.plist */,
+				D853D69E1A150CE50072F890 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D88058EC1A150D6F00615C06 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D853D6881A150CE50072F890 /* Main.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D88058ED1A150D7700615C06 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D853D68B1A150CE50072F890 /* JCLViewController.h */,
+				D853D68C1A150CE50072F890 /* JCLViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		D88058EE1A150D8B00615C06 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				D853D6851A150CE50072F890 /* JCLAppDelegate.h */,
+				D853D6861A150CE50072F890 /* JCLAppDelegate.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		D88058EF1A150D9200615C06 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D853D6721A150CE50072F890 /* SuperT */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D853D6A51A150CE50072F890 /* Build configuration list for PBXNativeTarget "SuperT" */;
+			buildPhases = (
+				D853D66F1A150CE50072F890 /* Sources */,
+				D853D6701A150CE50072F890 /* Frameworks */,
+				D853D6711A150CE50072F890 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SuperT;
+			productName = SuperT;
+			productReference = D853D6731A150CE50072F890 /* SuperT.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D853D6931A150CE50072F890 /* SuperTTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D853D6A81A150CE50072F890 /* Build configuration list for PBXNativeTarget "SuperTTests" */;
+			buildPhases = (
+				D853D6901A150CE50072F890 /* Sources */,
+				D853D6911A150CE50072F890 /* Frameworks */,
+				D853D6921A150CE50072F890 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D853D69A1A150CE50072F890 /* PBXTargetDependency */,
+			);
+			name = SuperTTests;
+			productName = SuperTTests;
+			productReference = D853D6941A150CE50072F890 /* SuperTTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D853D66B1A150CE50072F890 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = JCL;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Joshua Lee";
+				TargetAttributes = {
+					D853D6931A150CE50072F890 = {
+						TestTargetID = D853D6721A150CE50072F890;
+					};
+				};
+			};
+			buildConfigurationList = D853D66E1A150CE50072F890 /* Build configuration list for PBXProject "SuperT" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D853D66A1A150CE50072F890;
+			productRefGroup = D853D6741A150CE50072F890 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D853D6721A150CE50072F890 /* SuperT */,
+				D853D6931A150CE50072F890 /* SuperTTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D853D6711A150CE50072F890 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D853D68F1A150CE50072F890 /* Images.xcassets in Resources */,
+				D853D6811A150CE50072F890 /* InfoPlist.strings in Resources */,
+				D853D68A1A150CE50072F890 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D853D6921A150CE50072F890 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D853D6A01A150CE50072F890 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D853D66F1A150CE50072F890 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D853D6871A150CE50072F890 /* JCLAppDelegate.m in Sources */,
+				D853D68D1A150CE50072F890 /* JCLViewController.m in Sources */,
+				D853D6831A150CE50072F890 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D853D6901A150CE50072F890 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D853D6A21A150CE50072F890 /* SuperTTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D853D69A1A150CE50072F890 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D853D6721A150CE50072F890 /* SuperT */;
+			targetProxy = D853D6991A150CE50072F890 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D853D67F1A150CE50072F890 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D853D6801A150CE50072F890 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D853D6881A150CE50072F890 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D853D6891A150CE50072F890 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D853D69E1A150CE50072F890 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D853D69F1A150CE50072F890 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D853D6A31A150CE50072F890 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		D853D6A41A150CE50072F890 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D853D6A61A150CE50072F890 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SuperT/SuperT-Prefix.pch";
+				INFOPLIST_FILE = "SuperT/SuperT-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D853D6A71A150CE50072F890 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SuperT/SuperT-Prefix.pch";
+				INFOPLIST_FILE = "SuperT/SuperT-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D853D6A91A150CE50072F890 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SuperT.app/SuperT";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SuperT/SuperT-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SuperTTests/SuperTTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D853D6AA1A150CE50072F890 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SuperT.app/SuperT";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SuperT/SuperT-Prefix.pch";
+				INFOPLIST_FILE = "SuperTTests/SuperTTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D853D66E1A150CE50072F890 /* Build configuration list for PBXProject "SuperT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D853D6A31A150CE50072F890 /* Debug */,
+				D853D6A41A150CE50072F890 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D853D6A51A150CE50072F890 /* Build configuration list for PBXNativeTarget "SuperT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D853D6A61A150CE50072F890 /* Debug */,
+				D853D6A71A150CE50072F890 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D853D6A81A150CE50072F890 /* Build configuration list for PBXNativeTarget "SuperTTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D853D6A91A150CE50072F890 /* Debug */,
+				D853D6AA1A150CE50072F890 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D853D66B1A150CE50072F890 /* Project object */;
+}
