@@ -18,4 +18,7 @@
 - (NSString *) nameOfPlayerAtIndex:(NSInteger)playerIndex;
 - (JCLPlayer *) playerAtIndex:(NSInteger)playerIndex;
 
+- (void) removePlayerAtIndex:(NSInteger)playerIndex;
+- (void) removePlayer:(JCLPlayer *)player;
+
 @end

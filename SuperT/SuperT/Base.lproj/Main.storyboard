@@ -190,6 +190,171 @@
             </objects>
             <point key="canvasLocation" x="1005" y="-1224"/>
         </scene>
+        <!--Profile Overview View Controller-->
+        <scene sceneID="NdX-Rh-0y7">
+            <objects>
+                <viewController id="hIs-XE-Q1F" customClass="JCLProfileOverviewViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gm2-cd-FPr"/>
+                        <viewControllerLayoutGuide type="bottom" id="cvA-1F-MGZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JS9-xc-Nej">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;Name>" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYe-QO-K5c">
+                                <rect key="frame" x="252" y="83" width="264" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ecj-Qu-168">
+                                <rect key="frame" x="20" y="224" width="356" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="hIs-XE-Q1F" id="akt-EM-BLt"/>
+                                    <outlet property="delegate" destination="hIs-XE-Q1F" id="1XE-qF-Zq0"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="History against:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJr-rx-QMk">
+                                <rect key="frame" x="20" y="173" width="356" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Games:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdy-Tj-LyL">
+                                <rect key="frame" x="384" y="224" width="93" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wins:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vph-qL-ikH">
+                                <rect key="frame" x="400" y="272" width="93" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Losses:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qmf-T5-mNf">
+                                <rect key="frame" x="400" y="320" width="93" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;Wins>" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gio-jZ-Gbb">
+                                <rect key="frame" x="501" y="272" width="182" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;Losses>" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCZ-9O-3dE">
+                                <rect key="frame" x="501" y="320" width="182" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.51934373359999997" green="0.736334406" blue="0.96923226119999994" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="lossesLabel" destination="BCZ-9O-3dE" id="qQR-S6-Hqs"/>
+                        <outlet property="pickerView" destination="Ecj-Qu-168" id="QIU-Rv-Vv7"/>
+                        <outlet property="playerNameLabel" destination="YYe-QO-K5c" id="pLW-0A-HHW"/>
+                        <outlet property="winsLabel" destination="Gio-jZ-Gbb" id="YkC-kr-dRx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QMM-fa-zyv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1238" y="2282"/>
+        </scene>
+        <!--Manage Profile Table View Controller - Root View Controller-->
+        <scene sceneID="jga-hf-Idx">
+            <objects>
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="KxA-Gf-gbC" customClass="JCLManageProfileTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Nuq-D0-6V3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" id="LbY-l7-5ho" customClass="JCLProfileTableViewCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LbY-l7-5ho" id="abW-6T-UaT">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEp-hx-BN5">
+                                            <rect key="frame" x="20" y="11" width="280" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="pEp-hx-BN5" id="0gm-LQ-jVq"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="KxA-Gf-gbC" id="NZf-L1-mox"/>
+                            <outlet property="delegate" destination="KxA-Gf-gbC" id="vFK-2r-fhc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="QnE-Bo-mmo"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aLK-tC-izR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1686" y="1346"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="JN6-TM-Umv">
+            <objects>
+                <navigationController id="57W-Fp-kIg" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="8Wg-VN-F23">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="KxA-Gf-gbC" kind="relationship" relationship="rootViewController" id="9sJ-mC-PhF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hI8-hU-yhR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1238" y="1346"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="fxp-J4-X6f">
+            <objects>
+                <viewController id="8iq-hm-yP1" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qRU-W5-KpX"/>
+                        <viewControllerLayoutGuide type="bottom" id="PSf-Ba-2f5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qim-kQ-cev">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zsk-ci-2Cs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-868" y="1730"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="VTf-Ba-bqC">
+            <objects>
+                <splitViewController storyboardIdentifier="ProfileManager" id="1NB-Ga-jXx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="9r8-QO-0Lc"/>
+                    <connections>
+                        <segue destination="57W-Fp-kIg" kind="relationship" relationship="masterViewController" id="Vvq-iu-4uH"/>
+                        <segue destination="hIs-XE-Q1F" kind="relationship" relationship="detailViewController" id="ISc-iB-6er"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PBg-BQ-rss" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="256" y="1814"/>
+        </scene>
         <!--Options View Controller-->
         <scene sceneID="fqj-kt-EWT">
             <objects>
@@ -336,7 +501,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X6g-bj-jae" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1005" y="1141"/>
+            <point key="canvasLocation" x="2503" y="1097"/>
         </scene>
         <!--Choose Player View Controller-->
         <scene sceneID="eWR-wP-Y7R">
@@ -402,7 +567,7 @@
                                 <rect key="frame" x="283" y="544" width="203" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.99340470280000004" green="1" blue="0.3946341183" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Add Player Profile">
+                                <state key="normal" title="Manage Player Profiles">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>

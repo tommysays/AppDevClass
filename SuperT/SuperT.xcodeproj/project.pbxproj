@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D811BBD61A15457B00CC17B2 /* JCLChoosePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D811BBD51A15457B00CC17B2 /* JCLChoosePlayerViewController.m */; };
+		D811BBDC1A155AAF00CC17B2 /* JCLProfileOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D811BBDB1A155AAF00CC17B2 /* JCLProfileOverviewViewController.m */; };
+		D811BBDF1A155D9800CC17B2 /* JCLManageProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D811BBDE1A155D9800CC17B2 /* JCLManageProfileTableViewController.m */; };
+		D811BBE21A155DB400CC17B2 /* JCLProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D811BBE11A155DB400CC17B2 /* JCLProfileTableViewCell.m */; };
 		D853D6771A150CE50072F890 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D853D6761A150CE50072F890 /* Foundation.framework */; };
 		D853D6791A150CE50072F890 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D853D6781A150CE50072F890 /* CoreGraphics.framework */; };
 		D853D67B1A150CE50072F890 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D853D67A1A150CE50072F890 /* UIKit.framework */; };
@@ -42,6 +45,12 @@
 /* Begin PBXFileReference section */
 		D811BBD41A15457B00CC17B2 /* JCLChoosePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLChoosePlayerViewController.h; sourceTree = "<group>"; };
 		D811BBD51A15457B00CC17B2 /* JCLChoosePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLChoosePlayerViewController.m; sourceTree = "<group>"; };
+		D811BBDA1A155AAF00CC17B2 /* JCLProfileOverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLProfileOverviewViewController.h; sourceTree = "<group>"; };
+		D811BBDB1A155AAF00CC17B2 /* JCLProfileOverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLProfileOverviewViewController.m; sourceTree = "<group>"; };
+		D811BBDD1A155D9800CC17B2 /* JCLManageProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLManageProfileTableViewController.h; sourceTree = "<group>"; };
+		D811BBDE1A155D9800CC17B2 /* JCLManageProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLManageProfileTableViewController.m; sourceTree = "<group>"; };
+		D811BBE01A155DB400CC17B2 /* JCLProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLProfileTableViewCell.h; sourceTree = "<group>"; };
+		D811BBE11A155DB400CC17B2 /* JCLProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLProfileTableViewCell.m; sourceTree = "<group>"; };
 		D853D6731A150CE50072F890 /* SuperT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D853D6761A150CE50072F890 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D853D6781A150CE50072F890 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -173,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				D853D6881A150CE50072F890 /* Main.storyboard */,
+				D811BBE01A155DB400CC17B2 /* JCLProfileTableViewCell.h */,
+				D811BBE11A155DB400CC17B2 /* JCLProfileTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -188,6 +199,10 @@
 				D88058F71A150EB300615C06 /* JCLGameViewController.m */,
 				D811BBD41A15457B00CC17B2 /* JCLChoosePlayerViewController.h */,
 				D811BBD51A15457B00CC17B2 /* JCLChoosePlayerViewController.m */,
+				D811BBDA1A155AAF00CC17B2 /* JCLProfileOverviewViewController.h */,
+				D811BBDB1A155AAF00CC17B2 /* JCLProfileOverviewViewController.m */,
+				D811BBDD1A155D9800CC17B2 /* JCLManageProfileTableViewController.h */,
+				D811BBDE1A155D9800CC17B2 /* JCLManageProfileTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -317,10 +332,13 @@
 				D88058F81A150EB300615C06 /* JCLGameViewController.m in Sources */,
 				D853D6871A150CE50072F890 /* JCLAppDelegate.m in Sources */,
 				D88059041A1516A600615C06 /* JCLPlayer.m in Sources */,
+				D811BBE21A155DB400CC17B2 /* JCLProfileTableViewCell.m in Sources */,
 				D88058FE1A15134100615C06 /* JCLGameModel.m in Sources */,
 				D853D6831A150CE50072F890 /* main.m in Sources */,
 				D811BBD61A15457B00CC17B2 /* JCLChoosePlayerViewController.m in Sources */,
 				D88058FB1A15121F00615C06 /* JCLModel.m in Sources */,
+				D811BBDC1A155AAF00CC17B2 /* JCLProfileOverviewViewController.m in Sources */,
+				D811BBDF1A155D9800CC17B2 /* JCLManageProfileTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

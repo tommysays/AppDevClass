@@ -74,4 +74,9 @@
     [self.playerList removeObject:player];
 }
 
+- (void) removePlayerAtIndex:(NSInteger)playerIndex{
+    __weak JCLPlayer *player = [self.playerList objectAtIndex:playerIndex];
+    [self removePlayer:player];
+}
+
 @end

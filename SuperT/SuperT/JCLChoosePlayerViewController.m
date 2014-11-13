@@ -63,7 +63,7 @@
 }
 
 - (IBAction) addPressed:(id)sender{
-    // Segue to add player profile
+    [self moveToProfileManager];
 }
 
 - (IBAction)backPressed:(id)sender {
@@ -79,4 +79,17 @@
         destController.player2 = [self.model playerAtIndex:[self.pickerView2 selectedRowInComponent:0]];
     }
 }
+
+- (void) moveToProfileManager{
+    UISplitViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileManager"];
+    [JCLManageProfileTableViewController setToReturn:self];
+    JCLAppDelegate *appDel = [[UIApplication sharedApplication] delegate];
+    //[appDel.window setRootViewController:controller];
+    [UIView transitionWithView:appDel.window
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionFlipFromLeft
+                    animations:^{ appDel.window.rootViewController = controller; }
+                    completion:nil];
+}
+
 @end

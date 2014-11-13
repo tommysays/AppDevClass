@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "JCLModel.h"
 #import "JCLGameViewController.h"
+#import "JCLManageProfileTableViewController.h"
+#import "JCLAppDelegate.h"
 
 @interface JCLChoosePlayerViewController : UIViewController
 
