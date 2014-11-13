@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main Menu View Controller-->
         <scene sceneID="6Ds-bu-aQd">
             <objects>
-                <viewController id="0ht-5T-xDK" customClass="JCLViewController" sceneMemberID="viewController">
+                <viewController id="0ht-5T-xDK" customClass="JCLMainMenuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LEM-Oc-D49"/>
                         <viewControllerLayoutGuide type="bottom" id="3mt-0O-tPK"/>
@@ -36,6 +36,9 @@
                                 <state key="normal" title="Multiplayer (Two Devices)">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="3OQ-ZZ-hbA" kind="push" id="vcl-hS-9nl"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Super Tic Tac Toe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Tp-f2-zrv">
                                 <rect key="frame" x="83" y="170" width="603" height="204"/>
@@ -57,9 +60,6 @@
                         <color key="backgroundColor" red="0.51934373359999997" green="0.736334406" blue="0.96923226119999994" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="qXy-8i-YdP"/>
-                    <connections>
-                        <segue destination="3OQ-ZZ-hbA" kind="push" id="obs-Cl-Z1E"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lpe-9V-9tF" sceneMemberID="firstResponder"/>
             </objects>
@@ -190,10 +190,10 @@
             </objects>
             <point key="canvasLocation" x="1005" y="-1224"/>
         </scene>
-        <!--View Controller-->
+        <!--Options View Controller-->
         <scene sceneID="fqj-kt-EWT">
             <objects>
-                <viewController id="Aus-lV-eFc" sceneMemberID="viewController">
+                <viewController id="Aus-lV-eFc" customClass="JCLOptionsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6AS-tz-XKv"/>
                         <viewControllerLayoutGuide type="bottom" id="hpb-cq-31N"/>
@@ -325,6 +325,9 @@
                                 <state key="normal" title="Back">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="Aus-lV-eFc" eventType="touchUpInside" id="eut-AO-vpU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.51934373359999997" green="0.736334406" blue="0.96923226119999994" alpha="1" colorSpace="calibratedRGB"/>
@@ -335,10 +338,10 @@
             </objects>
             <point key="canvasLocation" x="1005" y="801"/>
         </scene>
-        <!--View Controller-->
+        <!--Game View Controller-->
         <scene sceneID="z3k-I7-hfP">
             <objects>
-                <viewController id="vpj-7O-5Zn" sceneMemberID="viewController">
+                <viewController id="vpj-7O-5Zn" customClass="JCLGameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y9d-eF-ktj"/>
                         <viewControllerLayoutGuide type="bottom" id="Rcu-JJ-81A"/>
@@ -354,6 +357,9 @@
                                 <state key="normal" title="Finalize Move">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="finalizeButtonPressed:" destination="vpj-7O-5Zn" eventType="touchUpInside" id="PuF-Yw-ikE"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Th-hK-90Q">
                                 <rect key="frame" x="306" y="830" width="129" height="33"/>
@@ -362,6 +368,9 @@
                                 <state key="normal" title="Surrender">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="surrenderButtonPressed:" destination="vpj-7O-5Zn" eventType="touchUpInside" id="Sni-ph-EWU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnw-b8-8Ua">
                                 <rect key="frame" x="410" y="930" width="129" height="33"/>
@@ -381,6 +390,9 @@
                                 <state key="normal" title="Save and Exit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="exitButtonPressed:" destination="vpj-7O-5Zn" eventType="touchUpInside" id="nTZ-3s-sV6"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4A-nm-kiz">
                                 <rect key="frame" x="330" y="407" width="79" height="79"/>
@@ -722,7 +734,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="682-PD-08y"/>
-        <segue reference="EQu-ZJ-M8h"/>
+        <segue reference="fIX-6F-qcx"/>
+        <segue reference="PQy-g9-YzR"/>
     </inferredMetricsTieBreakers>
 </document>

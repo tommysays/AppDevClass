@@ -14,13 +14,18 @@
 		D853D6831A150CE50072F890 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D853D6821A150CE50072F890 /* main.m */; };
 		D853D6871A150CE50072F890 /* JCLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D853D6861A150CE50072F890 /* JCLAppDelegate.m */; };
 		D853D68A1A150CE50072F890 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D853D6881A150CE50072F890 /* Main.storyboard */; };
-		D853D68D1A150CE50072F890 /* JCLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D853D68C1A150CE50072F890 /* JCLViewController.m */; };
 		D853D68F1A150CE50072F890 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D853D68E1A150CE50072F890 /* Images.xcassets */; };
 		D853D6961A150CE50072F890 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D853D6951A150CE50072F890 /* XCTest.framework */; };
 		D853D6971A150CE50072F890 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D853D6761A150CE50072F890 /* Foundation.framework */; };
 		D853D6981A150CE50072F890 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D853D67A1A150CE50072F890 /* UIKit.framework */; };
 		D853D6A01A150CE50072F890 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D853D69E1A150CE50072F890 /* InfoPlist.strings */; };
 		D853D6A21A150CE50072F890 /* SuperTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D853D6A11A150CE50072F890 /* SuperTTests.m */; };
+		D88058F21A150E5C00615C06 /* JCLMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D88058F11A150E5C00615C06 /* JCLMainMenuViewController.m */; };
+		D88058F51A150E7C00615C06 /* JCLOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D88058F41A150E7C00615C06 /* JCLOptionsViewController.m */; };
+		D88058F81A150EB300615C06 /* JCLGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D88058F71A150EB300615C06 /* JCLGameViewController.m */; };
+		D88058FB1A15121F00615C06 /* JCLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D88058FA1A15121F00615C06 /* JCLModel.m */; };
+		D88058FE1A15134100615C06 /* JCLGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D88058FD1A15134100615C06 /* JCLGameModel.m */; };
+		D88059041A1516A600615C06 /* JCLPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D88059031A1516A600615C06 /* JCLPlayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +50,24 @@
 		D853D6851A150CE50072F890 /* JCLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCLAppDelegate.h; sourceTree = "<group>"; };
 		D853D6861A150CE50072F890 /* JCLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCLAppDelegate.m; sourceTree = "<group>"; };
 		D853D6891A150CE50072F890 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D853D68B1A150CE50072F890 /* JCLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JCLViewController.h; sourceTree = "<group>"; };
-		D853D68C1A150CE50072F890 /* JCLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JCLViewController.m; sourceTree = "<group>"; };
 		D853D68E1A150CE50072F890 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D853D6941A150CE50072F890 /* SuperTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D853D6951A150CE50072F890 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D853D69D1A150CE50072F890 /* SuperTTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SuperTTests-Info.plist"; sourceTree = "<group>"; };
 		D853D69F1A150CE50072F890 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D853D6A11A150CE50072F890 /* SuperTTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperTTests.m; sourceTree = "<group>"; };
+		D88058F01A150E5C00615C06 /* JCLMainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLMainMenuViewController.h; sourceTree = "<group>"; };
+		D88058F11A150E5C00615C06 /* JCLMainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLMainMenuViewController.m; sourceTree = "<group>"; };
+		D88058F31A150E7C00615C06 /* JCLOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLOptionsViewController.h; sourceTree = "<group>"; };
+		D88058F41A150E7C00615C06 /* JCLOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLOptionsViewController.m; sourceTree = "<group>"; };
+		D88058F61A150EB300615C06 /* JCLGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLGameViewController.h; sourceTree = "<group>"; };
+		D88058F71A150EB300615C06 /* JCLGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLGameViewController.m; sourceTree = "<group>"; };
+		D88058F91A15121F00615C06 /* JCLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLModel.h; sourceTree = "<group>"; };
+		D88058FA1A15121F00615C06 /* JCLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLModel.m; sourceTree = "<group>"; };
+		D88058FC1A15134100615C06 /* JCLGameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLGameModel.h; sourceTree = "<group>"; };
+		D88058FD1A15134100615C06 /* JCLGameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLGameModel.m; sourceTree = "<group>"; };
+		D88059021A1516A600615C06 /* JCLPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLPlayer.h; sourceTree = "<group>"; };
+		D88059031A1516A600615C06 /* JCLPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLPlayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,8 +177,12 @@
 		D88058ED1A150D7700615C06 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D853D68B1A150CE50072F890 /* JCLViewController.h */,
-				D853D68C1A150CE50072F890 /* JCLViewController.m */,
+				D88058F01A150E5C00615C06 /* JCLMainMenuViewController.h */,
+				D88058F11A150E5C00615C06 /* JCLMainMenuViewController.m */,
+				D88058F31A150E7C00615C06 /* JCLOptionsViewController.h */,
+				D88058F41A150E7C00615C06 /* JCLOptionsViewController.m */,
+				D88058F61A150EB300615C06 /* JCLGameViewController.h */,
+				D88058F71A150EB300615C06 /* JCLGameViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -180,6 +199,12 @@
 		D88058EF1A150D9200615C06 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D88058F91A15121F00615C06 /* JCLModel.h */,
+				D88058FA1A15121F00615C06 /* JCLModel.m */,
+				D88058FC1A15134100615C06 /* JCLGameModel.h */,
+				D88058FD1A15134100615C06 /* JCLGameModel.m */,
+				D88059021A1516A600615C06 /* JCLPlayer.h */,
+				D88059031A1516A600615C06 /* JCLPlayer.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -282,9 +307,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D88058F51A150E7C00615C06 /* JCLOptionsViewController.m in Sources */,
+				D88058F21A150E5C00615C06 /* JCLMainMenuViewController.m in Sources */,
+				D88058F81A150EB300615C06 /* JCLGameViewController.m in Sources */,
 				D853D6871A150CE50072F890 /* JCLAppDelegate.m in Sources */,
-				D853D68D1A150CE50072F890 /* JCLViewController.m in Sources */,
+				D88059041A1516A600615C06 /* JCLPlayer.m in Sources */,
+				D88058FE1A15134100615C06 /* JCLGameModel.m in Sources */,
 				D853D6831A150CE50072F890 /* main.m in Sources */,
+				D88058FB1A15121F00615C06 /* JCLModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

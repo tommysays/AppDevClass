@@ -1,5 +1,5 @@
 //
-//  JCLViewController.h
+//  JCLMainMenuViewController.h
 //  SuperT
 //
 //  Created by JOSHUA CHRISTOPHER LEE on 11/13/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JCLViewController : UIViewController
+@interface JCLMainMenuViewController : UIViewController
 
 @end
