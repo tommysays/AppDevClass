@@ -32,7 +32,8 @@
 - (id) init{
     self = [super init];
     if (self){
-        // Call initialization methods for data.
+        self.playerList = [[NSMutableArray alloc] init];
+        self.playerIDs = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -40,6 +41,7 @@
 #pragma mark Accessors
 
 - (NSInteger) numberOfPlayerProfiles{
+    NSLog(@"player count: %d", [self.playerList count]);
     return [self.playerList count];
 }
 
@@ -55,7 +57,7 @@
 
 // A simple rand function for ID generation.
 - (NSNumber *) generateID{
-    NSInteger rand = -1;
+    NSUInteger rand = -1;
     while ([self.playerIDs objectForKey:[NSNumber numberWithUnsignedInteger:rand]]|| rand == -1){
         rand = arc4random();
     }
@@ -65,6 +67,9 @@
 - (void) addPlayerWithName:(NSString *)name{
     JCLPlayer *player = [[JCLPlayer alloc] initWithName:name];
     [self.playerIDs setObject:player forKey:player.identificationNumber];
+    [self.playerList addObject:player];
+    NSLog(@"Added %@", name);
+    NSLog(@"Count = %d", [self.playerList count]);
 }
 
 - (void) removePlayer:(JCLPlayer *)player{
@@ -72,6 +77,7 @@
         [pl resetScoresAgainst:player];
     }
     [self.playerList removeObject:player];
+    [self.playerIDs removeObjectForKey:player.identificationNumber];
 }
 
 - (void) removePlayerAtIndex:(NSInteger)playerIndex{

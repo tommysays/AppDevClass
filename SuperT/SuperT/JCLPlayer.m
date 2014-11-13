@@ -26,7 +26,11 @@
     if (self){
         self.scores = [[NSMutableDictionary alloc] init];
         self.name = @"Anonymous";
+        self.model = [JCLModel sharedInstance];
         self.identificationNumber = [self.model generateID];
+        NSLog(@"ID = %@", self.identificationNumber);
+    } else{
+        NSLog(@"something went horribly wrong!");
     }
     return self;
 }
@@ -36,7 +40,6 @@
     if (self){
         self.name = name;
     }
-    
     return self;
 }
 

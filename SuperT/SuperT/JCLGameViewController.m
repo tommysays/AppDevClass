@@ -63,7 +63,11 @@
             JCLPlayer *winner;
             JCLPlayer *loser;
             if (self.gameModel.isPlayer1Turn){
-                
+                winner = self.player2;
+                loser = self.player1;
+            } else{
+                winner = self.player1;
+                loser = self.player2;
             }
             [self gameOverWithWinner:winner andLoser:loser];
         }

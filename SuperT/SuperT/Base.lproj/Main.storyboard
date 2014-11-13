@@ -265,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QMM-fa-zyv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1238" y="2282"/>
+            <point key="canvasLocation" x="-206" y="2234"/>
         </scene>
         <!--Manage Profile Table View Controller - Root View Controller-->
         <scene sceneID="jga-hf-Idx">
@@ -305,7 +305,67 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aLK-tC-izR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1686" y="1346"/>
+            <point key="canvasLocation" x="242" y="1298"/>
+        </scene>
+        <!--Add Player View Controller-->
+        <scene sceneID="ETB-vA-G7z">
+            <objects>
+                <viewController definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" modalPresentationStyle="formSheet" id="rmP-40-POM" customClass="JCLAddPlayerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UPW-bv-Stf"/>
+                        <viewControllerLayoutGuide type="bottom" id="oNA-Hd-ZP9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GXV-Ly-1Nf">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="450"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Player Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Us-lR-4fT">
+                                <rect key="frame" x="116" y="84" width="271" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nd6-OQ-1Rz">
+                                <rect key="frame" x="68" y="269" width="139" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99340470280000004" green="1" blue="0.3946341183" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelPressed:" destination="rmP-40-POM" eventType="touchUpInside" id="yrU-ii-ANl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBn-HC-BNA">
+                                <rect key="frame" x="293" y="269" width="139" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99340470280000004" green="1" blue="0.3946341183" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addPressed:" destination="rmP-40-POM" eventType="touchUpInside" id="erk-7V-vkt"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Player" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MK1-aX-o5V">
+                                <rect key="frame" x="68" y="188" width="364" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.51934373359999997" green="0.736334406" blue="0.96923226119999994" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="500" height="450"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="500" height="450"/>
+                    <connections>
+                        <outlet property="textField" destination="MK1-aX-o5V" id="kfZ-Rr-R7V"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bha-qq-ZHq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1005" y="1109"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JN6-TM-Umv">
@@ -320,25 +380,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hI8-hU-yhR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1238" y="1346"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="fxp-J4-X6f">
-            <objects>
-                <viewController id="8iq-hm-yP1" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qRU-W5-KpX"/>
-                        <viewControllerLayoutGuide type="bottom" id="PSf-Ba-2f5"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Qim-kQ-cev">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zsk-ci-2Cs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-868" y="1730"/>
+            <point key="canvasLocation" x="-206" y="1298"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="VTf-Ba-bqC">
@@ -353,7 +395,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PBg-BQ-rss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="256" y="1814"/>
+            <point key="canvasLocation" x="-1188" y="1766"/>
         </scene>
         <!--Options View Controller-->
         <scene sceneID="fqj-kt-EWT">
@@ -593,6 +635,7 @@
                         <outlet property="pickerView1" destination="pQR-4l-eE5" id="epD-ql-HXq"/>
                         <outlet property="pickerView2" destination="Rk9-49-7ii" id="l22-l2-Zdr"/>
                         <segue destination="vpj-7O-5Zn" kind="push" identifier="ChooseToGame" id="AT4-nj-e92"/>
+                        <segue destination="rmP-40-POM" kind="modal" identifier="ChooseToAdd" modalPresentationStyle="formSheet" id="fVd-oI-ugY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0YC-au-YDw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -995,7 +1038,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="EQu-ZJ-M8h"/>
         <segue reference="AT4-nj-e92"/>
+        <segue reference="fIX-6F-qcx"/>
     </inferredMetricsTieBreakers>
 </document>

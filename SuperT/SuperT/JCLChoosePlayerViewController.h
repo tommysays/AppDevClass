@@ -11,7 +11,10 @@
 #import "JCLGameViewController.h"
 #import "JCLManageProfileTableViewController.h"
 #import "JCLAppDelegate.h"
+#import "JCLAddPlayerViewController.h"
 
 @interface JCLChoosePlayerViewController : UIViewController
+
+- (void) refresh;
 
 @end

@@ -44,6 +44,11 @@
     return [self.model nameOfPlayerAtIndex:row];
 }
 
+- (void) refresh{
+    [self.pickerView1 reloadComponent:0];
+    [self.pickerView2 reloadComponent:0];
+}
+
 #pragma mark Button Reactions
 - (IBAction) playPressed:(id)sender{
     if ([self.pickerView1 selectedRowInComponent:0] != [self.pickerView2 selectedRowInComponent:0]){
@@ -63,7 +68,8 @@
 }
 
 - (IBAction) addPressed:(id)sender{
-    [self moveToProfileManager];
+    //[self moveToProfileManager];
+    [self performSegueWithIdentifier:@"ChooseToAdd" sender:self];
 }
 
 - (IBAction)backPressed:(id)sender {
@@ -77,6 +83,9 @@
         JCLGameViewController *destController = segue.destinationViewController;
         destController.player1 = [self.model playerAtIndex:[self.pickerView1 selectedRowInComponent:0]];
         destController.player2 = [self.model playerAtIndex:[self.pickerView2 selectedRowInComponent:0]];
+    } else if ([segue.identifier isEqualToString:@"ChooseToAdd"]){
+        JCLAddPlayerViewController *destController = segue.destinationViewController;
+        destController.toRefresh = self;
     }
 }
 
