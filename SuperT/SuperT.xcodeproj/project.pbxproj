@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D811BBD61A15457B00CC17B2 /* JCLChoosePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D811BBD51A15457B00CC17B2 /* JCLChoosePlayerViewController.m */; };
 		D853D6771A150CE50072F890 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D853D6761A150CE50072F890 /* Foundation.framework */; };
 		D853D6791A150CE50072F890 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D853D6781A150CE50072F890 /* CoreGraphics.framework */; };
 		D853D67B1A150CE50072F890 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D853D67A1A150CE50072F890 /* UIKit.framework */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D811BBD41A15457B00CC17B2 /* JCLChoosePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLChoosePlayerViewController.h; sourceTree = "<group>"; };
+		D811BBD51A15457B00CC17B2 /* JCLChoosePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLChoosePlayerViewController.m; sourceTree = "<group>"; };
 		D853D6731A150CE50072F890 /* SuperT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D853D6761A150CE50072F890 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D853D6781A150CE50072F890 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -183,6 +186,8 @@
 				D88058F41A150E7C00615C06 /* JCLOptionsViewController.m */,
 				D88058F61A150EB300615C06 /* JCLGameViewController.h */,
 				D88058F71A150EB300615C06 /* JCLGameViewController.m */,
+				D811BBD41A15457B00CC17B2 /* JCLChoosePlayerViewController.h */,
+				D811BBD51A15457B00CC17B2 /* JCLChoosePlayerViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 				D88059041A1516A600615C06 /* JCLPlayer.m in Sources */,
 				D88058FE1A15134100615C06 /* JCLGameModel.m in Sources */,
 				D853D6831A150CE50072F890 /* main.m in Sources */,
+				D811BBD61A15457B00CC17B2 /* JCLChoosePlayerViewController.m in Sources */,
 				D88058FB1A15121F00615C06 /* JCLModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

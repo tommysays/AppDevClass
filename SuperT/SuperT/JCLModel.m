@@ -7,11 +7,11 @@
 //
 
 #import "JCLModel.h"
-#import "JCLPlayer.h"
 
 @interface JCLModel ()
 
-@property NSMutableDictionary *playerList;
+@property NSMutableArray *playerList;
+@property NSMutableDictionary *playerIDs;
 
 @end
 
@@ -37,33 +37,41 @@
     return self;
 }
 
+#pragma mark Accessors
+
+- (NSInteger) numberOfPlayerProfiles{
+    return [self.playerList count];
+}
+
+- (NSString *) nameOfPlayerAtIndex:(NSInteger)playerIndex{
+    return [[self.playerList objectAtIndex:playerIndex] name];
+}
+
+- (JCLPlayer *) playerAtIndex:(NSInteger)playerIndex{
+    return [self.playerList objectAtIndex:playerIndex];
+}
+
 #pragma mark Misc
 
 // A simple rand function for ID generation.
 - (NSNumber *) generateID{
     NSInteger rand = -1;
-    while ([self.playerList objectForKey:[NSNumber numberWithUnsignedInteger:rand]]|| rand == -1){
+    while ([self.playerIDs objectForKey:[NSNumber numberWithUnsignedInteger:rand]]|| rand == -1){
         rand = arc4random();
     }
     return [NSNumber numberWithUnsignedInteger:rand];
 }
 
-- (NSDictionary *) listOfPlayers{
-    return self.playerList;
-}
-
 - (void) addPlayerWithName:(NSString *)name{
     JCLPlayer *player = [[JCLPlayer alloc] initWithName:name];
-    [self.playerList setObject:player forKey:player.identificationNumber];
+    [self.playerIDs setObject:player forKey:player.identificationNumber];
 }
 
 - (void) removePlayer:(JCLPlayer *)player{
-    for (NSNumber *identificationNumber in self.playerList){
-        JCLPlayer *pl = [self.playerList objectForKey:identificationNumber];
-        if (pl){
-            [pl resetScoresAgainst:player];
-        }
+    for (JCLPlayer *pl in self.playerList){
+        [pl resetScoresAgainst:player];
     }
+    [self.playerList removeObject:player];
 }
 
 @end

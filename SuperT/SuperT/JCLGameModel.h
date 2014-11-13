@@ -11,6 +11,8 @@
 
 @interface JCLGameModel : NSObject
 
+@property BOOL isPlayer1Turn;
+
 - (id) initWithPlayer1:(JCLPlayer *)player1 andPlayer2:(JCLPlayer *)player2;
 
 @end

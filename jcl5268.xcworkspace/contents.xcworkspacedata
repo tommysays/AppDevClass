@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:SuperT/SuperT.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:PhotoViewer4/PhotoViewer4.xcodeproj">
    </FileRef>
    <FileRef

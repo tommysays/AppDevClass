@@ -51,6 +51,10 @@
     return toReturn;
 }
 
+- (NSString *) nameOfPlayer{
+    return self.name;
+}
+
 #pragma mark Mutators
 
 + (void) concludeWithWinner:(JCLPlayer *)winner andLoser:(JCLPlayer *)loser{

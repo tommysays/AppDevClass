@@ -13,7 +13,6 @@
 @property NSMutableArray *moveHistory;
 @property JCLPlayer *player1;
 @property JCLPlayer *player2;
-@property BOOL isXTurn;
 
 @end
 
@@ -23,7 +22,7 @@
     self = [super init];
     if (self){
         [self initLists];
-        self.isXTurn = YES;
+        self.isPlayer1Turn = YES;
     }
     return self;
 }
@@ -43,12 +42,12 @@
 
 - (void) makeMove_X:(NSIndexPath *)move{
     [self recordMove:move withMark:@"x"];
-    self.isXTurn = NO;
+    self.isPlayer1Turn = NO;
 }
 
 - (void) makeMove_O:(NSIndexPath *)move{
     [self recordMove:move withMark:@"o"];
-    self.isXTurn = YES;
+    self.isPlayer1Turn = YES;
 }
 
 - (void) recordMove:(NSIndexPath *)move withMark:(NSString *)mark{

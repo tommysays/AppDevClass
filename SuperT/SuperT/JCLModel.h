@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JCLPlayer.h"
 
 @interface JCLModel : NSObject
 
 + (id) sharedInstance;
 - (NSNumber *) generateID;
 
-- (NSDictionary *) listOfPlayers;
+- (NSInteger) numberOfPlayerProfiles;
+- (NSString *) nameOfPlayerAtIndex:(NSInteger)playerIndex;
+- (JCLPlayer *) playerAtIndex:(NSInteger)playerIndex;
 
 @end
