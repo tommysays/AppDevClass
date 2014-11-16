@@ -202,8 +202,6 @@
     }
     
     if (fill >= 0){
-        NSLog(@"game over? fill = %d", fill);
-        NSLog(@"game is completely filled? %@", [NSNumber numberWithBool:[self gameIsCompletelyFilled]]);
         self.gameOver = YES;
         self.winner = fill;
     }
@@ -248,7 +246,6 @@
     } else{
         self.lastBoardWasWon = NO;
     }
-    NSLog(@"Evaluation of miniboard %d concluded with fill = %d", index, fill);
 }
 
 - (BOOL) gameIsCompletelyFilled{
