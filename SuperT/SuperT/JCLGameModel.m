@@ -177,17 +177,18 @@
 - (void) evaluateGameOver{
     NSInteger fill = -1;
     NSArray *board = self.enabledBoards;
-    if (board[0] != [NSNumber numberWithInteger:-1] &&
+    NSNumber *neg1 = [NSNumber numberWithInteger:-1];
+    if (board[0] != neg1 &&
         ((board[0] == board[1] && board[0] == board[2]) ||
          (board[0] == board[3] && board[0] == board[6])))
     {
         fill = [board[0] integerValue];
-    } else if (board[8] != [NSNumber numberWithInteger:-1] &&
+    } else if (board[8] != neg1 &&
                ((board[8] == board[7] && board[8] == board[6]) ||
                 (board[8] == board[5] && board[8] == board[2])))
     {
         fill = [board[8] integerValue];
-    } else if (board[4] != [NSNumber numberWithInteger:-1] &&
+    } else if (board[4] != neg1 &&
                (
                 (board[4] == board[0] && board[4] == board[8]) ||
                 (board[4] == board[1] && board[4] == board[7]) ||
@@ -195,10 +196,14 @@
                 (board[4] == board[3] && board[4] == board[5])))
     {
         fill = [board[4] integerValue];
-    } else if ([self gameIsCompletelyFilled]){
+    } else if ([self gameIsCompletelyFilled])
+    {
         fill = 0;
     }
+    
     if (fill >= 0){
+        NSLog(@"game over? fill = %d", fill);
+        NSLog(@"game is completely filled? %@", [NSNumber numberWithBool:[self gameIsCompletelyFilled]]);
         self.gameOver = YES;
         self.winner = fill;
     }
@@ -208,22 +213,23 @@
 - (void) evaluateMiniBoard:(NSInteger)index{
     NSInteger fill = -1;
     NSArray *miniBoard = [self.boards objectAtIndex:index];
+    NSNumber *neg1 = [NSNumber numberWithInteger:-1];
     
     // If a winning move was played, or if the miniboard ended in a draw,
     // set enabledBoards to the winning player's fill value (1 or 2), or 0 for draw.
     
     // Normally I don't format like this, but XCode wouldn't cooperate with me otherwise.
-    if (miniBoard[0] != [NSNumber numberWithInteger:-1] &&
+    if (miniBoard[0] != neg1 &&
         ((miniBoard[0] == miniBoard[1] && miniBoard[0] == miniBoard[2]) ||
          (miniBoard[0] == miniBoard[3] && miniBoard[0] == miniBoard[6])))
     {
         fill = [miniBoard[0] integerValue];
-    } else if (miniBoard[8] != [NSNumber numberWithInteger:-1] &&
+    } else if (miniBoard[8] != neg1 &&
                ((miniBoard[8] == miniBoard[7] && miniBoard[8] == miniBoard[6]) ||
                 (miniBoard[8] == miniBoard[5] && miniBoard[8] == miniBoard[2])))
     {
         fill = [miniBoard[8] integerValue];
-    } else if (miniBoard[4] != [NSNumber numberWithInteger:-1] &&
+    } else if (miniBoard[4] != neg1 &&
                (
                 (miniBoard[4] == miniBoard[0] && miniBoard[4] == miniBoard[8]) ||
                 (miniBoard[4] == miniBoard[1] && miniBoard[4] == miniBoard[7]) ||
@@ -246,7 +252,7 @@
 }
 
 - (BOOL) gameIsCompletelyFilled{
-    NSArray *board = self.boards;
+    NSArray *board = self.enabledBoards;
     NSNumber *neg1 = [NSNumber numberWithInteger:-1];
 
     if (board[0] != neg1 &&

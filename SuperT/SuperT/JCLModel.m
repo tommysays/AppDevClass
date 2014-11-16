@@ -25,6 +25,7 @@
     @synchronized(self){
         if (!singleton){
             singleton = [[self alloc] init];
+            [singleton finishInit];
         }
     }
     return singleton;
@@ -33,12 +34,22 @@
 - (id) init{
     self = [super init];
     if (self){
-        self.playerList = [[NSMutableArray alloc] init];
-        self.playerIDs = [[NSMutableDictionary alloc] init];
-        self.images = [[NSMutableDictionary alloc] init];
-        [self loadImages];
+        _playerList = [[NSMutableArray alloc] init];
+        _playerIDs = [[NSMutableDictionary alloc] init];
+        _images = [[NSMutableDictionary alloc] init];
+
     }
     return self;
+}
+
+// Some method calls to finish up initialization. Can't place in "init" due to circular calls.
+- (void) finishInit{
+    // Comment next line out to leave out default profiles.
+    // [self createDefaultPlayers];
+    [self addPlayerWithName:@"Bob"];
+    [self addPlayerWithName:@"Billy"];
+    [self addPlayerWithName:@"Jebediah"];
+    [self loadImages];
 }
 
 - (void) loadImages{
@@ -46,6 +57,9 @@
     [self.images setObject:img forKey:@"xCellImage"];
     img = [UIImage imageNamed:@"ocell_image"];
     [self.images setObject:img forKey:@"oCellImage"];
+}
+
+- (void) createDefaultPlayers{
 }
 
 #pragma mark Accessors
@@ -75,7 +89,7 @@
 // A simple rand function for ID generation.
 - (NSNumber *) generateID{
     NSUInteger rand = -1;
-    while ([self.playerIDs objectForKey:[NSNumber numberWithUnsignedInteger:rand]]|| rand == -1){
+    while ([self.playerIDs objectForKey:[NSNumber numberWithUnsignedInteger:rand]] || rand == -1){
         rand = arc4random();
     }
     return [NSNumber numberWithUnsignedInteger:rand];

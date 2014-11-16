@@ -29,13 +29,15 @@
 @property JCLModel *model;
 @property JCLGameModel *gameModel;
 @property NSMutableArray *miniBoards;
+@property NSMutableArray *marks;
 @property NSMutableArray *highlighters_p1;
 @property NSMutableArray *highlighters_p2;
-@property UIColor *kHighlightColor_p1; // Color to highlight next movespace
-@property UIColor *kHighlightColor_p2; // Color to highlight current movespace
 @property NSIndexPath *curMove;
 @property UIImageView *curMark;
-@property UIColor *curHighlightColor;
+
+// These are viable properties to change via Options.
+@property UIColor *kHighlightColor_p1; // Color to highlight next movespace
+@property UIColor *kHighlightColor_p2; // Color to highlight current movespace
 
 @end
 
@@ -53,10 +55,10 @@ const CGFloat kHighlightAlpha = 0.4;
     self.gameModel = [[JCLGameModel alloc] initWithPlayer1:self.player1 andPlayer2:self.player2];
     self.kHighlightColor_p1 = [UIColor whiteColor];
     self.kHighlightColor_p2 = [UIColor redColor];
-    self.curHighlightColor = self.kHighlightColor_p1;
     self.model = [JCLModel sharedInstance];
     self.highlighters_p1 = [[NSMutableArray alloc] init];
     self.highlighters_p2 = [[NSMutableArray alloc] init];
+    self.marks = [[NSMutableArray alloc] init];
     [self initBoards];
 }
 
@@ -222,7 +224,26 @@ const CGFloat kHighlightAlpha = 0.4;
         [self.gameModel makeMove:self.curMove];
         [self unhighlightLast];
         self.curMove = nil;
-        self.curMark = nil;
+        if (self.curMark){
+            UIImageView *mark = self.curMark;
+            [self.marks addObject:mark];
+            self.curMark = nil;
+        }
+        if (self.gameModel.gameOver){
+            NSInteger winner = self.gameModel.winner;
+            switch (winner) {
+                case 0:
+                    [self gameOverWithWinner:self.player1 andLoser:self.player2 wasDraw:YES];
+                    break;
+                case 1:
+                    [self gameOverWithWinner:self.player1 andLoser:self.player2 wasDraw:NO];
+                    break;
+                case 2:
+                    [self gameOverWithWinner:self.player2 andLoser:self.player1 wasDraw:NO];
+                default:
+                    break;
+            }
+        }
     } else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Can't move."
                                                         message:@"You must place a move before you can finalize it."
@@ -250,8 +271,7 @@ const CGFloat kHighlightAlpha = 0.4;
 }
 
 - (IBAction)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    // If tag == 1, we are in "Surrender" alert. If tag == 2, we are in "Game Over" alert.
-    if (alertView.tag == 1){
+    if (alertView.tag == 1){  // ---------------------- Surrender -------------------------
         if (buttonIndex == 1){
             JCLPlayer *winner;
             JCLPlayer *loser;
@@ -262,21 +282,52 @@ const CGFloat kHighlightAlpha = 0.4;
                 winner = self.player1;
                 loser = self.player2;
             }
-            [self gameOverWithWinner:winner andLoser:loser];
+            [self gameOverWithWinner:winner andLoser:loser wasDraw:NO];
         }
-    } else if (alertView.tag == 2){
+    } else if (alertView.tag == 2){ // ---------------- Game Over -------------------------
         if (buttonIndex == 0){
             [self.navigationController popViewControllerAnimated:YES];
         } else if (buttonIndex == 1){
-            // Reset game for rematch.
+            // Reset the game and board.
+            
+            // Reset game model.
             self.gameModel = [[JCLGameModel alloc] initWithPlayer1:self.player1 andPlayer2:self.player2];
+            
+            // Unhighlight everything.
             [self unhighlightAll];
+            
+            // Remove all marks from board, including any temporary ones (curMark).
+            if (self.curMark){
+                [self.curMark removeFromSuperview];
+                self.curMark = nil;
+            }
+            for (UIImageView *view in self.marks){
+                [view removeFromSuperview];
+            }
+            
             // TODO more reset stuff.
         }
     }
 }
 
-- (void) gameOverWithWinner:(JCLPlayer *)winner andLoser:(JCLPlayer *)loser{
+- (void) gameOverWithWinner:(JCLPlayer *)winner andLoser:(JCLPlayer *)loser wasDraw:(BOOL)isDraw{
+    if (isDraw){
+        // Game was a draw.
+        // Show a concluding message with an option to rematch.
+        NSString *victoryMessage = [NSString stringWithFormat:@"No one won the game!"];
+        NSIndexPath *score = [winner scoresAgainst:loser];
+        NSString *scoreMessage = [NSString stringWithFormat:@"Score: %d to %d", score.row   , score.section];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:victoryMessage
+                                                        message:scoreMessage
+                                                       delegate:self
+                                              cancelButtonTitle:@"Back to Player Select"
+                                              otherButtonTitles:@"Rematch?",
+                              nil];
+        alert.tag = 2;
+        [alert show];
+        return;
+    }
+    // Otherwise, game concluded with a winner.
     
     // Update player profiles to reflect conclusion
     [JCLPlayer concludeWithWinner:winner andLoser:loser];

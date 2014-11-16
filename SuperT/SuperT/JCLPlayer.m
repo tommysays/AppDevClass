@@ -24,10 +24,10 @@
 - (id) init{
     self = [super init];
     if (self){
-        self.scores = [[NSMutableDictionary alloc] init];
-        self.name = @"Anonymous";
-        self.model = [JCLModel sharedInstance];
-        self.identificationNumber = [self.model generateID];
+        _scores = [[NSMutableDictionary alloc] init];
+        _name = @"Anonymous";
+        _model = [JCLModel sharedInstance];
+        _identificationNumber = [self.model generateID];
     } else{
         NSLog(@"Something went horribly wrong! Player could not be initialized.");
     }
@@ -37,7 +37,7 @@
 - (id) initWithName:(NSString *)name{
     self = [self init];
     if (self){
-        self.name = name;
+        _name = name;
     }
     return self;
 }
