@@ -224,7 +224,13 @@ const CGFloat kHighlightAlpha = 0.4;
         self.curMove = nil;
         self.curMark = nil;
     } else{
-        // Maybe throw an alert, saying that user must make a move before finalizing.
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Can't move."
+                                                        message:@"You must place a move before you can finalize it."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:nil];
+        alert.tag = 3;
+        [alert show];
     }
 }
 
@@ -258,7 +264,7 @@ const CGFloat kHighlightAlpha = 0.4;
             }
             [self gameOverWithWinner:winner andLoser:loser];
         }
-    } else{
+    } else if (alertView.tag == 2){
         if (buttonIndex == 0){
             [self.navigationController popViewControllerAnimated:YES];
         } else if (buttonIndex == 1){

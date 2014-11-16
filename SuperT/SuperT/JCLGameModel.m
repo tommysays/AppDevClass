@@ -115,7 +115,7 @@
     // Fake the move
     miniBoard[move.row] = [NSNumber numberWithInteger:toFill];
     
-    [self evaluateMiniBoard:move.section];
+    [self evaluateMiniBoard:move.row];
     
     NSArray *toReturn;
     if ([self isBoardEnabled:cell]){
@@ -176,18 +176,25 @@
 // Evaluates whether or not the game has reached a conclusion.
 - (void) evaluateGameOver{
     NSInteger fill = -1;
-    NSArray *wholeBoard = self.enabledBoards;
-    if ((wholeBoard[0] == wholeBoard[1] && wholeBoard[0] == wholeBoard[2]) ||
-        (wholeBoard[0] == wholeBoard[3] && wholeBoard[0] == wholeBoard[6])){
-        fill = [wholeBoard[0] integerValue];
-    } else if ((wholeBoard[8] == wholeBoard[7] && wholeBoard[8] == wholeBoard[6]) ||
-               (wholeBoard[8] == wholeBoard[5] && wholeBoard[8] == wholeBoard[2])){
-        fill = [wholeBoard[8] integerValue];
-    } else if ((wholeBoard[4] == wholeBoard[0] && wholeBoard[4] == wholeBoard[8]) ||
-               (wholeBoard[4] == wholeBoard[1] && wholeBoard[4] == wholeBoard[7]) ||
-               (wholeBoard[4] == wholeBoard[2] && wholeBoard[4] == wholeBoard[6]) ||
-               (wholeBoard[4] == wholeBoard[3] && wholeBoard[4] == wholeBoard[5])){
-        fill = [wholeBoard[4] integerValue];
+    NSArray *board = self.enabledBoards;
+    if (board[0] != [NSNumber numberWithInteger:-1] &&
+        ((board[0] == board[1] && board[0] == board[2]) ||
+         (board[0] == board[3] && board[0] == board[6])))
+    {
+        fill = [board[0] integerValue];
+    } else if (board[8] != [NSNumber numberWithInteger:-1] &&
+               ((board[8] == board[7] && board[8] == board[6]) ||
+                (board[8] == board[5] && board[8] == board[2])))
+    {
+        fill = [board[8] integerValue];
+    } else if (board[4] != [NSNumber numberWithInteger:-1] &&
+               (
+                (board[4] == board[0] && board[4] == board[8]) ||
+                (board[4] == board[1] && board[4] == board[7]) ||
+                (board[4] == board[2] && board[4] == board[6]) ||
+                (board[4] == board[3] && board[4] == board[5])))
+    {
+        fill = [board[4] integerValue];
     } else if ([self gameIsCompletelyFilled]){
         fill = 0;
     }
@@ -205,26 +212,37 @@
     // If a winning move was played, or if the miniboard ended in a draw,
     // set enabledBoards to the winning player's fill value (1 or 2), or 0 for draw.
     
-    if ((miniBoard[0] == miniBoard[1] && miniBoard[0] == miniBoard[2]) ||
-        (miniBoard[0] == miniBoard[3] && miniBoard[0] == miniBoard[6])){
+    // Normally I don't format like this, but XCode wouldn't cooperate with me otherwise.
+    if (miniBoard[0] != [NSNumber numberWithInteger:-1] &&
+        ((miniBoard[0] == miniBoard[1] && miniBoard[0] == miniBoard[2]) ||
+         (miniBoard[0] == miniBoard[3] && miniBoard[0] == miniBoard[6])))
+    {
         fill = [miniBoard[0] integerValue];
-    } else if ((miniBoard[8] == miniBoard[7] && miniBoard[8] == miniBoard[6]) ||
-               (miniBoard[8] == miniBoard[5] && miniBoard[8] == miniBoard[2])){
+    } else if (miniBoard[8] != [NSNumber numberWithInteger:-1] &&
+               ((miniBoard[8] == miniBoard[7] && miniBoard[8] == miniBoard[6]) ||
+                (miniBoard[8] == miniBoard[5] && miniBoard[8] == miniBoard[2])))
+    {
         fill = [miniBoard[8] integerValue];
-    } else if ((miniBoard[4] == miniBoard[0] && miniBoard[4] == miniBoard[8]) ||
-               (miniBoard[4] == miniBoard[1] && miniBoard[4] == miniBoard[7]) ||
-               (miniBoard[4] == miniBoard[2] && miniBoard[4] == miniBoard[6]) ||
-               (miniBoard[4] == miniBoard[3] && miniBoard[4] == miniBoard[5])){
+    } else if (miniBoard[4] != [NSNumber numberWithInteger:-1] &&
+               (
+                (miniBoard[4] == miniBoard[0] && miniBoard[4] == miniBoard[8]) ||
+                (miniBoard[4] == miniBoard[1] && miniBoard[4] == miniBoard[7]) ||
+                (miniBoard[4] == miniBoard[2] && miniBoard[4] == miniBoard[6]) ||
+                (miniBoard[4] == miniBoard[3] && miniBoard[4] == miniBoard[5])))
+    {
         fill = [miniBoard[4] integerValue];
-    } else if ([self miniBoardIsCompletelyFilled:index]){
+    } else if ([self miniBoardIsCompletelyFilled:index])
+    {
         fill = 0;
     }
     
     self.enabledBoards[index] = [NSNumber numberWithInteger:fill];
     if (fill >= 0){
-        NSLog(@"Miniboard concluded with fill = %d", fill);
         self.lastBoardWasWon = YES;
+    } else{
+        self.lastBoardWasWon = NO;
     }
+    NSLog(@"Evaluation of miniboard %d concluded with fill = %d", index, fill);
 }
 
 - (BOOL) gameIsCompletelyFilled{
