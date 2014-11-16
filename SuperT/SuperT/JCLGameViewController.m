@@ -29,7 +29,8 @@
 @property JCLModel *model;
 @property JCLGameModel *gameModel;
 @property NSMutableArray *miniBoards;
-@property NSMutableArray *highlighters;
+@property NSMutableArray *highlighters_p1;
+@property NSMutableArray *highlighters_p2;
 @property UIColor *kHighlightColor_p1; // Color to highlight next movespace
 @property UIColor *kHighlightColor_p2; // Color to highlight current movespace
 @property NSIndexPath *curMove;
@@ -54,7 +55,8 @@ const CGFloat kHighlightAlpha = 0.4;
     self.kHighlightColor_p2 = [UIColor redColor];
     self.curHighlightColor = self.kHighlightColor_p1;
     self.model = [JCLModel sharedInstance];
-    self.highlighters = [[NSMutableArray alloc] init];
+    self.highlighters_p1 = [[NSMutableArray alloc] init];
+    self.highlighters_p2 = [[NSMutableArray alloc] init];
     [self initBoards];
 }
 
@@ -86,45 +88,82 @@ const CGFloat kHighlightAlpha = 0.4;
     board.userInteractionEnabled = YES;
     [board addGestureRecognizer:tap];
     [self.miniBoards addObject:board];
-    [self addHighlighter:board.frame];
+    
+    // Add highlighter for p1
+    UIView *view = [self addHighlighter:board.frame];
+    view.backgroundColor = self.kHighlightColor_p1;
+    [self.highlighters_p1 addObject:view];
+    
+    // Add highlighter for p2
+    view = [self addHighlighter:board.frame];
+    view.backgroundColor = self.kHighlightColor_p2;
+    [self.highlighters_p2 addObject:view];
+    
     [self.view bringSubviewToFront:board];
 }
 
-- (void) addHighlighter:(CGRect)frame{
+- (UIView *) addHighlighter:(CGRect)frame{
     UIView *view = [[UIView alloc] initWithFrame:frame];
-    view.backgroundColor = self.curHighlightColor;
     [self.view addSubview:view];
     view.alpha = 0.0;
-    [self.highlighters addObject:view];
-    
+    return view;
 }
 
 #pragma mark Animators
 
 - (void) highlightMiniBoards:(NSArray *)boardIndeces{
-    NSLog(@"Highlight: Count = %d", [self.highlighters count]);
+    
+    NSArray *highlighters;
+    
+    if (self.gameModel.isPlayer1Turn)
+        highlighters = self.highlighters_p2;
+    else
+        highlighters = self.highlighters_p1;
     
     // First, unhighlight everything. Then, highlight appropriate boards.
     
-    for (NSInteger i = 0; i < [self.highlighters count]; ++i){
-        NSLog(@"in hi");
-        UIView *view = self.highlighters[i];
+    for (NSInteger i = 0; i < [highlighters count]; ++i){
+        UIView *view = highlighters[i];
+        if (![boardIndeces containsObject:[NSNumber numberWithInteger:i]]){
+            [UIView animateWithDuration:kHighlightFadeTime animations:^{
+                view.alpha = 0.0;
+            }];
+        } else{
+            [UIView animateWithDuration:kHighlightFadeTime animations:^{
+                view.alpha = kHighlightAlpha;
+            }];
+        }
+    }
+}
+
+- (void) unhighlightLast{
+    NSArray *highlighters;
+    
+    if (self.gameModel.isPlayer1Turn)
+        highlighters = self.highlighters_p2;
+    else
+        highlighters = self.highlighters_p1;
+    
+    for (NSInteger i = 0; i < [highlighters count]; ++i){
+        UIView *view = highlighters[i];
         [UIView animateWithDuration:kHighlightFadeTime animations:^{
             view.alpha = 0.0;
-        } completion:^(BOOL finished) {
-            if ([boardIndeces containsObject:[NSNumber numberWithInteger:i]]){
-                NSLog(@"hello world.");
-                [UIView animateWithDuration:kHighlightFadeTime animations:^{
-                    view.alpha = kHighlightAlpha;
-                }];
-            }
         }];
     }
 }
 
 - (void) unhighlightAll{
-    for (NSInteger i = 0; i < [self.highlighters count]; ++i){
-        UIView *view = self.highlighters[i];
+    NSArray *highlighters;
+    highlighters = self.highlighters_p1;
+    for (NSInteger i = 0; i < [highlighters count]; ++i){
+        UIView *view = highlighters[i];
+        [UIView animateWithDuration:kHighlightFadeTime animations:^{
+            view.alpha = 0.0;
+        }];
+    }
+    highlighters = self.highlighters_p2;
+    for (NSInteger i = 0; i < [highlighters count]; ++i){
+        UIView *view = highlighters[i];
         [UIView animateWithDuration:kHighlightFadeTime animations:^{
             view.alpha = 0.0;
         }];
@@ -134,7 +173,6 @@ const CGFloat kHighlightAlpha = 0.4;
 // Moves the player's mark to the indicated cell.
 - (void) moveToCell:(NSInteger)cell inView:(UIView *)view{
     if (self.curMark){
-        NSLog(@"curMark exists; removing from super view.");
         UIView *mark = self.curMark;
         [UIView animateWithDuration:kHighlightFadeTime animations:^{
             mark.alpha = 0.0;
@@ -162,14 +200,12 @@ const CGFloat kHighlightAlpha = 0.4;
 - (void) tapRecognized:(UITapGestureRecognizer *)recognizer{
     UIView *view = recognizer.view;
     NSInteger boardIndex = view.tag;
-    NSLog(@"Tap recognized.");
     if ([self.gameModel isBoardAvailable:boardIndex]){
         CGPoint pt = [recognizer locationInView:recognizer.view];
         NSInteger third = kMiniSize / 3;
         NSInteger x = pt.x / third;
         NSInteger y = pt.y / third;
         NSInteger cellIndex = y * 3 + x;
-        NSLog(@"Board %d available. Cell %d pressed.", boardIndex, cellIndex);
         NSIndexPath *cell = [NSIndexPath indexPathForRow:cellIndex inSection:boardIndex];
         if ([self.gameModel isCellEnabled:cell]){
             [self highlightMiniBoards:[self.gameModel boardsForPretendMove:cell]];
@@ -184,7 +220,7 @@ const CGFloat kHighlightAlpha = 0.4;
 - (IBAction)finalizeButtonPressed:(id)sender {
     if (self.curMove){
         [self.gameModel makeMove:self.curMove];
-        [self unhighlightAll];
+        [self unhighlightLast];
         self.curMove = nil;
         self.curMark = nil;
     } else{

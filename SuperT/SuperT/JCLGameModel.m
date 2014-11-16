@@ -107,23 +107,42 @@
 
 - (NSArray *) boardsForPretendMove:(NSIndexPath *)move{
     NSInteger cell = move.row;
+    
+    NSInteger toFill = self.isPlayer1Turn ? 1 : 2;
+    NSMutableArray *miniBoard = [self.boards objectAtIndex:move.section];
+    NSInteger curFill = [miniBoard[move.row] integerValue];
+    
+    // Fake the move
+    miniBoard[move.row] = [NSNumber numberWithInteger:toFill];
+    
+    [self evaluateMiniBoard:move.section];
+    
+    NSArray *toReturn;
     if ([self isBoardEnabled:cell]){
         NSMutableArray *temp = [[NSMutableArray alloc] init];
         [temp addObject:[NSNumber numberWithInteger:cell]];
-        return temp;
+        toReturn = temp;
     } else{
         NSLog(@"All enabled boards are now available.");
-        return [self allEnabledBoards];
+        toReturn = [self allEnabledBoards];
     }
+    
+    // Undo the move
+    miniBoard[move.row] = [NSNumber numberWithInteger:curFill];
+    
+    return toReturn;
 }
 
 #pragma mark Mutators
 
 - (void) recordMove:(NSIndexPath *)move withMark:(NSString *)mark andFill:(NSInteger)fill{
+    // Record the move
     NSMutableDictionary *entry = [[NSMutableDictionary alloc] init];
     [entry setObject:move forKey:@"move"];
     [entry setObject:mark forKey:@"player"];
     [self.moveHistory addObject:entry];
+    
+    // Actually make the move
     NSMutableArray *miniBoard = [self.boards objectAtIndex:move.section];
     miniBoard[move.row] = [NSNumber numberWithInteger:fill];
 }

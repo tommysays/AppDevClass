@@ -51,7 +51,6 @@
 #pragma mark Accessors
 
 - (NSInteger) numberOfPlayerProfiles{
-    NSLog(@"player count: %d", [self.playerList count]);
     return [self.playerList count];
 }
 

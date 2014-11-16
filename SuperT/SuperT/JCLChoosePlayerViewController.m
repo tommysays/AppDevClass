@@ -52,11 +52,8 @@
 #pragma mark Button Reactions
 - (IBAction) playPressed:(id)sender{
     if ([self.pickerView1 selectedRowInComponent:0] != [self.pickerView2 selectedRowInComponent:0]){
-        NSLog(@"About to start game.");
-        NSLog(@"picker 1 = %d, picker 2 = %d", [self.pickerView1 selectedRowInComponent:0], [self.pickerView2 selectedRowInComponent:0]);
         [self performSegueWithIdentifier:@"ChooseToGame" sender:self];
     } else{
-        NSLog(@"Invalid player selections");
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Uh oh! You cannot face yourself in this game."
                                                         message:@" Select a different player profile, or play Solitaire instead!"
                                                        delegate:self

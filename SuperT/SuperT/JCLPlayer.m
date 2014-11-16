@@ -28,9 +28,8 @@
         self.name = @"Anonymous";
         self.model = [JCLModel sharedInstance];
         self.identificationNumber = [self.model generateID];
-        NSLog(@"ID = %@", self.identificationNumber);
     } else{
-        NSLog(@"something went horribly wrong!");
+        NSLog(@"Something went horribly wrong! Player could not be initialized.");
     }
     return self;
 }
