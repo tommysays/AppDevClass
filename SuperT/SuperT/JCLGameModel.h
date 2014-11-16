@@ -15,4 +15,10 @@
 
 - (id) initWithPlayer1:(JCLPlayer *)player1 andPlayer2:(JCLPlayer *)player2;
 
+- (BOOL) isBoardEnabled:(NSInteger)index;
+- (BOOL) wasLastBoardWon;
+
+// Returns true if the move ended the game.
+- (BOOL) makeMoveOnBoard:(NSInteger)boardIndex forCell:(NSInteger)cellIndex;
+
 @end
