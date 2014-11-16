@@ -12,6 +12,7 @@
 
 @property NSMutableArray *playerList;
 @property NSMutableDictionary *playerIDs;
+@property NSMutableDictionary *images;
 
 @end
 
@@ -34,8 +35,17 @@
     if (self){
         self.playerList = [[NSMutableArray alloc] init];
         self.playerIDs = [[NSMutableDictionary alloc] init];
+        self.images = [[NSMutableDictionary alloc] init];
+        [self loadImages];
     }
     return self;
+}
+
+- (void) loadImages{
+    UIImage *img = [[UIImage alloc] initWithContentsOfFile:@"xCellImage"];
+    [self.images setObject:img forKey:@"xCellImage"];
+    img = [[UIImage alloc] initWithContentsOfFile:@"oCellImage"];
+    [self.images setObject:img forKey:@"oCellImage"];
 }
 
 #pragma mark Accessors
@@ -51,6 +61,14 @@
 
 - (JCLPlayer *) playerAtIndex:(NSInteger)playerIndex{
     return [self.playerList objectAtIndex:playerIndex];
+}
+
+- (UIImage *) markForPlayer:(NSInteger)player{
+    if (player == 0){
+        return [self.images objectForKey:@"xCellImage"];
+    } else{
+        return [self.images objectForKey:@"oCellImage"];
+    }
 }
 
 #pragma mark Misc

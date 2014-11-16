@@ -17,6 +17,7 @@
 - (NSInteger) numberOfPlayerProfiles;
 - (NSString *) nameOfPlayerAtIndex:(NSInteger)playerIndex;
 - (JCLPlayer *) playerAtIndex:(NSInteger)playerIndex;
+- (UIImage *) markForPlayer:(NSInteger)player;
 
 - (void) addPlayerWithName:(NSString *)name;
 - (void) removePlayerAtIndex:(NSInteger)playerIndex;

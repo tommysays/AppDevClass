@@ -8,6 +8,7 @@
 
 #import "JCLGameViewController.h"
 #import "JCLGameModel.h"
+#import "JCLModel.h"
 
 @interface JCLGameViewController () <UIAlertViewDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *mBoard11;
@@ -25,11 +26,13 @@
 - (IBAction)surrenderButtonPressed:(id)sender;
 - (IBAction)exitButtonPressed:(id)sender;
 
+@property JCLModel *model;
 @property JCLGameModel *gameModel;
 @property NSMutableArray *miniBoards;
 @property NSMutableArray *highlighters;
 @property UIColor *kHighlightColor;
 @property NSIndexPath *curMove;
+@property UIImageView *curMark;
 
 @end
 
@@ -44,6 +47,7 @@ const CGFloat kHighlightAlpha = 0.3;
     [super viewDidLoad];
     self.gameModel = [[JCLGameModel alloc] initWithPlayer1:self.player1 andPlayer2:self.player2];
     self.kHighlightColor = [UIColor whiteColor];
+    self.model = [JCLModel sharedInstance];
     [self initBoards];
 }
 
@@ -125,6 +129,16 @@ const CGFloat kHighlightAlpha = 0.3;
     }
 }
 
+// Moves the player's mark to the indicated cell.
+- (void) moveToCell:(NSIndexPath *)cell{
+    if (!self.curMark){
+        NSInteger player = [self.gameModel isPlayer1Turn];
+        UIImageView *mark = [[UIImageView alloc] initWithImage:[self.model markForPlayer:[player]]];
+        mark.contentMode = UIViewContentModeScaleAspectFit;
+        [self.view addSubview:mark];
+    }
+}
+
 #pragma mark Gesture Recognizer
 
 - (void) tapRecognized:(UITapGestureRecognizer *)recognizer{
@@ -139,6 +153,7 @@ const CGFloat kHighlightAlpha = 0.3;
         NSIndexPath *cell = [NSIndexPath indexPathForRow:cellIndex inSection:boardIndex];
         if ([self.gameModel isCellEnabled:cell]){
             [self highlightMiniBoards:[self.gameModel boardsForPretendMove:cell]];
+            [self moveToCell:cell];
             self.curMove = cell;
         }
     }
