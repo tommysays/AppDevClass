@@ -8,6 +8,7 @@
 
 #import "JCLModel.h"
 
+
 @interface JCLModel ()
 
 @property NSMutableArray *playerList;
