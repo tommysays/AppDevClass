@@ -16,8 +16,7 @@
 
 @property NSMutableArray *enabledBoards;
 @property NSMutableArray *boards;
-@property BOOL lastBoardWasWon;
-@property BOOL gameOver;
+
 
 @end
 
@@ -33,6 +32,7 @@
         self.isPlayer1Turn = YES;
         self.lastBoardWasWon = NO;
         self.gameOver = NO;
+        self.winner = 0;
     }
     return self;
 }
@@ -68,6 +68,11 @@
 
 #pragma mark Accessors
 
+- (BOOL) isCellEnabled:(NSIndexPath *)path{
+    NSArray *miniBoard = self.boards[path.section];
+    return ([self isBoardEnabled:path.section] && [miniBoard[path.row] integerValue] == -1);
+}
+
 - (BOOL) isBoardEnabled:(NSInteger)index{
     if ([self.enabledBoards[index] integerValue] > -1) {
         return false;
@@ -88,6 +93,21 @@
     return self.lastBoardWasWon;
 }
 
+- (NSArray *) boardsForPretendMove:(NSIndexPath *)move{
+    NSInteger cell = move.row;
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    if ([self isBoardEnabled:cell]){
+        [temp addObject:[NSNumber numberWithInteger:cell]];
+        return temp;
+    } else{
+        return [self allEnabledBoards];
+    }
+}
+
+- (NSInteger) victor{
+    return self.winner;
+}
+
 #pragma mark Mutators
 
 - (void) recordMove:(NSIndexPath *)move withMark:(NSString *)mark andFill:(NSInteger)fill{
@@ -95,11 +115,12 @@
     [entry setObject:move forKey:@"move"];
     [entry setObject:mark forKey:@"player"];
     [self.moveHistory addObject:entry];
-    NSMutableArray *miniBoard = [self.boards objectAtIndex:move.row];
-    miniBoard[move.section] = [NSNumber numberWithInteger:fill];
+    NSMutableArray *miniBoard = [self.boards objectAtIndex:move.section];
+    miniBoard[move.row] = [NSNumber numberWithInteger:fill];
 }
 
-- (BOOL) makeMoveOnBoard:(NSInteger)boardIndex forCell:(NSInteger)cellIndex{
+// Makes a move on the board, record the move, and returns whether or not a mini-board was won.
+- (BOOL) makeMove:(NSIndexPath *)move{
     NSString *mark = @"";
     NSInteger toFill = -1;
     if (self.isPlayer1Turn){
@@ -109,19 +130,13 @@
         toFill = 2;
         mark = @"o";
     }
-    NSIndexPath *move = [NSIndexPath indexPathForRow:boardIndex inSection:cellIndex];
     [self recordMove:move withMark:mark andFill:toFill];
-    [self evaluateMiniBoard:boardIndex];
-    
-    if (self.lastBoardWasWon){
-        // Check to see if the game is over.
-        [self evaluateGameOver];
-    }
-    
+    [self evaluateMiniBoard:move.section];
+    [self evaluateGameOver];
     
     // If the move was not the game-winning move, switch player turns.
     if (!self.gameOver){
-        self.isPlayer1Turn = self.isPlayer1Turn;
+        self.isPlayer1Turn = !self.isPlayer1Turn;
     }
 
     return self.lastBoardWasWon;
@@ -131,7 +146,26 @@
 
 // Evaluates whether or not the game has reached a conclusion.
 - (void) evaluateGameOver{
-    
+    NSInteger fill = -1;
+    NSArray *miniBoard = self.enabledBoards;
+    if ((miniBoard[0] == miniBoard[1] && miniBoard[0] == miniBoard[2]) ||
+        (miniBoard[0] == miniBoard[3] && miniBoard[0] == miniBoard[6])){
+        fill = [miniBoard[0] integerValue];
+    } else if ((miniBoard[8] == miniBoard[7] && miniBoard[8] == miniBoard[6]) ||
+               (miniBoard[8] == miniBoard[5] && miniBoard[8] == miniBoard[2])){
+        fill = [miniBoard[8] integerValue];
+    } else if ((miniBoard[4] == miniBoard[0] && miniBoard[4] == miniBoard[8]) ||
+               (miniBoard[4] == miniBoard[1] && miniBoard[4] == miniBoard[7]) ||
+               (miniBoard[4] == miniBoard[2] && miniBoard[4] == miniBoard[6]) ||
+               (miniBoard[4] == miniBoard[3] && miniBoard[4] == miniBoard[5])){
+        fill = [miniBoard[4] integerValue];
+    } else if ([self gameIsCompletelyFilled]){
+        fill = 0;
+    }
+    if (fill >= 0){
+        self.gameOver = YES;
+        self.winner = fill;
+    }
 }
 
 // Evaluates whether or not a mini-board has concluded.
@@ -141,6 +175,7 @@
     
     // If a winning move was played, or if the miniboard ended in a draw,
     // set enabledBoards to the winning player's fill value (1 or 2), or 0 for draw.
+    
     if ((miniBoard[0] == miniBoard[1] && miniBoard[0] == miniBoard[2]) ||
         (miniBoard[0] == miniBoard[3] && miniBoard[0] == miniBoard[6])){
         fill = [miniBoard[0] integerValue];
@@ -160,6 +195,23 @@
     if (fill >= 0){
         self.lastBoardWasWon = YES;
     }
+}
+
+- (BOOL) gameIsCompletelyFilled{
+    NSArray *board = self.boards;
+    NSNumber *neg1 = [NSNumber numberWithInteger:-1];
+
+    if (board[0] != neg1 &&
+        board[1] != neg1 &&
+        board[2] != neg1 &&
+        board[3] != neg1 &&
+        board[4] != neg1 &&
+        board[5] != neg1 &&
+        board[6] != neg1 &&
+        board[7] != neg1)
+        return true;
+    
+    return false;
 }
 
 - (BOOL) miniBoardIsCompletelyFilled:(NSInteger)index{

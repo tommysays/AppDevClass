@@ -12,13 +12,19 @@
 @interface JCLGameModel : NSObject
 
 @property BOOL isPlayer1Turn;
+@property BOOL lastBoardWasWon;
+@property BOOL gameOver;
+@property NSInteger winner;
 
 - (id) initWithPlayer1:(JCLPlayer *)player1 andPlayer2:(JCLPlayer *)player2;
 
+- (BOOL) isCellEnabled:(NSIndexPath *)path;
 - (BOOL) isBoardEnabled:(NSInteger)index;
 - (BOOL) wasLastBoardWon;
 
+- (NSArray *) boardsForPretendMove:(NSIndexPath *)move;
+
 // Returns true if the move ended the game.
-- (BOOL) makeMoveOnBoard:(NSInteger)boardIndex forCell:(NSInteger)cellIndex;
+- (BOOL) makeMove:(NSIndexPath *)move;
 
 @end
