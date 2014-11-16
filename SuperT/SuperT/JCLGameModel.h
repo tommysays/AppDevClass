@@ -19,6 +19,7 @@
 - (id) initWithPlayer1:(JCLPlayer *)player1 andPlayer2:(JCLPlayer *)player2;
 
 - (BOOL) isCellEnabled:(NSIndexPath *)path;
+- (BOOL) isBoardAvailable:(NSInteger)index;
 - (BOOL) isBoardEnabled:(NSInteger)index;
 - (BOOL) wasLastBoardWon;
 

@@ -30,15 +30,19 @@
 @property JCLGameModel *gameModel;
 @property NSMutableArray *miniBoards;
 @property NSMutableArray *highlighters;
-@property UIColor *kHighlightColor;
+@property UIColor *kHighlightColor_p1; // Color to highlight next movespace
+@property UIColor *kHighlightColor_p2; // Color to highlight current movespace
 @property NSIndexPath *curMove;
 @property UIImageView *curMark;
+@property UIColor *curHighlightColor;
 
 @end
 
 const NSInteger kMiniSize = 160;
+const NSInteger kMarkSize = 40;
 const NSTimeInterval kHighlightFadeTime = 0.3;
-const CGFloat kHighlightAlpha = 0.3;
+const CGFloat kHighlightAlpha = 0.4;
+
 
 
 @implementation JCLGameViewController
@@ -46,72 +50,70 @@ const CGFloat kHighlightAlpha = 0.3;
 - (void) viewDidLoad{
     [super viewDidLoad];
     self.gameModel = [[JCLGameModel alloc] initWithPlayer1:self.player1 andPlayer2:self.player2];
-    self.kHighlightColor = [UIColor whiteColor];
+    self.kHighlightColor_p1 = [UIColor whiteColor];
+    self.kHighlightColor_p2 = [UIColor redColor];
+    self.curHighlightColor = self.kHighlightColor_p1;
     self.model = [JCLModel sharedInstance];
+    self.highlighters = [[NSMutableArray alloc] init];
     [self initBoards];
 }
 
 - (void) initBoards{
     self.miniBoards = [[NSMutableArray alloc] init];
+    
+    UIImageView *board = self.mBoard11;
+    [self initBoard:board];
+    board = self.mBoard21;
+    [self initBoard:board];
+    board = self.mBoard31;
+    [self initBoard:board];
+    board = self.mBoard12;
+    [self initBoard:board];
+    board = self.mBoard22;
+    [self initBoard:board];
+    board = self.mBoard32;
+    [self initBoard:board];
+    board = self.mBoard13;
+    [self initBoard:board];
+    board = self.mBoard23;
+    [self initBoard:board];
+    board = self.mBoard33;
+    [self initBoard:board];
+}
+
+- (void) initBoard:(UIImageView *)board{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRecognized:)];
-    self.mBoard11.userInteractionEnabled = YES;
-    [self.mBoard11 addGestureRecognizer:tap];
-    [self.miniBoards addObject:self.mBoard11];
-    [self addHighlighter:self.mBoard11.frame];
-    
-    self.mBoard12.userInteractionEnabled = YES;
-    [self.mBoard12 addGestureRecognizer:tap];
-    [self.miniBoards addObject:self.mBoard12];
-    
-    self.mBoard13.userInteractionEnabled = YES;
-    [self.mBoard13 addGestureRecognizer:tap];
-    [self.miniBoards addObject:self.mBoard13];
-    
-    self.mBoard21.userInteractionEnabled = YES;
-    [self.mBoard21 addGestureRecognizer:tap];
-    [self.miniBoards addObject:self.mBoard21];
-    
-    self.mBoard22.userInteractionEnabled = YES;
-    [self.mBoard22 addGestureRecognizer:tap];
-    [self.miniBoards addObject:self.mBoard22];
-    
-    self.mBoard23.userInteractionEnabled = YES;
-    [self.mBoard23 addGestureRecognizer:tap];
-    [self.miniBoards addObject:self.mBoard23];
-    
-    self.mBoard31.userInteractionEnabled = YES;
-    [self.mBoard31 addGestureRecognizer:tap];
-    [self.miniBoards addObject:self.mBoard31];
-    
-    self.mBoard32.userInteractionEnabled = YES;
-    [self.mBoard32 addGestureRecognizer:tap];
-    [self.miniBoards addObject:self.mBoard32];
-    
-    self.mBoard33.userInteractionEnabled = YES;
-    [self.mBoard33 addGestureRecognizer:tap];
-    [self.miniBoards addObject:self.mBoard33];
+    board.userInteractionEnabled = YES;
+    [board addGestureRecognizer:tap];
+    [self.miniBoards addObject:board];
+    [self addHighlighter:board.frame];
+    [self.view bringSubviewToFront:board];
 }
 
 - (void) addHighlighter:(CGRect)frame{
     UIView *view = [[UIView alloc] initWithFrame:frame];
-    view.backgroundColor = self.kHighlightColor;
+    view.backgroundColor = self.curHighlightColor;
     [self.view addSubview:view];
     view.alpha = 0.0;
+    [self.highlighters addObject:view];
     
 }
 
 #pragma mark Animators
 
 - (void) highlightMiniBoards:(NSArray *)boardIndeces{
+    NSLog(@"Highlight: Count = %d", [self.highlighters count]);
     
     // First, unhighlight everything. Then, highlight appropriate boards.
     
     for (NSInteger i = 0; i < [self.highlighters count]; ++i){
+        NSLog(@"in hi");
         UIView *view = self.highlighters[i];
         [UIView animateWithDuration:kHighlightFadeTime animations:^{
             view.alpha = 0.0;
         } completion:^(BOOL finished) {
             if ([boardIndeces containsObject:[NSNumber numberWithInteger:i]]){
+                NSLog(@"hello world.");
                 [UIView animateWithDuration:kHighlightFadeTime animations:^{
                     view.alpha = kHighlightAlpha;
                 }];
@@ -120,7 +122,7 @@ const CGFloat kHighlightAlpha = 0.3;
     }
 }
 
-- (void) removeAllHighlights{
+- (void) unhighlightAll{
     for (NSInteger i = 0; i < [self.highlighters count]; ++i){
         UIView *view = self.highlighters[i];
         [UIView animateWithDuration:kHighlightFadeTime animations:^{
@@ -130,13 +132,29 @@ const CGFloat kHighlightAlpha = 0.3;
 }
 
 // Moves the player's mark to the indicated cell.
-- (void) moveToCell:(NSIndexPath *)cell{
-    if (!self.curMark){
-        NSInteger player = [self.gameModel isPlayer1Turn];
-        UIImageView *mark = [[UIImageView alloc] initWithImage:[self.model markForPlayer:[player]]];
-        mark.contentMode = UIViewContentModeScaleAspectFit;
-        [self.view addSubview:mark];
+- (void) moveToCell:(NSInteger)cell inView:(UIView *)view{
+    if (self.curMark){
+        NSLog(@"curMark exists; removing from super view.");
+        UIView *mark = self.curMark;
+        [UIView animateWithDuration:kHighlightFadeTime animations:^{
+            mark.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            [mark removeFromSuperview];
+        }];
     }
+    NSInteger player = [self.gameModel isPlayer1Turn];
+    self.curMark = [[UIImageView alloc] initWithImage:[self.model markForPlayer:player]];
+    self.curMark.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:self.curMark];
+    NSInteger third = kMiniSize / 3;
+    NSInteger cellX = (cell % 3) * third + ((third - kMarkSize) / 2);
+    NSInteger cellY = (cell / 3) * third + ((third - kMarkSize) / 2);
+    CGRect frame = CGRectMake(view.frame.origin.x + cellX, view.frame.origin.y + cellY, kMarkSize, kMarkSize);
+    self.curMark.frame = frame;
+    self.curMark.alpha = 0.0;
+    [UIView animateWithDuration:kHighlightFadeTime animations:^{
+        self.curMark.alpha = 1.0;
+    }];
 }
 
 #pragma mark Gesture Recognizer
@@ -144,16 +162,18 @@ const CGFloat kHighlightAlpha = 0.3;
 - (void) tapRecognized:(UITapGestureRecognizer *)recognizer{
     UIView *view = recognizer.view;
     NSInteger boardIndex = view.tag;
-    if ([self.gameModel isBoardEnabled:boardIndex]){
+    NSLog(@"Tap recognized.");
+    if ([self.gameModel isBoardAvailable:boardIndex]){
         CGPoint pt = [recognizer locationInView:recognizer.view];
         NSInteger third = kMiniSize / 3;
         NSInteger x = pt.x / third;
         NSInteger y = pt.y / third;
         NSInteger cellIndex = y * 3 + x;
+        NSLog(@"Board %d available. Cell %d pressed.", boardIndex, cellIndex);
         NSIndexPath *cell = [NSIndexPath indexPathForRow:cellIndex inSection:boardIndex];
         if ([self.gameModel isCellEnabled:cell]){
             [self highlightMiniBoards:[self.gameModel boardsForPretendMove:cell]];
-            [self moveToCell:cell];
+            [self moveToCell:cellIndex inView:view];
             self.curMove = cell;
         }
     }
@@ -164,8 +184,9 @@ const CGFloat kHighlightAlpha = 0.3;
 - (IBAction)finalizeButtonPressed:(id)sender {
     if (self.curMove){
         [self.gameModel makeMove:self.curMove];
-        [self removeAllHighlights];
+        [self unhighlightAll];
         self.curMove = nil;
+        self.curMark = nil;
     } else{
         // Maybe throw an alert, saying that user must make a move before finalizing.
     }
@@ -204,6 +225,11 @@ const CGFloat kHighlightAlpha = 0.3;
     } else{
         if (buttonIndex == 0){
             [self.navigationController popViewControllerAnimated:YES];
+        } else if (buttonIndex == 1){
+            // Reset game for rematch.
+            self.gameModel = [[JCLGameModel alloc] initWithPlayer1:self.player1 andPlayer2:self.player2];
+            [self unhighlightAll];
+            // TODO more reset stuff.
         }
     }
 }
@@ -220,7 +246,7 @@ const CGFloat kHighlightAlpha = 0.3;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:victoryMessage
                                                     message:scoreMessage
                                                    delegate:self
-                                          cancelButtonTitle:@"Back to Main Menu"
+                                          cancelButtonTitle:@"Back to Player Select"
                                           otherButtonTitles:@"Rematch?",
                           nil];
     alert.tag = 2;

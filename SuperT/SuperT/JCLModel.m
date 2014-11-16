@@ -42,9 +42,9 @@
 }
 
 - (void) loadImages{
-    UIImage *img = [[UIImage alloc] initWithContentsOfFile:@"xCellImage"];
+    UIImage *img = [UIImage imageNamed:@"xcell_image"];
     [self.images setObject:img forKey:@"xCellImage"];
-    img = [[UIImage alloc] initWithContentsOfFile:@"oCellImage"];
+    img = [UIImage imageNamed:@"ocell_image"];
     [self.images setObject:img forKey:@"oCellImage"];
 }
 

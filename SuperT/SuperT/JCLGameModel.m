@@ -16,6 +16,7 @@
 
 @property NSMutableArray *enabledBoards;
 @property NSMutableArray *boards;
+@property NSArray *availableBoards;
 
 
 @end
@@ -51,6 +52,11 @@
         }
         [self.boards addObject:temp];
     }
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0; i < 9; ++i){
+        [temp addObject:[NSNumber numberWithInteger:i]];
+    }
+    self.availableBoards = temp;
 }
 
 - (id) initWithPlayer1:(JCLPlayer *)player1 andPlayer2:(JCLPlayer *)player2{
@@ -67,6 +73,12 @@
 }
 
 #pragma mark Accessors
+
+- (BOOL) isBoardAvailable:(NSInteger)index{
+    if ([self.availableBoards containsObject:[NSNumber numberWithInteger:index]])
+        return true;
+    return false;
+}
 
 - (BOOL) isCellEnabled:(NSIndexPath *)path{
     NSArray *miniBoard = self.boards[path.section];
@@ -95,17 +107,14 @@
 
 - (NSArray *) boardsForPretendMove:(NSIndexPath *)move{
     NSInteger cell = move.row;
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
     if ([self isBoardEnabled:cell]){
+        NSMutableArray *temp = [[NSMutableArray alloc] init];
         [temp addObject:[NSNumber numberWithInteger:cell]];
         return temp;
     } else{
+        NSLog(@"All enabled boards are now available.");
         return [self allEnabledBoards];
     }
-}
-
-- (NSInteger) victor{
-    return self.winner;
 }
 
 #pragma mark Mutators
@@ -133,6 +142,7 @@
     [self recordMove:move withMark:mark andFill:toFill];
     [self evaluateMiniBoard:move.section];
     [self evaluateGameOver];
+    self.availableBoards = [self boardsForPretendMove:move];
     
     // If the move was not the game-winning move, switch player turns.
     if (!self.gameOver){
@@ -147,18 +157,18 @@
 // Evaluates whether or not the game has reached a conclusion.
 - (void) evaluateGameOver{
     NSInteger fill = -1;
-    NSArray *miniBoard = self.enabledBoards;
-    if ((miniBoard[0] == miniBoard[1] && miniBoard[0] == miniBoard[2]) ||
-        (miniBoard[0] == miniBoard[3] && miniBoard[0] == miniBoard[6])){
-        fill = [miniBoard[0] integerValue];
-    } else if ((miniBoard[8] == miniBoard[7] && miniBoard[8] == miniBoard[6]) ||
-               (miniBoard[8] == miniBoard[5] && miniBoard[8] == miniBoard[2])){
-        fill = [miniBoard[8] integerValue];
-    } else if ((miniBoard[4] == miniBoard[0] && miniBoard[4] == miniBoard[8]) ||
-               (miniBoard[4] == miniBoard[1] && miniBoard[4] == miniBoard[7]) ||
-               (miniBoard[4] == miniBoard[2] && miniBoard[4] == miniBoard[6]) ||
-               (miniBoard[4] == miniBoard[3] && miniBoard[4] == miniBoard[5])){
-        fill = [miniBoard[4] integerValue];
+    NSArray *wholeBoard = self.enabledBoards;
+    if ((wholeBoard[0] == wholeBoard[1] && wholeBoard[0] == wholeBoard[2]) ||
+        (wholeBoard[0] == wholeBoard[3] && wholeBoard[0] == wholeBoard[6])){
+        fill = [wholeBoard[0] integerValue];
+    } else if ((wholeBoard[8] == wholeBoard[7] && wholeBoard[8] == wholeBoard[6]) ||
+               (wholeBoard[8] == wholeBoard[5] && wholeBoard[8] == wholeBoard[2])){
+        fill = [wholeBoard[8] integerValue];
+    } else if ((wholeBoard[4] == wholeBoard[0] && wholeBoard[4] == wholeBoard[8]) ||
+               (wholeBoard[4] == wholeBoard[1] && wholeBoard[4] == wholeBoard[7]) ||
+               (wholeBoard[4] == wholeBoard[2] && wholeBoard[4] == wholeBoard[6]) ||
+               (wholeBoard[4] == wholeBoard[3] && wholeBoard[4] == wholeBoard[5])){
+        fill = [wholeBoard[4] integerValue];
     } else if ([self gameIsCompletelyFilled]){
         fill = 0;
     }
@@ -193,6 +203,7 @@
     
     self.enabledBoards[index] = [NSNumber numberWithInteger:fill];
     if (fill >= 0){
+        NSLog(@"Miniboard concluded with fill = %d", fill);
         self.lastBoardWasWon = YES;
     }
 }
