@@ -123,7 +123,6 @@
         [temp addObject:[NSNumber numberWithInteger:cell]];
         toReturn = temp;
     } else{
-        NSLog(@"All enabled boards are now available.");
         toReturn = [self allEnabledBoards];
     }
     

@@ -54,10 +54,10 @@
 }
 
 - (void) loadImages{
-    UIImage *img = [UIImage imageNamed:@"xcell_image"];
-    [self.images setObject:img forKey:@"xCellImage"];
-    img = [UIImage imageNamed:@"ocell_image"];
-    [self.images setObject:img forKey:@"oCellImage"];
+    UIImage *img = [UIImage imageNamed:@"xMark"];
+    [self.images setObject:img forKey:@"xMark"];
+    img = [UIImage imageNamed:@"oMark"];
+    [self.images setObject:img forKey:@"oMark"];
 }
 
 - (void) createDefaultPlayers{
@@ -78,10 +78,10 @@
 }
 
 - (UIImage *) markForPlayer:(NSInteger)player{
-    if (player == 0){
-        return [self.images objectForKey:@"xCellImage"];
+    if (player == 1){
+        return [self.images objectForKey:@"xMark"];
     } else{
-        return [self.images objectForKey:@"oCellImage"];
+        return [self.images objectForKey:@"oMark"];
     }
 }
 
