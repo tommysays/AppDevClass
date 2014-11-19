@@ -16,6 +16,7 @@
 
 // Returns the score between two players. Method name might be a bit ambiguous.
 - (NSIndexPath *) scoresAgainst:(JCLPlayer *)opponent;
+- (NSIndexPath *) totalScore;
 - (NSString *) nameOfPlayer;
 
 + (void) concludeWithWinner:(JCLPlayer *)winner andLoser:(JCLPlayer *)loser;

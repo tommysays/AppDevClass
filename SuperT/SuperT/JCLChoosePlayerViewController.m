@@ -12,6 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView1;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView2;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel2;
 - (IBAction)playPressed:(id)sender;
 - (IBAction)addPressed:(id)sender;
 - (IBAction)backPressed:(id)sender;
@@ -28,6 +30,8 @@
     [super viewDidLoad];
     
     self.model = [JCLModel sharedInstance];
+    self.scoreLabel1.text = @"--";
+    self.scoreLabel2.text = @"--";
 }
 
 #pragma mark PickerView Data Source and Delegate
@@ -42,6 +46,19 @@
 
 - (NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     return [self.model nameOfPlayerAtIndex:row];
+}
+
+- (void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    JCLPlayer *player1 = [self.model playerAtIndex:[self.pickerView1 selectedRowInComponent:0]];
+    JCLPlayer *player2 = [self.model playerAtIndex:[self.pickerView2 selectedRowInComponent:0]];
+    if ([player1 isEqual:player2]){
+        self.scoreLabel1.text = @"--";
+        self.scoreLabel2.text = @"--";
+    } else{
+        NSIndexPath *score = [player1 scoresAgainst:player2];
+        self.scoreLabel1.text = [NSString stringWithFormat:@"%d", score.row];
+        self.scoreLabel2.text = [NSString stringWithFormat:@"%d", score.section];
+    }
 }
 
 - (void) refresh{
@@ -82,6 +99,9 @@
         destController.player2 = [self.model playerAtIndex:[self.pickerView2 selectedRowInComponent:0]];
     } else if ([segue.identifier isEqualToString:@"ChooseToAdd"]){
         JCLAddPlayerViewController *destController = segue.destinationViewController;
+        destController.toRefresh = self;
+    } else if ([segue.identifier isEqualToString:@"ChooseToRemove"]){
+        JCLRemovePlayerViewController *destController = segue.destinationViewController;
         destController.toRefresh = self;
     }
 }

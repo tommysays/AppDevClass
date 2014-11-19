@@ -31,6 +31,7 @@
 		D88058FB1A15121F00615C06 /* JCLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D88058FA1A15121F00615C06 /* JCLModel.m */; };
 		D88058FE1A15134100615C06 /* JCLGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D88058FD1A15134100615C06 /* JCLGameModel.m */; };
 		D88059041A1516A600615C06 /* JCLPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D88059031A1516A600615C06 /* JCLPlayer.m */; };
+		D8CBE7141A1D3D1F00140D33 /* JCLRemovePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CBE7131A1D3D1F00140D33 /* JCLRemovePlayerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,8 @@
 		D88058FD1A15134100615C06 /* JCLGameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLGameModel.m; sourceTree = "<group>"; };
 		D88059021A1516A600615C06 /* JCLPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLPlayer.h; sourceTree = "<group>"; };
 		D88059031A1516A600615C06 /* JCLPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLPlayer.m; sourceTree = "<group>"; };
+		D8CBE7121A1D3D1F00140D33 /* JCLRemovePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLRemovePlayerViewController.h; sourceTree = "<group>"; };
+		D8CBE7131A1D3D1F00140D33 /* JCLRemovePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLRemovePlayerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,10 +115,11 @@
 		D811BBE61A156B2000CC17B2 /* Profile Management */ = {
 			isa = PBXGroup;
 			children = (
-				D811BBDA1A155AAF00CC17B2 /* JCLProfileOverviewViewController.h */,
-				D811BBDB1A155AAF00CC17B2 /* JCLProfileOverviewViewController.m */,
-				D811BBDD1A155D9800CC17B2 /* JCLManageProfileTableViewController.h */,
-				D811BBDE1A155D9800CC17B2 /* JCLManageProfileTableViewController.m */,
+				D811BBE31A156B1A00CC17B2 /* JCLAddPlayerViewController.h */,
+				D811BBE41A156B1A00CC17B2 /* JCLAddPlayerViewController.m */,
+				D8CBE7121A1D3D1F00140D33 /* JCLRemovePlayerViewController.h */,
+				D8CBE7131A1D3D1F00140D33 /* JCLRemovePlayerViewController.m */,
+				D8CBE7151A1D3D3000140D33 /* Obsolete */,
 			);
 			name = "Profile Management";
 			sourceTree = "<group>";
@@ -213,8 +217,6 @@
 				D88058F71A150EB300615C06 /* JCLGameViewController.m */,
 				D811BBD41A15457B00CC17B2 /* JCLChoosePlayerViewController.h */,
 				D811BBD51A15457B00CC17B2 /* JCLChoosePlayerViewController.m */,
-				D811BBE31A156B1A00CC17B2 /* JCLAddPlayerViewController.h */,
-				D811BBE41A156B1A00CC17B2 /* JCLAddPlayerViewController.m */,
 				D811BBE61A156B2000CC17B2 /* Profile Management */,
 			);
 			name = Controllers;
@@ -240,6 +242,17 @@
 				D88059031A1516A600615C06 /* JCLPlayer.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		D8CBE7151A1D3D3000140D33 /* Obsolete */ = {
+			isa = PBXGroup;
+			children = (
+				D811BBDA1A155AAF00CC17B2 /* JCLProfileOverviewViewController.h */,
+				D811BBDB1A155AAF00CC17B2 /* JCLProfileOverviewViewController.m */,
+				D811BBDD1A155D9800CC17B2 /* JCLManageProfileTableViewController.h */,
+				D811BBDE1A155D9800CC17B2 /* JCLManageProfileTableViewController.m */,
+			);
+			name = Obsolete;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +366,7 @@
 				D88058FB1A15121F00615C06 /* JCLModel.m in Sources */,
 				D811BBDC1A155AAF00CC17B2 /* JCLProfileOverviewViewController.m in Sources */,
 				D811BBDF1A155D9800CC17B2 /* JCLManageProfileTableViewController.m in Sources */,
+				D8CBE7141A1D3D1F00140D33 /* JCLRemovePlayerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

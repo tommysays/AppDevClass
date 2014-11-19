@@ -12,6 +12,7 @@
 #import "JCLManageProfileTableViewController.h"
 #import "JCLAppDelegate.h"
 #import "JCLAddPlayerViewController.h"
+#import "JCLRemovePlayerViewController.h"
 
 @interface JCLChoosePlayerViewController : UIViewController
 

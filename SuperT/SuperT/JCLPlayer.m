@@ -53,6 +53,16 @@
     return toReturn;
 }
 
+- (NSIndexPath *) totalScore{
+    NSInteger wins = 0;
+    NSInteger losses = 0;
+    for (NSIndexPath *score in self.scores){
+        wins += score.row;
+        losses -= score.section;
+    }
+    return [NSIndexPath indexPathForRow:wins inSection:losses];
+}
+
 - (NSString *) nameOfPlayer{
     return self.name;
 }
