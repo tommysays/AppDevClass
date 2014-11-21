@@ -35,6 +35,10 @@
     self.scoreLabel2.text = @"--";
 }
 
+- (void) viewWillAppear:(BOOL)animated{
+    [self refresh];
+}
+
 #pragma mark PickerView Data Source and Delegate
 
 - (NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -65,6 +69,8 @@
 - (void) refresh{
     [self.pickerView1 reloadComponent:0];
     [self.pickerView2 reloadComponent:0];
+    // Calling didSelectRow to refresh score labels.
+    [self pickerView:self.pickerView1 didSelectRow:0 inComponent:0];
 }
 
 #pragma mark Button Reactions
