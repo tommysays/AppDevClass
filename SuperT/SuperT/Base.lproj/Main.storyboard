@@ -646,13 +646,16 @@
                                     <action selector="addPressed:" destination="wp5-2y-joS" eventType="touchUpInside" id="HdG-az-9Mf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1J-vC-87F">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1J-vC-87F">
                                 <rect key="frame" x="451" y="666" width="203" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.99340470280000004" green="1" blue="0.3946341183" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Remove Player Profile">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="removePressed:" destination="wp5-2y-joS" eventType="touchUpInside" id="ItT-ma-2fj"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1WG-Q4-mFr">
                                 <rect key="frame" x="313" y="763" width="150" height="35"/>

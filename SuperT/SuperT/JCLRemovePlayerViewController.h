@@ -11,6 +11,6 @@
 
 @interface JCLRemovePlayerViewController : UIViewController
 
-@property JCLChoosePlayerViewController *toRefresh;
+@property UIViewController *toRefresh;
 
 @end

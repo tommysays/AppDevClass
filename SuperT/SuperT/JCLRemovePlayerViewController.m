@@ -48,7 +48,7 @@
         // Remove the player and exit view.
         
         // TODO test this whole thing.
-        [self.model removePlayer:[self.model playerAtIndex:[self.pickerView selectedRowInComponent:0]]];
+        [self.model removePlayerAtIndex:[self.pickerView selectedRowInComponent:0]];
         [(JCLChoosePlayerViewController *)self.toRefresh refresh];
         [self dismissViewControllerAnimated:YES completion:nil];
     }

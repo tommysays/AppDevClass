@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel2;
 - (IBAction)playPressed:(id)sender;
 - (IBAction)addPressed:(id)sender;
+- (IBAction)removePressed:(id)sender;
 - (IBAction)backPressed:(id)sender;
 @property JCLModel *model;
 
@@ -84,6 +85,10 @@
 - (IBAction) addPressed:(id)sender{
     //[self moveToProfileManager];
     [self performSegueWithIdentifier:@"ChooseToAdd" sender:self];
+}
+
+- (IBAction)removePressed:(id)sender {
+    [self performSegueWithIdentifier:@"ChooseToRemove" sender:self];
 }
 
 - (IBAction)backPressed:(id)sender {
