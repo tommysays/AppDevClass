@@ -52,8 +52,8 @@ static NSString * const modelName = @"Model";
 
 - (Score *) addScoreWithDictionary:(NSDictionary *)dict{
     Score *score = [NSEntityDescription insertNewObjectForEntityForName:@"Score" inManagedObjectContext:_dataManager.managedObjectContext];
-    score.player1_id = dict[@"player1_ID"];
-    score.player2_id = dict[@"player2_ID"];
+    score.player1_ID = dict[@"player1_ID"];
+    score.player2_ID = dict[@"player2_ID"];
     score.player1_wins = dict[@"player1_wins"];
     score.player2_wins = dict[@"player2_wins"];
     return score;

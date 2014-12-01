@@ -27,7 +27,7 @@
         _scores = [[NSMutableDictionary alloc] init];
         _name = @"Anonymous";
         _model = [JCLModel sharedInstance];
-        _identificationNumber = [self.model generateID];
+        //_identificationNumber = [self.model generateID];
     } else{
         NSLog(@"Something went horribly wrong! Player could not be initialized.");
     }

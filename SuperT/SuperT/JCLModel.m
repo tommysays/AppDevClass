@@ -19,7 +19,6 @@
 @property NSMutableArray *playerList;
 @property NSMutableDictionary *playerIDs;
 @property NSMutableDictionary *images;
-@property NSMutableArray *scores;
 
 
 @end
@@ -47,14 +46,12 @@
         _dataManager.delegate = _myDataManager;
         NSArray *players = [_dataManager fetchManagedObjectsForEntity:@"Player" sortKeys:@[@"name"] predicate:nil];
         _playerList = [players mutableCopy];
+        NSLog(@"%d players loaded.", [_playerList count]);
         
         _playerIDs = [[NSMutableDictionary alloc] init];
         for (Player *player in _playerList){
             [_playerIDs setObject:player forKey:player.playerID];
         }
-        
-        NSArray *scores = [_dataManager fetchManagedObjectsForEntity:@"Score" sortKeys:@[@"player1_ID"] predicate:nil];
-        _scores = [scores mutableCopy];
         
         _images = [[NSMutableDictionary alloc] init];
     }
@@ -78,7 +75,7 @@
 // Some method calls to finish up initialization. Can't place in "init" due to circular calls.
 - (void) finishInit{
     // Comment next line out to leave out default profiles.
-    [self createDefaultPlayers];
+    //[self createDefaultPlayers];
     [self loadImages];
 }
 
@@ -89,11 +86,13 @@
     [self.images setObject:img forKey:@"oMark"];
 }
 
+/*
 - (void) createDefaultPlayers{
     [self addPlayerWithName:@"Bob"];
     [self addPlayerWithName:@"Billy"];
     [self addPlayerWithName:@"Jebediah"];
 }
+ */
 
 #pragma mark Accessors
 
@@ -122,7 +121,7 @@
     Player *player2 = players[1];
     NSNumber *p1_id = player1.playerID;
     NSNumber *p2_id = player2.playerID;
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(player1_ID like %@ AND player2_ID like %@) OR (player1_ID like %@ AND player2_ID like %@)", p1_id, p2_id, p2_id, p1_id];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(player1_ID == %@ AND player2_ID == %@) OR (player1_ID == %@ AND player2_ID == %@)", p1_id, p2_id, p2_id, p1_id];
     NSArray *scores = [self.dataManager fetchManagedObjectsForEntity:@"Score" sortKeys:nil predicate:pred];
     Score *toReturn;
     if ([scores count] == 0){
@@ -145,7 +144,7 @@
     NSNumber *ID = player.playerID;
     
     // Fetch all scores related to player.
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"player1_ID like %@ OR player2_ID like %@", ID, ID];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"player1_ID == %@ OR player2_ID == %@", ID, ID];
     NSArray *scores = [self.dataManager fetchManagedObjectsForEntity:@"Score" sortKeys:nil predicate:pred];
     
     // Tally up total wins and losses.

@@ -273,8 +273,8 @@ const CGFloat kHighlightAlpha = 0.4;
 - (IBAction)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag == 1){  // ---------------------- Surrender -------------------------
         if (buttonIndex == 1){
-            JCLPlayer *winner;
-            JCLPlayer *loser;
+            Player *winner;
+            Player *loser;
             if (self.gameModel.isPlayer1Turn){
                 winner = self.player2;
                 loser = self.player1;
@@ -310,13 +310,15 @@ const CGFloat kHighlightAlpha = 0.4;
     }
 }
 
-- (void) gameOverWithWinner:(JCLPlayer *)winner andLoser:(JCLPlayer *)loser wasDraw:(BOOL)isDraw{
+- (void) gameOverWithWinner:(Player *)winner andLoser:(Player *)loser wasDraw:(BOOL)isDraw{
+    
+    Score *score = [self.model scoreBetweenPlayers:@[winner, loser]];
+    
     if (isDraw){
         // Game was a draw.
         // Show a concluding message with an option to rematch.
         NSString *victoryMessage = [NSString stringWithFormat:@"No one won the game!"];
-        NSIndexPath *score = [winner scoresAgainst:loser];
-        NSString *scoreMessage = [NSString stringWithFormat:@"Score: %d to %d", score.row   , score.section];
+        NSString *scoreMessage = [NSString stringWithFormat:@"Score: %d to %d", [score winsForPlayerID:winner.playerID], [score winsForPlayerID:loser.playerID]];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:victoryMessage
                                                         message:scoreMessage
                                                        delegate:self
@@ -329,13 +331,12 @@ const CGFloat kHighlightAlpha = 0.4;
     }
     // Otherwise, game concluded with a winner.
     
-    // Update player profiles to reflect conclusion
-    [JCLPlayer concludeWithWinner:winner andLoser:loser];
+    // Update player profiles to reflect conclusion.
+    [score winAgainst:loser.playerID];
     
     // Show a concluding message with an option to rematch.
-    NSString *victoryMessage = [NSString stringWithFormat:@"%@ won the game!", [winner nameOfPlayer]];
-    NSIndexPath *score = [winner scoresAgainst:loser];
-    NSString *scoreMessage = [NSString stringWithFormat:@"Score: %d to %d", score.row   , score.section];
+    NSString *victoryMessage = [NSString stringWithFormat:@"%@ won the game!", winner.name];
+    NSString *scoreMessage = [NSString stringWithFormat:@"Score: %d to %d", [score winsForPlayerID:winner.playerID]  , [score winsForPlayerID:loser.playerID]];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:victoryMessage
                                                     message:scoreMessage
                                                    delegate:self

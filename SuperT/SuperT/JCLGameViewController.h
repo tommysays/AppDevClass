@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JCLPlayer.h"
+#import "Player.h"
 
 @interface JCLGameViewController : UIViewController
 
-@property JCLPlayer *player1;
-@property JCLPlayer *player2;
+@property Player *player1;
+@property Player *player2;
 
 @end
