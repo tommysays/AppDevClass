@@ -13,5 +13,6 @@
 - (NSInteger) winsForPlayerID:(NSNumber *)playerID;
 - (NSInteger) lossesForPlayerID:(NSNumber *)playerID;
 - (void) winAgainst:(NSNumber *)playerID;
+- (void) winFor:(NSNumber *)playerID;
 
 @end

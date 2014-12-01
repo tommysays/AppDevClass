@@ -23,5 +23,6 @@
 
 - (void) addPlayerWithName:(NSString *)name;
 - (void) removePlayerAtIndex:(NSUInteger)playerIndex;
+- (void) updateScore:(Score *)score withWinner:(Player *)winner;
 
 @end

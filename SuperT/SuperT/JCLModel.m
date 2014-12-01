@@ -46,36 +46,17 @@
         _dataManager.delegate = _myDataManager;
         NSArray *players = [_dataManager fetchManagedObjectsForEntity:@"Player" sortKeys:@[@"name"] predicate:nil];
         _playerList = [players mutableCopy];
-        NSLog(@"%d players loaded.", [_playerList count]);
-        
         _playerIDs = [[NSMutableDictionary alloc] init];
         for (Player *player in _playerList){
             [_playerIDs setObject:player forKey:player.playerID];
         }
-        
         _images = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
-/*
--(id)init {
-    self = [super init];
-    if (self) {
-        _dataManager = [DataManager sharedInstance];
-        _myDataManager = [[MyDataManager alloc] init];
-        _dataManager.delegate = _myDataManager;
-        
-        NSArray *results = [_dataManager fetchManagedObjectsForEntity:@"State" sortKeys:@[@"name"] predicate:nil];
-        _stateData = [results mutableCopy];
-    }
-    return self;
-}
- */
 
-// Some method calls to finish up initialization. Can't place in "init" due to circular calls.
+// Can't place in "init" due to circular "self" call.
 - (void) finishInit{
-    // Comment next line out to leave out default profiles.
-    //[self createDefaultPlayers];
     [self loadImages];
 }
 
@@ -85,14 +66,6 @@
     img = [UIImage imageNamed:@"oMark"];
     [self.images setObject:img forKey:@"oMark"];
 }
-
-/*
-- (void) createDefaultPlayers{
-    [self addPlayerWithName:@"Bob"];
-    [self addPlayerWithName:@"Billy"];
-    [self addPlayerWithName:@"Jebediah"];
-}
- */
 
 #pragma mark Accessors
 
@@ -186,6 +159,12 @@
     
     [self.playerIDs removeObjectForKey:ID];
     [self.playerList removeObjectAtIndex:playerIndex];
+    
+    [self.dataManager saveContext];
+}
+
+- (void) updateScore:(Score *)score withWinner:(Player *)winner{
+    [score winFor:winner.playerID];
     
     [self.dataManager saveContext];
 }

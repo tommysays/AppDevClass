@@ -332,7 +332,7 @@ const CGFloat kHighlightAlpha = 0.4;
     // Otherwise, game concluded with a winner.
     
     // Update player profiles to reflect conclusion.
-    [score winAgainst:loser.playerID];
+    [self.model updateScore:score withWinner:winner];
     
     // Show a concluding message with an option to rematch.
     NSString *victoryMessage = [NSString stringWithFormat:@"%@ won the game!", winner.name];
