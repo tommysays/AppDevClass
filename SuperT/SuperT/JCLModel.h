@@ -19,6 +19,7 @@
 - (Player *) playerAtIndex:(NSInteger)playerIndex;
 - (UIImage *) markForPlayer:(NSInteger)player;
 - (Score *) scoreBetweenPlayers:(NSArray *)players;
+- (NSIndexPath *) totalScoreForPlayerAtIndex:(NSInteger)playerIndex;
 
 - (void) addPlayerWithName:(NSString *)name;
 - (void) removePlayerAtIndex:(NSUInteger)playerIndex;

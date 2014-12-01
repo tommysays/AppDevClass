@@ -12,9 +12,9 @@
 
 @interface Score : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * player1_id;
+@property (nonatomic, retain) NSNumber * player1_ID;
 @property (nonatomic, retain) NSNumber * player2_wins;
 @property (nonatomic, retain) NSNumber * player1_wins;
-@property (nonatomic, retain) NSNumber * player2_id;
+@property (nonatomic, retain) NSNumber * player2_ID;
 
 @end

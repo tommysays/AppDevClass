@@ -34,11 +34,11 @@
 		D8CBE7141A1D3D1F00140D33 /* JCLRemovePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CBE7131A1D3D1F00140D33 /* JCLRemovePlayerViewController.m */; };
 		D8EA21351A2CEAEA00747BB1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8EA21331A2CEAEA00747BB1 /* Model.xcdatamodeld */; };
 		D8EA21381A2CF7D400747BB1 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA21371A2CF7D400747BB1 /* Player.m */; };
-		D8EA213E1A2CF7D400747BB1 /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA213D1A2CF7D400747BB1 /* Score.m */; };
 		D8EA21421A2CFED400747BB1 /* Score+Cat.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA21411A2CFED400747BB1 /* Score+Cat.m */; };
 		D8EA21501A2D01E200747BB1 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA214F1A2D01E200747BB1 /* DataManager.m */; };
 		D8EA21531A2D02C500747BB1 /* MyDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA21521A2D02C500747BB1 /* MyDataManager.m */; };
 		D8EA21551A2D042D00747BB1 /* DefaultPlayers.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8EA21541A2D042D00747BB1 /* DefaultPlayers.plist */; };
+		D8EA21581A2D146500747BB1 /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA21571A2D146500747BB1 /* Score.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,8 +96,6 @@
 		D8EA21341A2CEAEA00747BB1 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		D8EA21361A2CF7D400747BB1 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		D8EA21371A2CF7D400747BB1 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
-		D8EA213C1A2CF7D400747BB1 /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
-		D8EA213D1A2CF7D400747BB1 /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
 		D8EA21401A2CFED400747BB1 /* Score+Cat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Score+Cat.h"; sourceTree = "<group>"; };
 		D8EA21411A2CFED400747BB1 /* Score+Cat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Score+Cat.m"; sourceTree = "<group>"; };
 		D8EA214D1A2D01CA00747BB1 /* DataManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManagerDelegate.h; sourceTree = "<group>"; };
@@ -106,6 +104,8 @@
 		D8EA21511A2D02C500747BB1 /* MyDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDataManager.h; sourceTree = "<group>"; };
 		D8EA21521A2D02C500747BB1 /* MyDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDataManager.m; sourceTree = "<group>"; };
 		D8EA21541A2D042D00747BB1 /* DefaultPlayers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultPlayers.plist; sourceTree = "<group>"; };
+		D8EA21561A2D146500747BB1 /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
+		D8EA21571A2D146500747BB1 /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,10 +281,10 @@
 			isa = PBXGroup;
 			children = (
 				D8EA21331A2CEAEA00747BB1 /* Model.xcdatamodeld */,
+				D8EA21561A2D146500747BB1 /* Score.h */,
+				D8EA21571A2D146500747BB1 /* Score.m */,
 				D8EA21361A2CF7D400747BB1 /* Player.h */,
 				D8EA21371A2CF7D400747BB1 /* Player.m */,
-				D8EA213C1A2CF7D400747BB1 /* Score.h */,
-				D8EA213D1A2CF7D400747BB1 /* Score.m */,
 				D8EA21401A2CFED400747BB1 /* Score+Cat.h */,
 				D8EA21411A2CFED400747BB1 /* Score+Cat.m */,
 				D8EA214D1A2D01CA00747BB1 /* DataManagerDelegate.h */,
@@ -397,6 +397,7 @@
 			files = (
 				D8EA21381A2CF7D400747BB1 /* Player.m in Sources */,
 				D8EA21531A2D02C500747BB1 /* MyDataManager.m in Sources */,
+				D8EA21581A2D146500747BB1 /* Score.m in Sources */,
 				D88058F51A150E7C00615C06 /* JCLOptionsViewController.m in Sources */,
 				D8EA21421A2CFED400747BB1 /* Score+Cat.m in Sources */,
 				D88058F21A150E5C00615C06 /* JCLMainMenuViewController.m in Sources */,
@@ -409,7 +410,6 @@
 				D88058FE1A15134100615C06 /* JCLGameModel.m in Sources */,
 				D853D6831A150CE50072F890 /* main.m in Sources */,
 				D811BBD61A15457B00CC17B2 /* JCLChoosePlayerViewController.m in Sources */,
-				D8EA213E1A2CF7D400747BB1 /* Score.m in Sources */,
 				D88058FB1A15121F00615C06 /* JCLModel.m in Sources */,
 				D811BBDC1A155AAF00CC17B2 /* JCLProfileOverviewViewController.m in Sources */,
 				D811BBDF1A155D9800CC17B2 /* JCLManageProfileTableViewController.m in Sources */,

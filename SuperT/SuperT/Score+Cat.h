@@ -11,6 +11,7 @@
 @interface Score (Cat)
 
 - (NSInteger) winsForPlayerID:(NSNumber *)playerID;
+- (NSInteger) lossesForPlayerID:(NSNumber *)playerID;
 - (void) winAgainst:(NSNumber *)playerID;
 
 @end

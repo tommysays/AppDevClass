@@ -139,6 +139,26 @@
     return toReturn;
 }
 
+- (NSIndexPath *) totalScoreForPlayerAtIndex:(NSInteger)playerIndex{
+
+    Player *player = self.playerList[playerIndex];
+    NSNumber *ID = player.playerID;
+    
+    // Fetch all scores related to player.
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"player1_ID like %@ OR player2_ID like %@", ID, ID];
+    NSArray *scores = [self.dataManager fetchManagedObjectsForEntity:@"Score" sortKeys:nil predicate:pred];
+    
+    // Tally up total wins and losses.
+    NSInteger wins = 0;
+    NSInteger losses = 0;
+    for (Score *score in scores){
+        wins += [score winsForPlayerID:ID];
+        losses += [score lossesForPlayerID:ID];
+    }
+    
+    return [NSIndexPath indexPathForRow:wins inSection:losses];
+}
+
 #pragma mark Mutators
 
 - (void) addPlayerWithName:(NSString *)name{

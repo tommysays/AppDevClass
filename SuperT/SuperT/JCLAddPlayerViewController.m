@@ -22,6 +22,7 @@
 
 const NSInteger WIDTH = 500;
 const NSInteger HEIGHT = 450;
+const NSInteger kMAX_PLAYER_NAME_LENGTH = 30;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,9 +52,19 @@ const NSInteger HEIGHT = 450;
 
 - (IBAction)addPressed:(id)sender {
     NSString *name = self.textField.text;
-    if ([[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid name!"
-                                                        message:@"Names cannot be empty."
+    NSInteger length = [[name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length];
+    if (length == 0){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Blank name"
+                                                        message:@"Names need at least 1 non-whitespace character."
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil,
+                              nil];
+        [alert show];
+    } else if (length > kMAX_PLAYER_NAME_LENGTH){
+        NSString *msg = [NSString stringWithFormat:@"Names must be at most %d characters long.", kMAX_PLAYER_NAME_LENGTH];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Name is too long"
+                                                        message:msg
                                                        delegate:self
                                               cancelButtonTitle:@"Ok"
                                               otherButtonTitles:nil,

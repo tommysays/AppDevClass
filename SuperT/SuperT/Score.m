@@ -11,9 +11,9 @@
 
 @implementation Score
 
-@dynamic player1_id;
+@dynamic player1_ID;
 @dynamic player2_wins;
 @dynamic player1_wins;
-@dynamic player2_id;
+@dynamic player2_ID;
 
 @end

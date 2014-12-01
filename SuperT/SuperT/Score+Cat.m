@@ -11,15 +11,23 @@
 @implementation Score (Cat)
 
 - (NSInteger) winsForPlayerID:(NSNumber *)playerID{
-    if ([playerID isEqual:self.player1_id]){
+    if ([playerID isEqual:self.player1_ID]){
         return [self.player1_wins integerValue];
     } else{
         return [self.player2_wins integerValue];
     }
 }
 
+- (NSInteger) lossesForPlayerID:(NSNumber *)playerID{
+    if ([playerID isEqual:self.player1_ID]){
+        return [self.player2_wins integerValue];
+    } else{
+        return [self.player1_wins integerValue];
+    }
+}
+
 - (void) winAgainst:(NSNumber *)playerID{
-    if ([playerID isEqual:self.player1_id]){
+    if ([playerID isEqual:self.player1_ID]){
         self.player2_wins = [NSNumber numberWithInteger:([self.player2_wins integerValue] + 1)];
     } else{
         self.player1_wins = [NSNumber numberWithInteger:([self.player1_wins integerValue] + 1)];

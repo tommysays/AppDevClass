@@ -55,9 +55,9 @@
 }
 
 - (IBAction)removePressed:(id)sender {
-    JCLPlayer *player = [self.model playerAtIndex:[self.pickerView selectedRowInComponent:0]];
-    NSString *name = [player nameOfPlayer];
-    NSIndexPath *totalScore = [player totalScore];
+    NSInteger index = [self.pickerView selectedRowInComponent:0];
+    NSString *name = [self.model nameOfPlayerAtIndex:index];
+    NSIndexPath *totalScore = [self.model totalScoreForPlayerAtIndex:index];
     NSString *summary = [NSString stringWithFormat:@"%@ has %d wins and %d losses.", name, totalScore.row, totalScore.section];
     // Thow alert
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Are you sure?"
