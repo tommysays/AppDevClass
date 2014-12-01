@@ -7,6 +7,8 @@
 //
 
 #import "JCLChoosePlayerViewController.h"
+#import "Player.h"
+#import "Score+Cat.h"
 
 @interface JCLChoosePlayerViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UIAlertViewDelegate>
 
@@ -54,15 +56,15 @@
 }
 
 - (void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    JCLPlayer *player1 = [self.model playerAtIndex:[self.pickerView1 selectedRowInComponent:0]];
-    JCLPlayer *player2 = [self.model playerAtIndex:[self.pickerView2 selectedRowInComponent:0]];
-    if ([player1 isEqual:player2]){
+    Player *player1 = [self.model playerAtIndex:[self.pickerView1 selectedRowInComponent:0]];
+    Player *player2 = [self.model playerAtIndex:[self.pickerView2 selectedRowInComponent:0]];
+    if ([player1.playerID isEqual:player2.playerID]){
         self.scoreLabel1.text = @"--";
         self.scoreLabel2.text = @"--";
     } else{
-        NSIndexPath *score = [player1 scoresAgainst:player2];
-        self.scoreLabel1.text = [NSString stringWithFormat:@"%d", score.row];
-        self.scoreLabel2.text = [NSString stringWithFormat:@"%d", score.section];
+        Score *score = [self.model scoreBetweenPlayers:@[player1, player2]];
+        self.scoreLabel1.text = [NSString stringWithFormat:@"%d", [score winsForPlayerID:player1.playerID]];
+        self.scoreLabel2.text = [NSString stringWithFormat:@"%d", [score winsForPlayerID:player2.playerID]];
     }
 }
 

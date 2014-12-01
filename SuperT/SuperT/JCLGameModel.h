@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JCLPlayer.h"
+#import "Player.h"
 
 @interface JCLGameModel : NSObject
 
@@ -16,7 +16,7 @@
 @property BOOL gameOver;
 @property NSInteger winner;
 
-- (id) initWithPlayer1:(JCLPlayer *)player1 andPlayer2:(JCLPlayer *)player2;
+- (id) initWithPlayer1:(Player *)player1 andPlayer2:(Player *)player2;
 
 - (BOOL) isCellEnabled:(NSIndexPath *)path;
 - (BOOL) isBoardAvailable:(NSInteger)index;

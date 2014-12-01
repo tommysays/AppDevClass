@@ -7,20 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JCLPlayer.h"
+#import "Player.h"
+#import "Score+Cat.h"
 
 @interface JCLModel : NSObject
 
 + (id) sharedInstance;
-- (NSNumber *) generateID;
 
 - (NSInteger) numberOfPlayerProfiles;
 - (NSString *) nameOfPlayerAtIndex:(NSInteger)playerIndex;
-- (JCLPlayer *) playerAtIndex:(NSInteger)playerIndex;
+- (Player *) playerAtIndex:(NSInteger)playerIndex;
 - (UIImage *) markForPlayer:(NSInteger)player;
+- (Score *) scoreBetweenPlayers:(NSArray *)players;
 
 - (void) addPlayerWithName:(NSString *)name;
-- (void) removePlayerAtIndex:(NSInteger)playerIndex;
-- (void) removePlayer:(JCLPlayer *)player;
+- (void) removePlayerAtIndex:(NSUInteger)playerIndex;
 
 @end

@@ -7,16 +7,18 @@
 //
 
 #import "JCLGameModel.h"
+#import "JCLModel.h"
 
 @interface JCLGameModel ()
 
 @property NSMutableArray *moveHistory;
-@property JCLPlayer *player1;
-@property JCLPlayer *player2;
+@property Player *player1;
+@property Player *player2;
 
 @property NSMutableArray *enabledBoards;
 @property NSMutableArray *boards;
 @property NSArray *availableBoards;
+@property JCLModel *model;
 
 
 @end
@@ -34,6 +36,7 @@
         self.lastBoardWasWon = NO;
         self.gameOver = NO;
         self.winner = 0;
+        self.model = [JCLModel sharedInstance];
     }
     return self;
 }
@@ -59,7 +62,7 @@
     self.availableBoards = temp;
 }
 
-- (id) initWithPlayer1:(JCLPlayer *)player1 andPlayer2:(JCLPlayer *)player2{
+- (id) initWithPlayer1:(Player *)player1 andPlayer2:(Player *)player2{
     self = [self init];
     if (self){
         self.player1 = player1;
@@ -152,10 +155,10 @@
     NSInteger toFill = -1;
     if (self.isPlayer1Turn){
         toFill = 1;
-        mark = @"x";
+        mark = [NSString stringWithFormat:@"%@ plays x", self.player1.name];
     } else{
         toFill = 2;
-        mark = @"o";
+        mark = [NSString stringWithFormat:@"%@ plays o", self.player2.name];
     }
     [self recordMove:move withMark:mark andFill:toFill];
     [self evaluateMiniBoard:move.section];
