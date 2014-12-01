@@ -119,16 +119,4 @@
     }
 }
 
-- (void) moveToProfileManager{
-    UISplitViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileManager"];
-    [JCLManageProfileTableViewController setToReturn:self];
-    JCLAppDelegate *appDel = [[UIApplication sharedApplication] delegate];
-    //[appDel.window setRootViewController:controller];
-    [UIView transitionWithView:appDel.window
-                      duration:0.5
-                       options:UIViewAnimationOptionTransitionFlipFromLeft
-                    animations:^{ appDel.window.rootViewController = controller; }
-                    completion:nil];
-}
-
 @end

@@ -173,9 +173,18 @@
 
 - (void) removePlayerAtIndex:(NSUInteger)playerIndex{
     __weak Player *player = [self.playerList objectAtIndex:playerIndex];
+    NSNumber *ID = player.playerID;
+    
     [self.dataManager.managedObjectContext deleteObject:player];
-    [self.playerIDs removeObjectForKey:player.playerID];
-    // TODO remove scores containing player
+    
+    // Fetch and remove all scores related to player.
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"player1_ID == %@ OR player2_ID == %@", ID, ID];
+    NSArray *scores = [self.dataManager fetchManagedObjectsForEntity:@"Score" sortKeys:nil predicate:pred];
+    for (Score *score in scores){
+        [self.dataManager.managedObjectContext deleteObject:score];
+    }
+    
+    [self.playerIDs removeObjectForKey:ID];
     [self.playerList removeObjectAtIndex:playerIndex];
     
     [self.dataManager saveContext];

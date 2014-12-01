@@ -22,7 +22,7 @@
 
 const NSInteger WIDTH = 500;
 const NSInteger HEIGHT = 450;
-const NSInteger kMAX_PLAYER_NAME_LENGTH = 30;
+const NSInteger kMAX_PLAYER_NAME_LENGTH = 16;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

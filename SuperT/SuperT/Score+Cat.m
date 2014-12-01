@@ -34,6 +34,7 @@
     }
     
     // TODO Should this be here? Or should I refresh elsewhere? Am I even refreshing correctly?
+    // Update: Apparently this works, but I'm not very convinced that it's the right way to do it.
     [self.managedObjectContext refreshObject:self mergeChanges:YES];
 }
 
