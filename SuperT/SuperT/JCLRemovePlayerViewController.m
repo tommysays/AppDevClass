@@ -8,7 +8,7 @@
 
 #import "JCLRemovePlayerViewController.h"
 #import "JCLModel.h"
-#import "JCLPlayer.h"
+#import "Player.h"
 
 @interface JCLRemovePlayerViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UIAlertViewDelegate>
 

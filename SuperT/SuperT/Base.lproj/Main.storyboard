@@ -559,15 +559,15 @@
                     <navigationItem key="navigationItem" id="GA5-US-VuO"/>
                     <connections>
                         <outlet property="gameBoard" destination="T8p-55-fAc" id="Rpq-KX-XxB"/>
-                        <outlet property="mBoard11" destination="fgD-cB-OOn" id="VvL-Td-813"/>
-                        <outlet property="mBoard12" destination="KXA-Zh-GGa" id="XrC-Q1-S4j"/>
-                        <outlet property="mBoard13" destination="jSm-k7-EKC" id="DX1-oJ-DTJ"/>
-                        <outlet property="mBoard21" destination="WTY-2F-VlY" id="C8G-NW-2OR"/>
-                        <outlet property="mBoard22" destination="xt2-xx-xl9" id="sKm-qk-AbD"/>
-                        <outlet property="mBoard23" destination="pUc-WG-DLp" id="NM4-XM-r7a"/>
-                        <outlet property="mBoard31" destination="Ugt-V6-x2K" id="hQd-7z-l5v"/>
-                        <outlet property="mBoard32" destination="jrR-ue-rxj" id="uEK-U2-1VW"/>
-                        <outlet property="mBoard33" destination="1Uq-lo-cs5" id="JRd-aV-xiV"/>
+                        <outletCollection property="mBoards" destination="fgD-cB-OOn" id="eWd-Q7-vNr"/>
+                        <outletCollection property="mBoards" destination="WTY-2F-VlY" id="d9X-cy-fQ4"/>
+                        <outletCollection property="mBoards" destination="Ugt-V6-x2K" id="jXq-Tp-oNk"/>
+                        <outletCollection property="mBoards" destination="KXA-Zh-GGa" id="Lnj-cN-ONf"/>
+                        <outletCollection property="mBoards" destination="xt2-xx-xl9" id="1Tf-bu-Byq"/>
+                        <outletCollection property="mBoards" destination="jrR-ue-rxj" id="zyF-Db-TOr"/>
+                        <outletCollection property="mBoards" destination="jSm-k7-EKC" id="5Yn-Ij-Nk5"/>
+                        <outletCollection property="mBoards" destination="pUc-WG-DLp" id="Ysw-Ux-Wya"/>
+                        <outletCollection property="mBoards" destination="1Uq-lo-cs5" id="Yix-AY-L0C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RMe-dW-lal" userLabel="First Responder" sceneMemberID="firstResponder"/>

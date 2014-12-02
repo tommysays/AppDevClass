@@ -11,15 +11,7 @@
 #import "JCLModel.h"
 
 @interface JCLGameViewController () <UIAlertViewDelegate, UIGestureRecognizerDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *mBoard11;
-@property (weak, nonatomic) IBOutlet UIImageView *mBoard21;
-@property (weak, nonatomic) IBOutlet UIImageView *mBoard31;
-@property (weak, nonatomic) IBOutlet UIImageView *mBoard12;
-@property (weak, nonatomic) IBOutlet UIImageView *mBoard22;
-@property (weak, nonatomic) IBOutlet UIImageView *mBoard32;
-@property (weak, nonatomic) IBOutlet UIImageView *mBoard13;
-@property (weak, nonatomic) IBOutlet UIImageView *mBoard23;
-@property (weak, nonatomic) IBOutlet UIImageView *mBoard33;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *mBoards;
 @property (weak, nonatomic) IBOutlet UIImageView *gameBoard;
 
 - (IBAction)finalizeButtonPressed:(id)sender;
@@ -65,24 +57,9 @@ const CGFloat kHighlightAlpha = 0.4;
 - (void) initBoards{
     self.miniBoards = [[NSMutableArray alloc] init];
     
-    UIImageView *board = self.mBoard11;
-    [self initBoard:board];
-    board = self.mBoard21;
-    [self initBoard:board];
-    board = self.mBoard31;
-    [self initBoard:board];
-    board = self.mBoard12;
-    [self initBoard:board];
-    board = self.mBoard22;
-    [self initBoard:board];
-    board = self.mBoard32;
-    [self initBoard:board];
-    board = self.mBoard13;
-    [self initBoard:board];
-    board = self.mBoard23;
-    [self initBoard:board];
-    board = self.mBoard33;
-    [self initBoard:board];
+    for (UIImageView *board in self.mBoards){
+        [self initBoard:board];
+    }
 }
 
 - (void) initBoard:(UIImageView *)board{
