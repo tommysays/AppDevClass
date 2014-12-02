@@ -13,6 +13,7 @@
 @interface JCLGameViewController () <UIAlertViewDelegate, UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *mBoards;
 @property (weak, nonatomic) IBOutlet UIImageView *gameBoard;
+@property (weak, nonatomic) IBOutlet UILabel *turnLabel;
 
 - (IBAction)finalizeButtonPressed:(id)sender;
 - (IBAction)surrenderButtonPressed:(id)sender;
@@ -51,6 +52,7 @@ const CGFloat kHighlightAlpha = 0.4;
     self.highlighters_p1 = [[NSMutableArray alloc] init];
     self.highlighters_p2 = [[NSMutableArray alloc] init];
     self.marks = [[NSMutableArray alloc] init];
+    [self updateTurnLabel];
     [self initBoards];
 }
 
@@ -174,6 +176,16 @@ const CGFloat kHighlightAlpha = 0.4;
     }];
 }
 
+- (void) updateTurnLabel{
+    NSString *name;
+    if ([self.gameModel isPlayer1Turn]){
+        name = self.player1.name;
+    } else{
+        name = self.player2.name;
+    }
+    self.turnLabel.text = [NSString stringWithFormat:@"%@'s turn!", name];
+}
+
 #pragma mark Gesture Recognizer
 
 - (void) tapRecognized:(UITapGestureRecognizer *)recognizer{
@@ -220,6 +232,8 @@ const CGFloat kHighlightAlpha = 0.4;
                 default:
                     break;
             }
+        } else{
+            [self updateTurnLabel];
         }
     } else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Can't move."

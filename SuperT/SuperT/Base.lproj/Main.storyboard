@@ -446,23 +446,23 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="42x27_buttonBorder" translatesAutoresizingMaskIntoConstraints="NO" id="mJf-Bx-tRv">
-                                <rect key="frame" x="279" y="682" width="210" height="135"/>
+                                <rect key="frame" x="279" y="710" width="210" height="135"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="32x9_buttonBorder" translatesAutoresizingMaskIntoConstraints="NO" id="tNR-dc-Pgq">
-                                <rect key="frame" x="188" y="909" width="160" height="45"/>
+                                <rect key="frame" x="188" y="911" width="160" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="32x9_buttonBorder" translatesAutoresizingMaskIntoConstraints="NO" id="gTy-xF-phx">
-                                <rect key="frame" x="420" y="909" width="160" height="45"/>
+                                <rect key="frame" x="420" y="911" width="160" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="32x9_buttonBorder" translatesAutoresizingMaskIntoConstraints="NO" id="8Ag-WS-mkn">
-                                <rect key="frame" x="304" y="828" width="160" height="45"/>
+                                <rect key="frame" x="304" y="856" width="160" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B8X-bV-hlK">
-                                <rect key="frame" x="284" y="687" width="200" height="125"/>
+                                <rect key="frame" x="284" y="715" width="200" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.99340470280000004" green="1" blue="0.3946341183" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="21"/>
@@ -475,7 +475,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Th-hK-90Q">
-                                <rect key="frame" x="309" y="833" width="150" height="35"/>
+                                <rect key="frame" x="309" y="861" width="150" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.82719717128980363" blue="0.90065754054882263" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="21"/>
@@ -488,7 +488,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnw-b8-8Ua">
-                                <rect key="frame" x="425" y="914" width="150" height="35"/>
+                                <rect key="frame" x="425" y="916" width="150" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.99340470280000004" green="1" blue="0.3946341183" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="21"/>
@@ -501,7 +501,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2f-gM-4NZ">
-                                <rect key="frame" x="193" y="914" width="150" height="35"/>
+                                <rect key="frame" x="193" y="916" width="150" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.99340470280000004" green="1" blue="0.3946341183" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="21"/>
@@ -514,51 +514,59 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="board" translatesAutoresizingMaskIntoConstraints="NO" id="T8p-55-fAc">
-                                <rect key="frame" x="104" y="90" width="560" height="560"/>
+                                <rect key="frame" x="104" y="118" width="560" height="560"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="board" translatesAutoresizingMaskIntoConstraints="NO" id="Ugt-V6-x2K">
-                                <rect key="frame" x="494" y="100" width="160" height="160"/>
+                                <rect key="frame" x="494" y="128" width="160" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="board" translatesAutoresizingMaskIntoConstraints="NO" id="WTY-2F-VlY">
-                                <rect key="frame" x="304" y="100" width="160" height="160"/>
+                                <rect key="frame" x="304" y="128" width="160" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="board" translatesAutoresizingMaskIntoConstraints="NO" id="fgD-cB-OOn">
-                                <rect key="frame" x="114" y="100" width="160" height="160"/>
+                                <rect key="frame" x="114" y="128" width="160" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="board" translatesAutoresizingMaskIntoConstraints="NO" id="jrR-ue-rxj">
-                                <rect key="frame" x="494" y="290" width="160" height="160"/>
+                                <rect key="frame" x="494" y="318" width="160" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="board" translatesAutoresizingMaskIntoConstraints="NO" id="xt2-xx-xl9">
-                                <rect key="frame" x="304" y="290" width="160" height="160"/>
+                                <rect key="frame" x="304" y="318" width="160" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="board" translatesAutoresizingMaskIntoConstraints="NO" id="KXA-Zh-GGa">
-                                <rect key="frame" x="114" y="290" width="160" height="160"/>
+                                <rect key="frame" x="114" y="318" width="160" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="8" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="board" translatesAutoresizingMaskIntoConstraints="NO" id="1Uq-lo-cs5">
-                                <rect key="frame" x="494" y="480" width="160" height="160"/>
+                                <rect key="frame" x="494" y="508" width="160" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="7" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="board" translatesAutoresizingMaskIntoConstraints="NO" id="pUc-WG-DLp">
-                                <rect key="frame" x="304" y="480" width="160" height="160"/>
+                                <rect key="frame" x="304" y="508" width="160" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="board" translatesAutoresizingMaskIntoConstraints="NO" id="jSm-k7-EKC">
-                                <rect key="frame" x="114" y="480" width="160" height="160"/>
+                                <rect key="frame" x="114" y="508" width="160" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;Player>'s turn!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjS-yd-WS7">
+                                <rect key="frame" x="104" y="56" width="560" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.51934373359999997" green="0.736334406" blue="0.96923226119999994" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="GA5-US-VuO"/>
                     <connections>
                         <outlet property="gameBoard" destination="T8p-55-fAc" id="Rpq-KX-XxB"/>
+                        <outlet property="turnLabel" destination="mjS-yd-WS7" id="vue-aU-FeI"/>
                         <outletCollection property="mBoards" destination="fgD-cB-OOn" id="eWd-Q7-vNr"/>
                         <outletCollection property="mBoards" destination="WTY-2F-VlY" id="d9X-cy-fQ4"/>
                         <outletCollection property="mBoards" destination="Ugt-V6-x2K" id="jXq-Tp-oNk"/>
