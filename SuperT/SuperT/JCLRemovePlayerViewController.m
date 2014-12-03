@@ -9,6 +9,7 @@
 #import "JCLRemovePlayerViewController.h"
 #import "JCLModel.h"
 #import "Player.h"
+#import "Constants.h"
 
 @interface JCLRemovePlayerViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UIAlertViewDelegate>
 
@@ -27,6 +28,11 @@
     [super viewDidLoad];
     
     self.model = [JCLModel sharedInstance];
+}
+
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    self.view.superview.bounds = CGRectMake(0, 0, kAddRemoveWidth, kAddRemoveHeight);
 }
 
 #pragma mark PickerView Data Source and Delegate

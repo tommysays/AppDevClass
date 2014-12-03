@@ -8,6 +8,7 @@
 
 #import "JCLAddPlayerViewController.h"
 #import "JCLModel.h"
+#import "Constants.h"
 
 @interface JCLAddPlayerViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *textField;
@@ -20,10 +21,6 @@
 
 @implementation JCLAddPlayerViewController
 
-const NSInteger WIDTH = 500;
-const NSInteger HEIGHT = 450;
-const NSInteger kMAX_PLAYER_NAME_LENGTH = 16;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -35,7 +32,7 @@ const NSInteger kMAX_PLAYER_NAME_LENGTH = 16;
 
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    self.view.superview.bounds = CGRectMake(0, 0, WIDTH, HEIGHT);
+    self.view.superview.bounds = CGRectMake(0, 0, kAddRemoveWidth, kAddRemoveHeight);
 }
 
 - (void)viewDidLoad

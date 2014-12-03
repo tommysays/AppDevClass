@@ -205,7 +205,7 @@ const CGFloat kHighlightAlpha = 0.4;
         }
     }
 }
-
+ 
 #pragma mark Button Reactions
 
 - (IBAction)finalizeButtonPressed:(id)sender {

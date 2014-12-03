@@ -55,6 +55,7 @@
 		D811BBE11A155DB400CC17B2 /* JCLProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLProfileTableViewCell.m; sourceTree = "<group>"; };
 		D811BBE31A156B1A00CC17B2 /* JCLAddPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLAddPlayerViewController.h; sourceTree = "<group>"; };
 		D811BBE41A156B1A00CC17B2 /* JCLAddPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLAddPlayerViewController.m; sourceTree = "<group>"; };
+		D83C046F1A2EA5080019A99E /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		D853D6731A150CE50072F890 /* SuperT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D853D6761A150CE50072F890 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D853D6781A150CE50072F890 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -185,6 +186,7 @@
 				D853D6821A150CE50072F890 /* main.m */,
 				D853D6841A150CE50072F890 /* SuperT-Prefix.pch */,
 				D8EA21541A2D042D00747BB1 /* DefaultPlayers.plist */,
+				D83C046F1A2EA5080019A99E /* Constants.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
