@@ -16,6 +16,8 @@
 @property BOOL gameOver;
 @property NSInteger winner;
 
++ (id) sharedInstance;
+
 - (id) initWithPlayer1:(Player *)player1 andPlayer2:(Player *)player2;
 
 - (BOOL) isCellEnabled:(NSIndexPath *)path;

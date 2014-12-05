@@ -28,6 +28,8 @@
 		D88058F81A150EB300615C06 /* JCLGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D88058F71A150EB300615C06 /* JCLGameViewController.m */; };
 		D88058FB1A15121F00615C06 /* JCLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D88058FA1A15121F00615C06 /* JCLModel.m */; };
 		D88058FE1A15134100615C06 /* JCLGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D88058FD1A15134100615C06 /* JCLGameModel.m */; };
+		D8BC208A1A324F9300AA2A32 /* AIEasy.m in Sources */ = {isa = PBXBuildFile; fileRef = D8BC20891A324F9300AA2A32 /* AIEasy.m */; };
+		D8BC208D1A32534400AA2A32 /* ComputerAI.m in Sources */ = {isa = PBXBuildFile; fileRef = D8BC208C1A32534400AA2A32 /* ComputerAI.m */; };
 		D8CBE7141A1D3D1F00140D33 /* JCLRemovePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CBE7131A1D3D1F00140D33 /* JCLRemovePlayerViewController.m */; };
 		D8EA21351A2CEAEA00747BB1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8EA21331A2CEAEA00747BB1 /* Model.xcdatamodeld */; };
 		D8EA21381A2CF7D400747BB1 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA21371A2CF7D400747BB1 /* Player.m */; };
@@ -83,6 +85,10 @@
 		D88058FA1A15121F00615C06 /* JCLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLModel.m; sourceTree = "<group>"; };
 		D88058FC1A15134100615C06 /* JCLGameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLGameModel.h; sourceTree = "<group>"; };
 		D88058FD1A15134100615C06 /* JCLGameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLGameModel.m; sourceTree = "<group>"; };
+		D8BC20881A324F9300AA2A32 /* AIEasy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIEasy.h; sourceTree = "<group>"; };
+		D8BC20891A324F9300AA2A32 /* AIEasy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIEasy.m; sourceTree = "<group>"; };
+		D8BC208B1A32534400AA2A32 /* ComputerAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComputerAI.h; sourceTree = "<group>"; };
+		D8BC208C1A32534400AA2A32 /* ComputerAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComputerAI.m; sourceTree = "<group>"; };
 		D8CBE7121A1D3D1F00140D33 /* JCLRemovePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLRemovePlayerViewController.h; sourceTree = "<group>"; };
 		D8CBE7131A1D3D1F00140D33 /* JCLRemovePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLRemovePlayerViewController.m; sourceTree = "<group>"; };
 		D8EA21341A2CEAEA00747BB1 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -168,6 +174,7 @@
 		D853D67C1A150CE50072F890 /* SuperT */ = {
 			isa = PBXGroup;
 			children = (
+				D8BC20831A324EC600AA2A32 /* AI */,
 				D88058EF1A150D9200615C06 /* Model */,
 				D88058EC1A150D6F00615C06 /* Views */,
 				D88058ED1A150D7700615C06 /* Controllers */,
@@ -254,6 +261,17 @@
 				D88058FD1A15134100615C06 /* JCLGameModel.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		D8BC20831A324EC600AA2A32 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				D8BC20881A324F9300AA2A32 /* AIEasy.h */,
+				D8BC20891A324F9300AA2A32 /* AIEasy.m */,
+				D8BC208B1A32534400AA2A32 /* ComputerAI.h */,
+				D8BC208C1A32534400AA2A32 /* ComputerAI.m */,
+			);
+			name = AI;
 			sourceTree = "<group>";
 		};
 		D8EA213F1A2CF7DB00747BB1 /* CoreData */ = {
@@ -385,9 +403,11 @@
 				D853D6871A150CE50072F890 /* JCLAppDelegate.m in Sources */,
 				D811BBE51A156B1A00CC17B2 /* JCLAddPlayerViewController.m in Sources */,
 				D811BBE21A155DB400CC17B2 /* JCLProfileTableViewCell.m in Sources */,
+				D8BC208A1A324F9300AA2A32 /* AIEasy.m in Sources */,
 				D88058FE1A15134100615C06 /* JCLGameModel.m in Sources */,
 				D853D6831A150CE50072F890 /* main.m in Sources */,
 				D811BBD61A15457B00CC17B2 /* JCLChoosePlayerViewController.m in Sources */,
+				D8BC208D1A32534400AA2A32 /* ComputerAI.m in Sources */,
 				D88058FB1A15121F00615C06 /* JCLModel.m in Sources */,
 				D8EA21501A2D01E200747BB1 /* DataManager.m in Sources */,
 				D8CBE7141A1D3D1F00140D33 /* JCLRemovePlayerViewController.m in Sources */,

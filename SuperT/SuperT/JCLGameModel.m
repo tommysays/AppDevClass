@@ -27,6 +27,16 @@
 
 #pragma mark Initialization
 
++ (id) sharedInstance{
+    static id singleton;
+    @synchronized(self){
+        if (!singleton){
+            singleton = [[self alloc] init];
+        }
+    }
+    return singleton;
+}
+
 - (id) init{
     self = [super init];
     if (self){
