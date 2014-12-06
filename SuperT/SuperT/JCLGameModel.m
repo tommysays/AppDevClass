@@ -16,8 +16,8 @@
 @property Player *player2;
 
 @property NSMutableArray *enabledBoards;
-@property NSMutableArray *boards;
 @property NSArray *availableBoards;
+@property NSMutableArray *boards;
 @property JCLModel *model;
 
 
@@ -112,6 +112,14 @@
             [temp addObject:[NSNumber numberWithInteger:i]];
     }
     return temp;
+}
+
+- (NSArray *) allAvailableBoards{
+    return self.availableBoards;
+}
+
+- (NSArray *) wholeBoard{
+    return self.boards;
 }
 
 - (BOOL) wasLastBoardWon{

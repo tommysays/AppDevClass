@@ -10,7 +10,7 @@
 
 @interface ComputerAI ()
 
-@property JCLGameModel *gameModel;
+
 
 @end
 
@@ -22,6 +22,10 @@
         _gameModel = [JCLGameModel sharedInstance];
     }
     return self;
+}
+
+- (NSIndexPath *)makeMove{
+    return nil;
 }
 
 @end

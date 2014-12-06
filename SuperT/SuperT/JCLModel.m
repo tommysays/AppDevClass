@@ -51,6 +51,7 @@
             [_playerIDs setObject:player forKey:player.playerID];
         }
         _images = [[NSMutableDictionary alloc] init];
+        [_dataManager saveContext];
     }
     return self;
 }

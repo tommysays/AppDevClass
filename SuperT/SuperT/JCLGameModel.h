@@ -26,6 +26,8 @@
 - (BOOL) wasLastBoardWon;
 
 - (NSArray *) boardsForPretendMove:(NSIndexPath *)move;
+- (NSArray *) allAvailableBoards;
+- (NSArray *) wholeBoard;
 
 // Returns true if the move ended the game.
 - (BOOL) makeMove:(NSIndexPath *)move;

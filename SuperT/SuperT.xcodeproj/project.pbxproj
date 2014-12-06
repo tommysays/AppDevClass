@@ -38,6 +38,7 @@
 		D8EA21531A2D02C500747BB1 /* MyDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA21521A2D02C500747BB1 /* MyDataManager.m */; };
 		D8EA21551A2D042D00747BB1 /* DefaultPlayers.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8EA21541A2D042D00747BB1 /* DefaultPlayers.plist */; };
 		D8EA21581A2D146500747BB1 /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA21571A2D146500747BB1 /* Score.m */; };
+		D8F347811A32861F007DE4BD /* JCLSinglePlayerChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F347801A32861F007DE4BD /* JCLSinglePlayerChooseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,8 @@
 		D8EA21541A2D042D00747BB1 /* DefaultPlayers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultPlayers.plist; sourceTree = "<group>"; };
 		D8EA21561A2D146500747BB1 /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		D8EA21571A2D146500747BB1 /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
+		D8F3477F1A32861F007DE4BD /* JCLSinglePlayerChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLSinglePlayerChooseViewController.h; sourceTree = "<group>"; };
+		D8F347801A32861F007DE4BD /* JCLSinglePlayerChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLSinglePlayerChooseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +238,8 @@
 				D88058F41A150E7C00615C06 /* JCLOptionsViewController.m */,
 				D88058F61A150EB300615C06 /* JCLGameViewController.h */,
 				D88058F71A150EB300615C06 /* JCLGameViewController.m */,
+				D8F3477F1A32861F007DE4BD /* JCLSinglePlayerChooseViewController.h */,
+				D8F347801A32861F007DE4BD /* JCLSinglePlayerChooseViewController.m */,
 				D811BBD41A15457B00CC17B2 /* JCLChoosePlayerViewController.h */,
 				D811BBD51A15457B00CC17B2 /* JCLChoosePlayerViewController.m */,
 				D811BBE61A156B2000CC17B2 /* Profile Management */,
@@ -404,6 +409,7 @@
 				D811BBE51A156B1A00CC17B2 /* JCLAddPlayerViewController.m in Sources */,
 				D811BBE21A155DB400CC17B2 /* JCLProfileTableViewCell.m in Sources */,
 				D8BC208A1A324F9300AA2A32 /* AIEasy.m in Sources */,
+				D8F347811A32861F007DE4BD /* JCLSinglePlayerChooseViewController.m in Sources */,
 				D88058FE1A15134100615C06 /* JCLGameModel.m in Sources */,
 				D853D6831A150CE50072F890 /* main.m in Sources */,
 				D811BBD61A15457B00CC17B2 /* JCLChoosePlayerViewController.m in Sources */,

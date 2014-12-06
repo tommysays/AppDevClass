@@ -11,6 +11,8 @@
 
 @interface ComputerAI : NSObject
 
+@property JCLGameModel *gameModel;
+
 - (NSIndexPath *) makeMove;
 
 @end
