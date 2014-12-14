@@ -11,6 +11,7 @@
 #import "JCLModel.h"
 #import "ComputerAI.h"
 #import "AIEasy.h"
+#import "AIMedium.h"
 
 @interface JCLGameViewController () <UIAlertViewDelegate, UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *mBoards;
@@ -67,8 +68,11 @@ const CGFloat kHighlightAlpha = 0.4;
 }
 
 - (void) initAI{
-    if ([self.ai.name isEqualToString:@"Easy AI"]){
+    NSString *name = self.ai.name;
+    if ([name isEqualToString:@"Easy AI"]){
         self.aiPlayer = [[AIEasy alloc] initWithGameModel:self.gameModel];
+    } else if ([name isEqualToString:@"Medium AI"]){
+        self.aiPlayer = [[AIMedium alloc] initWithGameModel:self.gameModel];
     }
 }
 
