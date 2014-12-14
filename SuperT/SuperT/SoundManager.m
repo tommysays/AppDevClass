@@ -70,11 +70,14 @@
 
 #pragma mark - Play Sound
 
-/*!
- * Plays a random tap sound effect from a selection based on whose turn it is.
- * Wow, I did not know I could document like this. Neat!
- * @param turn The player's turn (1 or 2)
- */
+- (void) playConfirmButton{
+    // TODO
+}
+
+- (void) playBackButton{
+    // TODO
+}
+
 - (void) playTapForPlayer:(NSInteger)turn{
     NSArray *temp;
     if (turn == 1){

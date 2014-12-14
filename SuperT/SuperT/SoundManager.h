@@ -13,6 +13,8 @@
 - (void) updateVolume:(float)vol;
 - (void) updateIsOn:(BOOL)isOn;
 
+- (void) playConfirmButton;
+- (void) playBackButton;
 - (void) playTapForPlayer:(NSInteger)turn;
 - (void) playFinalizeForPlayer:(NSInteger)turn;
 - (void) playStartGame;
