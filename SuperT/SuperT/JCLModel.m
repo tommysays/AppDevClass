@@ -17,6 +17,7 @@
 @property (nonatomic,strong) MyDataManager *myDataManager;
 
 @property NSMutableArray *playerList;
+@property NSMutableArray *aiList;
 @property NSMutableDictionary *playerIDs;
 @property NSMutableDictionary *images;
 
@@ -50,6 +51,11 @@
         for (Player *player in _playerList){
             [_playerIDs setObject:player forKey:player.playerID];
         }
+        NSArray *ais = [_dataManager fetchManagedObjectsForEntity:@"AI" sortKeys:@[@"name"] predicate:nil];
+        _aiList = [ais mutableCopy];
+        for (AI *ai in _aiList){
+            [_playerIDs setObject:ai forKey:ai.aiID];
+        }
         _images = [[NSMutableDictionary alloc] init];
         [_dataManager saveContext];
     }
@@ -74,12 +80,24 @@
     return [self.playerList count];
 }
 
+- (NSInteger) numberOfAIProfiles{
+    return [self.aiList count];
+}
+
 - (NSString *) nameOfPlayerAtIndex:(NSInteger)playerIndex{
     return [[self.playerList objectAtIndex:playerIndex] name];
 }
 
+- (NSString *) nameOfAIAtIndex:(NSInteger)aiIndex{
+    return [[self.aiList objectAtIndex:aiIndex] name];
+}
+
 - (Player *) playerAtIndex:(NSInteger)playerIndex{
     return [self.playerList objectAtIndex:playerIndex];
+}
+
+- (AI *) aiAtIndex:(NSInteger)aiIndex{
+    return [self.aiList objectAtIndex:aiIndex];
 }
 
 - (UIImage *) markForPlayer:(NSInteger)player{
@@ -182,7 +200,8 @@
 // A simple rand function for ID generation.
 - (NSNumber *) generateID{
     NSUInteger rand = -1;
-    while ([self.playerIDs objectForKey:[NSNumber numberWithUnsignedInteger:rand]] || rand == -1){
+    // ID 0 through 10 are reserved for AI.
+    while ([self.playerIDs objectForKey:[NSNumber numberWithUnsignedInteger:rand]] || rand < 11){
         rand = arc4random();
     }
     return [NSNumber numberWithUnsignedInteger:rand];

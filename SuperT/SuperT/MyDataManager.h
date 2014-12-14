@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "DataManagerDelegate.h"
+#import "AI.h"
 #import "Player.h"
 #import "Score.h"
 
 @interface MyDataManager : NSObject <DataManagerDelegate>
 
+- (AI *) addAIWithDictionary:(NSDictionary *)dict;
 - (Player *) addPlayerWithDictionary:(NSDictionary *)dict;
 - (Score *) addScoreWithDictionary:(NSDictionary *)dict;
 

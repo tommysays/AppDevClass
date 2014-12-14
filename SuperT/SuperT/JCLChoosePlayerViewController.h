@@ -15,6 +15,7 @@
 
 @interface JCLChoosePlayerViewController : UIViewController
 
+@property BOOL isSinglePlayer;
 - (void) refresh;
 
 @end

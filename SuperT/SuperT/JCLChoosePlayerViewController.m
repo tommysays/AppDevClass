@@ -48,24 +48,40 @@
 }
 
 - (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    if (self.isSinglePlayer && [pickerView isEqual:self.pickerView2]){
+        // AI instead of players.
+        return [self.model numberOfAIProfiles];
+    }
     return [self.model numberOfPlayerProfiles];
 }
 
 - (NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    if (self.isSinglePlayer && [pickerView isEqual:self.pickerView2]){
+        // AI instead of players.
+        return [self.model nameOfAIAtIndex:row];
+    }
     return [self.model nameOfPlayerAtIndex:row];
 }
 
 - (void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     Player *player1 = [self.model playerAtIndex:[self.pickerView1 selectedRowInComponent:0]];
-    Player *player2 = [self.model playerAtIndex:[self.pickerView2 selectedRowInComponent:0]];
-    if ([player1.playerID isEqual:player2.playerID]){
-        self.scoreLabel1.text = @"--";
-        self.scoreLabel2.text = @"--";
-    } else{
-        Score *score = [self.model scoreBetweenPlayers:@[player1, player2]];
+    if (self.isSinglePlayer){
+        AI *ai = [self.model aiAtIndex:[self.pickerView2 selectedRowInComponent:0]];
+        Score *score = [self.model scoreBetweenPlayers:@[player1, ai]];
         self.scoreLabel1.text = [NSString stringWithFormat:@"%d", [score winsForPlayerID:player1.playerID]];
-        self.scoreLabel2.text = [NSString stringWithFormat:@"%d", [score winsForPlayerID:player2.playerID]];
+        self.scoreLabel2.text = [NSString stringWithFormat:@"%d", [score winsForPlayerID:ai.aiID]];
+    } else{
+        Player *player2 = [self.model playerAtIndex:[self.pickerView2 selectedRowInComponent:0]];
+        if ([player1.playerID isEqual:player2.playerID]){
+            self.scoreLabel1.text = @"--";
+            self.scoreLabel2.text = @"--";
+        } else{
+            Score *score = [self.model scoreBetweenPlayers:@[player1, player2]];
+            self.scoreLabel1.text = [NSString stringWithFormat:@"%d", [score winsForPlayerID:player1.playerID]];
+            self.scoreLabel2.text = [NSString stringWithFormat:@"%d", [score winsForPlayerID:player2.playerID]];
+        }
     }
+    
 }
 
 - (void) refresh{

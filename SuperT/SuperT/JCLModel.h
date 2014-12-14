@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AI.h"
 #import "Player.h"
 #import "Score+Cat.h"
 
@@ -15,8 +16,14 @@
 + (id) sharedInstance;
 
 - (NSInteger) numberOfPlayerProfiles;
+- (NSInteger) numberOfAIProfiles;
+
 - (NSString *) nameOfPlayerAtIndex:(NSInteger)playerIndex;
+- (NSString *) nameOfAIAtIndex:(NSInteger)aiIndex;
+
 - (Player *) playerAtIndex:(NSInteger)playerIndex;
+- (AI *) aiAtIndex:(NSInteger)aiIndex;
+
 - (UIImage *) markForPlayer:(NSInteger)player;
 - (Score *) scoreBetweenPlayers:(NSArray *)players;
 - (NSIndexPath *) totalScoreForPlayerAtIndex:(NSInteger)playerIndex;

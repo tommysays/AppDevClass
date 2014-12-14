@@ -35,13 +35,25 @@ static NSString * const modelName = @"Model";
 -(void)createDatabase {
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *path = [bundle pathForResource:@"DefaultPlayers" ofType:@"plist"];
-    NSArray *defaultPlayers = [[NSArray arrayWithContentsOfFile:path] mutableCopy];
+    NSArray *defaultPlayers = [NSArray arrayWithContentsOfFile:path];
     for (NSDictionary *dict in defaultPlayers) {
         [self addPlayerWithDictionary:dict];
+    }
+    path = [bundle pathForResource:@"DefaultAI" ofType:@"plist"];
+    NSArray *defaultAI = [NSArray arrayWithContentsOfFile:path];
+    for (NSDictionary *dict in defaultAI){
+        [self addAIWithDictionary:dict];
     }
 }
 
 #pragma mark - Private Methods
+
+- (AI *) addAIWithDictionary:(NSDictionary *)dict{
+    AI *ai = [NSEntityDescription insertNewObjectForEntityForName:@"AI" inManagedObjectContext:_dataManager.managedObjectContext];
+    ai.name = dict[@"name"];
+    ai.aiID = dict[@"aiID"];
+    return ai;
+}
 
 - (Player *) addPlayerWithDictionary:(NSDictionary *)dict{
     Player *player = [NSEntityDescription insertNewObjectForEntityForName:@"Player" inManagedObjectContext:_dataManager.managedObjectContext];
