@@ -26,7 +26,7 @@
 
 @implementation JCLGameModel
 
-#pragma mark Initialization
+#pragma mark - Initialization
 
 + (id) sharedInstance{
     static id singleton;
@@ -95,7 +95,7 @@
     self.moveHistory = [[NSMutableArray alloc] init];
 }
 
-#pragma mark Accessors
+#pragma mark - Accessors
 
 - (BOOL) isBoardAvailable:(NSInteger)index{
     if ([self.availableBoards containsObject:[NSNumber numberWithInteger:index]])
@@ -163,7 +163,7 @@
     return toReturn;
 }
 
-#pragma mark Mutators
+#pragma mark - Mutators
 
 - (void) recordMove:(NSIndexPath *)move withMark:(NSString *)mark andFill:(NSInteger)fill{
     // Record the move
@@ -203,7 +203,7 @@
     return self.lastBoardWasWon;
 }
 
-#pragma mark Misc.
+#pragma mark - Misc.
 
 // Evaluates whether or not the game has reached a conclusion.
 - (void) evaluateGameOver{

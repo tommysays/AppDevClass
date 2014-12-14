@@ -26,7 +26,7 @@
 
 @implementation JCLModel
 
-#pragma mark Initialization
+#pragma mark - Initialization
 
 + (id) sharedInstance{
     static id singleton;
@@ -76,7 +76,7 @@
     [self.images setObject:img forKey:@"oMark"];
 }
 
-#pragma mark Accessors
+#pragma mark - Accessors
 
 - (NSInteger) numberOfPlayerProfiles{
     return [self.playerList count];
@@ -152,7 +152,7 @@
     return [NSIndexPath indexPathForRow:wins inSection:losses];
 }
 
-#pragma mark Mutators
+#pragma mark - Mutators
 
 - (void) addPlayerWithName:(NSString *)name{
     NSNumber *playerID = [self generateID];
@@ -190,14 +190,14 @@
     [self.dataManager saveContext];
 }
 
-#pragma mark Sorting
+#pragma mark - Sorting
 
 - (void) sortPlayersByName{
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
     [self.playerList sortUsingDescriptors:@[sortDescriptor]];
 }
 
-#pragma mark Misc
+#pragma mark - Misc
 
 // A simple rand function for ID generation.
 - (NSNumber *) generateID{
