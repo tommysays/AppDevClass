@@ -5,18 +5,27 @@
 	<key>tapPlayer1</key>
 	<array>
 		<string>tapP1_1</string>
+		<string>tapP1_2</string>
+		<string>tapP1_3</string>
 	</array>
 	<key>tapPlayer2</key>
 	<array>
 		<string>tapP2_1</string>
+		<string>tapP2_2</string>
+		<string>tapP2_3</string>
+		<string>tapP2_4</string>
 	</array>
 	<key>finalizePlayer1</key>
 	<array>
 		<string>finalizeP1_1</string>
+		<string>finalizeP1_2</string>
+		<string>finalizeP1_3</string>
 	</array>
 	<key>finalizePlayer2</key>
 	<array>
 		<string>finalizeP2_1</string>
+		<string>finalizeP2_2</string>
+		<string>finalizeP2_3</string>
 	</array>
 	<key>startGame</key>
 	<string>startGame</string>
