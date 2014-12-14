@@ -6,8 +6,13 @@
 //  Copyright (c) 2014 Joshua Lee. All rights reserved.
 //
 
-#import "ComputerAI.h"
+@interface SoundManager : NSObject
 
-@interface SoundManager : ComputerAI
++ (id) sharedInstance;
+
+- (void) playTapForPlayer:(NSInteger)turn;
+- (void) playFinalizeForPlayer:(NSInteger)turn;
+- (void) playStartGame;
+- (void) playGameOver;
 
 @end

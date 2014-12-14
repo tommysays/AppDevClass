@@ -29,8 +29,17 @@
 
 #pragma mark - Initialization
 
-- (instancetype)init
-{
++ (id) sharedInstance{
+    static id singleton;
+    @synchronized(self){
+        if (!singleton){
+            singleton = [[self alloc] init];
+        }
+    }
+    return singleton;
+}
+
+- (id) init{
     self = [super init];
     if (self) {
         [self initSession];
@@ -39,7 +48,7 @@
     return self;
 }
 
-- (void) initSession {
+- (void) initSession{
     _audioSession = [AVAudioSession sharedInstance];
     [_audioSession setCategory:AVAudioSessionCategoryAmbient error:nil];
 }
@@ -56,14 +65,14 @@
     _startGameURL = soundDict[@"startGame"];
 }
 
-#pragma mark - Sound Playing
+#pragma mark - Play Sound
 
 /*!
  * Plays a random tap sound effect from a selection based on whose turn it is.
  * Wow, I did not know I could document like this. Neat!
  * @param turn The player's turn (1 or 2)
  */
-- (void) playTapForPlayer:(NSInteger)turn {
+- (void) playTapForPlayer:(NSInteger)turn{
     NSArray *temp;
     if (turn == 1){
         temp = self.tapPlayer1;
@@ -103,6 +112,8 @@
     [audioPlayer play];
 }
 
+#pragma mark - Reference Delete
+
 /*!
  * Removes references to sounds that have finished playing.
  */
@@ -119,7 +130,7 @@
 
 #pragma mark - AVAudioPlayerDelegate methods
 
-- (void) audioPlayerBeginInterruption: (AVAudioPlayer *) player {
+- (void) audioPlayerBeginInterruption: (AVAudioPlayer *) player{
     // Do I need anything here?
 }
 

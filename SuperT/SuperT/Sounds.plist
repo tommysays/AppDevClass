@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>tapPlayer1</key>
+	<array>
+		<string></string>
+	</array>
+	<key>tapPlayer2</key>
+	<array>
+		<string></string>
+	</array>
+	<key>finalizePlayer1</key>
+	<array>
+		<string></string>
+	</array>
+	<key>finalizePlayer2</key>
+	<array>
+		<string></string>
+	</array>
+	<key>startGame</key>
+	<string></string>
+	<key>gameOver</key>
+	<string></string>
+</dict>
+</plist>
