@@ -14,11 +14,12 @@
     BOOL p1turn = [self.gameModel isPlayer1Turn];
     NSInteger playerMark = p1turn ? 1 : 2;
     
-    // General approach: Calculates values of all possible moves, looking only 1 ahead.
+    // General approach: Calculates values of all possible moves, looking only 1 move ahead.
+    // Compile best moves into a set (array), and choose one randomly.
     
     NSInteger bestValue = -1;
-    NSIndexPath *bestMove;
     NSArray *board = [self.gameModel wholeBoard];
+    NSMutableArray *bestMoves = [[NSMutableArray alloc] init];
     for (NSNumber *num in [self.gameModel allAvailableBoards]){
         NSInteger boardIndex = [num integerValue];
         NSArray *miniboard = board[boardIndex];
@@ -32,18 +33,24 @@
                     curValue++;
                 }
                 
-                // Replace best move and value if needed.
-                if (!bestMove || curValue > bestValue){
+                if ([bestMoves count] == 0 || curValue > bestValue){
+                    // Change best value, reset bestMoves and add move to bestMoves.
                     bestValue = curValue;
-                    bestMove = [NSIndexPath indexPathForRow:i inSection:boardIndex];
+                    bestMoves = [[NSMutableArray alloc] init];
+                    [bestMoves addObject:[NSIndexPath indexPathForRow:i inSection:boardIndex]];
+                } else if (curValue == bestValue){
+                    [bestMoves addObject:[NSIndexPath indexPathForRow:i inSection:boardIndex]];
                 }
             }
         }
-        
-        
     }
     
-    return bestMove;
+    // Choose a move randomly from the list of best moves.
+    NSIndexPath *move;
+    NSInteger rand = arc4random_uniform([bestMoves count]);
+    move = bestMoves[rand];
+    
+    return move;
 }
 
 - (BOOL) canWinBoard:(NSMutableArray *)miniBoard withIndex:(NSInteger)index andPlayer:(NSInteger)player{

@@ -59,13 +59,17 @@ const CGFloat kHighlightAlpha = 0.4;
     self.marks = [[NSMutableArray alloc] init];
     
     if (self.ai){
-        if ([self.ai.name isEqualToString:@"Easy AI"]){
-            self.aiPlayer = [[AIEasy alloc] initWithGameModel:self.gameModel];
-        }
+        [self initAI];
     }
     
     [self updateTurnLabel];
     [self initBoards];
+}
+
+- (void) initAI{
+    if ([self.ai.name isEqualToString:@"Easy AI"]){
+        self.aiPlayer = [[AIEasy alloc] initWithGameModel:self.gameModel];
+    }
 }
 
 - (void) initBoards{
@@ -221,7 +225,7 @@ const CGFloat kHighlightAlpha = 0.4;
 #pragma mark AI Interaction
 
 - (void) launchAITimer{
-    [NSTimer scheduledTimerWithTimeInterval:kAIDelay target:self selector:@selector(makeAIMove) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:kAIThinkingDelay target:self selector:@selector(makeAIMove) userInfo:nil repeats:NO];
 }
 
 - (void) makeAIMove{
@@ -238,7 +242,7 @@ const CGFloat kHighlightAlpha = 0.4;
     [self moveToCell:move.row inView:miniboard];
     
     // Make another timer that will finalize move.
-    [NSTimer scheduledTimerWithTimeInterval:kAIDelay target:self selector:@selector(pushFinalize) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:kAIFinalizeDelay target:self selector:@selector(pushFinalize) userInfo:nil repeats:NO];
 }
 
 - (void) pushFinalize{
@@ -279,12 +283,11 @@ const CGFloat kHighlightAlpha = 0.4;
             }
         } else{
             [self updateTurnLabel];
-        }
-        
-        // If this is single player game and it is AI's turn, launch the AI timer.
-        if (self.ai && !self.gameModel.isPlayer1Turn){
-            self.view.userInteractionEnabled = NO;
-            [self launchAITimer];
+            // If this is single player game and it is AI's turn, launch the AI timer.
+            if (self.ai && !self.gameModel.isPlayer1Turn){
+                self.view.userInteractionEnabled = NO;
+                [self launchAITimer];
+            }
         }
     } else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Can't move."
@@ -334,6 +337,9 @@ const CGFloat kHighlightAlpha = 0.4;
             
             // Reset game model.
             self.gameModel = [[JCLGameModel alloc] initWithPlayer1:self.player1 andPlayer2:self.player2];
+            
+            // Reset AI
+            [self initAI];
             
             // Unhighlight everything.
             [self unhighlightAll];

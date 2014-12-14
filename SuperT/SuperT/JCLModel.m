@@ -45,13 +45,15 @@
         _dataManager = [DataManager sharedInstance];
         _myDataManager = [[MyDataManager alloc] init];
         _dataManager.delegate = _myDataManager;
-        NSArray *players = [_dataManager fetchManagedObjectsForEntity:@"Player" sortKeys:@[@"name"] predicate:nil];
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"isAI == %@", [NSNumber numberWithBool:NO]];
+        NSArray *players = [_dataManager fetchManagedObjectsForEntity:@"Player" sortKeys:@[@"name"] predicate:pred];
         _playerList = [players mutableCopy];
         _playerIDs = [[NSMutableDictionary alloc] init];
         for (Player *player in _playerList){
             [_playerIDs setObject:player forKey:player.playerID];
         }
-        NSArray *ais = [_dataManager fetchManagedObjectsForEntity:@"AI" sortKeys:@[@"name"] predicate:nil];
+        pred = [NSPredicate predicateWithFormat:@"isAI == %@", [NSNumber numberWithBool:YES]];
+        NSArray *ais = [_dataManager fetchManagedObjectsForEntity:@"AI" sortKeys:@[@"name"] predicate:pred];
         _aiList = [ais mutableCopy];
         for (AI *ai in _aiList){
             [_playerIDs setObject:ai forKey:ai.playerID];

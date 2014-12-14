@@ -52,6 +52,7 @@ static NSString * const modelName = @"Model";
     AI *ai = [NSEntityDescription insertNewObjectForEntityForName:@"AI" inManagedObjectContext:_dataManager.managedObjectContext];
     ai.name = dict[@"name"];
     ai.playerID = dict[@"playerID"];
+    ai.isAI = [NSNumber numberWithBool:YES];
     return ai;
 }
 
@@ -59,6 +60,7 @@ static NSString * const modelName = @"Model";
     Player *player = [NSEntityDescription insertNewObjectForEntityForName:@"Player" inManagedObjectContext:_dataManager.managedObjectContext];
     player.name = dict[@"name"];
     player.playerID = dict[@"playerID"];
+    player.isAI = [NSNumber numberWithBool:NO];
     return player;
 }
 

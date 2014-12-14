@@ -2,6 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AI" representedClassName="AI" parentEntity="Player" syncable="YES"/>
     <entity name="Player" representedClassName="Player" syncable="YES">
+        <attribute name="isAI" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="playerID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
@@ -12,7 +13,7 @@
         <attribute name="player2_wins" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Player" positionX="-54" positionY="84" width="128" height="75"/>
+        <element name="Player" positionX="-54" positionY="84" width="128" height="88"/>
         <element name="Score" positionX="142" positionY="119" width="128" height="103"/>
         <element name="AI" positionX="-153" positionY="245" width="128" height="43"/>
     </elements>
