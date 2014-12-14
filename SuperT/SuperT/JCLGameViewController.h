@@ -13,5 +13,6 @@
 
 @property Player *player1;
 @property Player *player2;
+@property AI *ai;
 
 @end

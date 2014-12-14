@@ -34,7 +34,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="wp5-2y-joS" kind="push" identifier="MainToChoose" id="41K-Td-G2Q"/>
+                                    <segue destination="wp5-2y-joS" kind="push" identifier="MainMultiToChoose" id="41K-Td-G2Q"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LY3-rm-wf6">
@@ -46,6 +46,9 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="wp5-2y-joS" kind="push" identifier="MainSingleToChoose" id="RDR-vJ-Q2P"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muf-qq-gUB">
                                 <rect key="frame" x="309" y="827" width="150" height="35"/>
@@ -66,7 +69,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lpe-9V-9tF" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="13" y="-62"/>
+            <point key="canvasLocation" x="-251" y="302"/>
         </scene>
         <!--Add Player View Controller-->
         <scene sceneID="ETB-vA-G7z">
@@ -609,7 +612,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MHn-kI-rGR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-865" y="-62"/>
+            <point key="canvasLocation" x="-1129" y="302"/>
         </scene>
         <!--Remove Player View Controller-->
         <scene sceneID="NK6-qZ-mZk">
@@ -698,6 +701,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="RDR-vJ-Q2P"/>
         <segue reference="EQu-ZJ-M8h"/>
     </inferredMetricsTieBreakers>
 </document>

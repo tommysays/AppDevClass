@@ -92,6 +92,7 @@
 }
 
 #pragma mark Button Reactions
+
 - (IBAction) playPressed:(id)sender{
     if ([self.pickerView1 selectedRowInComponent:0] != [self.pickerView2 selectedRowInComponent:0]){
         [self performSegueWithIdentifier:@"ChooseToGame" sender:self];
@@ -125,7 +126,11 @@
     if ([segue.identifier isEqualToString:@"ChooseToGame"]){
         JCLGameViewController *destController = segue.destinationViewController;
         destController.player1 = [self.model playerAtIndex:[self.pickerView1 selectedRowInComponent:0]];
-        destController.player2 = [self.model playerAtIndex:[self.pickerView2 selectedRowInComponent:0]];
+        if (self.isSinglePlayer){
+            destController.ai = [self.model aiAtIndex:[self.pickerView2 selectedRowInComponent:0]];
+        } else{
+            destController.player2 = [self.model playerAtIndex:[self.pickerView2 selectedRowInComponent:0]];
+        }
     } else if ([segue.identifier isEqualToString:@"ChooseToAdd"]){
         JCLAddPlayerViewController *destController = segue.destinationViewController;
         destController.toRefresh = self;
