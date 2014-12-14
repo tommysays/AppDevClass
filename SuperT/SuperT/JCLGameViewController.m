@@ -19,6 +19,8 @@
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *mBoards;
 @property (weak, nonatomic) IBOutlet UIImageView *gameBoard;
 @property (weak, nonatomic) IBOutlet UILabel *turnLabel;
+- (IBAction)positivePressed:(id)sender;
+- (IBAction)negativePressed:(id)sender;
 
 - (IBAction)finalizeButtonPressed:(id)sender;
 - (IBAction)surrenderButtonPressed:(id)sender;
@@ -50,7 +52,7 @@ const CGFloat kHighlightAlpha = 0.4;
 
 @implementation JCLGameViewController
 
-#pragma mark Initialization
+#pragma mark - Initialization
 
 - (void) viewDidLoad{
     [super viewDidLoad];
@@ -118,7 +120,7 @@ const CGFloat kHighlightAlpha = 0.4;
     return view;
 }
 
-#pragma mark Animators
+#pragma mark - Animators
 
 - (void) highlightMiniBoards:(NSArray *)boardIndeces{
     
@@ -214,7 +216,7 @@ const CGFloat kHighlightAlpha = 0.4;
     self.turnLabel.text = [NSString stringWithFormat:@"%@'s turn!", name];
 }
 
-#pragma mark Gesture Recognizer
+#pragma mark - Gesture Recognizer
 
 - (void) tapRecognized:(UITapGestureRecognizer *)recognizer{
     UIView *view = recognizer.view;
@@ -237,7 +239,7 @@ const CGFloat kHighlightAlpha = 0.4;
     }
 }
 
-#pragma mark AI Interaction
+#pragma mark - AI Interaction
 
 - (void) launchAITimer{
     [NSTimer scheduledTimerWithTimeInterval:kAIThinkingDelay target:self selector:@selector(makeAIMove) userInfo:nil repeats:NO];
@@ -266,7 +268,15 @@ const CGFloat kHighlightAlpha = 0.4;
     self.view.userInteractionEnabled = YES;
 }
  
-#pragma mark Button Reactions
+#pragma mark - Button Reactions
+
+- (IBAction)positivePressed:(id)sender {
+    [self.soundManager playConfirmButton];
+}
+
+- (IBAction)negativePressed:(id)sender {
+    [self.soundManager playBackButton];
+}
 
 - (IBAction)finalizeButtonPressed:(id)sender {
     if (self.curMove){
@@ -285,7 +295,7 @@ const CGFloat kHighlightAlpha = 0.4;
         if (self.gameModel.gameOver){
             NSInteger winner = self.gameModel.winner;
             Player *p2 = self.player2 ? self.player2 : self.ai;
-            [self.soundManager playGameOver];
+            
             switch (winner) {
                 case 0:
                     [self gameOverWithWinner:self.player1 andLoser:p2 wasDraw:YES];
@@ -333,6 +343,8 @@ const CGFloat kHighlightAlpha = 0.4;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - Alert Reactions
+
 - (IBAction)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag == 1){  // ---------------------- Surrender -------------------------
         if (buttonIndex == 1){
@@ -349,6 +361,8 @@ const CGFloat kHighlightAlpha = 0.4;
         }
     } else if (alertView.tag == 2){ // ---------------- Game Over -------------------------
         if (buttonIndex == 0){
+            // User wants to go back to player chooser.
+            [self.soundManager playBackButton];
             [self.navigationController popViewControllerAnimated:YES];
         } else if (buttonIndex == 1){
             // Reset the game and board.
@@ -379,6 +393,7 @@ const CGFloat kHighlightAlpha = 0.4;
 
 - (void) gameOverWithWinner:(Player *)winner andLoser:(Player *)loser wasDraw:(BOOL)isDraw{
     
+    [self.soundManager playGameOver];
     Score *score = [self.model scoreBetweenPlayers:@[winner, loser]];
     
     if (isDraw){

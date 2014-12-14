@@ -8,6 +8,7 @@
 
 #import "JCLRemovePlayerViewController.h"
 #import "JCLModel.h"
+#import "SoundManager.h"
 #import "Player.h"
 #import "Constants.h"
 
@@ -18,6 +19,7 @@
 - (IBAction)cancelPressed:(id)sender;
 
 @property JCLModel *model;
+@property SoundManager *soundManager;
 
 @end
 
@@ -28,6 +30,7 @@
     [super viewDidLoad];
     
     self.model = [JCLModel sharedInstance];
+    self.soundManager = [SoundManager sharedInstance];
 }
 
 - (void)viewWillLayoutSubviews{
@@ -51,9 +54,8 @@
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1){
-        // Remove the player and exit view.
-        
-        // TODO test this whole thing.
+        // Remove the player and return to parent view.
+        [self.soundManager playBackButton];
         [self.model removePlayerAtIndex:[self.pickerView selectedRowInComponent:0]];
         [(JCLChoosePlayerViewController *)self.toRefresh refresh];
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -76,6 +78,7 @@
 }
 
 - (IBAction)cancelPressed:(id)sender {
+    [self.soundManager playBackButton];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

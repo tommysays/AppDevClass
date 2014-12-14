@@ -10,6 +10,7 @@
 #import "Player.h"
 #import "Score+Cat.h"
 #import "Constants.h"
+#import "SoundManager.h"
 
 @interface JCLChoosePlayerViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UIAlertViewDelegate>
 
@@ -24,6 +25,7 @@
 - (IBAction)removePressed:(id)sender;
 - (IBAction)backPressed:(id)sender;
 @property JCLModel *model;
+@property SoundManager *soundManager;
 
 @end
 
@@ -36,6 +38,7 @@
     [super viewDidLoad];
     
     self.model = [JCLModel sharedInstance];
+    self.soundManager = [SoundManager sharedInstance];
     [self refresh];
 }
 
@@ -128,14 +131,17 @@
 
 - (IBAction) addPressed:(id)sender{
     //[self moveToProfileManager];
+    [self.soundManager playConfirmButton];
     [self performSegueWithIdentifier:@"ChooseToAdd" sender:self];
 }
 
 - (IBAction)removePressed:(id)sender {
+    [self.soundManager playBackButton];
     [self performSegueWithIdentifier:@"ChooseToRemove" sender:self];
 }
 
 - (IBAction)backPressed:(id)sender {
+    [self.soundManager playBackButton];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

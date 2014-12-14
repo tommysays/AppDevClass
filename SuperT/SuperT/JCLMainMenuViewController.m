@@ -8,14 +8,26 @@
 
 #import "JCLMainMenuViewController.h"
 #import "JCLChoosePlayerViewController.h"
+#import "JCLModel.h"
+#import "SoundManager.h"
 
 @interface JCLMainMenuViewController ()
+
+- (IBAction)positivePressed:(id)sender;
+@property JCLModel *model;
+@property SoundManager *soundManager;
 
 @end
 
 @implementation JCLMainMenuViewController
 
-#pragma mark Segue
+- (void) viewDidLoad{
+    self.model = [JCLModel sharedInstance];
+    self.soundManager = [SoundManager sharedInstance];
+}
+
+
+#pragma mark - Segue
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     NSString *identifier = segue.identifier;
@@ -26,6 +38,12 @@
         JCLChoosePlayerViewController *destController = (JCLChoosePlayerViewController *)segue.destinationViewController;
         destController.isSinglePlayer = NO;
     }
+}
+
+#pragma mark - Buttons
+
+- (IBAction)positivePressed:(id)sender{
+    [self.soundManager playConfirmButton];
 }
 
 @end

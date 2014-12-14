@@ -8,6 +8,7 @@
 
 #import "JCLAddPlayerViewController.h"
 #import "JCLModel.h"
+#import "SoundManager.h"
 #import "Constants.h"
 
 @interface JCLAddPlayerViewController ()
@@ -16,19 +17,11 @@
 - (IBAction)addPressed:(id)sender;
 
 @property JCLModel *model;
+@property SoundManager *soundManager;
 
 @end
 
 @implementation JCLAddPlayerViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
@@ -38,12 +31,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.model = [JCLModel sharedInstance];
+    self.soundManager = [SoundManager sharedInstance];
     [self.textField becomeFirstResponder];
 }
 
 - (IBAction)cancelPressed:(id)sender {
+    [self.soundManager playBackButton];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -68,6 +62,7 @@
                               nil];
         [alert show];
     } else{
+        [self.soundManager playConfirmButton];
         [self.model addPlayerWithName:name];
         [(JCLChoosePlayerViewController *)self.toRefresh refresh];
         [self dismissViewControllerAnimated:YES completion:nil];
