@@ -69,7 +69,7 @@
         AI *ai = [self.model aiAtIndex:[self.pickerView2 selectedRowInComponent:0]];
         Score *score = [self.model scoreBetweenPlayers:@[player1, ai]];
         self.scoreLabel1.text = [NSString stringWithFormat:@"%d", [score winsForPlayerID:player1.playerID]];
-        self.scoreLabel2.text = [NSString stringWithFormat:@"%d", [score winsForPlayerID:ai.aiID]];
+        self.scoreLabel2.text = [NSString stringWithFormat:@"%d", [score winsForPlayerID:ai.playerID]];
     } else{
         Player *player2 = [self.model playerAtIndex:[self.pickerView2 selectedRowInComponent:0]];
         if ([player1.playerID isEqual:player2.playerID]){
@@ -94,7 +94,7 @@
 #pragma mark Button Reactions
 
 - (IBAction) playPressed:(id)sender{
-    if ([self.pickerView1 selectedRowInComponent:0] != [self.pickerView2 selectedRowInComponent:0]){
+    if (self.isSinglePlayer || [self.pickerView1 selectedRowInComponent:0] != [self.pickerView2 selectedRowInComponent:0]){
         [self performSegueWithIdentifier:@"ChooseToGame" sender:self];
     } else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Uh oh! You cannot face yourself in this game."

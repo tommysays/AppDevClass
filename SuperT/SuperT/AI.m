@@ -11,7 +11,5 @@
 
 @implementation AI
 
-@dynamic name;
-@dynamic aiID;
 
 @end

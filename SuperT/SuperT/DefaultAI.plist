@@ -3,7 +3,7 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>aiID</key>
+		<key>playerID</key>
 		<integer>0</integer>
 		<key>name</key>
 		<string>Easy AI</string>

@@ -51,7 +51,7 @@ static NSString * const modelName = @"Model";
 - (AI *) addAIWithDictionary:(NSDictionary *)dict{
     AI *ai = [NSEntityDescription insertNewObjectForEntityForName:@"AI" inManagedObjectContext:_dataManager.managedObjectContext];
     ai.name = dict[@"name"];
-    ai.aiID = dict[@"aiID"];
+    ai.playerID = dict[@"playerID"];
     return ai;
 }
 

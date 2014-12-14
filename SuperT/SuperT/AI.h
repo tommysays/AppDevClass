@@ -8,11 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Player.h"
 
 
-@interface AI : NSManagedObject
+@interface AI : Player
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSNumber * aiID;
 
 @end

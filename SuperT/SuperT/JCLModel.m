@@ -54,7 +54,7 @@
         NSArray *ais = [_dataManager fetchManagedObjectsForEntity:@"AI" sortKeys:@[@"name"] predicate:nil];
         _aiList = [ais mutableCopy];
         for (AI *ai in _aiList){
-            [_playerIDs setObject:ai forKey:ai.aiID];
+            [_playerIDs setObject:ai forKey:ai.playerID];
         }
         _images = [[NSMutableDictionary alloc] init];
         [_dataManager saveContext];

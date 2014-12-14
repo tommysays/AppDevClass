@@ -46,6 +46,8 @@ const CGFloat kHighlightAlpha = 0.4;
 
 @implementation JCLGameViewController
 
+#pragma mark Initialization
+
 - (void) viewDidLoad{
     [super viewDidLoad];
     self.gameModel = [[JCLGameModel alloc] initWithPlayer1:self.player1 andPlayer2:self.player2];
@@ -219,19 +221,21 @@ const CGFloat kHighlightAlpha = 0.4;
 #pragma mark AI Interaction
 
 - (void) launchAITimer{
-    //NSTimer *aiLauncher = [NSTimer scheduledTimerWithTimeInterval:kAIDelay target:self selector:@selector(makeAIMove) userInfo:nil repeats:NO];
     [NSTimer scheduledTimerWithTimeInterval:kAIDelay target:self selector:@selector(makeAIMove) userInfo:nil repeats:NO];
 }
 
 - (void) makeAIMove{
+    // Get move from ai.
     NSIndexPath *move = [self.aiPlayer makeMove];
     if (!move){
-        NSLog(@"Error : Could not make move (ai).");
+        // If this occurs, then the AI logic is faulty.
+        NSLog(@"Error : Could not make move (ai). Check AI logic.");
     }
-    // TODO Place the move on the board (visually) and highlight the appropriate miniboards.
     self.curMove = move;
+    // Place the move on the board (visually) and highlight the appropriate miniboards.
     UIView *miniboard = self.miniBoards[self.curMove.section];
-    [self moveToCell:self.curMove.row inView:miniboard];
+    [self highlightMiniBoards:[self.gameModel boardsForPretendMove:move]];
+    [self moveToCell:move.row inView:miniboard];
     
     // Make another timer that will finalize move.
     [NSTimer scheduledTimerWithTimeInterval:kAIDelay target:self selector:@selector(pushFinalize) userInfo:nil repeats:NO];
@@ -240,6 +244,7 @@ const CGFloat kHighlightAlpha = 0.4;
 - (void) pushFinalize{
     // Pushes the finalize button.
     [self finalizeButtonPressed:self];
+    self.view.userInteractionEnabled = YES;
 }
  
 #pragma mark Button Reactions
@@ -259,15 +264,16 @@ const CGFloat kHighlightAlpha = 0.4;
         
         if (self.gameModel.gameOver){
             NSInteger winner = self.gameModel.winner;
+            Player *p2 = self.player2 ? self.player2 : self.ai;
             switch (winner) {
                 case 0:
-                    [self gameOverWithWinner:self.player1 andLoser:self.player2 wasDraw:YES];
+                    [self gameOverWithWinner:self.player1 andLoser:p2 wasDraw:YES];
                     break;
                 case 1:
-                    [self gameOverWithWinner:self.player1 andLoser:self.player2 wasDraw:NO];
+                    [self gameOverWithWinner:self.player1 andLoser:p2 wasDraw:NO];
                     break;
                 case 2:
-                    [self gameOverWithWinner:self.player2 andLoser:self.player1 wasDraw:NO];
+                    [self gameOverWithWinner:p2 andLoser:self.player1 wasDraw:NO];
                 default:
                     break;
             }
@@ -277,7 +283,7 @@ const CGFloat kHighlightAlpha = 0.4;
         
         // If this is single player game and it is AI's turn, launch the AI timer.
         if (self.ai && !self.gameModel.isPlayer1Turn){
-            // TODO disable user interaction
+            self.view.userInteractionEnabled = NO;
             [self launchAITimer];
         }
     } else{
@@ -312,11 +318,11 @@ const CGFloat kHighlightAlpha = 0.4;
             Player *winner;
             Player *loser;
             if (self.gameModel.isPlayer1Turn){
-                winner = self.player2;
+                winner = self.player2 ? self.player2 : self.ai;
                 loser = self.player1;
             } else{
                 winner = self.player1;
-                loser = self.player2;
+                loser = self.player2 ? self.player2 : self.ai;
             }
             [self gameOverWithWinner:winner andLoser:loser wasDraw:NO];
         }
