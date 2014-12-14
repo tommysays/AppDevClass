@@ -14,6 +14,7 @@
 @property NSMutableArray *moveHistory;
 @property Player *player1;
 @property Player *player2;
+@property AI *ai;
 
 @property NSMutableArray *enabledBoards;
 @property NSArray *availableBoards;
@@ -77,6 +78,15 @@
     if (self){
         self.player1 = player1;
         self.player2 = player2;
+    }
+    return self;
+}
+
+- (id) initWithPlayer1:(Player *)player1 andAI:(AI *)ai{
+    self = [self init];
+    if (self){
+        self.player1 = player1;
+        self.ai = ai;
     }
     return self;
 }
@@ -176,7 +186,9 @@
         mark = [NSString stringWithFormat:@"%@ plays x", self.player1.name];
     } else{
         toFill = 2;
-        mark = [NSString stringWithFormat:@"%@ plays o", self.player2.name];
+        // Records either player2's name or name of ai.
+        NSString *name = self.player2 ? self.player2.name : self.ai.name;
+        mark = [NSString stringWithFormat:@"%@ plays o", name];
     }
     [self recordMove:move withMark:mark andFill:toFill];
     [self evaluateMiniBoard:move.section];

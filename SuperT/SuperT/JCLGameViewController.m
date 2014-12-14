@@ -9,6 +9,8 @@
 #import "JCLGameViewController.h"
 #import "JCLGameModel.h"
 #import "JCLModel.h"
+#import "ComputerAI.h"
+#import "AIEasy.h"
 
 @interface JCLGameViewController () <UIAlertViewDelegate, UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *mBoards;
@@ -27,6 +29,7 @@
 @property NSMutableArray *highlighters_p2;
 @property NSIndexPath *curMove;
 @property UIImageView *curMark;
+@property ComputerAI *aiPlayer;
 
 // These are viable properties to change via Options.
 @property UIColor *kHighlightColor_p1; // Color to highlight next movespace
@@ -52,6 +55,13 @@ const CGFloat kHighlightAlpha = 0.4;
     self.highlighters_p1 = [[NSMutableArray alloc] init];
     self.highlighters_p2 = [[NSMutableArray alloc] init];
     self.marks = [[NSMutableArray alloc] init];
+    
+    if (self.ai){
+        if ([self.ai.name isEqualToString:@"Easy AI"]){
+            self.aiPlayer = [[AIEasy alloc] initWithGameModel:self.gameModel];
+        }
+    }
+    
     [self updateTurnLabel];
     [self initBoards];
 }
@@ -181,7 +191,7 @@ const CGFloat kHighlightAlpha = 0.4;
     if ([self.gameModel isPlayer1Turn]){
         name = self.player1.name;
     } else{
-        name = self.player2.name;
+        name = self.player2 ? self.player2.name : self.ai.name;
     }
     self.turnLabel.text = [NSString stringWithFormat:@"%@'s turn!", name];
 }
@@ -205,6 +215,32 @@ const CGFloat kHighlightAlpha = 0.4;
         }
     }
 }
+
+#pragma mark AI Interaction
+
+- (void) launchAITimer{
+    //NSTimer *aiLauncher = [NSTimer scheduledTimerWithTimeInterval:kAIDelay target:self selector:@selector(makeAIMove) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:kAIDelay target:self selector:@selector(makeAIMove) userInfo:nil repeats:NO];
+}
+
+- (void) makeAIMove{
+    NSIndexPath *move = [self.aiPlayer makeMove];
+    if (!move){
+        NSLog(@"Error : Could not make move (ai).");
+    }
+    // TODO Place the move on the board (visually) and highlight the appropriate miniboards.
+    self.curMove = move;
+    UIView *miniboard = self.miniBoards[self.curMove.section];
+    [self moveToCell:self.curMove.row inView:miniboard];
+    
+    // Make another timer that will finalize move.
+    [NSTimer scheduledTimerWithTimeInterval:kAIDelay target:self selector:@selector(pushFinalize) userInfo:nil repeats:NO];
+}
+
+- (void) pushFinalize{
+    // Pushes the finalize button.
+    [self finalizeButtonPressed:self];
+}
  
 #pragma mark Button Reactions
 
@@ -213,11 +249,14 @@ const CGFloat kHighlightAlpha = 0.4;
         [self.gameModel makeMove:self.curMove];
         [self unhighlightLast];
         self.curMove = nil;
+        
+        // If the current player's mark has been placed, save it to the board and reset mark.
         if (self.curMark){
             UIImageView *mark = self.curMark;
             [self.marks addObject:mark];
             self.curMark = nil;
         }
+        
         if (self.gameModel.gameOver){
             NSInteger winner = self.gameModel.winner;
             switch (winner) {
@@ -234,6 +273,12 @@ const CGFloat kHighlightAlpha = 0.4;
             }
         } else{
             [self updateTurnLabel];
+        }
+        
+        // If this is single player game and it is AI's turn, launch the AI timer.
+        if (self.ai && !self.gameModel.isPlayer1Turn){
+            // TODO disable user interaction
+            [self launchAITimer];
         }
     } else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Can't move."

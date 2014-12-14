@@ -16,10 +16,10 @@
 
 @implementation ComputerAI
 
-- (id) init{
+- (id) initWithGameModel:(JCLGameModel *)gameModel{
     self = [super init];
     if (self){
-        _gameModel = [JCLGameModel sharedInstance];
+        _gameModel = gameModel;
     }
     return self;
 }

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
 #import "Player.h"
+#import "AI.h"
 
 @interface JCLGameViewController : UIViewController
 

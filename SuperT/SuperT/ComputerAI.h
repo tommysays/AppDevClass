@@ -13,6 +13,7 @@
 
 @property JCLGameModel *gameModel;
 
+- (id) initWithGameModel:(JCLGameModel *)gameModel;
 - (NSIndexPath *) makeMove;
 
 @end

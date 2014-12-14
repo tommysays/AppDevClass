@@ -12,5 +12,6 @@
 #define kAddRemoveWidth 500
 #define kAddRemoveHeight 450
 #define kMAX_PLAYER_NAME_LENGTH 16
+#define kAIDelay 1.5
 
 #endif

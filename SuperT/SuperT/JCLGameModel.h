@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Player.h"
+#import "AI.h"
 
 @interface JCLGameModel : NSObject
 
@@ -19,6 +20,7 @@
 + (id) sharedInstance;
 
 - (id) initWithPlayer1:(Player *)player1 andPlayer2:(Player *)player2;
+- (id) initWithPlayer1:(Player *)player1 andAI:(AI *)ai;
 
 - (BOOL) isCellEnabled:(NSIndexPath *)path;
 - (BOOL) isBoardAvailable:(NSInteger)index;
