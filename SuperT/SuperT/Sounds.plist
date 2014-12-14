@@ -4,23 +4,23 @@
 <dict>
 	<key>tapPlayer1</key>
 	<array>
-		<string></string>
+		<string>tapP1_1</string>
 	</array>
 	<key>tapPlayer2</key>
 	<array>
-		<string></string>
+		<string>tapP2_1</string>
 	</array>
 	<key>finalizePlayer1</key>
 	<array>
-		<string></string>
+		<string>finalizeP1_1</string>
 	</array>
 	<key>finalizePlayer2</key>
 	<array>
-		<string></string>
+		<string>finalizeP2_1</string>
 	</array>
 	<key>startGame</key>
-	<string></string>
+	<string>startGame</string>
 	<key>gameOver</key>
-	<string></string>
+	<string>gameOver</string>
 </dict>
 </plist>

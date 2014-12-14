@@ -8,6 +8,7 @@
 
 #import "MyDataManager.h"
 #import "DataManager.h"
+#import "Constants.h"
 
 static NSString * const modelName = @"Model";
 
@@ -44,9 +45,16 @@ static NSString * const modelName = @"Model";
     for (NSDictionary *dict in defaultAI){
         [self addAIWithDictionary:dict];
     }
+    [self addVolume];
 }
 
-#pragma mark - Private Methods
+#pragma mark - Add Entity Methods
+
+- (Volume *) addVolume{
+    Volume *vol = [NSEntityDescription insertNewObjectForEntityForName:@"Volume" inManagedObjectContext:_dataManager.managedObjectContext];
+    vol.volume = [NSNumber numberWithFloat:kDefaultVolume];
+    return vol;
+}
 
 - (AI *) addAIWithDictionary:(NSDictionary *)dict{
     AI *ai = [NSEntityDescription insertNewObjectForEntityForName:@"AI" inManagedObjectContext:_dataManager.managedObjectContext];

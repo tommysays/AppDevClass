@@ -9,6 +9,8 @@
 #import "JCLGameViewController.h"
 #import "JCLGameModel.h"
 #import "JCLModel.h"
+#import "SoundManager.h"
+
 #import "ComputerAI.h"
 #import "AIEasy.h"
 #import "AIMedium.h"
@@ -24,6 +26,7 @@
 
 @property JCLModel *model;
 @property JCLGameModel *gameModel;
+@property SoundManager *soundManager;
 @property NSMutableArray *miniBoards;
 @property NSMutableArray *marks;
 @property NSMutableArray *highlighters_p1;
@@ -51,10 +54,13 @@ const CGFloat kHighlightAlpha = 0.4;
 
 - (void) viewDidLoad{
     [super viewDidLoad];
+    
+    self.model = [JCLModel sharedInstance];
+    self.soundManager = [SoundManager sharedInstance];
     self.gameModel = [[JCLGameModel alloc] initWithPlayer1:self.player1 andPlayer2:self.player2];
+    
     self.kHighlightColor_p1 = [UIColor whiteColor];
     self.kHighlightColor_p2 = [UIColor redColor];
-    self.model = [JCLModel sharedInstance];
     self.highlighters_p1 = [[NSMutableArray alloc] init];
     self.highlighters_p2 = [[NSMutableArray alloc] init];
     self.marks = [[NSMutableArray alloc] init];
@@ -65,6 +71,8 @@ const CGFloat kHighlightAlpha = 0.4;
     
     [self updateTurnLabel];
     [self initBoards];
+    
+    [self.soundManager playStartGame];
 }
 
 - (void) initAI{
@@ -222,6 +230,9 @@ const CGFloat kHighlightAlpha = 0.4;
             [self highlightMiniBoards:[self.gameModel boardsForPretendMove:cell]];
             [self moveToCell:cellIndex inView:view];
             self.curMove = cell;
+            
+            NSInteger turn = self.gameModel.isPlayer1Turn ? 1 : 2;
+            [self.soundManager playTapForPlayer:turn];
         }
     }
 }
@@ -259,6 +270,7 @@ const CGFloat kHighlightAlpha = 0.4;
 
 - (IBAction)finalizeButtonPressed:(id)sender {
     if (self.curMove){
+        NSInteger turn = self.gameModel.isPlayer1Turn ? 1 : 2;
         [self.gameModel makeMove:self.curMove];
         [self unhighlightLast];
         self.curMove = nil;
@@ -273,6 +285,7 @@ const CGFloat kHighlightAlpha = 0.4;
         if (self.gameModel.gameOver){
             NSInteger winner = self.gameModel.winner;
             Player *p2 = self.player2 ? self.player2 : self.ai;
+            [self.soundManager playGameOver];
             switch (winner) {
                 case 0:
                     [self gameOverWithWinner:self.player1 andLoser:p2 wasDraw:YES];
@@ -286,6 +299,7 @@ const CGFloat kHighlightAlpha = 0.4;
                     break;
             }
         } else{
+            [self.soundManager playFinalizeForPlayer:turn];
             [self updateTurnLabel];
             // If this is single player game and it is AI's turn, launch the AI timer.
             if (self.ai && !self.gameModel.isPlayer1Turn){
@@ -357,7 +371,8 @@ const CGFloat kHighlightAlpha = 0.4;
                 [view removeFromSuperview];
             }
             
-            // TODO more reset stuff.
+            // Play the start game sound again.
+            [self.soundManager playStartGame];
         }
     }
 }

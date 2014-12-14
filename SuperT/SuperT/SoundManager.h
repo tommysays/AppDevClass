@@ -10,6 +10,8 @@
 
 + (id) sharedInstance;
 
+- (void) updateVolume:(float)vol;
+
 - (void) playTapForPlayer:(NSInteger)turn;
 - (void) playFinalizeForPlayer:(NSInteger)turn;
 - (void) playStartGame;

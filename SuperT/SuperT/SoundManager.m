@@ -12,15 +12,17 @@
 @interface SoundManager () <AVAudioPlayerDelegate>
 
 @property (strong, nonatomic) AVAudioSession *audioSession;
+@property float volume;
 @property NSMutableArray *playing; // Keeps a reference to sounds that are playing, so that they don't mysteriously die.
 
-// Sound effect URLS per player, per action.
+// Sound effect file names per player, per action.
 @property NSArray *tapPlayer1;
 @property NSArray *tapPlayer2;
 @property NSArray *finalizePlayer1;
 @property NSArray *finalizePlayer2;
 @property NSURL *gameOverURL;
 @property NSURL *startGameURL;
+@property NSBundle *main;
 
 @end
 
@@ -54,10 +56,11 @@
 }
 
 - (void) initURLS{
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSString *path = [bundle pathForResource:@"Sounds" ofType:@"plist"];
+    self.main = [NSBundle mainBundle];
+    NSString *path = [self.main pathForResource:@"Sounds" ofType:@"plist"];
     NSDictionary *soundDict = [NSDictionary dictionaryWithContentsOfFile:path];
     _tapPlayer1 = soundDict[@"tapPlayer1"];
+    NSLog(@"tapP1 = %d", [_tapPlayer1 count]);
     _tapPlayer2 = soundDict[@"tapPlayer2"];
     _finalizePlayer1 = soundDict[@"finalizePlayer1"];
     _finalizePlayer2 = soundDict[@"finalizePlayer2"];
@@ -79,7 +82,7 @@
     } else{
         temp = self.tapPlayer2;
     }
-    [self playSoundWithURLArray:temp];
+    [self playSoundWithNameArray:temp];
 }
 
 - (void) playFinalizeForPlayer:(NSInteger)turn{
@@ -89,27 +92,39 @@
     } else{
         temp = self.finalizePlayer2;
     }
-    [self playSoundWithURLArray:temp];
+    [self playSoundWithNameArray:temp];
 }
 
 - (void) playStartGame{
-    [self playSoundWithURLArray:@[self.startGameURL]];
+    [self playSoundWithNameArray:@[self.startGameURL]];
 }
 
 - (void) playGameOver{
-    [self playSoundWithURLArray:@[self.gameOverURL]];
+    [self playSoundWithNameArray:@[self.gameOverURL]];
 }
 
-- (void) playSoundWithURLArray:(NSArray *)urlArray{
+- (void) playSoundWithNameArray:(NSArray *)nameArray{
     [self removeFinishedSounds];
-    if ([urlArray count] == 0){
+    if ([nameArray count] == 0){
         return;
     }
-    NSInteger randIndex = arc4random_uniform([urlArray count]);
-    NSURL *randURL = urlArray[randIndex];
-    AVAudioPlayer *audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:randURL error:nil];
+    
+    NSInteger randIndex = arc4random_uniform([nameArray count]);
+    NSString *randName = nameArray[randIndex];
+    
+    NSString *path = [self.main pathForResource:randName ofType:@"wav"];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    
+    AVAudioPlayer *audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     [self.playing addObject:audioPlayer];
     [audioPlayer play];
+    audioPlayer.volume = self.volume;
+    NSLog(@"curVol = %f", audioPlayer.volume);
+}
+
+- (void) updateVolume:(float)vol{
+    NSLog(@"vol = %f", vol);
+    self.volume = vol;
 }
 
 #pragma mark - Reference Delete

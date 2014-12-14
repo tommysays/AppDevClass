@@ -7,6 +7,7 @@
 //
 
 #import "JCLModel.h"
+#import "SoundManager.h"
 #import "DataManager.h"
 #import "MyDataManager.h"
 
@@ -15,6 +16,7 @@
 
 @property (nonatomic,strong) DataManager *dataManager;
 @property (nonatomic,strong) MyDataManager *myDataManager;
+@property SoundManager *soundManager;
 
 @property NSMutableArray *playerList;
 @property NSMutableArray *aiList;
@@ -42,24 +44,14 @@
 - (id) init{
     self = [super init];
     if (self){
+        
         _dataManager = [DataManager sharedInstance];
         _myDataManager = [[MyDataManager alloc] init];
         _dataManager.delegate = _myDataManager;
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"isAI == %@", [NSNumber numberWithBool:NO]];
-        NSArray *players = [_dataManager fetchManagedObjectsForEntity:@"Player" sortKeys:@[@"name"] predicate:pred];
-        _playerList = [players mutableCopy];
-        _playerIDs = [[NSMutableDictionary alloc] init];
-        for (Player *player in _playerList){
-            [_playerIDs setObject:player forKey:player.playerID];
-        }
-        pred = [NSPredicate predicateWithFormat:@"isAI == %@", [NSNumber numberWithBool:YES]];
-        NSArray *ais = [_dataManager fetchManagedObjectsForEntity:@"AI" sortKeys:@[@"name"] predicate:pred];
-        _aiList = [ais mutableCopy];
-        for (AI *ai in _aiList){
-            [_playerIDs setObject:ai forKey:ai.playerID];
-        }
+        
+        _soundManager = [SoundManager sharedInstance];
+        
         _images = [[NSMutableDictionary alloc] init];
-        [_dataManager saveContext];
     }
     return self;
 }
@@ -67,6 +59,25 @@
 // Can't place in "init" due to circular "self" call.
 - (void) finishInit{
     [self loadImages];
+    [self loadPlayers];
+    [self.soundManager updateVolume:[self volume]];
+}
+
+- (void) loadPlayers{
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"isAI == %@", [NSNumber numberWithBool:NO]];
+    NSArray *players = [self.dataManager fetchManagedObjectsForEntity:@"Player" sortKeys:@[@"name"] predicate:pred];
+    self.playerList = [players mutableCopy];
+    self.playerIDs = [[NSMutableDictionary alloc] init];
+    for (Player *player in self.playerList){
+        [self.playerIDs setObject:player forKey:player.playerID];
+    }
+    pred = [NSPredicate predicateWithFormat:@"isAI == %@", [NSNumber numberWithBool:YES]];
+    NSArray *ais = [self.dataManager fetchManagedObjectsForEntity:@"AI" sortKeys:@[@"name"] predicate:pred];
+    self.aiList = [ais mutableCopy];
+    for (AI *ai in self.aiList){
+        [self.playerIDs setObject:ai forKey:ai.playerID];
+    }
+    [self.dataManager saveContext];
 }
 
 - (void) loadImages{
@@ -152,6 +163,13 @@
     return [NSIndexPath indexPathForRow:wins inSection:losses];
 }
 
+- (float) volume{
+    NSArray *volumes = [self.dataManager fetchManagedObjectsForEntity:@"Volume" sortKeys:nil predicate:nil];
+    Volume *volume = volumes[0];
+    NSNumber *vol = volume.volume;
+    return [vol floatValue];
+}
+
 #pragma mark - Mutators
 
 - (void) addPlayerWithName:(NSString *)name{
@@ -186,6 +204,15 @@
 
 - (void) updateScore:(Score *)score withWinner:(Player *)winner{
     [score winFor:winner.playerID];
+    
+    [self.dataManager saveContext];
+}
+
+- (void) updateVolume:(float)vol{
+    NSArray *volumes = [self.dataManager fetchManagedObjectsForEntity:@"Volume" sortKeys:nil predicate:nil];
+    [volumes[0] changeVolume:vol];
+    
+    [self.soundManager updateVolume:vol];
     
     [self.dataManager saveContext];
 }

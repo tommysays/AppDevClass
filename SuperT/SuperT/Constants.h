@@ -14,5 +14,6 @@
 #define kMAX_PLAYER_NAME_LENGTH 16
 #define kAIThinkingDelay 1.5 // Delay to make AI look like it's "thinking"
 #define kAIFinalizeDelay 0.5 // Delay between AI move and player's turn.
+#define kDefaultVolume 0.75
 
 #endif

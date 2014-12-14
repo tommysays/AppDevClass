@@ -10,6 +10,7 @@
 #import "AI.h"
 #import "Player.h"
 #import "Score+Cat.h"
+#import "Volume+Cat.h"
 
 @interface JCLModel : NSObject
 
