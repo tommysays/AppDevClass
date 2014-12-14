@@ -12,5 +12,6 @@
 @implementation Volume
 
 @dynamic volume;
+@dynamic isOn;
 
 @end

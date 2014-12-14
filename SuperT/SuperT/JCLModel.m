@@ -50,6 +50,7 @@
         _dataManager.delegate = _myDataManager;
         
         _soundManager = [SoundManager sharedInstance];
+
         
         _images = [[NSMutableDictionary alloc] init];
     }
@@ -61,6 +62,7 @@
     [self loadImages];
     [self loadPlayers];
     [self.soundManager updateVolume:[self volume]];
+    [self.soundManager updateIsOn:[self isSoundOn]];
 }
 
 - (void) loadPlayers{
@@ -208,11 +210,27 @@
     [self.dataManager saveContext];
 }
 
+#pragma mark - Volume
+
 - (void) updateVolume:(float)vol{
     NSArray *volumes = [self.dataManager fetchManagedObjectsForEntity:@"Volume" sortKeys:nil predicate:nil];
     [volumes[0] changeVolume:vol];
     
     [self.soundManager updateVolume:vol];
+    
+    [self.dataManager saveContext];
+}
+
+- (BOOL) isSoundOn{
+    NSArray *volumes = [self.dataManager fetchManagedObjectsForEntity:@"Volume" sortKeys:nil predicate:nil];
+    Volume *volume = volumes[0];
+    return [volume.isOn boolValue];
+}
+- (void) setSoundOn:(BOOL)isOn{
+    NSArray *volumes = [self.dataManager fetchManagedObjectsForEntity:@"Volume" sortKeys:nil predicate:nil];
+    [volumes[0] updateIsOn:isOn];
+    
+    [self.soundManager updateIsOn:isOn];
     
     [self.dataManager saveContext];
 }

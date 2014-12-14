@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) AVAudioSession *audioSession;
 @property float volume;
+@property BOOL isSoundOn;
 @property NSMutableArray *playing; // Keeps a reference to sounds that are playing, so that they don't mysteriously die.
 
 // Sound effect file names per player, per action.
@@ -56,11 +57,10 @@
 }
 
 - (void) initURLS{
-    self.main = [NSBundle mainBundle];
+    _main = [NSBundle mainBundle];
     NSString *path = [self.main pathForResource:@"Sounds" ofType:@"plist"];
     NSDictionary *soundDict = [NSDictionary dictionaryWithContentsOfFile:path];
     _tapPlayer1 = soundDict[@"tapPlayer1"];
-    NSLog(@"tapP1 = %d", [_tapPlayer1 count]);
     _tapPlayer2 = soundDict[@"tapPlayer2"];
     _finalizePlayer1 = soundDict[@"finalizePlayer1"];
     _finalizePlayer2 = soundDict[@"finalizePlayer2"];
@@ -105,7 +105,7 @@
 
 - (void) playSoundWithNameArray:(NSArray *)nameArray{
     [self removeFinishedSounds];
-    if ([nameArray count] == 0){
+    if (!self.isSoundOn || [nameArray count] == 0){
         return;
     }
     
@@ -119,12 +119,14 @@
     [self.playing addObject:audioPlayer];
     [audioPlayer play];
     audioPlayer.volume = self.volume;
-    NSLog(@"curVol = %f", audioPlayer.volume);
 }
 
 - (void) updateVolume:(float)vol{
-    NSLog(@"vol = %f", vol);
     self.volume = vol;
+}
+
+- (void) updateIsOn:(BOOL)isOn{
+    self.isSoundOn = isOn;
 }
 
 #pragma mark - Reference Delete
@@ -140,7 +142,6 @@
         }
     }
     self.playing = temp;
-    NSLog(@"Playing count = %d", [self.playing count]);
 }
 
 #pragma mark - AVAudioPlayerDelegate methods

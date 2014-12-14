@@ -15,5 +15,7 @@
 #define kAIThinkingDelay 1.5 // Delay to make AI look like it's "thinking"
 #define kAIFinalizeDelay 0.5 // Delay between AI move and player's turn.
 #define kDefaultVolume 0.75
+#define kDisabledAlpha 0.5
+#define kEnableInterval 0.5
 
 #endif

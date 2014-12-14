@@ -51,8 +51,8 @@
 		D8C8B49E1A3D42E10027325A /* tapP2_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C8B48B1A3D42E10027325A /* tapP2_2.wav */; };
 		D8C8B49F1A3D42E10027325A /* tapP2_3.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C8B48C1A3D42E10027325A /* tapP2_3.wav */; };
 		D8C8B4A01A3D42E10027325A /* tapP2_4.wav in Resources */ = {isa = PBXBuildFile; fileRef = D8C8B48D1A3D42E10027325A /* tapP2_4.wav */; };
-		D8C8B4A31A3D48440027325A /* Volume.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C8B4A21A3D48440027325A /* Volume.m */; };
 		D8C8B4A61A3D495D0027325A /* Volume+Cat.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C8B4A51A3D495D0027325A /* Volume+Cat.m */; };
+		D8C8B4A91A3D4D400027325A /* Volume.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C8B4A81A3D4D400027325A /* Volume.m */; };
 		D8CBE7141A1D3D1F00140D33 /* JCLRemovePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CBE7131A1D3D1F00140D33 /* JCLRemovePlayerViewController.m */; };
 		D8EA21351A2CEAEA00747BB1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8EA21331A2CEAEA00747BB1 /* Model.xcdatamodeld */; };
 		D8EA21421A2CFED400747BB1 /* Score+Cat.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA21411A2CFED400747BB1 /* Score+Cat.m */; };
@@ -136,10 +136,10 @@
 		D8C8B48B1A3D42E10027325A /* tapP2_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tapP2_2.wav; sourceTree = "<group>"; };
 		D8C8B48C1A3D42E10027325A /* tapP2_3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tapP2_3.wav; sourceTree = "<group>"; };
 		D8C8B48D1A3D42E10027325A /* tapP2_4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tapP2_4.wav; sourceTree = "<group>"; };
-		D8C8B4A11A3D48440027325A /* Volume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Volume.h; sourceTree = "<group>"; };
-		D8C8B4A21A3D48440027325A /* Volume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Volume.m; sourceTree = "<group>"; };
 		D8C8B4A41A3D495D0027325A /* Volume+Cat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Volume+Cat.h"; sourceTree = "<group>"; };
 		D8C8B4A51A3D495D0027325A /* Volume+Cat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Volume+Cat.m"; sourceTree = "<group>"; };
+		D8C8B4A71A3D4D400027325A /* Volume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Volume.h; path = ../Volume.h; sourceTree = "<group>"; };
+		D8C8B4A81A3D4D400027325A /* Volume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Volume.m; path = ../Volume.m; sourceTree = "<group>"; };
 		D8CBE7121A1D3D1F00140D33 /* JCLRemovePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLRemovePlayerViewController.h; sourceTree = "<group>"; };
 		D8CBE7131A1D3D1F00140D33 /* JCLRemovePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLRemovePlayerViewController.m; sourceTree = "<group>"; };
 		D8EA21341A2CEAEA00747BB1 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -372,8 +372,6 @@
 			isa = PBXGroup;
 			children = (
 				D8EA21331A2CEAEA00747BB1 /* Model.xcdatamodeld */,
-				D8C8B4A11A3D48440027325A /* Volume.h */,
-				D8C8B4A21A3D48440027325A /* Volume.m */,
 				D8C8B46A1A3D247B0027325A /* Player.h */,
 				D8C8B46B1A3D247B0027325A /* Player.m */,
 				D8C8B4671A3D1ECD0027325A /* AI.h */,
@@ -382,13 +380,15 @@
 				D8EA21571A2D146500747BB1 /* Score.m */,
 				D8EA21401A2CFED400747BB1 /* Score+Cat.h */,
 				D8EA21411A2CFED400747BB1 /* Score+Cat.m */,
+				D8C8B4A71A3D4D400027325A /* Volume.h */,
+				D8C8B4A81A3D4D400027325A /* Volume.m */,
+				D8C8B4A41A3D495D0027325A /* Volume+Cat.h */,
+				D8C8B4A51A3D495D0027325A /* Volume+Cat.m */,
 				D8EA214D1A2D01CA00747BB1 /* DataManagerDelegate.h */,
 				D8EA214E1A2D01E200747BB1 /* DataManager.h */,
 				D8EA214F1A2D01E200747BB1 /* DataManager.m */,
 				D8EA21511A2D02C500747BB1 /* MyDataManager.h */,
 				D8EA21521A2D02C500747BB1 /* MyDataManager.m */,
-				D8C8B4A41A3D495D0027325A /* Volume+Cat.h */,
-				D8C8B4A51A3D495D0027325A /* Volume+Cat.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -523,12 +523,12 @@
 				D811BBE51A156B1A00CC17B2 /* JCLAddPlayerViewController.m in Sources */,
 				D811BBE21A155DB400CC17B2 /* JCLProfileTableViewCell.m in Sources */,
 				D8BC208A1A324F9300AA2A32 /* AIEasy.m in Sources */,
-				D8C8B4A31A3D48440027325A /* Volume.m in Sources */,
 				D88058FE1A15134100615C06 /* JCLGameModel.m in Sources */,
 				D853D6831A150CE50072F890 /* main.m in Sources */,
 				D811BBD61A15457B00CC17B2 /* JCLChoosePlayerViewController.m in Sources */,
 				D8BC208D1A32534400AA2A32 /* ComputerAI.m in Sources */,
 				D88058FB1A15121F00615C06 /* JCLModel.m in Sources */,
+				D8C8B4A91A3D4D400027325A /* Volume.m in Sources */,
 				D8EA21501A2D01E200747BB1 /* DataManager.m in Sources */,
 				D8C8B46F1A3D28A90027325A /* AIMedium.m in Sources */,
 				D8CBE7141A1D3D1F00140D33 /* JCLRemovePlayerViewController.m in Sources */,

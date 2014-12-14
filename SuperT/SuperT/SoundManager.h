@@ -11,6 +11,7 @@
 + (id) sharedInstance;
 
 - (void) updateVolume:(float)vol;
+- (void) updateIsOn:(BOOL)isOn;
 
 - (void) playTapForPlayer:(NSInteger)turn;
 - (void) playFinalizeForPlayer:(NSInteger)turn;

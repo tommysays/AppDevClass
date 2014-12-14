@@ -13,5 +13,6 @@
 @interface Volume : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * volume;
+@property (nonatomic, retain) NSNumber * isOn;
 
 @end

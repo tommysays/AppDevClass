@@ -14,4 +14,8 @@
     self.volume = [NSNumber numberWithFloat:vol];
 }
 
+- (void) updateIsOn:(BOOL)isOn{
+    self.isOn = [NSNumber numberWithBool:isOn];
+}
+
 @end

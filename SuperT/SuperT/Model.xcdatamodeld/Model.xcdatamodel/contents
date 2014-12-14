@@ -13,12 +13,13 @@
         <attribute name="player2_wins" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Volume" representedClassName="Volume" syncable="YES">
+        <attribute name="isOn" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="volume" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <elements>
         <element name="Player" positionX="-54" positionY="84" width="128" height="88"/>
         <element name="Score" positionX="142" positionY="119" width="128" height="103"/>
         <element name="AI" positionX="-153" positionY="245" width="128" height="43"/>
-        <element name="Volume" positionX="0" positionY="171" width="128" height="60"/>
+        <element name="Volume" positionX="0" positionY="171" width="128" height="75"/>
     </elements>
 </model>

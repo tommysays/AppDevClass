@@ -53,6 +53,7 @@ static NSString * const modelName = @"Model";
 - (Volume *) addVolume{
     Volume *vol = [NSEntityDescription insertNewObjectForEntityForName:@"Volume" inManagedObjectContext:_dataManager.managedObjectContext];
     vol.volume = [NSNumber numberWithFloat:kDefaultVolume];
+    vol.isOn = [NSNumber numberWithBool:YES];
     return vol;
 }
 

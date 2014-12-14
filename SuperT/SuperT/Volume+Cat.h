@@ -11,5 +11,6 @@
 @interface Volume (Cat)
 
 - (void) changeVolume:(float)vol;
+- (void) updateIsOn:(BOOL)isOn;
 
 @end

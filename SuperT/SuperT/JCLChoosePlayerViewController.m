@@ -9,6 +9,7 @@
 #import "JCLChoosePlayerViewController.h"
 #import "Player.h"
 #import "Score+Cat.h"
+#import "Constants.h"
 
 @interface JCLChoosePlayerViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UIAlertViewDelegate>
 
@@ -16,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView2;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel2;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIButton *removeButton;
 - (IBAction)playPressed:(id)sender;
 - (IBAction)addPressed:(id)sender;
 - (IBAction)removePressed:(id)sender;
@@ -33,8 +36,7 @@
     [super viewDidLoad];
     
     self.model = [JCLModel sharedInstance];
-    self.scoreLabel1.text = @"--";
-    self.scoreLabel2.text = @"--";
+    [self refresh];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -75,18 +77,35 @@
         if ([player1.playerID isEqual:player2.playerID]){
             self.scoreLabel1.text = @"--";
             self.scoreLabel2.text = @"--";
+            [self changeButtonState:self.playButton to:NO];
         } else{
             Score *score = [self.model scoreBetweenPlayers:@[player1, player2]];
             self.scoreLabel1.text = [NSString stringWithFormat:@"%d", [score winsForPlayerID:player1.playerID]];
             self.scoreLabel2.text = [NSString stringWithFormat:@"%d", [score winsForPlayerID:player2.playerID]];
+            [self changeButtonState:self.playButton to:YES];
         }
     }
     
 }
 
+- (void) changeButtonState:(UIButton *)button to:(BOOL)enabled{
+    button.enabled = enabled;
+    [UIView animateWithDuration:kEnableInterval animations:^{
+        button.alpha = enabled ? 1.0 : kDisabledAlpha;
+    }];
+}
+
 - (void) refresh{
     [self.pickerView1 reloadComponent:0];
     [self.pickerView2 reloadComponent:0];
+    
+    // Disable remove button if not enough player profiles.
+    if ([self.model numberOfPlayerProfiles] < 2){
+        [self changeButtonState:self.removeButton to:NO];
+    } else{
+        [self changeButtonState:self.removeButton to:YES];
+    }
+    
     // Calling didSelectRow to refresh score labels.
     [self pickerView:self.pickerView1 didSelectRow:0 inComponent:0];
 }

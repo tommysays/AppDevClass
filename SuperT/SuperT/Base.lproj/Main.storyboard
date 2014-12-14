@@ -292,6 +292,10 @@
                         <color key="backgroundColor" red="0.51934373359999997" green="0.736334406" blue="0.96923226119999994" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="BR7-Kl-rdy"/>
+                    <connections>
+                        <outlet property="soundSwitch" destination="x5w-Dh-ZCT" id="Gsm-OY-A23"/>
+                        <outlet property="volumeSlider" destination="dEs-b9-l1I" id="eHn-Q8-HuX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X6g-bj-jae" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -432,6 +436,8 @@
                     <connections>
                         <outlet property="pickerView1" destination="pQR-4l-eE5" id="epD-ql-HXq"/>
                         <outlet property="pickerView2" destination="Rk9-49-7ii" id="l22-l2-Zdr"/>
+                        <outlet property="playButton" destination="dJJ-ht-5zi" id="4Vd-po-c9V"/>
+                        <outlet property="removeButton" destination="x1J-vC-87F" id="DOG-N0-Mu1"/>
                         <outlet property="scoreLabel1" destination="kDO-80-ubs" id="eNu-rB-kgt"/>
                         <outlet property="scoreLabel2" destination="dxZ-gG-0kv" id="k7Y-Wo-529"/>
                         <segue destination="vpj-7O-5Zn" kind="push" identifier="ChooseToGame" id="AT4-nj-e92"/>
