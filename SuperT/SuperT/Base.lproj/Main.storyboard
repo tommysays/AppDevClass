@@ -191,6 +191,46 @@
                                     </label>
                                 </subviews>
                             </view>
+                            <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jBq-Qm-CJi">
+                                <rect key="frame" x="143" y="639" width="482" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbh-Y8-Zii">
+                                        <rect key="frame" x="0.0" y="38" width="90" height="5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZlF-5g-PdA">
+                                        <rect key="frame" x="392" y="38" width="90" height="5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </view>
+                            <view tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MUz-cP-MuO">
+                                <rect key="frame" x="143" y="755" width="482" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDV-js-ajg">
+                                        <rect key="frame" x="0.0" y="38" width="90" height="5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6j-kP-954">
+                                        <rect key="frame" x="392" y="38" width="90" height="5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="32x9_buttonBorder" translatesAutoresizingMaskIntoConstraints="NO" id="Wju-Qx-4zr">
                                 <rect key="frame" x="304" y="877" width="160" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -320,12 +360,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="BR7-Kl-rdy"/>
                     <connections>
-                        <outlet property="highlightView" destination="dqy-gt-F4J" id="vUK-r0-ky9"/>
                         <outlet property="soundSwitch" destination="x5w-Dh-ZCT" id="Gsm-OY-A23"/>
                         <outlet property="volumeSlider" destination="dEs-b9-l1I" id="eHn-Q8-HuX"/>
                         <outletCollection property="themeButtons" destination="Yf0-5g-Tba" id="7Zm-mG-dMW"/>
                         <outletCollection property="themeButtons" destination="2QR-HK-uOX" id="YVY-hn-vA1"/>
                         <outletCollection property="themeButtons" destination="3QN-Vt-dr8" id="Agb-5e-Uvj"/>
+                        <outletCollection property="highlights" destination="jBq-Qm-CJi" id="661-nF-BvZ"/>
+                        <outletCollection property="highlights" destination="MUz-cP-MuO" id="pyk-HA-FCV"/>
+                        <outletCollection property="highlights" destination="dqy-gt-F4J" id="Ut3-Rj-9yr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X6g-bj-jae" userLabel="First Responder" sceneMemberID="firstResponder"/>
