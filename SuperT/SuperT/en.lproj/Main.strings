@@ -1,0 +1,111 @@
+
+/* Class = "IBUIButton"; normalTitle = "Surrender"; ObjectID = "0Th-hK-90Q"; */
+"0Th-hK-90Q.normalTitle" = "Surrender";
+
+/* Class = "IBUILabel"; text = "Theme:"; ObjectID = "0de-rq-b3h"; */
+"0de-rq-b3h.text" = "Theme:";
+
+/* Class = "IBUIButton"; normalTitle = "Back"; ObjectID = "1WG-Q4-mFr"; */
+"1WG-Q4-mFr.normalTitle" = "Back";
+
+/* Class = "IBUIButton"; normalTitle = "Theme 2"; ObjectID = "2QR-HK-uOX"; */
+"2QR-HK-uOX.normalTitle" = "Theme 2";
+
+/* Class = "IBUIButton"; normalTitle = "Theme 3"; ObjectID = "3QN-Vt-dr8"; */
+"3QN-Vt-dr8.normalTitle" = "Theme 3";
+
+/* Class = "IBUILabel"; text = "Add Player"; ObjectID = "4Us-lR-4fT"; */
+"4Us-lR-4fT.text" = "Add Player";
+
+/* Class = "IBUIButton"; normalTitle = "Cancel"; ObjectID = "9yj-p4-Ppe"; */
+"9yj-p4-Ppe.normalTitle" = "Cancel";
+
+/* Class = "IBUIButton"; normalTitle = "Finalize Move"; ObjectID = "B8X-bV-hlK"; */
+"B8X-bV-hlK.normalTitle" = "Finalize Move";
+
+/* Class = "IBUILabel"; text = "Player 1"; ObjectID = "BJG-Uw-nFW"; */
+"BJG-Uw-nFW.text" = "Player 1";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "DTZ-rc-oKz"; */
+"DTZ-rc-oKz.text" = "Label";
+
+/* Class = "IBUIButton"; normalTitle = "Multiplayer"; ObjectID = "HNS-wH-qPB"; */
+"HNS-wH-qPB.normalTitle" = "Multiplayer";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "IkU-Eg-zRi"; */
+"IkU-Eg-zRi.text" = "Label";
+
+/* Class = "IBUIButton"; normalTitle = "Singleplayer"; ObjectID = "LY3-rm-wf6"; */
+"LY3-rm-wf6.normalTitle" = "Singleplayer";
+
+/* Class = "IBUITextField"; placeholder = "New Player"; ObjectID = "MK1-aX-o5V"; */
+"MK1-aX-o5V.placeholder" = "New Player";
+
+/* Class = "IBUIButton"; normalTitle = "Add"; ObjectID = "NBn-HC-BNA"; */
+"NBn-HC-BNA.normalTitle" = "Add";
+
+/* Class = "IBUIButton"; normalTitle = "Cancel"; ObjectID = "Nd6-OQ-1Rz"; */
+"Nd6-OQ-1Rz.normalTitle" = "Cancel";
+
+/* Class = "IBUILabel"; text = "VS"; ObjectID = "Q5G-bV-7f9"; */
+"Q5G-bV-7f9.text" = "VS";
+
+/* Class = "IBUILabel"; text = "Sound:"; ObjectID = "RrV-fW-is6"; */
+"RrV-fW-is6.text" = "Sound:";
+
+/* Class = "IBUIButton"; normalTitle = "Theme 1"; ObjectID = "Yf0-5g-Tba"; */
+"Yf0-5g-Tba.normalTitle" = "Theme 1";
+
+/* Class = "IBUILabel"; text = ":"; ObjectID = "cXb-09-70Y"; */
+"cXb-09-70Y.text" = ":";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "czQ-Jt-R13"; */
+"czQ-Jt-R13.text" = "Label";
+
+/* Class = "IBUIButton"; normalTitle = "Play!"; ObjectID = "dJJ-ht-5zi"; */
+"dJJ-ht-5zi.normalTitle" = "Play!";
+
+/* Class = "IBUILabel"; text = "<Score>"; ObjectID = "dxZ-gG-0kv"; */
+"dxZ-gG-0kv.text" = "<Score>";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "e92-Ws-CuS"; */
+"e92-Ws-CuS.text" = "Label";
+
+/* Class = "IBUIButton"; normalTitle = "Back"; ObjectID = "eMo-bK-qyj"; */
+"eMo-bK-qyj.normalTitle" = "Back";
+
+/* Class = "IBUIButton"; normalTitle = "Add Player Profile"; ObjectID = "eee-cI-omI"; */
+"eee-cI-omI.normalTitle" = "Add Player Profile";
+
+/* Class = "IBUIButton"; normalTitle = "Options"; ObjectID = "gnw-b8-8Ua"; */
+"gnw-b8-8Ua.normalTitle" = "Options";
+
+/* Class = "IBUILabel"; text = "<Score>"; ObjectID = "kDO-80-ubs"; */
+"kDO-80-ubs.text" = "<Score>";
+
+/* Class = "IBUILabel"; text = "<Player>'s turn!"; ObjectID = "mjS-yd-WS7"; */
+"mjS-yd-WS7.text" = "<Player>'s turn!";
+
+/* Class = "IBUIButton"; normalTitle = "Options"; ObjectID = "muf-qq-gUB"; */
+"muf-qq-gUB.normalTitle" = "Options";
+
+/* Class = "IBUILabel"; text = "Options"; ObjectID = "noV-PA-7YI"; */
+"noV-PA-7YI.text" = "Options";
+
+/* Class = "IBUILabel"; text = "Volume:"; ObjectID = "t4n-rp-HQl"; */
+"t4n-rp-HQl.text" = "Volume:";
+
+/* Class = "IBUILabel"; text = "Remove Player"; ObjectID = "tsZ-n6-was"; */
+"tsZ-n6-was.text" = "Remove Player";
+
+/* Class = "IBUIButton"; normalTitle = "Remove"; ObjectID = "vN4-1u-jf9"; */
+"vN4-1u-jf9.normalTitle" = "Remove";
+
+/* Class = "IBUIButton"; normalTitle = "Remove Player Profile"; ObjectID = "x1J-vC-87F"; */
+"x1J-vC-87F.normalTitle" = "Remove Player Profile";
+
+/* Class = "IBUIButton"; normalTitle = "Exit"; ObjectID = "z2f-gM-4NZ"; */
+"z2f-gM-4NZ.normalTitle" = "Exit";
+
+/* Class = "IBUILabel"; text = "Player 2"; ObjectID = "zBT-VY-JJo"; */
+"zBT-VY-JJo.text" = "Player 2";

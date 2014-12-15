@@ -82,25 +82,16 @@
 
 - (void) loadImages{
     NSMutableArray *oMark = [[NSMutableArray alloc] init];
-    UIImage *img = [UIImage imageNamed:@"oMark"];
-    [oMark addObject:img];
-    img = [UIImage imageNamed:@"oMark1"];
-    if (!img){
-        NSLog(@"HWWLFKJWF");
-    }
-    [oMark addObject:img];
+    [oMark addObject:[UIImage imageNamed:@"oMark1"]];
     [oMark addObject:[UIImage imageNamed:@"oMark2"]];
+    [oMark addObject:[UIImage imageNamed:@"oMark3"]];
     [self.images setObject:oMark forKey:@"oMark"];
     
-    
     NSMutableArray *xMark = [[NSMutableArray alloc] init];
-    [xMark addObject:[UIImage imageNamed:@"xMark"]];
-    NSLog(@"Hi");
     [xMark addObject:[UIImage imageNamed:@"xMark1"]];
-    NSLog(@"Hello");
     [xMark addObject:[UIImage imageNamed:@"xMark2"]];
+    [xMark addObject:[UIImage imageNamed:@"xMark3"]];
     [self.images setObject:xMark forKey:@"xMark"];
-    
 }
 
 #pragma mark - Accessors

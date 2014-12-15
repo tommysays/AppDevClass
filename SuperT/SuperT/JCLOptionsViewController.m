@@ -29,8 +29,30 @@
     self.soundManager = [SoundManager sharedInstance];
     [self.soundSwitch setOn:[self.model isSoundOn]];
     [self.volumeSlider setValue:[self.model volume]];
-    UIButton *curButton = (UIButton *)self.themeButtons[[self.model currentTheme]];
-    self.highlightView.center = curButton.center;
+    NSInteger curTheme = [self.model currentTheme];
+    for (UIButton *button in self.themeButtons){
+        if (button.tag == curTheme){
+            self.highlightView.center = button.center;
+            NSLog(@"center = %@", NSStringFromCGPoint(self.highlightView.center));
+            NSLog(@"tag = %d", button.tag);
+            break;
+        }
+    }
+}
+
+- (void) viewDidAppear:(BOOL)animated{
+    NSLog(@"real center = %@", NSStringFromCGPoint(self.highlightView.center));
+    NSLog(@"---");
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+    NSInteger curTheme = [self.model currentTheme];
+    for (UIButton *button in self.themeButtons){
+        if (button.tag == curTheme){
+            self.highlightView.center = button.center;
+            break;
+        }
+    }
 }
 
 #pragma mark - Button Reactions
@@ -47,6 +69,10 @@
     [self.model setSoundOn:self.soundSwitch.isOn];
     
     [self.soundManager playBackButton];
+    
+    if (self.gameController){
+        [self.gameController resetMarks];
+    }
     
     [self.navigationController popViewControllerAnimated:YES];
 }

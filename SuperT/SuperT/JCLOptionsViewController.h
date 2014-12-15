@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JCLGameViewController.h"
 
 @interface JCLOptionsViewController : UIViewController
+
+@property JCLGameViewController *gameController;
 
 @end

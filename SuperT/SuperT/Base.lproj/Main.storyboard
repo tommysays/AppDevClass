@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="GQf-Lb-dhf">
     <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
@@ -171,7 +172,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dqy-gt-F4J">
-                                <rect key="frame" x="143" y="522" width="482" height="82"/>
+                                <rect key="frame" x="143" y="524" width="482" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTZ-rc-oKz">
@@ -241,11 +242,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="xMark" translatesAutoresizingMaskIntoConstraints="NO" id="U5d-Va-ddt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="xMark1" translatesAutoresizingMaskIntoConstraints="NO" id="U5d-Va-ddt">
                                 <rect key="frame" x="437" y="525" width="79" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="oMark" translatesAutoresizingMaskIntoConstraints="NO" id="yY0-PV-JdU">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="oMark1" translatesAutoresizingMaskIntoConstraints="NO" id="yY0-PV-JdU">
                                 <rect key="frame" x="252" y="525" width="79" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -745,11 +746,11 @@
         <image name="addrBorder" width="1000" height="900"/>
         <image name="board" width="560" height="560"/>
         <image name="mainBorder" width="1536" height="2048"/>
-        <image name="oMark" width="560" height="560"/>
+        <image name="oMark1" width="560" height="560"/>
         <image name="oMark2" width="732" height="658"/>
         <image name="oMark3" width="640" height="640"/>
         <image name="superT" width="560" height="300"/>
-        <image name="xMark" width="560" height="560"/>
+        <image name="xMark1" width="560" height="560"/>
         <image name="xMark2" width="640" height="640"/>
         <image name="xMark3" width="300" height="300"/>
     </resources>
@@ -759,7 +760,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="EQu-ZJ-M8h"/>
+        <segue reference="fIX-6F-qcx"/>
         <segue reference="RDR-vJ-Q2P"/>
     </inferredMetricsTieBreakers>
 </document>

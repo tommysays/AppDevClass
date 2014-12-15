@@ -17,4 +17,6 @@
 @property Player *player2;
 @property AI *ai;
 
+- (void) resetMarks;
+
 @end

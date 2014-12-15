@@ -7,6 +7,7 @@
 //
 
 #import "JCLGameViewController.h"
+#import "JCLOptionsViewController.h"
 #import "JCLGameModel.h"
 #import "JCLModel.h"
 #import "SoundManager.h"
@@ -194,6 +195,7 @@ const CGFloat kHighlightAlpha = 0.4;
     NSInteger player = [self.gameModel isPlayer1Turn];
     self.curMark = [[UIImageView alloc] initWithImage:[self.model markForPlayer:player]];
     self.curMark.contentMode = UIViewContentModeScaleAspectFit;
+    self.curMark.tag = [self.gameModel isPlayer1Turn] ? 1 : 2;
     [self.view addSubview:self.curMark];
     NSInteger third = kMiniSize / 3;
     NSInteger cellX = (cell % 3) * third + ((third - kMarkSize) / 2);
@@ -429,5 +431,24 @@ const CGFloat kHighlightAlpha = 0.4;
     [alert show];
 }
 
+#pragma mark - Segue
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"GameToOptions"]){
+        JCLOptionsViewController *destController = segue.destinationViewController;
+        destController.gameController = self;
+    }
+}
+
+#pragma mark - Reset Marks
+
+- (void) resetMarks{
+    for (UIImageView *mark in self.marks){
+        mark.image = [self.model markForPlayer:mark.tag];
+    }
+    if (self.curMark){
+        self.curMark.image = [self.model markForPlayer:self.curMark.tag];
+    }
+}
 
 @end
