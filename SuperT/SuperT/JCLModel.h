@@ -33,6 +33,9 @@
 - (void) removePlayerAtIndex:(NSUInteger)playerIndex;
 - (void) updateScore:(Score *)score withWinner:(Player *)winner;
 
+- (NSInteger) currentTheme;
+- (void) updateTheme:(NSInteger)theme;
+
 - (float) volume;
 - (void) updateVolume:(float)vol;
 - (BOOL) isSoundOn;

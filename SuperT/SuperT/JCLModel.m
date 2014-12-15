@@ -17,6 +17,7 @@
 @property (nonatomic,strong) DataManager *dataManager;
 @property (nonatomic,strong) MyDataManager *myDataManager;
 @property SoundManager *soundManager;
+@property NSInteger curTheme;
 
 @property NSMutableArray *playerList;
 @property NSMutableArray *aiList;
@@ -44,14 +45,11 @@
 - (id) init{
     self = [super init];
     if (self){
-        
         _dataManager = [DataManager sharedInstance];
         _myDataManager = [[MyDataManager alloc] init];
         _dataManager.delegate = _myDataManager;
-        
         _soundManager = [SoundManager sharedInstance];
-
-        
+        _curTheme = 0;
         _images = [[NSMutableDictionary alloc] init];
     }
     return self;
@@ -83,10 +81,26 @@
 }
 
 - (void) loadImages{
-    UIImage *img = [UIImage imageNamed:@"xMark"];
-    [self.images setObject:img forKey:@"xMark"];
-    img = [UIImage imageNamed:@"oMark"];
-    [self.images setObject:img forKey:@"oMark"];
+    NSMutableArray *oMark = [[NSMutableArray alloc] init];
+    UIImage *img = [UIImage imageNamed:@"oMark"];
+    [oMark addObject:img];
+    img = [UIImage imageNamed:@"oMark1"];
+    if (!img){
+        NSLog(@"HWWLFKJWF");
+    }
+    [oMark addObject:img];
+    [oMark addObject:[UIImage imageNamed:@"oMark2"]];
+    [self.images setObject:oMark forKey:@"oMark"];
+    
+    
+    NSMutableArray *xMark = [[NSMutableArray alloc] init];
+    [xMark addObject:[UIImage imageNamed:@"xMark"]];
+    NSLog(@"Hi");
+    [xMark addObject:[UIImage imageNamed:@"xMark1"]];
+    NSLog(@"Hello");
+    [xMark addObject:[UIImage imageNamed:@"xMark2"]];
+    [self.images setObject:xMark forKey:@"xMark"];
+    
 }
 
 #pragma mark - Accessors
@@ -117,9 +131,9 @@
 
 - (UIImage *) markForPlayer:(NSInteger)player{
     if (player == 1){
-        return [self.images objectForKey:@"xMark"];
+        return [self.images objectForKey:@"xMark"][self.curTheme];
     } else{
-        return [self.images objectForKey:@"oMark"];
+        return [self.images objectForKey:@"oMark"][self.curTheme];
     }
 }
 
@@ -165,13 +179,6 @@
     return [NSIndexPath indexPathForRow:wins inSection:losses];
 }
 
-- (float) volume{
-    NSArray *volumes = [self.dataManager fetchManagedObjectsForEntity:@"Volume" sortKeys:nil predicate:nil];
-    Volume *volume = volumes[0];
-    NSNumber *vol = volume.volume;
-    return [vol floatValue];
-}
-
 #pragma mark - Mutators
 
 - (void) addPlayerWithName:(NSString *)name{
@@ -212,6 +219,13 @@
 
 #pragma mark - Volume
 
+- (float) volume{
+    NSArray *volumes = [self.dataManager fetchManagedObjectsForEntity:@"Volume" sortKeys:nil predicate:nil];
+    Volume *volume = volumes[0];
+    NSNumber *vol = volume.volume;
+    return [vol floatValue];
+}
+
 - (void) updateVolume:(float)vol{
     NSArray *volumes = [self.dataManager fetchManagedObjectsForEntity:@"Volume" sortKeys:nil predicate:nil];
     [volumes[0] changeVolume:vol];
@@ -233,6 +247,16 @@
     [self.soundManager updateIsOn:isOn];
     
     [self.dataManager saveContext];
+}
+
+#pragma mark - Theme
+
+- (NSInteger) currentTheme{
+    return self.curTheme;
+}
+
+- (void) updateTheme:(NSInteger)theme{
+    self.curTheme = theme;
 }
 
 #pragma mark - Sorting
