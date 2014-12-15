@@ -24,6 +24,8 @@
 
 @implementation JCLOptionsViewController
 
+#pragma mark - Initialization
+
 - (void) viewDidLoad{
     self.model = [JCLModel sharedInstance];
     self.soundManager = [SoundManager sharedInstance];
