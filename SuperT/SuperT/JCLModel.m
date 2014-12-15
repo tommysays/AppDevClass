@@ -17,7 +17,6 @@
 @property (nonatomic,strong) DataManager *dataManager;
 @property (nonatomic,strong) MyDataManager *myDataManager;
 @property SoundManager *soundManager;
-@property NSInteger curTheme;
 
 @property NSMutableArray *playerList;
 @property NSMutableArray *aiList;
@@ -49,7 +48,6 @@
         _myDataManager = [[MyDataManager alloc] init];
         _dataManager.delegate = _myDataManager;
         _soundManager = [SoundManager sharedInstance];
-        _curTheme = 0;
         _images = [[NSMutableDictionary alloc] init];
     }
     return self;
@@ -121,10 +119,13 @@
 }
 
 - (UIImage *) markForPlayer:(NSInteger)player{
+    NSArray *themes = [self.dataManager fetchManagedObjectsForEntity:@"Theme" sortKeys:nil predicate:nil];
+    Theme *theme = themes[0];
+    NSInteger curTheme = [theme.theme integerValue];
     if (player == 1){
-        return [self.images objectForKey:@"xMark"][self.curTheme];
+        return [self.images objectForKey:@"xMark"][curTheme];
     } else{
-        return [self.images objectForKey:@"oMark"][self.curTheme];
+        return [self.images objectForKey:@"oMark"][curTheme];
     }
 }
 
@@ -243,11 +244,16 @@
 #pragma mark - Theme
 
 - (NSInteger) currentTheme{
-    return self.curTheme;
+    NSArray *themes = [self.dataManager fetchManagedObjectsForEntity:@"Theme" sortKeys:nil predicate:nil];
+    Theme *theme = themes[0];
+    return [theme.theme integerValue];
 }
 
 - (void) updateTheme:(NSInteger)theme{
-    self.curTheme = theme;
+    NSArray *themes = [self.dataManager fetchManagedObjectsForEntity:@"Theme" sortKeys:nil predicate:nil];
+    Theme *curTheme = themes[0];
+    curTheme.theme = [NSNumber numberWithInteger:theme];
+    [self.dataManager saveContext];
 }
 
 #pragma mark - Sorting

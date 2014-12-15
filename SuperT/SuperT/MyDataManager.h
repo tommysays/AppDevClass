@@ -12,9 +12,11 @@
 #import "Player.h"
 #import "Score.h"
 #import "Volume.h"
+#import "Theme.h"
 
 @interface MyDataManager : NSObject <DataManagerDelegate>
 
+- (Theme *) addTheme;
 - (Volume *) addVolume;
 - (AI *) addAIWithDictionary:(NSDictionary *)dict;
 - (Player *) addPlayerWithDictionary:(NSDictionary *)dict;

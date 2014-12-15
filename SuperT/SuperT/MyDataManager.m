@@ -46,9 +46,17 @@ static NSString * const modelName = @"Model";
         [self addAIWithDictionary:dict];
     }
     [self addVolume];
+    [self addTheme];
 }
 
 #pragma mark - Add Entity Methods
+
+- (Theme *) addTheme{
+    Theme *theme = [NSEntityDescription insertNewObjectForEntityForName:@"Theme" inManagedObjectContext:_dataManager.managedObjectContext];
+    theme.theme = 0;
+    return theme;
+}
+
 
 - (Volume *) addVolume{
     Volume *vol = [NSEntityDescription insertNewObjectForEntityForName:@"Volume" inManagedObjectContext:_dataManager.managedObjectContext];

@@ -28,6 +28,7 @@
 		D88058FB1A15121F00615C06 /* JCLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D88058FA1A15121F00615C06 /* JCLModel.m */; };
 		D88058FE1A15134100615C06 /* JCLGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D88058FD1A15134100615C06 /* JCLGameModel.m */; };
 		D8A7AE2E1A3E616C0010D3E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D853D6881A150CE50072F890 /* Main.storyboard */; };
+		D8A7AE3C1A3E88940010D3E0 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A7AE3B1A3E88940010D3E0 /* Theme.m */; };
 		D8BC208A1A324F9300AA2A32 /* AIEasy.m in Sources */ = {isa = PBXBuildFile; fileRef = D8BC20891A324F9300AA2A32 /* AIEasy.m */; };
 		D8BC208D1A32534400AA2A32 /* ComputerAI.m in Sources */ = {isa = PBXBuildFile; fileRef = D8BC208C1A32534400AA2A32 /* ComputerAI.m */; };
 		D8C8B4651A3D0E9B0027325A /* DefaultAI.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8C8B4641A3D0E9B0027325A /* DefaultAI.plist */; };
@@ -108,6 +109,8 @@
 		D88058FC1A15134100615C06 /* JCLGameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLGameModel.h; sourceTree = "<group>"; };
 		D88058FD1A15134100615C06 /* JCLGameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLGameModel.m; sourceTree = "<group>"; };
 		D8A7AE301A3E61B90010D3E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		D8A7AE3A1A3E88940010D3E0 /* Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
+		D8A7AE3B1A3E88940010D3E0 /* Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
 		D8BC20881A324F9300AA2A32 /* AIEasy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIEasy.h; sourceTree = "<group>"; };
 		D8BC20891A324F9300AA2A32 /* AIEasy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIEasy.m; sourceTree = "<group>"; };
 		D8BC208B1A32534400AA2A32 /* ComputerAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComputerAI.h; sourceTree = "<group>"; };
@@ -373,6 +376,8 @@
 			isa = PBXGroup;
 			children = (
 				D8EA21331A2CEAEA00747BB1 /* Model.xcdatamodeld */,
+				D8A7AE3A1A3E88940010D3E0 /* Theme.h */,
+				D8A7AE3B1A3E88940010D3E0 /* Theme.m */,
 				D8C8B46A1A3D247B0027325A /* Player.h */,
 				D8C8B46B1A3D247B0027325A /* Player.m */,
 				D8C8B4671A3D1ECD0027325A /* AI.h */,
@@ -528,6 +533,7 @@
 				D853D6831A150CE50072F890 /* main.m in Sources */,
 				D811BBD61A15457B00CC17B2 /* JCLChoosePlayerViewController.m in Sources */,
 				D8BC208D1A32534400AA2A32 /* ComputerAI.m in Sources */,
+				D8A7AE3C1A3E88940010D3E0 /* Theme.m in Sources */,
 				D88058FB1A15121F00615C06 /* JCLModel.m in Sources */,
 				D8C8B4A91A3D4D400027325A /* Volume.m in Sources */,
 				D8EA21501A2D01E200747BB1 /* DataManager.m in Sources */,
