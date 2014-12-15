@@ -225,7 +225,7 @@ const CGFloat kHighlightAlpha = 0.4;
     NSInteger boardIndex = view.tag;
     if ([self.gameModel isBoardAvailable:boardIndex]){
         CGPoint pt = [recognizer locationInView:recognizer.view];
-        NSInteger third = kMiniSize / 3;
+        NSInteger third = (kMiniSize + 3) / 3;
         NSInteger x = pt.x / third;
         NSInteger y = pt.y / third;
         NSInteger cellIndex = y * 3 + x;
