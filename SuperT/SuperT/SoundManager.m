@@ -19,6 +19,7 @@
 // Sound effect file names per player, per action.
 @property NSArray *tapPlayer1;
 @property NSArray *tapPlayer2;
+@property NSArray *combinedTap;
 @property NSArray *finalizePlayer1;
 @property NSArray *finalizePlayer2;
 @property NSURL *gameOverURL;
@@ -62,6 +63,7 @@
     NSDictionary *soundDict = [NSDictionary dictionaryWithContentsOfFile:path];
     _tapPlayer1 = soundDict[@"tapPlayer1"];
     _tapPlayer2 = soundDict[@"tapPlayer2"];
+    _combinedTap = [_tapPlayer1 arrayByAddingObjectsFromArray:_tapPlayer2];
     _finalizePlayer1 = soundDict[@"finalizePlayer1"];
     _finalizePlayer2 = soundDict[@"finalizePlayer2"];
     _gameOverURL = soundDict[@"gameOver"];
@@ -71,11 +73,13 @@
 #pragma mark - Play Sound
 
 - (void) playConfirmButton{
-    // TODO
+    // Placeholder sounds for confirm.
+    [self playSoundWithNameArray:self.combinedTap];
 }
 
 - (void) playBackButton{
-    // TODO
+    // Placeholder sounds for back.
+    [self playSoundWithNameArray:self.tapPlayer2];
 }
 
 - (void) playTapForPlayer:(NSInteger)turn{
