@@ -40,47 +40,6 @@
             view.hidden = YES;
         }
     }
-    /*
-    for (UIButton *button in self.themeButtons){
-        if (button.tag == curTheme){
-            CGSize size = self.highlightView.frame.size;
-            CGPoint origin = self.highlightView.frame.origin;
-            CGPoint buttonOrigin = button.frame.origin;
-            CGRect frame = CGRectMake(origin.x, buttonOrigin.y, size.width, size.height);
-            self.highlightView.frame = frame;
-
-            //[self.highlightView setCenter:button.center];
-            //NSLog(@"will appear center: %@", NSStringFromCGPoint(self.highlightView.center));
-            //break;
-        }
-    }
-     */
-}
-
-- (void) viewDidAppear:(BOOL)animated{
-//    NSLog(@"real center = %@", NSStringFromCGPoint(self.highlightView.center));
-//    NSLog(@"---");
-//    NSLog(@"Theme %d", [self.model currentTheme]);
-    
-}
-
-- (void) viewWillAppear:(BOOL)animated{
-           // NSLog(@"%@", NSStringFromCGRect(self.highlightView.frame));
-    /*
-    NSInteger curTheme = [self.model currentTheme];
-    for (UIButton *button in self.themeButtons){
-        if (button.tag == curTheme){
-            CGSize size = self.highlightView.frame.size;
-            CGPoint origin = self.highlightView.frame.origin;
-            CGPoint buttonOrigin = button.frame.origin;
-            CGRect frame = CGRectMake(origin.x, buttonOrigin.y, size.width, size.height);
-            self.highlightView.frame = frame;
-            //[self.highlightView setCenter:button.center];
-            //NSLog(@"will appear center: %@", NSStringFromCGPoint(self.highlightView.center));
-            //break;
-        }
-    }
-     */
 }
 
 #pragma mark - Button Reactions
@@ -96,7 +55,6 @@
             view.hidden = YES;
         }
     }
-    //self.highlightView.center = button.center;
 }
 
 - (IBAction)backButtonPressed:(id)sender {

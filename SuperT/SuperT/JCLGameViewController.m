@@ -251,7 +251,7 @@ const CGFloat kHighlightAlpha = 0.4;
     // Get move from ai.
     NSIndexPath *move = [self.aiPlayer makeMove];
     if (!move){
-        // If this occurs, then the AI logic is faulty.
+        // If this occurs, then the AI logic is faulty. Not sure how to handle this.
         NSLog(@"Error : Could not make move (ai). Check AI logic.");
     }
     self.curMove = move;
